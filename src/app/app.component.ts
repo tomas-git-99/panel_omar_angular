@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'panel-omar-new-angular';
+  isList: number = 0;
+  isMenu: boolean = false;
+  isSearch: boolean = false;
 }

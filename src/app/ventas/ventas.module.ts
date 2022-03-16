@@ -1,0 +1,38 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './home/home.component';
+import { DistributionComponent } from './distribution/distribution.component';
+import { HistoryComponent } from './history/history.component';
+import { GenerateVoucherComponent } from './generate-voucher/generate-voucher.component';
+import { VentasComponent } from './ventas.component';
+import { VentasRoutingModule } from './ventas-routing.module';
+import { SubTableComponent } from './home/sub-table/sub-table.component';
+import { QuickViewsComponent } from './generate-voucher/quick-views/quick-views.component';
+import { ShoppingCartComponent } from './generate-voucher/shopping-cart/shopping-cart.component';
+import { CartSubTableComponent } from './generate-voucher/cart-sub-table/cart-sub-table.component';
+
+
+
+
+@NgModule({
+  declarations: [
+    HomeComponent,
+    DistributionComponent,
+    HistoryComponent,
+    GenerateVoucherComponent,
+    VentasComponent,
+    SubTableComponent,
+    QuickViewsComponent,
+    ShoppingCartComponent,
+    CartSubTableComponent,
+    
+  ],
+  imports: [
+    CommonModule,
+    VentasRoutingModule
+  ],
+  exports: [
+    VentasComponent,
+  ]
+})
+export class VentasModule { }

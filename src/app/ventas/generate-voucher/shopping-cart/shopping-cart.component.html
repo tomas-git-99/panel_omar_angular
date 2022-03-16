@@ -1,0 +1,166 @@
+<div class="relative h-[100px]">
+  <div
+    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white h-[600px] w-auto"
+  >
+    <!--  hola -->
+
+    <div class="w-4/4 flex" >
+      <div
+        class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 overflow-auto w-[900px]"
+        
+      >
+
+      <!-- product home -->
+        <div class="mt-7 overflow-x-hidden sm:w-full" style="border: 1px solid red">
+          <table class="w-full whitespace-nowrap">
+            <!--  <thead>
+                <tr class="h-16 w-full text-sm leading-none text-gray-800">
+                    <th class="font-normal text-left "></th>
+
+                    <th class="font-normal text-left pl-5 ">Modelo & Diseño</th>
+                    <th class="font-normal text-left pl-5  text-center">Talles</th>
+                    <th class="font-normal text-left pl-5  text-center">Cantidad Total</th>
+                    <th class="font-normal text-left pl-5  text-center">Precio</th>
+                    <th class="font-normal text-left pl-5  text-center">Total</th>
+                    <th class="font-normal text-left"></th>
+                 
+                </tr>
+            </thead> -->
+            <tbody>
+              <tr class="h-16 border border-gray-100 rounded max-w-[100px]">
+                <td>
+                  <div class="ml-5">
+                    <div
+                      class="rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative"
+                      (click)="viewSubTable()"
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        stroke-width="2.5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="cursor: pointer"
+                      >
+                        <path
+                          d="M6 9L12 15L18 9"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </td>
+                <td class="pl-5">
+                  <div class="pl-4">
+                    <p
+                      class="text-base font-medium leading-none text-gray-700 mr-2"
+                    >
+                      Campera
+                    </p>
+                    <p class="text-xs leading-3 text-gray-600 pt-2">Love you</p>
+                  </div>
+                </td>
+                <td class="pl-5">
+                  <div class="flex items-center">
+                    <p class="text-sm leading-none text-gray-600 ml-2">
+                      2,3,4,5,6
+                    </p>
+                  </div>
+                </td>
+                <td class="pl-5">
+                  <div class="">
+                    <p
+                      class="text-sm leading-none text-gray-600 ml-2 text-center"
+                    >
+                      40
+                    </p>
+                  </div>
+                </td>
+                <td class="">
+                  <div class="">
+                    <p
+                      class="text-sm leading-none text-gray-600 ml-2 text-center"
+                    >
+                      $340
+                    </p>
+                  </div>
+                </td>
+                <td class="pl-5">
+                  <div class="flex items-center">
+                    <p class="text-sm leading-none text-gray-600 ml-2">$3456</p>
+                  </div>
+                </td>
+
+                <td class="pl-5">
+                  <button
+                    class="mx-2 my-2 bg-gray-200 transition duration-150 ease-in-out focus:outline-none hover:bg-gray-300 rounded text-indigo-700 px-6 py-2 text-xs"
+                  >
+                    Editar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <app-cart-sub-table [isSubTable]="isSubTable"></app-cart-sub-table>
+        </div>
+
+       <!--  product end -->
+      </div>
+
+      <!--  hola -->
+
+      <div id="summary" class=" px-8 py-10 bg-[#F6F6F6]">
+        <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+        <div class="flex justify-between mt-10 mb-5">
+          <span class="font-semibold text-sm uppercase">Items 3</span>
+          <span class="font-semibold text-sm">590$</span>
+        </div>
+        <div>
+          <label class="font-medium inline-block mb-3 text-sm uppercase"
+            >Shipping</label
+          >
+          <select class="block p-2 text-gray-600 w-full text-sm">
+            <option>Standard shipping - $10.00</option>
+          </select>
+        </div>
+        <div class="py-10">
+          <label
+            for="promo"
+            class="font-semibold inline-block mb-3 text-sm uppercase"
+            >Promo Code</label
+          >
+          <input
+            type="text"
+            id="promo"
+            placeholder="Enter your code"
+            class="p-2 text-sm w-full"
+          />
+        </div>
+        <button
+          class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase"
+        >
+          Apply
+        </button>
+        <div class="border-t mt-8">
+          <div
+            class="flex font-semibold justify-between py-6 text-sm uppercase"
+          >
+            <span>Total cost</span>
+            <span>$600</span>
+          </div>
+          <button
+            class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+          >
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
