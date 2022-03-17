@@ -16,7 +16,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    VentasModule
+    VentasModule,
+
+
+    
   ],
   exports: [
     SidebarComponent

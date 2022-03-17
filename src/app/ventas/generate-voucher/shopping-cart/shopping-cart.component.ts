@@ -1,15 +1,26 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+
+
+
+
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
+
+
+
+
+
+// install Swiper modules
 export class ShoppingCartComponent implements OnInit {
 
   dropDownList:any;
 
-
+  
+ 
   isMenu: boolean = false;
 
   isSubTable: boolean = false;
@@ -23,7 +34,13 @@ export class ShoppingCartComponent implements OnInit {
 
   @ViewChild('categoryScrollX')categoryScrollX!:ElementRef<HTMLInputElement>;
 
-
+  isOpenedList:any;
+  openMenu(source:any) {
+      this.isOpenedList = source;
+  }
+  closeMenu() {
+      this.isOpenedList = -1;
+  }
 
   constructor() { }
 
