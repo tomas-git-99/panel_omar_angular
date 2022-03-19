@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { GenerateVoucherComponent } from './generate-voucher/generate-voucher.component';
 import { HistoryComponent } from './history/history.component';
 import { DistributionComponent } from './distribution/distribution.component';
+import { CheckOutComponent } from './generate-voucher/check-out/check-out.component';
+import { VentasComponent } from './ventas.component';
 
 
 const routes: Routes = [
@@ -15,9 +17,11 @@ const routes: Routes = [
       {path:'generar', component: GenerateVoucherComponent},
       {path:'historial', component: HistoryComponent},
       {path:'distribucion', component: DistributionComponent},
+    
       {path:'**', redirectTo: 'inicio'}
     ]
-  }
+  },
+  
 ]
 @NgModule({
   declarations: [],

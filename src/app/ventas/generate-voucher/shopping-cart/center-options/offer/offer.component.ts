@@ -11,5 +11,11 @@ export class OfferComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  isOpenedList:any;
+  openMenu(source:any) {
+      this.isOpenedList = source;
+  }
+  closeMenu() {
+      this.isOpenedList = -1;
+  }
 }

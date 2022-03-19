@@ -15,6 +15,9 @@ import { CenterOptionsComponent } from './generate-voucher/shopping-cart/center-
 import { ChangePriceComponent } from './generate-voucher/shopping-cart/center-options/change-price/change-price.component';
 import { NoteComponent } from './generate-voucher/shopping-cart/center-options/note/note.component';
 import { OfferComponent } from './generate-voucher/shopping-cart/center-options/offer/offer.component';
+import { CheckOutComponent } from './generate-voucher/check-out/check-out.component';
+import { PayComponent } from './generate-voucher/check-out/pay/pay.component';
+import { InvoicesComponent } from './generate-voucher/check-out/invoices/invoices.component';
 
 
 
@@ -36,6 +39,9 @@ import { OfferComponent } from './generate-voucher/shopping-cart/center-options/
     ChangePriceComponent,
     NoteComponent,
     OfferComponent,
+    CheckOutComponent,
+    PayComponent,
+    InvoicesComponent,
     
   ],
   imports: [
