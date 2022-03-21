@@ -10,4 +10,32 @@ export class AppComponent {
   isList: number = 0;
   isMenu: boolean = false;
   isSearch: boolean = false;
+
+
+  isMenuVentas:boolean = false;
+
+
+  iconNav = {
+    productos:'/assets/icon/productos.png',
+    orden:'/assets/icon/orden.png',
+    historial:'/assets/icon/history.png',
+    distribution:'/assets/icon/camion.png',
+
+  }
+
+  routerLink = {
+    inicio: '/',
+
+    generar: '/generar',
+    historial: '/historial',
+    distribucion: '/distribucion',
+
+  }
+
+  sizeIconNav = '25px'
+
+  changeValue(){
+   
+    this.isMenuVentas = !this.isMenuVentas ;
+  }
 }

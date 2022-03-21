@@ -18,6 +18,8 @@ import { OfferComponent } from './generate-voucher/shopping-cart/center-options/
 import { CheckOutComponent } from './generate-voucher/check-out/check-out.component';
 import { PayComponent } from './generate-voucher/check-out/pay/pay.component';
 import { InvoicesComponent } from './generate-voucher/check-out/invoices/invoices.component';
+import { SubTableDistributionComponent } from './distribution/sub-table-distribution/sub-table-distribution.component';
+import { SubTablesFailuresComponent } from './distribution/sub-table-distribution/sub-tables-failures/sub-tables-failures.component';
 
 
 
@@ -42,6 +44,9 @@ import { InvoicesComponent } from './generate-voucher/check-out/invoices/invoice
     CheckOutComponent,
     PayComponent,
     InvoicesComponent,
+    SubTableDistributionComponent,
+    SubTablesFailuresComponent,
+    
     
   ],
   imports: [
