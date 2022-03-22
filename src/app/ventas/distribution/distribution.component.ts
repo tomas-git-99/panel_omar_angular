@@ -17,9 +17,8 @@ export class DistributionComponent implements OnInit {
   isSubTable: boolean = false;
   categoryChange:any[] = [
     'todo',
-    'camisetas',
-    'buzos',
-    'camperas'
+    'proceso',
+    'entregados',
   ] 
   valueHomeCategory:string = 'todo'
 

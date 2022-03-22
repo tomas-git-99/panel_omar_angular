@@ -20,6 +20,7 @@ import { PayComponent } from './generate-voucher/check-out/pay/pay.component';
 import { InvoicesComponent } from './generate-voucher/check-out/invoices/invoices.component';
 import { SubTableDistributionComponent } from './distribution/sub-table-distribution/sub-table-distribution.component';
 import { SubTablesFailuresComponent } from './distribution/sub-table-distribution/sub-tables-failures/sub-tables-failures.component';
+import { AddSalesComponent } from './distribution/sub-table-distribution/add-sales/add-sales.component';
 
 
 
@@ -46,6 +47,7 @@ import { SubTablesFailuresComponent } from './distribution/sub-table-distributio
     InvoicesComponent,
     SubTableDistributionComponent,
     SubTablesFailuresComponent,
+    AddSalesComponent,
     
     
   ],
