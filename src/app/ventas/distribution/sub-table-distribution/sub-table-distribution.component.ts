@@ -26,7 +26,7 @@ export class SubTableDistributionComponent implements OnInit {
   }
 
   viewSubTableFailures(){
-    this.isSubTableFailures
+    this.isSubTableFailures = !this.isSubTableFailures;
   }
 
 }
