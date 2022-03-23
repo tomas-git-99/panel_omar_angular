@@ -21,6 +21,7 @@ import { InvoicesComponent } from './generate-voucher/check-out/invoices/invoice
 import { SubTableDistributionComponent } from './distribution/sub-table-distribution/sub-table-distribution.component';
 import { SubTablesFailuresComponent } from './distribution/sub-table-distribution/sub-tables-failures/sub-tables-failures.component';
 import { AddSalesComponent } from './distribution/sub-table-distribution/add-sales/add-sales.component';
+import { AddFailuresComponent } from './distribution/sub-table-distribution/add-failures/add-failures.component';
 
 
 
@@ -48,6 +49,7 @@ import { AddSalesComponent } from './distribution/sub-table-distribution/add-sal
     SubTableDistributionComponent,
     SubTablesFailuresComponent,
     AddSalesComponent,
+    AddFailuresComponent,
     
     
   ],

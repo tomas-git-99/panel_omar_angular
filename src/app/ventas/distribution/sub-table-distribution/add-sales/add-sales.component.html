@@ -1,93 +1,299 @@
-<div class="flex items-center justify-center fixed z-20 h-3/4 w-1/2 m-auto inset-x-0 inset-y-0 p-4 border bg-white ">
+<!-- <div class="w-full flex justify-center py-12 " id="button" >
+  <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 focus:outline-none mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm" (click)="modalBtn()">Open Modal</button>
+</div> -->
 
-
-    <div class="flex flex-col">
-
-        <div>
-
-            <div class="mt-16 lg:flex justify-between border-b border-gray-200 pb-16">
-             
-                <div>
-                    <div class="md:flex items-center lg:ml-24 lg:mt-0 mt-4">
-                        <div class="md:w-64">
-                            <label class="text-sm leading-none text-gray-800" id="firstName">First name</label>
-                            <input type="name" tabindex="0" class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800" aria-labelledby="firstName" placeholder="John" />
-                        </div>
-                        <div class="md:w-64 md:ml-12 md:mt-0 mt-4">
-                            <label class="text-sm leading-none text-gray-800" id="lastName">Last name</label>
-                            <input type="name" tabindex="0" class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800" aria-labelledby="lastName" placeholder="Doe" />
-                        </div>
-                    </div>
-                    <div class="md:flex items-center lg:ml-24 mt-8">
-                        <div class="md:w-64">
-                            <label class="text-sm leading-none text-gray-800" id="emailAddress">Email address</label>
-                            <input type="email" tabindex="0" class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800" aria-labelledby="emailAddress" placeholder="youremail@example.com" />
-                        </div>
-                        <div class="md:w-64 md:ml-12 md:mt-0 mt-4">
-                            <label class="text-sm leading-none text-gray-800" id="phone">Phone number</label>
-                            <input type="name" tabindex="0" class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800" aria-labelledby="phone" placeholder="123-1234567" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-    
-    
-        <div class=" overflow-y-auto max-h-56 border border-red-500 w-60">
-    
-            <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-                <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-                 
-    
-                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                      <path d="M640 162.8c0 6.917-2.293 13.88-7.012 19.7l-49.96 61.63c-6.32 7.796-15.62 11.85-25.01 11.85c-7.01 0-14.07-2.262-19.97-6.919L480 203.3V464c0 26.51-21.49 48-48 48H208C181.5 512 160 490.5 160 464V203.3L101.1 249.1C96.05 253.7 88.99 255.1 81.98 255.1c-9.388 0-18.69-4.057-25.01-11.85L7.012 182.5C2.292 176.7-.0003 169.7-.0003 162.8c0-9.262 4.111-18.44 12.01-24.68l135-106.6C159.8 21.49 175.7 16 191.1 16H225.6C233.3 61.36 272.5 96 320 96s86.73-34.64 94.39-80h33.6c16.35 0 32.22 5.49 44.99 15.57l135 106.6C635.9 144.4 640 153.6 640 162.8z"/></svg>
-                </div>
-                <div class="pl-3 w-full content-center flex">
-                  <div class="flex items-center justify-between w-full">
-                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle:1</span> Cantidad: <span class="text-indigo-700">30</span></p>
-                    <div tabindex="0" aria-label="close icon" role="button" class="focus:outline-none cursor-pointer pl-2">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.5 3.5L3.5 10.5" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M3.5 3.5L10.5 10.5" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+<div [ngClass]="'z-50 fixed w-full flex justify-center inset-0 ' + (modal ? 'hidden' : 'block')" *ngIf>
+  <div  (click)="modalBtn()" class="w-full h-fullz-0 absolute inset-0" ></div>
+  <div class="mx-auto container">
+      <div class="flex items-center justify-center h-full w-full ">
+          <div class="bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5 ">
+              <div class="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
+                  <p class="text-base font-semibold">Producto</p>
+                  <button role="button" aria-label="close label"  (click)="modalBtn()" class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
-                    </div>
-                  </div>
+                  </button>
+              </div>
+              <div class="m-5 ">
+
+                <!--   <div class="flex items-center justify-center">
+                      <div tabindex="0" aria-label="img" role="img" class="focus:outline-none w-40 h-40 p-16 bg-gray-100 rounded-md flex items-center justify-center">
+                          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M22.5 12H22.515" stroke="#94A3B8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                              <path d="M25.5 6H10.5C8.01472 6 6 8.01472 6 10.5V25.5C6 27.9853 8.01472 30 10.5 30H25.5C27.9853 30 30 27.9853 30 25.5V10.5C30 8.01472 27.9853 6 25.5 6Z" stroke="#94A3B8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                              <path d="M6 22.4999L12 16.4999C12.6841 15.8417 13.4601 15.4951 14.25 15.4951C15.0399 15.4951 15.8159 15.8417 16.5 16.4999L24 23.9999" stroke="#94A3B8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                              <path d="M21 20.9999L22.5 19.4999C23.1841 18.8417 23.9601 18.4951 24.75 18.4951C25.5399 18.4951 26.3159 18.8417 27 19.4999L30 22.4999" stroke="#94A3B8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                      </div>
+                  </div> -->
                   
+
+                  <div class="flex flex-row ">
+                    <div class="flex flex-col justify-between p-4 leading-normal">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Sumar a un producto ya existente</h5>
+                      <p class="mb-3 font-extralight text-gray-700 dark:text-gray-400">Podras sumar las cantidades mandadas a su local correpondiente y la cantidadd, sin necesidad de volver a escribir</p>
+                  </div>
+
+  
+                  <div class="mx-auto ">
+                      <div class="container flex justify-center mx-auto">
+                          <div class="m-8">
+                              <!-- Code block starts -->
+                              <div class="relative">
+                                  <div class="bg-white dark:bg-gray-800 dark:border-gray-700 flex justify-between border rounded w-40 cursor-pointer" data-menu>
+                                      <p class="px-3 py-3 text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal font-normal">Basic Options</p>
+                                      <div class="bg-white dark:bg-gray-800 dark:border-gray-700 items-center flex rounded-r border-gray-300 border-l">
+                                          <div class="cursor-pointer text-gray-600 dark:text-gray-400 mx-3">
+                                              <svg (click)="openMenu(1)" xmlns="http://www.w3.org/2000/svg" [ngClass]="isOpenedList === 1 ? ' hidden ' : '  icon icon-tabler icon-tabler-chevron-up'" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                  <path stroke="none" d="M0 0h24v24H0z" />
+                                                  <polyline points="6 9 12 15 18 9" />
+                                              </svg>
+                                              <svg (click)="closeMenu()" xmlns="http://www.w3.org/2000/svg" [ngClass]="isOpenedList === 1 ? ' icon icon-tabler icon-tabler-chevron-down ' : ' hidden'" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                  <path stroke="none" d="M0 0h24v24H0z" />
+                                                  <polyline points="6 15 12 9 18 15" />
+                                              </svg>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <ul [ngClass]="isOpenedList === 1 ? 'visible transition duration-300 opacity-100 bg-white dark:bg-gray-800 shadow rounded mt-2 py-1 w-48 absolute':'hidden'">
+                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                              <path stroke="none" d="M0 0h24v24H0z" />
+                                              <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                                              <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                                              <line x1="3" y1="6" x2="3" y2="19" />
+                                              <line x1="12" y1="6" x2="12" y2="19" />
+                                              <line x1="21" y1="6" x2="21" y2="19" />
+                                          </svg>
+                                          <span class="ml-2 font-normal">Interface Settings</span>
+                                      </li>
+                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                              <path stroke="none" d="M0 0h24v24H0z" />
+                                              <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />
+                                              <rect x="9" y="3" width="6" height="4" rx="2" />
+                                          </svg>
+                                          <span class="ml-2 font-normal">Color Theme</span>
+                                      </li>
+                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                              <path stroke="none" d="M0 0h24v24H0z" />
+                                              <polyline points="8 16 10 10 16 8 14 14 8 16" />
+                                              <circle cx="12" cy="12" r="9" />
+                                          </svg>
+                                          <span class="ml-2 font-normal">Wallpaper</span>
+                                      </li>
+                                      <li><hr class="border-gray-200 dark:border-gray-700 my-1" /></li>
+                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center font-normal">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-mobile" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                              <path stroke="none" d="M0 0h24v24H0z" />
+                                              <rect x="7" y="4" width="10" height="16" rx="1" />
+                                              <line x1="11" y1="5" x2="13" y2="5" />
+                                              <line x1="12" y1="17" x2="12" y2="17.01" />
+                                          </svg>
+                                          <span class="ml-2">Notifications</span>
+                                      </li>
+                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center font-normal">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                              <path stroke="none" d="M0 0h24v24H0z" />
+                                              <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+                                              <circle cx="9" cy="9" r="2" />
+                                          </svg>
+                                          <span class="ml-2">Account Data</span>
+                                      </li>
+                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center font-normal">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                              <path stroke="none" d="M0 0h24v24H0z" />
+                                              <line x1="18" y1="6" x2="6" y2="18" />
+                                              <line x1="6" y1="6" x2="18" y2="18" />
+                                          </svg>
+                                          <span class="ml-2">Sign Out</span>
+                                      </li>
+                                  </ul>
+                              </div>
+                              <!-- Code block ends -->
+                          </div>
+                      </div>
+                  </div>
                 </div>
-              </div> 
-    
-    
-         
-        </div>
-     
-    </div>
+            
+                
+                <hr class="py-2">
+                  <form class="" >
+                    <div class="py-2">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Datos del producto</h5>
 
+                    </div>
+                      <div class="flex items-center space-x-9">
+                          <input placeholder="Precio" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                          <input placeholder="Color" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                      </div>
+                      <div class="flex items-center space-x-9 mt-8">
+                          <input placeholder="Email" type="email" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                          <div tabindex="0" class="focus:outline-none focus:ring-2 focus:ring-gray-400 w-1/2 bg-white border rounded border-gray-200 py-2.5 px-3">
+                              <select aria-label="select an option" class="text-sm text-gray-500 w-full focus:outline-none">
+                                  <option selected="" disabled="" value="">Categori</option>
+                                  <option>Designer</option>
+                                  <option>Developer</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="mt-8 h-[100px] overflow-y-auto">
+                         <!-- home -->
+                         <div class="grid grid-cols-3 gap-2 m-2">
+
+                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
+                                
+                            </div>
+                            <div class="pl-3 w-full flex content-center">
+                                <div class="flex items-center justify-between w-full">
+                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
+                                   
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
+                                
+                            </div>
+                            <div class="pl-3 w-full flex content-center">
+                                <div class="flex items-center justify-between w-full">
+                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
+                                   
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
+                                
+                            </div>
+                            <div class="pl-3 w-full flex content-center">
+                                <div class="flex items-center justify-between w-full">
+                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
+                                   
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
+                                
+                            </div>
+                            <div class="pl-3 w-full flex content-center">
+                                <div class="flex items-center justify-between w-full">
+                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
+                                   
+                                </div>
+                            </div>
+                          </div>
+
+
+                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
+                                
+                            </div>
+                            <div class="pl-3 w-full flex content-center">
+                                <div class="flex items-center justify-between w-full">
+                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
+                                   
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
+                                
+                            </div>
+                            <div class="pl-3 w-full flex content-center">
+                                <div class="flex items-center justify-between w-full">
+                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
+                                   
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
+                                
+                            </div>
+                            <div class="pl-3 w-full flex content-center">
+                                <div class="flex items-center justify-between w-full">
+                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
+                                   
+                                </div>
+                            </div>
+                          </div>
+
+
+                       
+
+
+
+                          
+                    
+
+
+
+                       
+                         </div>
+
+                         <!-- end -->
+
+                        
+                      </div>
+                  </form>
+                  <div class="flex items-center justify-between mt-9">
+                      <button role="button" aria-label="close button"  (click)="modalBtn()" class="focus:ring-2 focus:ring-offset-2 focus:bg-gray-600 focus:ring-gray-600 focus:outline-none px-6 py-3 bg-gray-600 hover:bg-gray-500 shadow rounded text-sm text-white">Cancel</button>
+                      <button aria-label="add user" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add User</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
-
-
-
-<!-- 
-Talles
-<div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-    <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M1.33325 14.6667C1.33325 13.2522 1.89516 11.8956 2.89535 10.8954C3.89554 9.89523 5.2521 9.33333 6.66659 9.33333C8.08107 9.33333 9.43763 9.89523 10.4378 10.8954C11.438 11.8956 11.9999 13.2522 11.9999 14.6667H1.33325ZM6.66659 8.66666C4.45659 8.66666 2.66659 6.87666 2.66659 4.66666C2.66659 2.45666 4.45659 0.666664 6.66659 0.666664C8.87659 0.666664 10.6666 2.45666 10.6666 4.66666C10.6666 6.87666 8.87659 8.66666 6.66659 8.66666ZM11.5753 10.1553C12.595 10.4174 13.5061 10.9946 14.1788 11.8046C14.8515 12.6145 15.2515 13.6161 15.3219 14.6667H13.3333C13.3333 12.9267 12.6666 11.3427 11.5753 10.1553ZM10.2266 8.638C10.7852 8.13831 11.232 7.52622 11.5376 6.84183C11.8432 6.15743 12.0008 5.41619 11.9999 4.66666C12.0013 3.75564 11.7683 2.85958 11.3233 2.06466C12.0783 2.21639 12.7576 2.62491 13.2456 3.2208C13.7335 3.81668 14.0001 4.56315 13.9999 5.33333C14.0001 5.80831 13.8987 6.27784 13.7027 6.71045C13.5066 7.14306 13.2203 7.52876 12.863 7.84169C12.5056 8.15463 12.0856 8.38757 11.6309 8.52491C11.1762 8.66224 10.6974 8.7008 10.2266 8.638Z"
-          fill="#047857"
-        />
-      </svg>
-    </div>
-    <div class="pl-3 w-full">
+<!-- <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+  <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+      <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
+      
+  </div>
+  <div class="pl-3 w-full">
       <div class="flex items-center justify-between w-full">
-        <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Sash</span> added you to the group: <span class="text-indigo-700">UX Designers</span></p>
-        <div tabindex="0" aria-label="close icon" role="button" class="focus:outline-none cursor-pointer">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.5 3.5L3.5 10.5" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M3.5 3.5L10.5 10.5" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
+          <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Sash</span> added you to the group: <span class="text-indigo-700">UX Designers</span></p>
+          <div tabindex="0" aria-label="close icon" role="button" class="focus:outline-none cursor-pointer">
+              <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg4.svg"  alt="icon"/>
+             
+          </div>
       </div>
       <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">2 hours ago</p>
-    </div>
-  </div> -->
+  </div>
+</div> -->
+
+
+<!-- <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+  <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+      <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
+      
+  </div>
+  <div class="pl-3 w-full flex content-center">
+      <div class="flex items-center justify-between w-full">
+          <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
+          <div tabindex="0" aria-label="close icon" role="button" class="focus:outline-none cursor-pointer">
+              <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg4.svg"  alt="icon"/>
+             
+          </div>
+      </div>
+  </div>
+  
+</div> -->
