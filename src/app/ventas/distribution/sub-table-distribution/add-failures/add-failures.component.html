@@ -1,20 +1,20 @@
-<div [ngClass]="'z-50 fixed w-full flex justify-center inset-0 '" >
-    <div  class="w-full h-fullz-0 absolute inset-0" ></div>
+<div [ngClass]="'z-50 fixed w-full flex justify-center inset-0 '" *ngIf>
+  <!--   <div  class="w-full h-fullz-0 absolute inset-0" ></div> -->
     <div class="mx-auto container">
         <div class="flex items-center justify-center h-full w-full ">
            <!--  center home -->
             <div class=" flex py-12 px-4 justify-center ">
                 <div>
                     <div class="relative w-96 rounded shadow-lg p-6 dark:bg-gray-800 bg-white">
-                        <p class="text-lg font-bold leading-none text-gray-800 dark:text-gray-100">Talles: </p>
+                        <p class="text-lg font-bold leading-none text-gray-800 dark:text-gray-100 text-center">Fallas</p>
                         <form class="mt-5">
                             <div>
-                                <label class="text-xs font-semibold leading-3 text-gray-800 dark:text-gray-100"> Subject </label>
+                                <label class="text-xs font-semibold leading-3 text-gray-800 dark:text-gray-100"> Seleccione el talle con la falla: </label>
                                 <div class="py-1 rounded-lg px-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-700 mt-2">
                                     <select class="text-xs focus:outline-none font-medium leading-3 text-gray-600 dark:text-gray-100 bg-transparent w-full border-none	">
-                                        <option disabled selected>Select a subject</option>
-                                        <option>withdraw</option>
-                                        <option>Payment</option>
+                                        <option disabled selected>Talle</option>
+                                        <option>1</option>
+                                        <option>2</option>
                                     </select>
                                 </div>
                             </div>
@@ -24,17 +24,20 @@
                             </div> -->
                             <div class="mt-4 flex flex-col">
                                 <label class="text-xs font-semibold leading-3 text-gray-800 dark:text-gray-100"> Cantidad </label>
-                                <input placeholder="Enter your email" class="text-xs font-medium leading-3 text-gray-500 dark:text-gray-400 resize-none bg-gray-50 dark:bg-gray-700 border rounded-lg border-gray-200 dark:border-gray-700 focus:outline-none px-4 py-3 mt-2" />
+                                <input placeholder="Ingrese la cantidad" class="text-xs font-medium leading-3 text-gray-500 dark:text-gray-400 resize-none bg-gray-50 dark:bg-gray-700 border rounded-lg border-gray-200 dark:border-gray-700 focus:outline-none px-4 py-3 mt-2" />
                             </div>
-                            <label class="text-xs font-semibold leading-3 text-gray-800 dark:text-gray-100"> Seleccion accion: </label>
+                            <label class="text-xs font-semibold leading-3 text-gray-800 dark:text-gray-100"> Seleccione lo que vas hacer con las fallas: </label>
 
                             <div class="py-1 rounded-lg px-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-700 mt-2">
                                 <select class="text-xs focus:outline-none font-medium leading-3 text-gray-600 dark:text-gray-100 bg-transparent w-full border-none	">
-                                    <option disabled selected>Select a subject</option>
+                                    <option disabled selected>Opciones</option>
+                                    
                                     <option>Ventas</option>
-                                    <option>Payment</option>
+                                    <option>No hacer nada</option>
+                                 
                                 </select>
                             </div>
+                    
                             <button id="submit" class="mt-5 focus:outline-none px-5 py-3 bg-indigo-700 dark:bg-indigo-600 hover:bg-opacity-80 rounded text-xs font-semibold leading-3 text-gray-100">Submit</button>
                         </form>
                         <div class="cursor-pointer absolute top-0 right-0 m-3 dark:text-gray-100 text-gray-400 text-gray-600 transition duration-150 ease-in-out">
@@ -51,3 +54,6 @@
         </div>
     </div>
     </div>
+
+
+    

@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SubTablesFailuresComponent implements OnInit {
 
   constructor() { }
+  dropDownList:any;
 
 
   @Input() isSubTableFailures: boolean = false;

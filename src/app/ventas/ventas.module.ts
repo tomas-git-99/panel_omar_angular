@@ -22,6 +22,8 @@ import { SubTableDistributionComponent } from './distribution/sub-table-distribu
 import { SubTablesFailuresComponent } from './distribution/sub-table-distribution/sub-tables-failures/sub-tables-failures.component';
 import { AddSalesComponent } from './distribution/sub-table-distribution/add-sales/add-sales.component';
 import { AddFailuresComponent } from './distribution/sub-table-distribution/add-failures/add-failures.component';
+import { RestoreFaultComponent } from './distribution/sub-table-distribution/restore-fault/restore-fault.component';
+import { ModifyComponent } from './history/modify/modify.component';
 
 
 
@@ -50,6 +52,8 @@ import { AddFailuresComponent } from './distribution/sub-table-distribution/add-
     SubTablesFailuresComponent,
     AddSalesComponent,
     AddFailuresComponent,
+    RestoreFaultComponent,
+    ModifyComponent,
     
     
   ],
