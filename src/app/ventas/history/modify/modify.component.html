@@ -9,11 +9,23 @@
             <!-- content start -->
 
 <div class="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto bg-white">
+  <div class="cursor-pointer absolute top-14 right-52 m-3 text-gray-800 dark:text-gray-100 transition duration-150 ease-in-out">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+</div>
     <div class="flex justify-start item-start space-y-2 flex-col">
+      
         <h1 class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Order #13432</h1>
-        <p class="text-base font-medium leading-6 text-gray-600">21st Mart 2021 at 10:34 PM</p>
+      <!--   <p class="text-base font-medium leading-6 text-gray-600">21st Mart 2021 at 10:34 PM</p> -->
+        <div class="flex items-center justify-center px-2 py-1 mt-2 bg-green-100 rounded-full w-[100px]">
+          <p class="text-xs leading-3 text-green-700">Pagado</p>
+      </div>
     </div>
     <div class="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
+      
         <div class="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
             <div class="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full max-h-[250px] overflow-y-auto">
          <!--        <div class="sticky top-top">
@@ -197,6 +209,8 @@
                      </div>
                  </div>     
             </div>
+
+            
             <div class="flex justify-center flex-col md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
                 <div class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
                     <h3 class="text-xl font-semibold leading-5 text-gray-800">Summary</h3>
@@ -219,16 +233,22 @@
                         <p class="text-base font-semibold leading-4 text-gray-600">$28.000</p>
                     </div>
                 </div>
+                
                 <div class="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
 
-                    <div class="overflow-y-auto max-h-[180px]">
-                        <div class="w-auto p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+                    <div class="overflow-y-auto max-h-[180px] m-1">
+
+
+
+                      <!-- descuento -->
+
+                        <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0 w-[220px]">
                             <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
                                 <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                                     <path d="M96 96C96 60.65 124.7 32 160 32H576C611.3 32 640 60.65 640 96V320C640 355.3 611.3 384 576 384H160C124.7 384 96 355.3 96 320V96zM160 320H224C224 284.7 195.3 256 160 256V320zM160 96V160C195.3 160 224 131.3 224 96H160zM576 256C540.7 256 512 284.7 512 320H576V256zM512 96C512 131.3 540.7 160 576 160V96H512zM368 128C323.8 128 288 163.8 288 208C288 252.2 323.8 288 368 288C412.2 288 448 252.2 448 208C448 163.8 412.2 128 368 128zM48 360C48 399.8 80.24 432 120 432H520C533.3 432 544 442.7 544 456C544 469.3 533.3 480 520 480H120C53.73 480 0 426.3 0 360V120C0 106.7 10.75 96 24 96C37.25 96 48 106.7 48 120V360z"/>
                                 </svg>
                             </div>
-                            <div class="pl-3 w-full">
+                            <div class="pl-3 w-full flex content-center">
                               <div class="flex items-center justify-between w-full">
                                 <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Descuento: </span> -$2000</p>
                                 <div tabindex="0" aria-label="close icon" role="button" class="focus:outline-none cursor-pointer">
@@ -238,64 +258,69 @@
                                   </svg>
                                 </div>
                               </div>
-                              <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">2 hours ago</p>
-                            </div>
-                          </div>
-    
-    
-                          <div class="w-full p-3 mt-4 bg-white rounded flex items-center">
-                              
-                            <div tabindex="0" aria-label="post icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex items-center justify-center">
-                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.30325 12.6667L1.33325 15V2.66667C1.33325 2.48986 1.40349 2.32029 1.52851 2.19526C1.65354 2.07024 1.82311 2 1.99992 2H13.9999C14.1767 2 14.3463 2.07024 14.4713 2.19526C14.5963 2.32029 14.6666 2.48986 14.6666 2.66667V12C14.6666 12.1768 14.5963 12.3464 14.4713 12.4714C14.3463 12.5964 14.1767 12.6667 13.9999 12.6667H4.30325ZM5.33325 6.66667V8H10.6666V6.66667H5.33325Z" fill="#4338CA" />
-                              </svg>
-                            </div>
-                            <div class="pl-3">
-                              <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Nota: </span> <span class="text-indigo-700">#145</span>, Agregar mas del color rojo y verde</p>
                               <!-- <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">2 hours ago</p> -->
-
-                              
                             </div>
-                            
                           </div>
     
+
+                        <!-- note -->
+                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
+                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+                             <!--    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                                    <path d="M96 96C96 60.65 124.7 32 160 32H576C611.3 32 640 60.65 640 96V320C640 355.3 611.3 384 576 384H160C124.7 384 96 355.3 96 320V96zM160 320H224C224 284.7 195.3 256 160 256V320zM160 96V160C195.3 160 224 131.3 224 96H160zM576 256C540.7 256 512 284.7 512 320H576V256zM512 96C512 131.3 540.7 160 576 160V96H512zM368 128C323.8 128 288 163.8 288 208C288 252.2 323.8 288 368 288C412.2 288 448 252.2 448 208C448 163.8 412.2 128 368 128zM48 360C48 399.8 80.24 432 120 432H520C533.3 432 544 442.7 544 456C544 469.3 533.3 480 520 480H120C53.73 480 0 426.3 0 360V120C0 106.7 10.75 96 24 96C37.25 96 48 106.7 48 120V360z"/>
+                                </svg> -->
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M4.30325 12.6667L1.33325 15V2.66667C1.33325 2.48986 1.40349 2.32029 1.52851 2.19526C1.65354 2.07024 1.82311 2 1.99992 2H13.9999C14.1767 2 14.3463 2.07024 14.4713 2.19526C14.5963 2.32029 14.6666 2.48986 14.6666 2.66667V12C14.6666 12.1768 14.5963 12.3464 14.4713 12.4714C14.3463 12.5964 14.1767 12.6667 13.9999 12.6667H4.30325ZM5.33325 6.66667V8H10.6666V6.66667H5.33325Z" fill="#4338CA" />
+                                </svg>
+                            </div>
+
+                            <div class="pl-3 w-full flex content-center">
+                              <div class="flex items-center justify-between w-full">
+                                <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Nota: </span> <span class="text-indigo-700">#145</span>, Agregar mas del color rojo y verde</p>
+                                <div tabindex="0" aria-label="close icon" role="button" class="focus:outline-none cursor-pointer">
+                                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.5 3.5L3.5 10.5" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3.5 3.5L10.5 10.5" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                                </div>
+                              </div>
+                              <!-- <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">2 hours ago</p> -->
+                            </div>
+                          </div>
+
+
+                      
                          
                         
                     </div>
+
                     <div class="w-full flex justify-center items-center">
-                        <button class="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">View Carrier Details</button>
+                        <button class="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Agregar</button>
                     </div> 
                  
 
 
-
-                   <!--  <h3 class="text-xl font-semibold leading-5 text-gray-800">Shipping</h3>
-                    <div class="flex justify-between items-start w-full">
-                        <div class="flex justify-center items-center space-x-4">
-                            <div class="w-8 h-8">
-                                <img class="w-full h-full" alt="logo" src="https://i.ibb.co/L8KSdNQ/image-3.png" />
-                            </div>
-                            <div class="flex flex-col justify-start items-center">
-                                <p class="text-lg leading-6 font-semibold text-gray-800">DPD Delivery<br /><span class="font-normal">Delivery with 24 Hours</span></p>
-                            </div>
-                        </div>
-                        <p class="text-lg font-semibold leading-6 text-gray-800">$8.00</p>
-                    </div>
-                    <div class="w-full flex justify-center items-center">
-                        <button class="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">View Carrier Details</button>
-                    </div> -->
                 </div>
             </div>
+
+            <div>
+              <button class="mx-2 my-2 bg-red-400 transition duration-150 ease-in-out focus:outline-none rounded text-white border px-6 py-2 text-base hover:bg-red-300">Cancelar pedido</button>
+
+            </div>
+
         </div>
+
+
         <div class="bg-gray-50 w-full xl:w-96 flex justify-between items-center md:items-start px-4 py-6 md:p-6 xl:p-8 flex-col">
-            <h3 class="text-xl font-semibold leading-5 text-gray-800">Customer</h3>
+            <h3 class="text-xl font-semibold leading-5 text-gray-800">Datos de cliente</h3>
             <div class="flex flex-col md:flex-row xl:flex-col justify-start items-stretch h-full w-full md:space-x-6 lg:space-x-8 xl:space-x-0">
                 <div class="flex flex-col justify-start items-start flex-shrink-0">
-                    <div class="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
-                        <img src="https://i.ibb.co/5TSg7f6/Rectangle-18.png" alt="avatar" />
+                    <div class="flex justify-center w-full md:justify-start items-center space-x-4 py-5 border-b border-gray-200">
+                        <!-- <img src="https://i.ibb.co/5TSg7f6/Rectangle-18.png" alt="avatar" /> -->
                         <div class="flex justify-start items-start flex-col space-y-2">
                             <p class="text-base font-semibold leading-4 text-left text-gray-800">David Kent</p>
-                            <p class="text-sm leading-5 text-gray-600">10 Previous Orders</p>
+                            <p class="text-sm leading-5 text-gray-600">DNI/CUIL:</p>
+                            <p class="text-sm leading-5 text-gray-600">TEL/CEL:</p>
                         </div>
                     </div>
 
@@ -308,18 +333,31 @@
                     </div>
                 </div>
                 <div class="flex justify-between xl:h-full items-stretch w-full flex-col mt-6 md:mt-0">
+                  
                     <div class="flex justify-center md:justify-start xl:flex-col flex-col md:space-x-6 lg:space-x-8 xl:space-x-0 space-y-4 xl:space-y-12 md:space-y-0 md:flex-row items-center md:items-start">
                         <div class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4 xl:mt-8">
-                            <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">Shipping Address</p>
+                            <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">Direccion de envio</p>
                             <p class="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">180 North King Street, Northhampton MA 1060</p>
                         </div>
+
                         <div class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4">
-                            <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">Billing Address</p>
-                            <p class="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">180 North King Street, Northhampton MA 1060</p>
+                            <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">Datos del comprobante</p>
+
+                            <div class="grid grid-cols-2 gap-2 py-3">
+                              <p class="text-center md:text-left text-sm leading-5 text-gray-600">Factura Tipo: <span class="text-indigo-700 ">A</span></p>
+                              <p class="text-center md:text-left text-sm leading-5 text-gray-600">Fecha de pago: <span class="text-indigo-700">14/02/22</span></p>
+                              <p class="text-center md:text-left text-sm leading-5 text-gray-600">Forma de pago: <span class="text-indigo-700">Efectivo</span></p>
+                              <p class="text-center md:text-left text-sm leading-5 text-gray-600">Armado por: <span class="text-indigo-700">Central</span></p>
+                              <p class="text-center md:text-left text-sm leading-5 text-gray-600">Fecha de envio: <span class="text-indigo-700">17/02/22</span></p>
+                              <p class="text-center md:text-left text-sm leading-5 text-gray-600">Transporte: <span class="text-indigo-700">Camion</span></p>
+                     
+                            </div>
+                 
+                            
                         </div>
                     </div>
                     <div class="flex w-full justify-center items-center md:justify-start md:items-start">
-                        <button class="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base font-medium leading-4 text-gray-800">Edit Details</button>
+                        <button class="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base font-medium leading-4 text-gray-800">Editar</button>
                     </div>
                 </div>
             </div>
@@ -337,51 +375,3 @@
 </div>
 
 
-
-<div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-    <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M1.33325 14.6667C1.33325 13.2522 1.89516 11.8956 2.89535 10.8954C3.89554 9.89523 5.2521 9.33333 6.66659 9.33333C8.08107 9.33333 9.43763 9.89523 10.4378 10.8954C11.438 11.8956 11.9999 13.2522 11.9999 14.6667H1.33325ZM6.66659 8.66666C4.45659 8.66666 2.66659 6.87666 2.66659 4.66666C2.66659 2.45666 4.45659 0.666664 6.66659 0.666664C8.87659 0.666664 10.6666 2.45666 10.6666 4.66666C10.6666 6.87666 8.87659 8.66666 6.66659 8.66666ZM11.5753 10.1553C12.595 10.4174 13.5061 10.9946 14.1788 11.8046C14.8515 12.6145 15.2515 13.6161 15.3219 14.6667H13.3333C13.3333 12.9267 12.6666 11.3427 11.5753 10.1553ZM10.2266 8.638C10.7852 8.13831 11.232 7.52622 11.5376 6.84183C11.8432 6.15743 12.0008 5.41619 11.9999 4.66666C12.0013 3.75564 11.7683 2.85958 11.3233 2.06466C12.0783 2.21639 12.7576 2.62491 13.2456 3.2208C13.7335 3.81668 14.0001 4.56315 13.9999 5.33333C14.0001 5.80831 13.8987 6.27784 13.7027 6.71045C13.5066 7.14306 13.2203 7.52876 12.863 7.84169C12.5056 8.15463 12.0856 8.38757 11.6309 8.52491C11.1762 8.66224 10.6974 8.7008 10.2266 8.638Z"
-          fill="#047857"
-        />
-      </svg>
-    </div>
-    <div class="pl-3 w-full">
-      <div class="flex items-center justify-between w-full">
-        <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Sash</span> added you to the group: <span class="text-indigo-700">UX Designers</span></p>
-        <div tabindex="0" aria-label="close icon" role="button" class="focus:outline-none cursor-pointer">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.5 3.5L3.5 10.5" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M3.5 3.5L10.5 10.5" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-      </div>
-      <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">2 hours ago</p>
-    </div>
-  </div>
-
-
-  <div class="w-full p-3 mt-4 bg-white rounded flex">
-    <div tabindex="0" aria-label="post icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex items-center justify-center">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4.30325 12.6667L1.33325 15V2.66667C1.33325 2.48986 1.40349 2.32029 1.52851 2.19526C1.65354 2.07024 1.82311 2 1.99992 2H13.9999C14.1767 2 14.3463 2.07024 14.4713 2.19526C14.5963 2.32029 14.6666 2.48986 14.6666 2.66667V12C14.6666 12.1768 14.5963 12.3464 14.4713 12.4714C14.3463 12.5964 14.1767 12.6667 13.9999 12.6667H4.30325ZM5.33325 6.66667V8H10.6666V6.66667H5.33325Z" fill="#4338CA" />
-      </svg>
-    </div>
-    <div class="pl-3">
-      <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Sarah</span> posted in the thread: <span class="text-indigo-700">Update gone wrong</span></p>
-      <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">2 hours ago</p>
-    </div>
-  </div>
-
-  <div class="w-full p-3 mt-4 bg-red-100 rounded flex items-center">
-    <div tabindex="0" aria-label="storage icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-red-200 flex items-center flex-shrink-0 justify-center">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 2V14C14 14.1768 13.9298 14.3464 13.8047 14.4714C13.6797 14.5964 13.5101 14.6667 13.3333 14.6667H2.66667C2.48986 14.6667 2.32029 14.5964 2.19526 14.4714C2.07024 14.3464 2 14.1768 2 14V2C2 1.82319 2.07024 1.65362 2.19526 1.5286C2.32029 1.40357 2.48986 1.33334 2.66667 1.33334H13.3333C13.5101 1.33334 13.6797 1.40357 13.8047 1.5286C13.9298 1.65362 14 1.82319 14 2ZM3.33333 10.6667V13.3333H12.6667V10.6667H3.33333ZM10 11.3333H11.3333V12.6667H10V11.3333Z" fill="#B91C1C" />
-      </svg>
-    </div>
-    <div class="pl-3 w-full flex items-center justify-between">
-      <p tabindex="0" class="focus:outline-none text-sm leading-none text-red-700">Low on storage: 2.5/32gb remaining</p>
-      <p tabindex="0" class="focus:outline-none text-xs leading-3 cursor-pointer underline text-right text-red-700">Manage</p>
-    </div>
-  </div>
