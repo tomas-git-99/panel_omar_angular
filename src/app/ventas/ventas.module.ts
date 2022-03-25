@@ -24,6 +24,9 @@ import { AddSalesComponent } from './distribution/sub-table-distribution/add-sal
 import { AddFailuresComponent } from './distribution/sub-table-distribution/add-failures/add-failures.component';
 import { RestoreFaultComponent } from './distribution/sub-table-distribution/restore-fault/restore-fault.component';
 import { ModifyComponent } from './history/modify/modify.component';
+import { CenterModifyHistoryComponent } from './history/modify/center-modify-history/center-modify-history.component';
+import { SearchProductsComponent } from './history/modify/center-modify-history/search-products/search-products.component';
+import { AddNoteComponent } from './history/modify/center-modify-history/add-note/add-note.component';
 
 
 
@@ -54,6 +57,9 @@ import { ModifyComponent } from './history/modify/modify.component';
     AddFailuresComponent,
     RestoreFaultComponent,
     ModifyComponent,
+    CenterModifyHistoryComponent,
+    SearchProductsComponent,
+    AddNoteComponent,
     
     
   ],

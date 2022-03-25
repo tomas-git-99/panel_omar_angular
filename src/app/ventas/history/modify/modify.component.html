@@ -27,187 +27,121 @@
     <div class="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
       
         <div class="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
-            <div class="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full max-h-[250px] overflow-y-auto">
+            <div class="flex flex-col justify-start items-start bg-gray-100 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full max-h-[250px] overflow-y-auto">
          <!--        <div class="sticky top-top">
                     <p class="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">Productos en la orden</p>
                 </div> -->
                 
 
                 <!-- product start -->
-                <div class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
-                   <!--  <div class="pb-4 md:pb-8 w-full md:w-40">
-                        <img class="w-full hidden md:block" src="https://i.ibb.co/84qQR4p/Rectangle-10.png" alt="dress" />
-                        <img class="w-full md:hidden" src="https://i.ibb.co/L039qbN/Rectangle-10.png" alt="dress" />
-                    </div> -->
-                    <div class="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
-                        
-                        <div class="w-full flex flex-col justify-start items-start space-y-8">
-                            <h3 class="text-xl xl:text-2xl font-semibold leading-6 text-gray-800">#145</h3>
-                        </div>
-
-                        <div class="w-full flex flex-col justify-start items-start space-y-8">
-                            <h3 class="text-xl xl:text-2xl font-semibold leading-6 text-gray-800">Model & Design</h3>
-                          <!--   <div class="flex justify-start items-start flex-col space-y-2">
-                                <p class="text-sm leading-none text-gray-800"><span class="text-gray-300">Style: </span> Italic Minimal Design</p>
-                                <p class="text-sm leading-none text-gray-800"><span class="text-gray-300">Size: </span> Small</p>
-                                <p class="text-sm leading-none text-gray-800"><span class="text-gray-300">Color: </span> Light Blue</p>
-                            </div> -->
-                        </div>
-
-                        <div class="flex justify-between space-x-8 items-start w-full">
-                            <p class="text-base xl:text-lg leading-6 text-gray-700">C : <span class="font-light">23</span> </p>
-
-                            <p class="text-base xl:text-lg leading-6 text-gray-700">T : <span class="font-light">1</span> </p>
-                            <p class="text-base xl:text-lg font-semibold leading-6 text-gray-800">$36.00</p>
-                        </div>
-
-                        <div class="relative px-5 pt-2">
-                            <button
-                              class="focus:outline-none"
-                              (click)="
-                                dropDownList === 1 ? (dropDownList = 0) : (dropDownList = 1)
-                              "
+                <div
+                class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 overflow-auto w-[900px] min-h-[500px]"
+                
+              >
+                <div class="mt-7 overflow-x-hidden sm:w-full" >
+                  <table class="w-full whitespace-nowrap">
+                    <!--  <thead>
+                        <tr class="h-16 w-full text-sm leading-none text-gray-800">
+                            <th class="font-normal text-left "></th>
+        
+                            <th class="font-normal text-left pl-5 ">Modelo & Diseño</th>
+                            <th class="font-normal text-left pl-5  text-center">Talles</th>
+                            <th class="font-normal text-left pl-5  text-center">Cantidad Total</th>
+                            <th class="font-normal text-left pl-5  text-center">Precio</th>
+                            <th class="font-normal text-left pl-5  text-center">Total</th>
+                            <th class="font-normal text-left"></th>
+                         
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                      <tr class="h-16 border border-gray-100 rounded max-w-[100px]">
+                        <td>
+                          <div class="ml-5">
+                            <div
+                              class="rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative"
+                              (click)="viewSubTable()"
                             >
                               <svg
-                                class="dropbtn"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
+                                width="24"
+                                height="24"
+                                stroke-width="2.5"
+                                viewBox="0 0 24 24"
                                 fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="cursor: pointer"
                               >
                                 <path
-                                  d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                                  stroke="#9CA3AF"
-                                  stroke-width="2.5"
+                                  d="M6 9L12 15L18 9"
+                                  stroke="currentColor"
                                   stroke-linecap="round"
                                   stroke-linejoin="round"
-                                ></path>
-                                <path
-                                  d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                                  stroke="#9CA3AF"
-                                  stroke-width="2.5"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                ></path>
-                                <path
-                                  d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                                  stroke="#9CA3AF"
-                                  stroke-width="2.5"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                ></path>
+                                />
                               </svg>
-                            </button>
-            
-                            <div
-                              *ngIf="dropDownList === 1"
-                              class="bg-white shadow w-24 absolute right-0 mr-6 "
-                            
-                            >
-                              <div
-                                class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white"
-                              >
-                                <p>Editar</p>
-                              </div>
-                              <div
-                                class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white"
-                              >
-                                <p>Eliminar</p>
-                              </div>
                             </div>
                           </div>
-
-                    </div>
+                        </td>
+                        <td class="pl-5">
+                          <div class="pl-4">
+                            <p
+                              class="text-base font-medium leading-none text-gray-700 mr-2"
+                            >
+                              Campera
+                            </p>
+                            <p class="text-xs leading-3 text-gray-600 pt-2">Love you</p>
+                          </div>
+                        </td>
+                        <td class="pl-5">
+                          <div class="flex items-center">
+                            <p class="text-sm leading-none text-gray-600 ml-2">
+                              2,3,4,5,6
+                            </p>
+                          </div>
+                        </td>
+                        <td class="pl-5">
+                          <div class="">
+                            <p
+                              class="text-sm leading-none text-gray-600 ml-2 text-center"
+                            >
+                              40
+                            </p>
+                          </div>
+                        </td>
+                        <td class="">
+                          <div class="">
+                            <p
+                              class="text-sm leading-none text-gray-600 ml-2 text-center"
+                            >
+                              $340
+                            </p>
+                          </div>
+                        </td>
+                        <td class="pl-5">
+                          <div class="flex items-center">
+                            <p class="text-sm leading-none text-gray-600 ml-2">$3456</p>
+                          </div>
+                        </td>
+        
+                        <td class="pl-5">
+                          <button
+                            class="mx-2 my-2 bg-gray-200 transition duration-150 ease-in-out focus:outline-none hover:bg-gray-300 rounded text-indigo-700 px-6 py-2 text-xs"
+                          >
+                            Editar
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+        
+                  <app-cart-sub-table [isSubTable]="isSubTable"></app-cart-sub-table>
                 </div>
+
                 <!-- product end -->
 
-                <div class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
-                    <!--  <div class="pb-4 md:pb-8 w-full md:w-40">
-                         <img class="w-full hidden md:block" src="https://i.ibb.co/84qQR4p/Rectangle-10.png" alt="dress" />
-                         <img class="w-full md:hidden" src="https://i.ibb.co/L039qbN/Rectangle-10.png" alt="dress" />
-                     </div> -->
-                     <div class="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
-                         
-                         <div class="w-full flex flex-col justify-start items-start space-y-8">
-                             <h3 class="text-xl xl:text-2xl font-semibold leading-6 text-gray-800">#145</h3>
-                         </div>
- 
-                         <div class="w-full flex flex-col justify-start items-start space-y-8">
-                             <h3 class="text-xl xl:text-2xl font-semibold leading-6 text-gray-800">Model & Design</h3>
-                           <!--   <div class="flex justify-start items-start flex-col space-y-2">
-                                 <p class="text-sm leading-none text-gray-800"><span class="text-gray-300">Style: </span> Italic Minimal Design</p>
-                                 <p class="text-sm leading-none text-gray-800"><span class="text-gray-300">Size: </span> Small</p>
-                                 <p class="text-sm leading-none text-gray-800"><span class="text-gray-300">Color: </span> Light Blue</p>
-                             </div> -->
-                         </div>
- 
-                         <div class="flex justify-between space-x-8 items-start w-full">
-                             <p class="text-base xl:text-lg leading-6 text-gray-700">C : <span class="font-light">23</span> </p>
- 
-                             <p class="text-base xl:text-lg leading-6 text-gray-700">T : <span class="font-light">1</span> </p>
-                             <p class="text-base xl:text-lg font-semibold leading-6 text-gray-800">$36.00</p>
-                         </div>
- 
-                         <div class="relative px-5 pt-2">
-                             <button
-                               class="focus:outline-none"
-                               (click)="
-                                 dropDownList === 1 ? (dropDownList = 0) : (dropDownList = 1)
-                               "
-                             >
-                               <svg
-                                 class="dropbtn"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="20"
-                                 height="20"
-                                 viewBox="0 0 20 20"
-                                 fill="none"
-                               >
-                                 <path
-                                   d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                                   stroke="#9CA3AF"
-                                   stroke-width="2.5"
-                                   stroke-linecap="round"
-                                   stroke-linejoin="round"
-                                 ></path>
-                                 <path
-                                   d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                                   stroke="#9CA3AF"
-                                   stroke-width="2.5"
-                                   stroke-linecap="round"
-                                   stroke-linejoin="round"
-                                 ></path>
-                                 <path
-                                   d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                                   stroke="#9CA3AF"
-                                   stroke-width="2.5"
-                                   stroke-linecap="round"
-                                   stroke-linejoin="round"
-                                 ></path>
-                               </svg>
-                             </button>
-             
-                             <div
-                               *ngIf="dropDownList === 1"
-                               class="bg-white shadow w-24 absolute right-0 mr-6 "
-                             
-                             >
-                               <div
-                                 class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white"
-                               >
-                                 <p>Editar</p>
-                               </div>
-                               <div
-                                 class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white"
-                               >
-                                 <p>Eliminar</p>
-                               </div>
-                             </div>
-                           </div>
- 
-                     </div>
-                 </div>     
+
+                
+              </div>
+
+               
             </div>
 
             
@@ -305,6 +239,7 @@
 
             <div>
               <button class="mx-2 my-2 bg-red-400 transition duration-150 ease-in-out focus:outline-none rounded text-white border px-6 py-2 text-base hover:bg-red-300">Cancelar pedido</button>
+              <button class="mx-2 my-2 bg-green-500 transition duration-150 ease-in-out focus:outline-none rounded text-white border px-6 py-2 text-base hover:bg-green-400">Agregar producto</button>
 
             </div>
 
@@ -362,16 +297,29 @@
                 </div>
             </div>
         </div>
+
+        
     </div>
+    
 </div>
 
 
             <!-- content end -->
+            
+       <!--  <app-center-modify-history ></app-center-modify-history> -->
 
+       <app-search-products *ngIf></app-search-products>
+
+       <app-add-note *ngIf></app-add-note>
 
 
 </div>
+
 </div>
+
 </div>
+
+
+
 
 

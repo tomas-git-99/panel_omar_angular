@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class ModifyComponent implements OnInit {
   dropDownList:any
   constructor() { }
+  isSubTable: boolean = false;
 
   ngOnInit(): void {
+  }
+  viewSubTable(){
+    this.isSubTable = !this.isSubTable;
   }
 
 }
