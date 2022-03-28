@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-note',
@@ -9,6 +9,9 @@ export class NoteComponent implements OnInit {
 
   constructor() { }
 
+  @Input() addNote: boolean = false;
+
+
   ngOnInit(): void {
   }
   isOpenedList:any;
@@ -17,5 +20,11 @@ export class NoteComponent implements OnInit {
   }
   closeMenu() {
       this.isOpenedList = -1;
+  }
+
+
+  closeView() {
+    
+    this.addNote = !this.addNote;
   }
 }

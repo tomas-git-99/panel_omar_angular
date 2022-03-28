@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-offer',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class OfferComponent implements OnInit {
 
   constructor() { }
+  @Input() descuento: boolean = false;
 
   ngOnInit(): void {
   }
@@ -17,5 +18,11 @@ export class OfferComponent implements OnInit {
   }
   closeMenu() {
       this.isOpenedList = -1;
+  }
+
+
+  closeView() {
+    
+    this.descuento = !this.descuento;
   }
 }

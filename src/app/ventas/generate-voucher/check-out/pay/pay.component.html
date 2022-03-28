@@ -2,15 +2,15 @@
     <div class="py-16 px-4 md:px-6 2xl:px-0 flex justify-center items-center 2xl:mx-auto 2xl:container">
         <div class="flex flex-col justify-start items-start w-full space-y-9">
             <div class="flex justify-start flex-col items-start space-y-2">
-                <button class="flex flex-row items-center text-gray-600 hover:text-gray-500 space-x-1">
+                <button class="flex flex-row items-center text-gray-600 hover:text-gray-500 space-x-1" (click)="volver()" >
                     <svg class="fill-stroke" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.91681 7H11.0835" stroke="currentColor" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M2.91681 7L5.25014 9.33333" stroke="currentColor" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M2.91681 7.00002L5.25014 4.66669" stroke="currentColor" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <p class="text-sm leading-none">Back</p>
+                    <p class="text-sm leading-none">Volver</p>
                 </button>
-                <p class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Checkout</p>
+                <p class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Detalles de pago</p>
 <!--                 <p class="text-base leading-normal sm:leading-4 text-gray-600">Home > Electronics > Headphones > Cart > Checkout</p>
  -->            </div>
 
@@ -57,59 +57,86 @@
 
        <!--  tipo de factura a o b -->
         <div class="flex  flex-row  gap-4 pt-4">
+
             <div class="relative w-6/12">
-                <button (click)="isToggle ? (isToggle = 0) : (isToggle = 1)" id="changetext" class="text-left border rounded-tr rounded-tl border-gray-300 p-4 w-full text-base leading-4 placeholder-gray-600 text-gray-600 bg-white" type="email" name="" id="">{{ country }}</button>
-                <svg [ngClass]="'cursor-pointer absolute top-4 right-4 ' + (isToggle === 1 ? ' hidden ' : ' absolute ')" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.5 5.75L8 10.25L12.5 5.75" stroke="#27272A" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <svg *ngIf="isToggle === 1" class="cursor-pointer transform rotate-180 absolute top-4 right-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.5 5.75L8 10.25L12.5 5.75" stroke="#27272A" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div [ngClass]="'mt-1  absolute z-10 w-full  bg-gray-50 justify-start flex-col text-gray-600 ' + (isToggle === 1 ? '' : 'hidden')">
-                    <div (click)="country = 'United States'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">United States</div>
-                    <div (click)="country = 'China'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">China</div>
-                    <div (click)="country = 'Russia'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">Russia</div>
-                    <div (click)="country = 'UK'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">UK</div>
+                <div class="mb-3">
+                  <select class="form-select appearance-none
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                      <option selected>Tipo de factura</option>
+                      <option value="1">A</option>
+                      <option value="2">B</option>
+                    
+                  </select>
                 </div>
-            </div>
+              </div>
 
        <!--  armado por -->
-            <div class="relative w-6/12">
-                <button (click)="isToggle ? (isToggle = 0) : (isToggle = 1)" id="changetext" class="text-left border rounded-tr rounded-tl border-gray-300 p-4 w-full text-base leading-4 placeholder-gray-600 text-gray-600 bg-white" type="email" name="" id="">{{ country }}</button>
-                <svg [ngClass]="'cursor-pointer absolute top-4 right-4 ' + (isToggle === 1 ? ' hidden ' : ' absolute ')" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.5 5.75L8 10.25L12.5 5.75" stroke="#27272A" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <svg *ngIf="isToggle === 1" class="cursor-pointer transform rotate-180 absolute top-4 right-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.5 5.75L8 10.25L12.5 5.75" stroke="#27272A" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div [ngClass]="'mt-1  absolute z-10 w-full  bg-gray-50 justify-start flex-col text-gray-600 ' + (isToggle === 1 ? '' : 'hidden')">
-                    <div (click)="country = 'United States'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">United States</div>
-                    <div (click)="country = 'China'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">China</div>
-                    <div (click)="country = 'Russia'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">Russia</div>
-                    <div (click)="country = 'UK'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">UK</div>
+              <div class="relative w-6/12">
+                <div class="mb-3 ">
+                  <select class="form-select appearance-none
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                      <option selected>Armado por ...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                  </select>
                 </div>
-            </div>
+              </div>
         </div>
     
 
         <div class="pt-4">
        <!--  si lo pago o no -->
-
-            <div class="relative ">
-                <button (click)="isToggle ? (isToggle = 0) : (isToggle = 1)" id="changetext" class="text-left border rounded-tr rounded-tl border-gray-300 p-4 w-full text-base leading-4 placeholder-gray-600 text-gray-600 bg-white" type="email" name="" id="">{{ country }}</button>
-                <svg [ngClass]="'cursor-pointer absolute top-4 right-4 ' + (isToggle === 1 ? ' hidden ' : ' absolute ')" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.5 5.75L8 10.25L12.5 5.75" stroke="#27272A" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <svg *ngIf="isToggle === 1" class="cursor-pointer transform rotate-180 absolute top-4 right-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.5 5.75L8 10.25L12.5 5.75" stroke="#27272A" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div [ngClass]="'mt-1  absolute z-10 w-full  bg-gray-50 justify-start flex-col text-gray-600 ' + (isToggle === 1 ? '' : 'hidden')">
-                    <div (click)="country = 'United States'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">United States</div>
-                    <div (click)="country = 'China'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">China</div>
-                    <div (click)="country = 'Russia'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">Russia</div>
-                    <div (click)="country = 'UK'; (isToggle === 0)" class="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2">UK</div>
-                </div>
-            </div>
+       <div class="relative ">
+        <div class="mb-3 ">
+          <select class="form-select appearance-none
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding bg-no-repeat
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+              <option selected>¿El pago ya lo acredito?</option>
+              <option value="1">Si</option>
+              <option value="2">No</option>
+          
+          </select>
+        </div>
+      </div>
 
         </div>
 
@@ -143,34 +170,28 @@
 
     <button class="mt-8 border border-transparent hover:border-gray-300 bg-gray-900 hover:bg-white text-white hover:text-gray-900 flex justify-center items-center py-4 rounded w-full">
         <div>
-            <p class="text-base leading-4">Pay $54652</p>
+            <p class="text-base leading-4">Confirmar</p>
         </div>
     </button>
 </div>
                 <div class="p-8 bg-gray-100 flex flex-col lg:w-full xl:w-3/5 ">
+
                     <div>
                         <h1 class="text-2xl font-semibold leading-6 text-gray-800">Order Summary</h1>
                     </div>
                     <div class="flex mt-7 flex-col items-end w-full space-y-6">
+
                         <div class="flex justify-between w-full items-center">
-                            <p class="text-lg leading-4 text-gray-600">Total items</p>
-                            <p class="text-lg font-semibold leading-4 text-gray-600">20</p>
+                            <p class="text-lg leading-4 text-gray-600">Total productos</p>
+                            <p class="text-lg font-semibold leading-4 text-gray-600">$2000</p>
                         </div>
                         <div class="flex justify-between w-full items-center">
-                            <p class="text-lg leading-4 text-gray-600">Total Charges</p>
-                            <p class="text-lg font-semibold leading-4 text-gray-600">$2790</p>
-                        </div>
-                        <div class="flex justify-between w-full items-center">
-                            <p class="text-lg leading-4 text-gray-600">Shipping charges</p>
-                            <p class="text-lg font-semibold leading-4 text-gray-600">$90</p>
-                        </div>
-                        <div class="flex justify-between w-full items-center">
-                            <p class="text-lg leading-4 text-gray-600">Sub total</p>
-                            <p class="text-lg font-semibold leading-4 text-gray-600">$3520</p>
+                            <p class="text-lg leading-4 text-gray-600">Descuento</p>
+                            <p class="text-lg font-semibold leading-4 text-gray-600">-$2790</p>
                         </div>
                     </div>
                     <div class="flex justify-between w-full items-center mt-32">
-                        <p class="text-xl font-semibold leading-4 text-gray-800">Estimated Total</p>
+                        <p class="text-xl font-semibold leading-4 text-gray-800">Estimado Total</p>
                         <p class="text-lg font-semibold leading-4 text-gray-800">$2900</p>
                     </div> 
                 </div>

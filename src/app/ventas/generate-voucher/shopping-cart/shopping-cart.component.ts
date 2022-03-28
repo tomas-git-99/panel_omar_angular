@@ -71,4 +71,23 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
+
+  changePrecio:boolean = false;
+  addNote: boolean = false;
+  descuento: boolean = false;
+
+
+  viewModify(value: string){
+    
+
+    value === 'changePrecio'
+    ? this.changePrecio = true
+    : value === 'addNote'
+    ? this.addNote = true
+    : value === 'descuento'
+    ? this.descuento = true
+    : null;
+    this.isOpenedList = -1;
+  }
+
 }

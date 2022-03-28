@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-change-price',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./change-price.component.css']
 })
 export class ChangePriceComponent implements OnInit {
+
+  @Input() changePrecioSub: boolean = false;
+
 
   constructor() { }
 
@@ -17,6 +20,12 @@ export class ChangePriceComponent implements OnInit {
   }
   closeMenu() {
       this.isOpenedList = -1;
+  }
+
+
+  closeView() {
+    
+    this.changePrecioSub = !this.changePrecioSub;
   }
 
 }

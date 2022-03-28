@@ -1,5 +1,27 @@
 
-<h1 class="  font-semibold text-2xl border-b  text-center py-4" >Cambiar precio</h1>
+<div [ngClass]="'z-40 absolute flex justify-center items-center inset-0 '" *ngIf="changePrecioSub">
+    <!--  <div  class="w-full h-fullz-0 absolute inset-0" ></div> -->
+     <div class=" container">
+         <div class="flex items-center justify-center  ">
+
+ 
+ <div class=" bg-white rounded-md shadow ">
+
+
+
+    <div class=" grid justify-end ">
+        <button (click)="closeView()" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <span class="sr-only">Close menu</span>
+            <!-- Heroicon name: outline/x -->
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        
+    </div>
+     
+
+    <h1 class="  font-semibold text-2xl border-b  text-center " >Cambiar precio</h1>
 
 <div class="mx-2  px-6 flex flex-wrap pt-4">
 
@@ -77,3 +99,12 @@
 </div>
 
 </div>
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pay',
@@ -8,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class PayComponent implements OnInit {
   isToggle:any;
   country: string = "United States";
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
+
+  volver(){
+
+    this.router.navigate(['/checkout']);
+
+  }
 }
