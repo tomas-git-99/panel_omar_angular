@@ -1,0 +1,107 @@
+
+ 
+ 
+<div [ngClass]="'z-60 absolute flex justify-center items-center inset-0 '" *ngIf="isModifySub">
+    <!--  <div  class="w-full h-fullz-0 absolute inset-0" ></div> -->
+     <div class=" container">
+         <div class="flex items-center justify-center  ">
+
+ 
+ <div class="bg-white  rounded-md shadow">
+
+    <div class=" grid justify-end ">
+        <button (click)="exitModify()" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <span class="sr-only">Close menu</span>
+            <!-- Heroicon name: outline/x -->
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+     
+   
+
+
+   <!-- content start -->
+
+   <div class="grid m-7 gap-4">
+    
+    <select id="animals" class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" name="animals">
+        <option value="" class="">
+            Opciones:
+        </option>
+        <option value="nombre">
+            Color
+        </option>
+        <option value="apellido">
+            Precio
+        </option>
+        <option value="apellido">
+            Mandar falla a OFERTA
+        </option>
+    </select>
+<!-- 
+    <p class="font-light text-gray-600 text-xs text-center">
+        *Lo cambios se aplicaran a todos los <br> productos seleccionados con el mismo codigo
+    </p> -->
+
+    <hr>
+
+    <!-- nota -->
+ 
+
+    <div class="grid gap-5" *ngIf="" >
+
+
+        <label class="font-semibold text-gray-700">Precio nuevo:</label>
+<!--         <textarea class="resize-y rounded-md"></textarea> -->
+
+
+
+        <div class="relative z-0 mb-6 w-full group ">
+            <input type="email" name="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            <label for="floating_email" class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">asdsa</label>
+        </div> 
+        <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            Cambiar
+        </button>
+    </div>
+
+
+    <div class="grid gap-5" >
+
+
+       <!--  <label class="font-semibold text-gray-700">Precio nuevo:</label> -->
+<!--         <textarea class="resize-y rounded-md"></textarea> -->
+
+<select id="animals" class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" name="animals">
+    <option value="" class="">
+        Talles:
+    </option>
+    <option value="nombre">
+        Talle 2 (34)
+    </option>
+   
+</select>
+
+        <div class="relative z-0 mb-6 w-full group ">
+            <input type="email" name="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            <label for="floating_email" class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cantidad</label>
+        </div> 
+        <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            Descontar
+        </button>
+    </div>
+</div>
+
+
+
+
+   <!-- content end -->
+
+
+
+ </div>
+ </div>
+ </div>
+</div>

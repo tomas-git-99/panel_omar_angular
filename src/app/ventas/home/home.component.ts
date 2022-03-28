@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   isMenu: boolean = false;
 
   isSubTable: boolean = false;
+
   categoryChange:any[] = [
     'todo',
     'camisetas',
@@ -31,7 +32,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-  
 
 
   viewSubTable(){

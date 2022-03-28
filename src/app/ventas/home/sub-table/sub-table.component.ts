@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SubTableComponent implements OnInit {
   dropDownList:any;
 
+  isModify: boolean = false;
 
   isMenu: boolean = false;
 
@@ -23,4 +24,9 @@ export class SubTableComponent implements OnInit {
     this.isSubTable = !this.isSubTable;
     
   }
+
+  viewModify(){
+    this.isModify = !this.isModify;
+  }
+
 }

@@ -27,6 +27,9 @@ import { ModifyComponent } from './history/modify/modify.component';
 import { CenterModifyHistoryComponent } from './history/modify/center-modify-history/center-modify-history.component';
 import { SearchProductsComponent } from './history/modify/center-modify-history/search-products/search-products.component';
 import { AddNoteComponent } from './history/modify/center-modify-history/add-note/add-note.component';
+import { EditProductsMultipleComponent } from './history/modify/center-modify-history/edit-products-multiple/edit-products-multiple.component';
+import { EditClientsComponent } from './history/modify/center-modify-history/edit-clients/edit-clients.component';
+import { ModifyHomeComponent } from './home/center/modify-home/modify-home.component';
 
 
 
@@ -60,6 +63,9 @@ import { AddNoteComponent } from './history/modify/center-modify-history/add-not
     CenterModifyHistoryComponent,
     SearchProductsComponent,
     AddNoteComponent,
+    EditProductsMultipleComponent,
+    EditClientsComponent,
+    ModifyHomeComponent,
     
     
   ],

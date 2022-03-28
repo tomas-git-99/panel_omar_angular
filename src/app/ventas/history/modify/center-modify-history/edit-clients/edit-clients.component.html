@@ -1,0 +1,65 @@
+
+ 
+ 
+<div [ngClass]="'z-60 absolute flex justify-center items-center inset-0 '" >
+    <!--  <div  class="w-full h-fullz-0 absolute inset-0" ></div> -->
+     <div class=" container">
+         <div class="flex items-center justify-center  ">
+
+ 
+ <div class="bg-white  rounded-md shadow">
+
+
+
+   <!-- content start -->
+
+   <div class="grid m-7 gap-4">
+    
+    <select id="animals" class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" name="animals" (change)="valueEdit($event.target)">
+        <option value="" class="">
+            Opciones:
+        </option>
+        <option value="nombre">
+            Nombre
+        </option>
+        <option value="apellido">
+            Apellido
+        </option>
+      
+    </select>
+<!-- 
+    <p class="font-light text-gray-600 text-xs text-center">
+        *Lo cambios se aplicaran a todos los <br> productos seleccionados con el mismo codigo
+    </p> -->
+
+    <hr>
+
+    <!-- nota -->
+ 
+
+    <div class="grid gap-5" *ngIf="viewEditInput">
+
+
+        <label class="font-semibold text-gray-700">Precio nuevo:</label>
+<!--         <textarea class="resize-y rounded-md"></textarea> -->
+
+
+
+        <div class="relative z-0 mb-6 w-full group ">
+            <input type="email" name="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            <label for="floating_email" class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ valueDeLabel | uppercase}}</label>
+        </div> 
+        <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            Cambiar
+        </button>
+    </div>
+</div>
+
+   <!-- content end -->
+
+
+
+ </div>
+ </div>
+ </div>
+</div>
