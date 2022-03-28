@@ -37,5 +37,13 @@ export class AppComponent {
   changeValue(){
    
     this.isMenuVentas = !this.isMenuVentas ;
+    this.isVentasOption = !this.isVentasOption;
+
+  }
+
+  isVentasOption: boolean = false;
+
+  openVentas(){
+    this.isVentasOption = !this.isVentasOption;
   }
 }

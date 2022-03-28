@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 
 <!-- para que no se mueva navbar: sticky top-0  -->
-<div class="relative bg-white z-50" *ngIf="false">
+<div class="relative bg-white z-50" *ngIf="true">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
@@ -22,7 +22,7 @@
         <nav class="hidden md:flex space-x-10">
           <div class="relative">
             <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-            <button type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false" (click)="changeValue()">
+            <button (click)="openVentas()" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
               <span>Ventas</span>
               <!--
                 Heroicon name: solid/chevron-down
@@ -47,8 +47,12 @@
 
 
             <!-- class="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2" -->
+
+            <!-- + (isMenuVentas ? 'opacity-0 translate-y-1 opacity-100 translate-y-0 transition ease-out duration-200' : 'opacity-100 translate-y-0 opacity-0 translate-y-1 transition ease-in duration-150') -->
             <div 
-            [ngClass]="'absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:-translate-x-1/2' + (isMenuVentas ? 'opacity-0 translate-y-1 opacity-100 translate-y-0 transition ease-out duration-200' : 'opacity-100 translate-y-0 opacity-0 translate-y-1 transition ease-in duration-150')" >
+            [ngClass]="'absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:-translate-x-1/2' "
+            *ngIf="isVentasOption"
+            >
               <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                   <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" [routerLink]="[routerLink.inicio]" (click)="changeValue()">
