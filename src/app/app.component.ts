@@ -15,20 +15,36 @@ export class AppComponent {
   isMenuVentas:boolean = false;
 
 
+
   iconNav = {
     productos:'/assets/icon/productos.png',
     orden:'/assets/icon/orden.png',
     historial:'/assets/icon/history.png',
     distribution:'/assets/icon/camion.png',
 
+
+    productosProduccion: '/assets/icon/camiseta.png',
+    estampados:'/assets/icon/estampado.png',
+    rollos:'/assets/icon/rollos.png',
+    pagos:'/assets/icon/pagos.png',
+
+
   }
 
   routerLink = {
-    inicio: '/',
+    inicio:       '/ventas/inicio',
+    generar:      '/ventas/generar',
+    historial:    '/ventas/historial',
+    distribucion: '/ventas/distribucion',
 
-    generar: '/generar',
-    historial: '/historial',
-    distribucion: '/distribucion',
+
+
+    productos:              '/produccion/productos',
+    estampados:             '/produccion/estampados',
+    rollos:                 '/produccion/rollos',
+    distribucionProduccion: '/produccion/distribucion',
+    pagos:                  '/produccion/pagos',
+
 
   }
 
@@ -42,8 +58,16 @@ export class AppComponent {
   }
 
   isVentasOption: boolean = false;
+  isProduccionOption: boolean = false;
 
   openVentas(){
     this.isVentasOption = !this.isVentasOption;
+  }
+
+
+  openProduccion(){
+    this.isProduccionOption = !this.isProduccionOption;
+
+
   }
 }
