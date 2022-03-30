@@ -6,6 +6,8 @@ import { DistribucionComponent } from './distribucion/distribucion.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { RollosComponent } from './rollos/rollos.component';
 import { ProduccionRoutingModule } from './produccion-routing.module';
+import { ViewEditToolsComponent } from './productos/view-edit-tools/view-edit-tools.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -15,11 +17,13 @@ import { ProduccionRoutingModule } from './produccion-routing.module';
     EstampadoComponent,
     DistribucionComponent,
     PagosComponent,
-    RollosComponent
+    RollosComponent,
+    ViewEditToolsComponent
   ],
   imports: [
     CommonModule,
-    ProduccionRoutingModule
+    ProduccionRoutingModule,
+    FontAwesomeModule
   ]
 })
 export class ProduccionModule { }

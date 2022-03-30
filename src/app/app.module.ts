@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { VentasModule } from './ventas/ventas.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProduccionModule } from './produccion/produccion.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,8 @@ import { ProduccionModule } from './produccion/produccion.module';
     BrowserModule,
     AppRoutingModule,
     VentasModule,
-    ProduccionModule
-
+    ProduccionModule,
+    FontAwesomeModule
 
     
   ],
