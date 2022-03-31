@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstampadoComponent implements OnInit {
 
+  dropDownList:any;
   constructor() { }
+
+  valueFilter:boolean = false;
 
   ngOnInit(): void {
   }
 
+
+  viewFilter(){
+    this.valueFilter = !this.valueFilter;
+  }
 }

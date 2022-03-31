@@ -17,36 +17,54 @@
 
         <div class="container flex flex-col mx-auto w-full items-center justify-center bg-white dark:bg-gray-800 rounded-lg shadow">
             <div class="px-4 py-5 sm:px-6 border-b w-full">
+                <div class=" grid justify-end ">
+                    <button  type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <span class="sr-only">Close menu</span>
+                        <!-- Heroicon name: outline/x -->
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
                 <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">
-                    User database
+                    #123
                 </h3>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-200">
-                    Details and informations about user.
+                    Detalles e información del producto, podras modifcar sin problema
                 </p>
             </div>
+
+    
+
             <div class="grid grid-cols-3">
                 <ul class="flex flex-col divide divide-y">
         
                     <li class="flex flex-row">
                         <div class="select-none cursor-pointer flex flex-1 items-center p-4">
 
-                            
+<!-- modify windows  begin -->                          
+<div class="flex flex-row w-full items-center" *ngIf>
 
     <div class=" relative ">
-    <input type="text" id="rounded-email" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Codigo"/>
+        <input type="text" id="rounded-email" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Codigo"/>
     </div>
-    <div class="flex flex-row gap-1 pl-2">
-        <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800">
-            <fa-icon [icon]="faExit" size="lg" [fixedWidth]="true" ></fa-icon>
-        </button>
-    
-        <button type="button" class="text-green-700 border border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800">
-            <fa-icon [icon]="faCheck" size="lg" [fixedWidth]="true" ></fa-icon>
-        </button>
+
+     <div class="flex flex-row gap-1 pl-2  h-full ">
+            <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800">
+                <fa-icon [icon]="faExit" size="lg" [fixedWidth]="true" ></fa-icon>
+            </button>
+        
+            <button type="button" class="text-green-700 border border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800">
+                <fa-icon [icon]="faCheck" size="lg" [fixedWidth]="true" ></fa-icon>
+            </button>
     </div>
+</div>
+ <!-- modify windows  end -->                          
+
    
                            
-                 <!--            <div class="flex-1 pl-1 ">
+                            <div class="flex-1 pl-1 ">
                                 <div class="font-medium dark:text-white">
                                     Codigo
                                 </div>
@@ -60,7 +78,7 @@
                                     <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
                                     </path>
                                 </svg>
-                            </button> -->
+                            </button>
                         </div>
                     </li>
             
