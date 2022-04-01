@@ -8,6 +8,8 @@ import { RollosComponent } from './rollos/rollos.component';
 import { ProduccionRoutingModule } from './produccion-routing.module';
 import { ViewEditToolsComponent } from './productos/view-edit-tools/view-edit-tools.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddProductosProduccionComponent } from './distribucion/view-center/add-productos-produccion/add-productos-produccion.component';
+import { AddLocalComponent } from './distribucion/view-center/add-productos-produccion/add-local/add-local.component';
 
 
 
@@ -18,7 +20,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DistribucionComponent,
     PagosComponent,
     RollosComponent,
-    ViewEditToolsComponent
+    ViewEditToolsComponent,
+    AddProductosProduccionComponent,
+    AddLocalComponent
   ],
   imports: [
     CommonModule,
