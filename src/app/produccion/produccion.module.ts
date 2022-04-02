@@ -10,6 +10,7 @@ import { ViewEditToolsComponent } from './productos/view-edit-tools/view-edit-to
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddProductosProduccionComponent } from './distribucion/view-center/add-productos-produccion/add-productos-produccion.component';
 import { AddLocalComponent } from './distribucion/view-center/add-productos-produccion/add-local/add-local.component';
+import { SubTableDisProduccionComponent } from './distribucion/sub-table-dis-produccion/sub-table-dis-produccion.component';
 
 
 
@@ -22,7 +23,8 @@ import { AddLocalComponent } from './distribucion/view-center/add-productos-prod
     RollosComponent,
     ViewEditToolsComponent,
     AddProductosProduccionComponent,
-    AddLocalComponent
+    AddLocalComponent,
+    SubTableDisProduccionComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,151 @@
+<div class="sm:px-4 xl:w-auto  animate__animated animate__slideInDown z-30 w-full" *ngIf="true" >
+   <!--  sm:w-[1050px] -->
+    <!-- *ngIf="isSubTable"  -->
+    <div class=" bg-white overflow-y-auto flex justify-center" >
+        <!-- shadow -->
+        <table class="whitespace-nowrap border border-gray-100 lg:w-11/12 sm:w-11/12" >
+            <thead>
+                <tr class="h-12 w-full text-sm leading-none text-gray-800 bg-slate-100">
+                   
+
+                    <th class="font-normal text-left pl-10">Cantidad</th>
+                    <th class="font-normal text-left">Talles</th>
+                    <th class="font-normal text-left">Tela</th>
+                    <th class="font-normal text-left">Local</th>
+                    <th class="font-normal text-left">Edad</th>
+                    <th class="font-normal text-center">Fallas</th>
+                    <!-- <th class="font-normal text-left pl-16"></th> -->
+                    <th class=""></th>
+                    <th class=""></th>
+              
+                </tr>
+            </thead>
+            <tbody class="w-full">
+                <tr class="h-14 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
+                    <td class="cursor-pointer">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 flex justify-center items-center hover:shadow hover:rounded-full hover:bg-[#E0E7FF]" (click)="viewSubTableFailures()">
+                                <svg width="24" height="24" stroke-width="2.5" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" style="cursor:pointer;" >
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                              </svg>
+                       
+                            </div>
+                            <div class="pl-4">
+                                <p class="font-medium">120</p>
+                                <!-- <p class="text-xs leading-3 text-gray-600 pt-2">Herman Group</p> -->
+                            </div>
+                        </div>
+                    </td>
+                    <td class="">
+                        <p class="text-sm font-medium leading-none text-gray-800 ">4,6,8,12,14</p>
+                       <!--  <div class="w-24 h-3 bg-gray-100 rounded-full mt-2">
+                            <div class="w-20 h-3 bg-green-progress rounded-full"></div>
+                        </div> -->
+                    </td>
+                    <td class="">
+                        <p class="font-medium">Modal</p>
+                        <!-- <p class="text-xs leading-3 text-gray-600 mt-2">5 tasks pending</p> -->
+                    </td>
+                    <td class="">
+                        <p class="font-medium">Central</p>
+                        <!-- <p class="text-xs leading-3 text-gray-600 mt-2">$4,200 left</p> -->
+                    </td>
+                    <td class="">
+                        <p class="font-medium">Nena</p>
+                        <!-- <p class="text-xs leading-3 text-gray-600 mt-2">34 days</p> -->
+                    </td>
+                    <td class="">
+                        <p class="font-medium text-center">0</p>
+                        <!-- <p class="text-xs leading-3 text-gray-600 mt-2">34 days</p> -->
+                    </td>
+                <!--     <td class="pl-16">
+                        <div class="flex items-center">
+                            <img class="shadow-md w-8 h-8 rounded-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects(8).png" />
+                            <img class="shadow-md w-8 h-8 rounded-full -ml-2" src="https://cdn.tuk.dev/assets/templates/olympus/projects(9).png" />
+                            <img class="shadow-md w-8 h-8 rounded-full -ml-2" src="https://cdn.tuk.dev/assets/templates/olympus/projects(10).png" />
+                            <img class="shadow-md w-8 h-8 rounded-full -ml-2" src="https://cdn.tuk.dev/assets/templates/olympus/projects(11).png" />
+                        </div>
+                    </td> -->
+                    <td class="">
+
+                        <div class="flex justify-center" >
+                           
+
+                            <button
+                            class="py-2 px-3 text-sm focus:outline-none leading-none text-gray-600 bg-green-200 hover:bg-green-100 rounded flex flex-row items-center gap-[5px]"
+                          >
+                       
+    
+                            <svg  
+                            width="20"
+                            height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <path fill="#52525B" d="M336 64h-53.88C268.9 26.8 233.7 0 192 0S115.1 26.8 101.9 64H48C21.5 64 0 85.48 0 112v352C0 490.5 21.5 512 48 512h288c26.5 0 48-21.48 48-48v-352C384 85.48 362.5 64 336 64zM192 64c17.67 0 32 14.33 32 32s-14.33 32-32 32S160 113.7 160 96S174.3 64 192 64zM282.9 262.8l-88 112c-4.047 5.156-10.02 8.438-16.53 9.062C177.6 383.1 176.8 384 176 384c-5.703 0-11.25-2.031-15.62-5.781l-56-48c-10.06-8.625-11.22-23.78-2.594-33.84c8.609-10.06 23.77-11.22 33.84-2.594l36.98 31.69l72.52-92.28c8.188-10.44 23.3-12.22 33.7-4.062C289.3 237.3 291.1 252.4 282.9 262.8z"/>
+                        </svg>
+            
+                            <label class="text-gray-800">
+                              Agregar            
+                            </label>
+            
+                            <!-- Enviado -->
+    
+
+    
+
+                          </button>
+    
+                      
+                        </div>
+
+                       
+                    </td>
+
+                    <td class="" >
+
+                        <div class="flex  justify-center  ">
+                           
+
+                            <button
+                            class="py-2 px-3 text-sm focus:outline-none leading-none text-gray-600 bg-red-300	 hover:bg-red-200	 rounded flex flex-row items-center gap-[5px]"
+                          >
+                       
+    
+                          <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          viewBox="0 0 512 512"
+                          width="20"
+                          height="20"
+                          >
+                              <path fill="#52525B" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM232 152C232 138.8 242.8 128 256 128s24 10.75 24 24v128c0 13.25-10.75 24-24 24S232 293.3 232 280V152zM256 400c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z"/>
+                            </svg>
+            
+                            <label class="text-gray-800">
+                              Fallas            
+                            </label>
+            
+                           
+    
+
+    
+
+                          </button>
+    
+                      
+                        </div>
+
+                       
+                    </td>
+                </tr>
+            
+       
+            </tbody>
+        </table>
+          
+    </div>
+ <!--  sub-sub-fallas home-->
+
+<!--  <app-sub-tables-failures [isSubTableFailures]="isSubTableFailures" ></app-sub-tables-failures> -->
+ <!--  sub-sub-fallas end-->
+
+
+</div>
