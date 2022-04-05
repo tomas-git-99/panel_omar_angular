@@ -7,6 +7,7 @@ import { EstampadoComponent } from './estampado/estampado.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { RollosComponent } from './rollos/rollos.component';
 import { DistribucionComponent } from './distribucion/distribucion.component';
+import { AgregarComponent } from './agregar/agregar.component';
 
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { 
     path: '',
     children:[
+      {path:'agregar', component: AgregarComponent},
       {path:'producto', component: ProductosComponent},
       {path:'estampados', component: EstampadoComponent},
       {path:'distribucion', component: DistribucionComponent},

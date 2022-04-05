@@ -38,23 +38,29 @@ export class AppComponent {
     distribucion: '/ventas/distribucion',
 
 
-
+    agregar:              '/produccion/agregar',
     productos:              '/produccion/productos',
     estampados:             '/produccion/estampados',
     rollos:                 '/produccion/rollos',
     distribucionProduccion: '/produccion/distribucion',
-    pagos:                  '/produccion/pagos',
+    pagos:                  '/produccion/pago',
 
 
   }
 
   sizeIconNav = '25px'
 
-  changeValue(){
+  changeValue(value:string){
    
-    this.isMenuVentas = !this.isMenuVentas ;
-    this.isVentasOption = !this.isVentasOption;
+    //this.isMenuVentas = !this.isMenuVentas ;
+    //this.isVentasOption = !this.isVentasOption;
+    if(value == "ventas"){
+      this.isVentasOption = !this.isVentasOption;
 
+    }else{
+    this.isProduccionOption = !this.isProduccionOption;
+
+    }
   }
 
   isVentasOption: boolean = false;
@@ -62,6 +68,7 @@ export class AppComponent {
 
   openVentas(){
     this.isVentasOption = !this.isVentasOption;
+
   }
 
 

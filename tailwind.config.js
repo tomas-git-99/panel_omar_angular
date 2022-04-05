@@ -5,14 +5,24 @@ module.exports = {
     enabled: true,
     content: [
       './src/**/*.{html,ts}',
-    ]
+    ],
+   
+
+    
   },
+
   darkMode: 'class', // or 'media' or 'class'
+
   theme: {
-    extend: {},
+    extend: {
+ 
+    },
   },
   variants: {
-    extend: {},
+    extend: {
+   
+    },
   },
   plugins: [require('@tailwindcss/forms'),require('@tailwindcss/typography')],
+
 }

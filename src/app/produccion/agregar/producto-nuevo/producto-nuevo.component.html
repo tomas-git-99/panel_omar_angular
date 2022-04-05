@@ -1,0 +1,311 @@
+<div class="flex h-screen justify-center items-center ">
+  <div class="bg-white rounded-lg shadow-md">
+    <!-- content start -->
+    <div class="m-8">
+      <div class="flex justify-between my-6">
+        <p class="text-3xl font-medium text-gray-800 capitalize">
+          nuevo producto
+        </p>
+        <button
+        role="button"
+        aria-label="close label"
+        class="mr-2 focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
+      >
+        <svg
+          width= "28"
+          height="28"
+          viewBox="0 0 28 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M21 7L7 21"
+            stroke="#A1A1AA"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M7 7L21 21"
+            stroke="#A1A1AA"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </button>
+      </div>
+
+      <div>
+        <form autocomplete="off">
+
+        <div class="sm:flex sm:flex-row sm:gap-2 lg:flex lg:flex-col">
+            <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
+
+                <div class="relative z-0 mb-6 w-full group">
+                  <input
+                    type="text"
+                    name="codigo"
+                    id="floating_codigo"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required=""
+                    autocomplete="disabled"
+                  />
+                  <label
+                    for="floating_email"
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >Codigo</label
+                  >
+                </div>
+    
+                <div class="relative z-0 mb-6 w-full group">
+                  <input
+                    type="text"
+                    name="nombre"
+                    id="floating_nombre"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required=""
+                    autocomplete="disabled"
+                  />
+                  <label
+                    for="floating_password"
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >Modelo / Articulo</label
+                  >
+                </div>
+                
+              </div>
+    
+              <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
+                <div class="relative z-0 mb-6 w-full group ">
+                
+                  <input
+                    type="date"
+                    name="fecha_de_corte"
+                    id="floating_fecha_de_corte"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required=""
+                  />
+                  <label
+                    for="floating_repeat_password"
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >Fecha de corte</label
+                  >
+                </div>
+    
+                <div class="relative z-0 mb-6 w-full group">
+                  <input
+                    type="text"
+                    name="edad"
+                    id="floating_edad"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required=""
+                  />
+                  <label
+                    for="floating_repeat_password"
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >Edad</label
+                  >
+                </div>
+              </div>
+        </div>
+
+
+        <div class="sm:flex sm:flex-row sm:gap-2 lg:flex lg:flex-col">
+            <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
+                <div class="relative z-0 mb-6 w-full group">
+                  <input
+                    type="text"
+                    name="tela"
+                    id="floating_tela"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required=""
+                  />
+                  <label
+                    for="floating_first_name"
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >Tela</label
+                  >
+                </div>
+                <div class="relative z-0 mb-6 w-full group">
+                  <input
+                    type="text"
+                    name="rollos"
+                    id="floating_rollos"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required=""
+                  />
+                  <label
+                    for="floating_last_name"
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >Rollos</label
+                  >
+                </div>
+              </div>
+    
+              <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
+                <div class="relative z-0 mb-6 w-full group">
+                  <input
+                    type="number"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    name="peso_promedio"
+                    id="floating_peso_promedio"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required=""
+                  />
+                  <label
+                    for="floating_phone"
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >Peso promedio</label
+                  >
+                </div>
+                <div class="relative z-0 mb-6 w-full group">
+                  <input
+                    type="text"
+                    name="total_por_talle"
+                    id="floating_total_por_talle"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required=""
+                  />
+                  <label
+                    for="floating_company"
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >Total por talle</label
+                  >
+                </div>
+              </div>
+        </div>
+
+
+
+
+
+          <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
+            <div class="relative z-0 mb-6 w-full group">
+              <input
+                type="number"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                name="talles"
+                id="floating_talles"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required=""
+              />
+              <label
+                for="floating_phone"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Talles</label
+              >
+            </div>
+            <div class="relative z-0 mb-6 w-full group">
+              <input
+                type="number"
+                name="total"
+                id="floating"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required=""
+
+                disabled
+              />
+              <label
+                for="floating_company"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Total</label
+              >
+            </div>
+          </div>
+
+          <div class="flex justify-center">
+            <div class="mb-3">
+                <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                    <input type="checkbox" name="toggle" id="Green" class="checked:bg-green-500 outline-none focus:outline-none right-4 checked:right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                        <label for="Green" class="block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer">
+                        </label>
+                    </div>
+                    <span class="text-gray-400 font-medium">
+                        ¿Agregar para estampado?
+                    </span>
+                </div>
+              
+          </div>
+
+          <div class="my-6">
+            <h3
+              class="capitalize text-gray-600 font-semibold underline text-center"
+            >
+              mas opciones de talleres
+            </h3>
+          </div>
+
+
+          <div class="grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-1">
+
+            <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
+
+                <div class="relative z-0 mb-6 w-full group flex flex-col">
+                    
+                    <label for="" class="text-gray-500 font-normal capitalize  ">taller</label>
+                    
+                  <select
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    name="animals"
+                  >
+                    <option value="">Opciones</option>
+                    <option value="dog">Dog</option>
+                  </select>
+                </div>
+    
+                <div class="relative z-0 mb-6 w-full group flex flex-col">
+                    <label for="" class="text-gray-500 font-normal capitalize">fecha de salida</label>
+                  <label class="text-gray-700 capitalize" for="time">
+                      
+                    <input
+                      type="date"
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    />
+                  </label>
+                </div>
+              </div>
+    
+              <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
+    
+                <div class="relative z-0 mb-6 w-full group flex flex-col ">
+                    <label for="" class="capitalize text-gray-500 font-normal"> fecha de entrada</label>
+                    <label class="text-gray-700 capitalize" for="time">
+                      <input
+                        type="date"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      />
+                    </label>
+                  </div>
+              </div>
+          </div>
+
+
+
+          <div class="grid justify-center">
+            <button
+            type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
+          >
+            Guardar
+          </button>
+          </div>
+      
+
+        </form>
+      </div>
+    </div>
+
+    <!-- content end -->
+  </div>
+</div>

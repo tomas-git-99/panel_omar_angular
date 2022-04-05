@@ -11,6 +11,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddProductosProduccionComponent } from './distribucion/view-center/add-productos-produccion/add-productos-produccion.component';
 import { AddLocalComponent } from './distribucion/view-center/add-productos-produccion/add-local/add-local.component';
 import { SubTableDisProduccionComponent } from './distribucion/sub-table-dis-produccion/sub-table-dis-produccion.component';
+import { AgregarComponent } from './agregar/agregar.component';
+import { ProductoNuevoComponent } from './agregar/producto-nuevo/producto-nuevo.component';
 
 
 
@@ -24,7 +26,9 @@ import { SubTableDisProduccionComponent } from './distribucion/sub-table-dis-pro
     ViewEditToolsComponent,
     AddProductosProduccionComponent,
     AddLocalComponent,
-    SubTableDisProduccionComponent
+    SubTableDisProduccionComponent,
+    AgregarComponent,
+    ProductoNuevoComponent
   ],
   imports: [
     CommonModule,
