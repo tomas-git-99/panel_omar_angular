@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faShirt, faTrash, faUser, faUserAlt, faUsersRectangle } from '@fortawesome/free-solid-svg-icons';
+import { ProduccionService } from '../servicios/produccion.service';
 
 @Component({
   selector: 'app-distribucion',
@@ -12,10 +13,15 @@ export class DistribucionComponent implements OnInit {
 
   isMenu: boolean = false;
 
-  faArrowLeft = faChevronLeft
-  faArrowRight = faChevronRight
+  faArrowLeft = faChevronLeft;
+  faArrowRight = faChevronRight;
+  faTrash = faTrash;
+  faUser = faUser;
+  faShirt = faShirt;
 
   isSubTable: boolean = false;
+
+  isDistribucion: boolean = false;
   categoryChange:any[] = [
     'todo',
     'proceso',
@@ -23,20 +29,55 @@ export class DistribucionComponent implements OnInit {
   ] 
   valueHomeCategory:string = 'todo'
 
+  dataArrays:any
+  dataArraysSub:any = {}
+
+
+  cantidadEntega!:number;
   @ViewChild('categoryScrollX')categoryScrollX!:ElementRef<HTMLInputElement>;
 
 
+  VentanaDeEliminar:boolean = false;
+  VentanaDeFallas:boolean = false;
+  IDventanas:string = "";
 
-  constructor() { }
+
+  constructor( public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
+
+    this.servicioProduccion.getDistribucion().subscribe(
+      (res) => {
+        this.dataArrays = res.data;
+
+        console.log(this.dataArrays)
+
+        res.data.forEach((element:any) => {
+
+         this.dataArraysSub[element.id] = false;
+
+        })
+
+      }
+    )
+   
+
+    this.servicioProduccion.cerrarAbrirVentanaDistribucion$.subscribe(
+      (res) => {
+        this.isDistribucion = res;
+      }
+    )
+    
+
   }
 
 
   
 
 
-  viewSubTable(){
+  viewSubTable(id:number){
+    
+    this.dataArraysSub[id] ? this.dataArraysSub[id] = false : this.dataArraysSub[id] = true;
     this.isSubTable = !this.isSubTable;
   }
 
@@ -55,4 +96,45 @@ export class DistribucionComponent implements OnInit {
     : this.categoryScrollX.nativeElement.scrollTo({ left: (this.categoryScrollX.nativeElement.scrollLeft - 150), behavior: 'smooth' })
 
   }
+
+
+  sumaYtalles( array:any[], metodo:string):any{
+
+    if(metodo === 'cantidad'){
+      let suma:number = 0;
+
+      array.forEach((element:any) => {
+        
+        if(element.cantidad){
+          suma += element.cantidad;
+        }
+      })
+  
+      return suma;
+  
+    }else if(metodo === 'talles'){
+
+      let talles:string = '';
+
+      array.forEach((element:any) => {
+        talles += element.talle + ',';
+      })
+
+      return talles;
+    }
+
+  
+  }
+
+  abrirAgregarDistribucion(cantidad:number){
+
+    this.isDistribucion = !this.isDistribucion;
+
+    this.servicioProduccion.cantidadDistribucion$ = cantidad;
+
+    //this.cantidadEntega = cantidad; 
+    //this.cantidadEntega = localStorage.setItem('cantidad', cantidad) as unknown as number; 
+  }
+
+  
 }

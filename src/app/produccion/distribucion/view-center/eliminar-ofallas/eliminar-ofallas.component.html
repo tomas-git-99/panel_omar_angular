@@ -1,0 +1,134 @@
+
+<div class="mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50 " id="signin-success-message" *ngIf="Fallas">
+    <div class=" px-6 py-4 rounded-md text-lg flex items-center justify-center w-full">
+
+
+        <div class="shadow rounded-sm">
+
+            <div class="bg-gray-100 rounded-tl-md rounded-tr-md px-2 md:py-4 py-7  flex items-center justify-between">
+
+                <div class="flex flex-col">      
+                    <p class="text-base font-semibold text-gray-500">Fallas :</p>
+
+                    <p class="text-sm font-light text-gray-600"></p>
+                </div>
+          
+                <button (click)="EmitFallas.emit(false)" role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="bg-white">
+
+                <div class="border border-gray-200 rounded-sm grid grid-cols-2 p-1 gap-2 ">
+
+                    <div class="flex items-center justify-between border rounded-md p-1 gap-2" *ngFor="let data  of arrayTalles">
+
+                      
+                            <div>
+                                <p class="font-light text-sm text-gray-500 ">Talle: <span class="font-light text-sm text-indigo-600">{{data.talle}}</span>  , Cantida: <span class="font-light text-sm text-indigo-600">{{data.cantidad}}</span></p>
+                            </div>
+                            <button role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+                                <svg width="18" height="18" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                
+                        
+                    </div>
+
+ <!--                    <div class="flex items-center justify-between border rounded-md p-1 gap-2">
+
+                      
+                        <div>
+                            <p class="font-light text-sm text-gray-500 ">Talle:2, Cantida: 20</p>
+                        </div>
+                        <button role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+                            <svg width="18" height="18" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+            
+                    </div> -->
+
+
+
+                </div>
+
+                <!-- botones -->
+
+                <div class="flex justify-center py-2">
+
+                    <button aria-label="add user" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none px-4 py-2 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Eliminar todo</button>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<div class="mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50 " id="signin-success-message" *ngIf="Eliminar">
+    <div class=" px-6 py-4 rounded-md text-lg flex items-center justify-center w-full ">
+
+
+        <div class="shadow rounded-sm">
+            <div class="bg-gray-100 rounded-tl-md rounded-tr-md px-2 md:py-4 py-7  flex items-center justify-between">
+
+                <div class="flex flex-col">      
+                    <p class="text-base font-semibold text-gray-500">Todos sus talles:</p>
+
+                    <p class="text-sm font-light text-gray-600"></p>
+                </div>
+          
+                <button (click)="EmitEliminar.emit(false)" role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="flex flex-col justify-center items-center gap-5 p-2 bg-white">
+
+
+                <label class="text-gray-700" for="animals">
+                    Talles:
+<select class="block w-56 text-gray-700 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" >
+    <option value="">Opciones: </option>
+    <option   *ngFor="let data of arrayTalles" [value]="data.id">
+        {{"Talle: "  + data.talle + " , Cantidad: " + data.cantidad}}
+    </option>
+   
+</select>
+                </label>
+
+
+<div class=" relative ">
+   <span>Descontar:</span>
+    <input type="text" id="rounded-email" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Cantidad"/>
+    </div>
+
+    <div class="flex justify-center py-2">
+
+        <button aria-label="add user" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none px-4 py-2 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white"> Agregar</button>
+
+    </div>
+
+            </div>
+        </div>
+    </div>
+</div>

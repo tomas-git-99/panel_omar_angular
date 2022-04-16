@@ -8,8 +8,11 @@
     <div class="border bg-white rounded-md" >
       <div class="flex items-center justify-between bg-gray-200 p-2" >
           
-        <p class="font-medium text-lg text-gray-600">Elige el local</p>
+        
+        <p class="font-medium text-lg text-gray-600" (click)="onclick()">Elige el local</p>
         <button
+
+        (click)="servicioProduccion.cerrarAbrirVentanaDisAgregar$.emit(false)"
           role="button"
           aria-label="close label"
           class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
@@ -46,14 +49,16 @@
             id="animals"
             class="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
             name="animals"
+            #local
           >
             <option value="">Opciones</option>
             <option value="central">Central</option>
+            <option value="cuenca">Cuenca</option>
 
           </select>
         </label>
 
-        <p class="text-base font-medium text-gray-600">Cantidad Total: <span class="text-indigo-500 text-lg font-semibold"> 35 </span> </p>
+        <p class="text-base font-medium text-gray-600">Cantidad Total: <span class="text-indigo-500 text-lg font-semibold"> {{cantidad_restar}} </span> </p>
 
         <div class="flex flex-row content-center justify-center gap-5 mx-2">
 
@@ -61,44 +66,58 @@
           <div class="relative w-40">
             <label for="name-with-label" class="text-gray-700"> Talle </label>
             <input
-              type="text"
+              type="number"
               id="name-with-label"
               class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               name="talle"
               placeholder="Talle"
+              #talle
             />
           </div>
 
           <div class="relative w-40">
             <label for="name-with-label" class="text-gray-700"> Cantidad </label>
             <input
-              type="text"
+              type="number"
               id="name-with-label"
               class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               name="cantidad"
               placeholder="Cantidad"
+              #cantidad
             />
           </div>
 
         </div>
 
+        <div class="bg-yellow-200 border-yellow-600 text-yellow-600 border-l-4 p-4" role="alert" *ngIf="estadoDeAlerta">
+          <p class="font-bold capitalize">
+              {{tituloAlerta}}
+          </p>
+          <p class="capitalize">
+              {{mensajeAlerta}}
+          </p>
+        </div>
+        
+
         <button
+        (click)="formDistribucion(cantidad.value, talle.value, local.value)"
           type="button"
           class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
         >
           Agregar
         </button>
 
-        <div class="border border-gray-400 rounded-md p-1 sm:max-h-52 sm:overflow-y-auto grid grid-cols-2">
+        <div class="border border-gray-400 rounded-md p-1 sm:max-h-52 sm:overflow-y-auto grid grid-cols-2" >
  <!-- content local begin -->
- <div class="border rounded-md">
+ <div class="border rounded-md" *ngFor="let data of dataInfo">
     <!-- title and close, begin -->
     <div class="flex items-center justify-between py-1">
-      <p class="text-sm font-normal text-gray-600 underline ml-2">
-        Central
+      <p class="text-sm font-normal text-gray-600 underline ml-2 capitalize">
+        {{data.local}}
       </p>
 
       <button
+        (click)="eliminarLocalOTalles('local', data.local)"
         role="button"
         aria-label="close label"
         class="mr-2 focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
@@ -131,16 +150,18 @@
     <!-- title and close, end -->
 
     <!-- content, begin -->
-    <div class="flex flex-col gap-1 max-h-28 overflow-y-auto">
+    <div class="flex flex-col gap-1 max-h-28 overflow-y-auto" *ngFor="let talles of funcOrdenarTaller(data.talle)">
       <div
         class="border border-orange-100 flex items-center justify-between rounded-md p-1"
       >
         <p class="font-light text-sm text-gray-500">
-          Talle: <span class="text-indigo-600"> 3</span> Cantidad:
-          <span class="text-indigo-600">34</span>
+          Talle: <span class="text-indigo-600"> {{talles.talle}}</span> Cantidad:
+          <span class="text-indigo-600">{{talles.cantidad}}</span>
         </p>
 
         <button
+        (click)="eliminarLocalOTalles('talle', data.local, talles.talle)"
+
           role="button"
           aria-label="close label"
           class="mr-2 focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
@@ -180,3 +201,7 @@
     </div>
   </div>
 </div>
+
+
+
+

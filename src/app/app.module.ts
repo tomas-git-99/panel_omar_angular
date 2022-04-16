@@ -20,8 +20,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     VentasModule,
     ProduccionModule,
-    FontAwesomeModule
+    FontAwesomeModule,
 
+    
     
   ],
   exports: [

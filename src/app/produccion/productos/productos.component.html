@@ -1,6 +1,6 @@
 
-<div class=" border border-yellow-400  flex justify-center">
-    <div class="py-8 border border-green-400 w-full m-8">
+<div class=" border flex justify-center">
+    <div class="py-8 border w-full m-8">
         <div class="flex flex-row mb-1 sm:mb-0 justify-between gap-2">
 
             <!-- filtro start-->
@@ -12,7 +12,7 @@
                     </svg>
                   </div>
               
-                  <input type="text" placeholder="Search by listing, location, bedroom number..." class="px-8 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                  <input type="text" #box (keyup.enter)="onKey(box.value)" placeholder="Buscar por modelo o codigo..." class="px-8 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                     </div>
               
                   <div class="flex items-center justify-between mt-4">
@@ -20,12 +20,12 @@
                       Filters
                     </p> -->
                     <button (click)="viewFilter()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md">
-                        Filters
+                        Filtros
                       </button>
               
-                    <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md">
+                    <!-- <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md">
                       Reset Filter
-                    </button>
+                    </button> -->
                   </div>
               
                   <div class="absolute bg-white animate__animated animate__slideInDown animate__faster p-4 rounded-md shadow" *ngIf="valueFilter">
@@ -193,12 +193,12 @@
 
             <!-- content center modify start -->
             
-            <app-view-edit-tools></app-view-edit-tools>
+            <app-view-edit-tools *ngIf="abrirVentana" [dataP]="daataPrueba" [cerrarVentana]="abrirVentana"> </app-view-edit-tools>
 
             <!-- content center modify end -->
 
 
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto border border-red-400 justify-center">
+            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto  justify-center">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                     <table class="min-w-full leading-normal">
                         <thead>
@@ -234,44 +234,40 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="bg bg-red-300">
-                               <!--  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-600 text-center flex justify-center">
-                                    <div class="bg bg-red-500 w-8 h-8 rounded-full">
-
-                                    </div> 
-                                 </td> -->
+                        <tbody *ngFor="let d of arrayProducto">
+                            <tr  [ngClass]="d.taller == null ? 'bg bg-gray-200' : (d.fecha_de_entrada == null) ? 'bg-red-200' : (d.estado_pago == false) ?'bg-yellow-200' :'bg-green-200' ">
+                               <!--  class="bg bg-red-300" -->
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
-                                   tomas 
+                                   {{d.codigo}} 
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
                                     
-                                        Admin
+                                    {{d.modelo}}
                                     
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
                                 
-                                        12/09/2020
+                                    {{d.tela}}
                                     
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
-                                    hola
+                                    {{d.peso_promedio}}
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
-                                    hola
+                                    {{d.taller == null  ? 'Sin Taller' : d.taller.nombre_completo}}
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
-                                    hola
+                                    {{d.fecha_de_salida == null ? 'Sin fecha' : servicioProduccion.fechaARG(d.fecha_de_salida)}}
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
-                                    hola
+                                    {{d.fecha_de_entrada == null ? 'Sin fecha' : servicioProduccion.fechaARG(d.fecha_de_entrada)}}
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
-                                    hola
+                                    {{d.estado_pago == false ? 'Sin pago' : 'Pagado'}}
                                 </td>
                                 <td class=" border-b border-gray-200 text-sm text-gray-600 text-center ">
-                                    <button type="button" class="text-gray-600 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 ">
-                                        <img src="/assets/icon/edits.png" alt="" class="w-7">
+                                    <button (click)="mostrarProductos(d.id)" type="button" class="text-gray-600 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 ">
+                                        <img src="/assets/icon/edits.png" alt="" class="lg:w-7 sm:w-20">
                                         
                                     </button>
                                 </td>
@@ -283,16 +279,65 @@
                     </table>
 
                     <div class="px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between">
-                        <div class="flex items-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="inline-flex items-center -space-x-px  overflow-x-auto " #categoryScrollX
+                            style="max-width:330px"
+                            >
+
+                              <li class="sticky top-0 left-0 w-full flex justify-start">
+                                <a (click)="cambioDePaginaNext(false)"  class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                  <span class="sr-only">Previous</span>
+                                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                </a>
+                              </li>
+
+                              <div class="flex items-center " *ngFor="let i of items">
+
+                                <li >
+                                    <a id="{{i}}" 
+                                    (click)="cambioDePagina($event)"
+                                    [ngClass]="' cursor-pointer py-2 px-3 leading-tight text-gray-500' + ( i == estadoDePagina ? 'z-10 text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700' :  'bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white')"
+                                     >{{i + 1}}</a>
+                                </li>
+
+                     <!--              <li>
+                                    <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                                  </li>
+                                  <li>
+                                    <a href="#" aria-current="page" class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                                  </li>
+                                  <li>
+                                    <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+                                  </li>
+                                  <li>
+                                    <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+                                  </li> -->
+                            </div>
+
+
+                              <li class="sticky top-0 right-0 w-full flex justify-end">
+
+                                <a (click)="cambioDePaginaNext(true)" class=" block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                  <span class="sr-only">Next</span>
+                                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                        
+<!--                         <div class="flex items-center">
                             <button type="button" class="w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100">
                                 <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z">
                                     </path>
                                 </svg>
                             </button>
-                            <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100 ">
-                                1
-                            </button>
+                            <div class="flex items-center" *ngFor="let t of items">
+                                <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100 ">
+                                    {{t.id}}
+                                </button>
+                            </div>
+
                             <button type="button" class="w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100">
                                 2
                             </button>
@@ -302,6 +347,7 @@
                             <button type="button" class="w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100">
                                 4
                             </button>
+
                             <button type="button" class="w-full p-4 border-t border-b border-r text-base  rounded-r-xl text-gray-600 bg-white hover:bg-gray-100">
                                 <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
@@ -310,7 +356,7 @@
                             </button>
 
                             
-                        </div>
+                        </div> -->
 
 
                     </div>

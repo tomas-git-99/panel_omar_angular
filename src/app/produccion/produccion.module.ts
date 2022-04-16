@@ -13,7 +13,9 @@ import { AddLocalComponent } from './distribucion/view-center/add-productos-prod
 import { SubTableDisProduccionComponent } from './distribucion/sub-table-dis-produccion/sub-table-dis-produccion.component';
 import { AgregarComponent } from './agregar/agregar.component';
 import { ProductoNuevoComponent } from './agregar/producto-nuevo/producto-nuevo.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { EliminarOfallasComponent } from './distribucion/view-center/eliminar-ofallas/eliminar-ofallas.component';
 
 
 @NgModule({
@@ -28,12 +30,16 @@ import { ProductoNuevoComponent } from './agregar/producto-nuevo/producto-nuevo.
     AddLocalComponent,
     SubTableDisProduccionComponent,
     AgregarComponent,
-    ProductoNuevoComponent
+    ProductoNuevoComponent,
+    EliminarOfallasComponent
   ],
   imports: [
     CommonModule,
     ProduccionRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+
+    HttpClientModule,
   ]
 })
 export class ProduccionModule { }

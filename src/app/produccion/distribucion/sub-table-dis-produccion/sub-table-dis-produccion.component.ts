@@ -8,9 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SubTableDisProduccionComponent implements OnInit {
 
   constructor() { }
+
   @Input() isSubTableFailures: boolean = false;
+  @Input() dataArrays:any;
 
   ngOnInit(): void {
+    console.log(this.dataArrays)
   }
   viewSubTableFailures(){
     this.isSubTableFailures = !this.isSubTableFailures;
