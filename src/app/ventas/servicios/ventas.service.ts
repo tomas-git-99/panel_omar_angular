@@ -58,6 +58,9 @@ export class VentasService {
 
   abrirCerrarVentanaAgregarLocal:boolean = false;
 
+
+  agregarDisctribucionArray:any;
+
   constructor(private http: HttpClient) { 
 
   }

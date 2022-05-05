@@ -38,10 +38,14 @@ export class SubTableDistributionComponent implements OnInit {
   }
 
   agregarVentas(id:string){
+
+    console.log(id)
     
     this.subTablaArray.distribucion.map( (e:any) => {
       if(e.id == id){
         this.ArraySubTalles = e;
+
+        this.servicioVentas.agregarDisctribucionArray = e;
     
       }
     })

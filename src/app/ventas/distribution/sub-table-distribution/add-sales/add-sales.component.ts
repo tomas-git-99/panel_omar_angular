@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProduccionService } from 'src/app/produccion/servicios/produccion.service';
 import { VentasService } from 'src/app/ventas/servicios/ventas.service';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   templateUrl: './add-sales.component.html',
   styleUrls: ['./add-sales.component.css'],
 })
-export class AddSalesComponent implements OnInit {
+export class AddSalesComponent implements OnInit, OnChanges {
   
   @Input() dataArrayTalle: any;
 
@@ -36,8 +36,9 @@ export class AddSalesComponent implements OnInit {
  
   }
 
+
   ngOnInit(): void {
-    console.log(this.dataArrayTalle)
+    this.dataArrayTalle = this.servicioVentas.agregarDisctribucionArray;
 
     this.servicioVentas.getObtenerCategorias().subscribe((res) => {
       this.arrayCategorias = res.data;
@@ -52,6 +53,12 @@ export class AddSalesComponent implements OnInit {
     });
   
   }
+
+ ngOnChanges(){
+    console.log(this.dataArrayTalle)
+
+  }
+
 
   agregarProductosNuevos(values: {precio:number, color:string, sub_modelo:string | null, sub_dibujo:string | null, categoria:string | null}) {
     let cantidadTotal = this.servicioProduccion.funcConteoTotalDeCantidad(

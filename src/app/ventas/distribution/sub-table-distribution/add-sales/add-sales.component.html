@@ -63,7 +63,7 @@
                       </div>
                   </div> -->
 
-          <div class="flex flex-row">
+          <div class="flex flex-row" *ngIf>
             <div class="flex flex-col justify-between p-4 leading-normal">
               <h5
                 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
@@ -324,7 +324,7 @@
                   <br />
                   nombre actual del
                   <span class="text-indigo-700">modelo</span> (
-                  <span class="text-green-600 text-base"> gatito</span> )
+                  <span class="text-green-600 text-base" *ngIf > gatito</span> )
                 </label>
                 <input
                   placeholder="Modelo"
@@ -338,7 +338,7 @@
                   <br />
                   nombre actual del
                   <span class="text-indigo-700">dibujo</span> (
-                  <span class="text-green-600 text-base"> gatito</span> )
+                  <span class="text-green-600 text-base" *ngIf> gatito</span> )
                 </label>
                 <input
                   placeholder="Dibujo/Diseño"
