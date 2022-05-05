@@ -24,5 +24,5 @@ export interface IProductosData{
 
 export interface IAgregarDistribucion {
     local: string;
-    talle: [{ talle: number, cantidad: number }];
+    talle: [{ talle: number, cantidad: string }];
 }

@@ -1,11 +1,45 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { faFilter, faUser } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
+import { ServicioService } from './servicio.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
+  mostrartPanelUsuario:boolean = false;
+
+  faUser = faUser;
+  faFilter = faFilter;
+  nombreUsuario:string | null = "";
+
+  ventanaProduccion:boolean = false;
+  ventanaVentas:boolean = false;
+
+  constructor(public servicio:ServicioService, private router:Router){
+
+    this.nombreUsuario = localStorage.getItem('usuario')
+
+    localStorage.getItem('rol') === 'admin'
+    ? this.mostrartPanelUsuario = true
+    : this.mostrartPanelUsuario = false;
+
+
+    if(localStorage.getItem('rol') == 'ventas'){
+      this.ventanaVentas = true;
+    }else if (localStorage.getItem('rol') == 'produccion'){
+      this.ventanaProduccion = true;
+    }else if (localStorage.getItem('rol') == 'admin'){
+      this.ventanaVentas = true;
+      this.ventanaProduccion = true;
+  
+    }
+  }
   title = 'panel-omar-new-angular';
   isList: number = 0;
   isMenu: boolean = false;
@@ -36,6 +70,7 @@ export class AppComponent {
     generar:      '/ventas/generar',
     historial:    '/ventas/historial',
     distribucion: '/ventas/distribucion',
+    opciones: '/ventas/opciones',
 
 
     agregar:              '/produccion/agregar',
@@ -46,9 +81,17 @@ export class AppComponent {
     pagos:                  '/produccion/pago',
 
 
+    usuarios: '/usuario',
+
   }
 
   sizeIconNav = '25px'
+
+  salir(){
+    this.isProduccionOption == true ? this.isProduccionOption = !this.isProduccionOption : '';
+    this.isVentasOption == true ? this.isVentasOption = !this.isVentasOption : '';
+    
+  }
 
   changeValue(value:string){
    
@@ -67,14 +110,35 @@ export class AppComponent {
   isProduccionOption: boolean = false;
 
   openVentas(){
+
+    this.isProduccionOption == true ? this.isProduccionOption = !this.isProduccionOption : '';
     this.isVentasOption = !this.isVentasOption;
 
   }
 
 
   openProduccion(){
+    this.isVentasOption == true ? this.isVentasOption = !this.isVentasOption : '';
     this.isProduccionOption = !this.isProduccionOption;
 
 
+  }
+
+  cerrarLogin(){
+    Swal.fire({
+      title: 'Estas segura que quieres salir?',
+    
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Salir!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('id_usuario');
+        this.router.navigate(['']);
+        return;
+      }
+    })
   }
 }

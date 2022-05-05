@@ -1,126 +1,204 @@
-<div class="flex justify-center items-center 2xl:container 2xl:mx-auto lg:py-16 md:py-12 py-9 px-4 md:px-6 lg:px-20 xl:px-44" style="background: #FFFFFF;">
-    <div class="flex w-full sm:w-9/12 lg:w-full flex-col lg:flex-row justify-center items-center lg:space-x-10 2xl:space-x-36 space-y-12 lg:space-y-0">
-        <div class="flex w-full flex-col justify-start items-start">
+<div
+  class="flex justify-center items-center 2xl:container 2xl:mx-auto lg:py-16 md:py-12 py-9 px-4 md:px-6 lg:px-20 xl:px-44"
+  style="background: #ffffff"
+>
+  <div
+    class="flex w-full sm:w-9/12 lg:w-full flex-col lg:flex-row justify-center items-center lg:space-x-10 2xl:space-x-36 space-y-12 lg:space-y-0"
+  >
+    <div class="flex w-full flex-col justify-start items-start">
+      <div class="">
+        <p
+          class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800"
+        >
+          Check out
+        </p>
+      </div>
+      <div class="mt-2">
+        <a
+          class="text-base leading-4 underline hover:text-gray-800 text-gray-600 cursor-pointer"
+          (click)="volver()"
+          >Volver a los productos</a
+        >
+      </div>
+      <div class="mt-12">
+        <p class="text-xl font-semibold leading-5 text-gray-800">
+          Datos de cliente
+        </p>
+      </div>
+      <form
+        action=""
+        [formGroup]="formClienteDireccion"
+        (ngSubmit)="formCliente(formClienteDireccion.value)"
+      >
+        <div formGroupName="cliente">
+          <div
+            class="mt-8 flex flex-col justify-start items-start w-full space-y-8"
+          >
+            <div
+              formGroupName="cliente"
+              class="mt-8 flex flex-col justify-start items-start w-full space-y-8"
+            >
+              <input
+                class="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                type="text"
+                placeholder="Nombre"
+                formControlName="nombre"
+              />
+              <div class="grid grid-cols-2 gap-4">
+
+              <input
+                class="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                type="text"
+                placeholder="Apellido"
+                formControlName="apellido"
+              />
+
+              <input
+                class="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                type="text"
+                placeholder="DNI O CUIL"
+                formControlName="dni_cuil"
+              />
+            </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <input
+                  class="focus:outline-none focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                  type="text"
+                  placeholder="Telefono o Celular"
+                  formControlName="telefono"
+                />
+                <input
+                  class="focus:outline-none focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                  type="text"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+              </div>
+            </div>
+
             <div class="">
-                <p class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Check out</p>
+              <p class="text-xl font-semibold leading-5 text-gray-800">
+                Direccion de envio
+                <span class="text-xs font-light"
+                  >(*Rellene los campos de a bajo solo si es para envio)</span
+                >
+              </p>
             </div>
-            <div class="mt-2">
-                <a class="text-base leading-4 underline hover:text-gray-800 text-gray-600 cursor-pointer" (click)="volver()">Volver a los productos</a>
-            </div>
-            <div class="mt-12">
-                <p class="text-xl font-semibold leading-5 text-gray-800">Shipping Details</p>
-            </div>
-            <div class="mt-8 flex flex-col justify-start items-start w-full space-y-8">
-                <input class="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="Nombre" />
-                <input class="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="Apellido" />
-                <div class="grid grid-cols-2 gap-4">
-                <input class="focus:outline-none focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="Telefono o Celular" />
-                <input class="focus:outline-none focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="Email" />
 
-                </div>
-                <div class="">
-                    <p class="text-xl font-semibold leading-5 text-gray-800">Direccion de envio <span class="text-xs font-light">(*Rellene los campos de a bajo solo si es para envio)</span> </p>
-                </div>
-                <input class="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="Direccion" />
+            <div
+              formGroupName="direccion"
+              class="mt-8 flex flex-col justify-start items-start w-full space-y-8"
+            >
+              <input
+                class="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full"
+                type="text"
+                placeholder="Direccion"
+                formControlName="direccion"
+              />
               <!--   <input class="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4 w-full" type="text" placeholder="Address (line 02)" /> -->
-                <div class="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
-                    <div class="relative w-full">
-                        <p id="button1" class="px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full">Provincia</p>
-                        <button onclick="showMenu1(true)" class="focus:outline-none focus:ring-2 focus:ring-2 focus:ring-gray-500 rounded-full cursor-pointer absolute bottom-4 right-0">
-                            <svg id="close" class="" width="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 6L8 10L4 6" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <svg id="open" class="hidden transform rotate-180" width="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 6L8 10L4 6" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        <div id="menu" class="shadow absolute z-10 bg-white top-10 w-full mt-3 hidden">
-                            <div class="flex flex-col w-full">
-                                <p tabindex="0" onclick="changeButton1('London')" class="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left text-base text-gray-600 py-2 w-full">London</p>
-                                <p tabindex="0" onclick="changeButton1('New York')" class="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left text-base text-gray-600 py-2 w-full">New York</p>
-                                <p tabindex="0" onclick="changeButton1('Dubai')" class="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left text-base text-gray-600 py-2 w-full">Dubai</p>
-                            </div>
-                        </div>
-                    </div>
+              <div
+                class="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8"
+              >
+                <div class="relative w-full">
+                  <select
+                    class="block w-52 text-gray-700 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                    name="animals"
+                    formControlName="provincia"
+                  >
+                    <option value="">Provincias:</option>
+                    <option
+                      *ngFor="let data of provinciasArray.provincias"
+                      [value]="data.nombre"
 
-                    <div class="relative w-full">
-                        <p id="button2" class="px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full">
-                            Region
-                            <span class="text-gray-400"> (optional)</span>
-                        </p>
-                        <button onclick="showMenu2(true)" class="focus:outline-none focus:ring-2 focus:ring-2 focus:ring-gray-500 rounded-full cursor-pointer absolute bottom-4 right-0">
-                            <svg id="close2" class="" width="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 6L8 10L4 6" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <svg id="open2" class="hidden transform rotate-180" width="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 6L8 10L4 6" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        <div id="menu2" class="absolute z-10 bg-white top-10 shadow w-full mt-3 hidden">
-                            <div class="flex flex-col w-full">
-                                <p tabindex="0" onclick="changeButton2('London')" class="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left text-base text-gray-600 py-2 w-full">London</p>
-                                <p tabindex="0" onclick="changeButton2('New York')" class="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left text-base text-gray-600 py-2 w-full">New York</p>
-                                <p tabindex="0" onclick="changeButton2('Dubai')" class="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left text-base text-gray-600 py-2 w-full">Dubai</p>
-                            </div>
-                        </div>
-                    </div>
+                    >
+                      {{ data.nombre }}
+                    </option>
+                  </select>
                 </div>
-                <div class="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8">
-                    <div class="relative w-full">
-                        <p id="button3" class="px-2 border-b border-gray-200 text-left leading-4 text-base text-gray-600 py-4 w-full">Localidad</p>
-                        <button onclick="showMenu3(true)" class="focus:outline-none focus:ring-2 focus:ring-2 focus:ring-gray-500 rounded-full cursor-pointer absolute bottom-4 right-0">
-                            <svg id="close3" class="" width="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 6L8 10L4 6" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <svg id="open3" class="hidden transform rotate-180" width="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 6L8 10L4 6" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        <div id="menu3" class="absolute z-10 bg-white top-10 shadow w-full mt-3 hidden">
-                            <div class="flex flex-col w-full">
-                                <p tabindex="0 " onclick="changeButton3('USA')" class="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left text-base text-gray-600 py-2 w-full">USA</p>
-                                <p tabindex="0 " onclick="changeButton3('UK')" class="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left text-base text-gray-600 py-2 w-full">UK</p>
-                                <p tabindex="0 " onclick="changeButton3('Russia')" class="focus:outline-none cursor-pointer px-3 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-left text-base text-gray-600 py-2 w-full">Russia</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full">
-                        <input class="focus:outline-none focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 pt-4 pb-3 w-full" type="text" placeholder="Codigo Postal" />
-                    </div>
+
+                <div class="relative w-full">
+                  <input
+                    class="focus:outline-none focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 pt-4 pb-3 w-full"
+                    type="text"
+                    placeholder="Localidad"
+                    formControlName="localidad"
+                  />
                 </div>
+              </div>
+              <div
+                class="flex justify-between flex-col sm:flex-row w-full items-start space-y-8 sm:space-y-0 sm:space-x-8"
+              >
+                <div class="w-6/12">
+                  <input
+                    class="focus:outline-none focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 pt-4 pb-3 w-full"
+                    type="text"
+                    placeholder="Codigo Postal"
+                    formControlName="cp"
+                  />
+                </div>
+              </div>
             </div>
-            <button class="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-2 focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">Confirmar</button>
-            <div class="mt-4 flex justify-start items-center w-full">
-                <a href="javascript:void(0)" class="text-base leading-4 underline focus:outline-none focus:text-gray-500 hover:text-gray-800 text-gray-600">Cliente ya realizo un compra anteriormente.</a>
-            </div>
+          </div>
+          <button
+            type="submit"
+            class="focus:outline-none focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-2 focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800"
+          >
+            Confirmar
+          </button>
         </div>
+      </form>
 
-        <div class="flex flex-col justify-start items-start bg-gray-50 w-full p-6 md:p-14">
-            <div>
-                <h1 class="text-2xl font-semibold leading-6 text-gray-800">Orden</h1>
-            </div>
-            <div class="flex mt-7 flex-col items-end w-full space-y-6">
-                <div class="flex justify-between w-full items-center">
-                    <p class="text-lg leading-4 text-gray-600">Total productos</p>
-                    <p class="text-lg font-semibold leading-4 text-gray-600">$2000</p>
-                </div>
-                <div class="flex justify-between w-full items-center">
-                    <p class="text-lg leading-4 text-gray-600">Descuento</p>
-                    <p class="text-lg font-semibold leading-4 text-gray-600">-$2790</p>
-                </div>
-               <!--  <div class="flex justify-between w-full items-center">
+      <div class="mt-4 flex justify-start items-center w-full">
+        <a
+          (click)="
+            servicioVentas.abrirCerrarVentanaClienteExistente =
+              !servicioVentas.abrirCerrarVentanaClienteExistente
+          "
+          class="text-base leading-4 underline focus:outline-none focus:text-gray-500 hover:text-gray-800 text-gray-600 cursor-pointer"
+          >Cliente ya realizo un compra anteriormente.</a
+        >
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col justify-start items-start bg-gray-50 w-full p-6 md:p-14"
+    >
+      <div>
+        <h1 class="text-2xl font-semibold leading-6 text-gray-800">Orden</h1>
+      </div>
+      <div class="flex mt-7 flex-col items-end w-full space-y-6">
+        <div class="flex justify-between w-full items-center">
+          <p class="text-lg leading-4 text-gray-600">Total productos</p>
+          <p class="text-lg font-semibold leading-4 text-gray-600">
+            ${{ totalDeProducto }}
+          </p>
+        </div>
+        <div class="flex justify-between w-full items-center">
+          <p class="text-lg leading-4 text-gray-600">Descuento</p>
+          <p class="text-lg font-semibold leading-4 text-gray-600">
+            ${{ descuentoTotal }}
+          </p>
+        </div>
+        <!--  <div class="flex justify-between w-full items-center">
                     <p class="text-lg leading-4 text-gray-600">Shipping charges</p>
                     <p class="text-lg font-semibold leading-4 text-gray-600">$90</p>
                 </div> -->
-          <!--       <div class="flex justify-between w-full items-center">
+        <!--       <div class="flex justify-between w-full items-center">
                     <p class="text-lg leading-4 text-gray-600">Sub total</p>
                     <p class="text-lg font-semibold leading-4 text-gray-600">$3520</p>
                 </div> -->
-            </div>
-            <div class="flex justify-between w-full items-center mt-32">
-                <p class="text-xl font-semibold leading-4 text-gray-800">Estimado Total</p>
-                <p class="text-lg font-semibold leading-4 text-gray-800">$2900</p>
-            </div>
-        </div>
+      </div>
+      <div class="flex justify-between w-full items-center mt-32">
+        <p class="text-xl font-semibold leading-4 text-gray-800">
+          Estimado Total
+        </p>
+        <p class="text-lg font-semibold leading-4 text-gray-800">
+          ${{ totalSUMA(descuentoTotal, totalDeProducto) }}
+        </p>
+      </div>
     </div>
+  </div>
 </div>
+
+<app-cliente-existente></app-cliente-existente>

@@ -52,8 +52,8 @@
             #local
           >
             <option value="">Opciones</option>
-            <option value="central">Central</option>
-            <option value="cuenca">Cuenca</option>
+            <option  *ngFor="let item of arrayDeLocales" class="capitalize" [value]="item.id">{{item.nombre}}</option>
+            
 
           </select>
         </label>
@@ -93,7 +93,7 @@
           <p class="font-bold capitalize">
               {{tituloAlerta}}
           </p>
-          <p class="capitalize">
+          <p class="capitalize w-80">
               {{mensajeAlerta}}
           </p>
         </div>
@@ -113,7 +113,7 @@
     <!-- title and close, begin -->
     <div class="flex items-center justify-between py-1">
       <p class="text-sm font-normal text-gray-600 underline ml-2 capitalize">
-        {{data.local}}
+        {{(obtenerSoloElnombre(data.local))}}
       </p>
 
       <button
@@ -148,7 +148,7 @@
     </div>
 
     <!-- title and close, end -->
-
+    
     <!-- content, begin -->
     <div class="flex flex-col gap-1 max-h-28 overflow-y-auto" *ngFor="let talles of funcOrdenarTaller(data.talle)">
       <div

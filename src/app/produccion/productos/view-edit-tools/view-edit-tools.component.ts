@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faCheck, faCoffee, faTruck, faXmark } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 import { IProductosData } from '../../interfaces/interface_produccion';
 import { ProduccionService } from '../../servicios/produccion.service';
 
@@ -13,8 +14,11 @@ export class ViewEditToolsComponent implements OnInit {
   faExit = faXmark;
   faCheck = faCheck;
 
-  @Input() dataP!:IProductosData;
+  @Input() dataP!:any;
+  //@Input() dataP!:IProductosData;
   @Input() cerrarVentana!:boolean;
+
+  arrayTaller:any;
 
   arrayModificadores:any = 
     { 
@@ -55,12 +59,19 @@ taller:false,
     estado_pago:true,
 
     taller:true,
+    
   }
   
   constructor(public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
-    
+    console.log(this.dataP)
+    this.servicioProduccion.getTaller().subscribe(
+      res => {
+        console.log(res)
+        this.arrayTaller = res.data;
+      }
+    )
   }
 
   salirVentana(){
@@ -82,14 +93,73 @@ taller:false,
     let formData:any = {};
 
     formData[`${nombre}`] = valor;
+    this.arrayBotonCarga[`${nombre}`] = !this.arrayBotonCarga[`${nombre}`];
 
-    console.log(valor)
-    
 
-    setTimeout(()=>{                           // <<<---using ()=> syntax
-      this.arrayBotonCarga[`${nombre}`] = !this.arrayBotonCarga[`${nombre}`];
-  }, 1000);
-    console.log(formData);
+
+    this.servicioProduccion.putProductosEditar(this.dataP.id, formData).subscribe(
+      res => {
+
+        console.log(res)
+        if(res.ok == true){
+          
+          this.dataP[`${nombre}`] = valor;
+
+          if(nombre == "taller"){
+
+            this.dataP[`${nombre}`] = {
+              nombre_completo: this.arrayTaller.find(( i:any) => i.id == valor).nombre_completo
+
+            };
+
+          }else if(nombre == "total_por_talle" || nombre == "talles"){
+
+            nombre == "total_por_talle"
+            ? this.dataP[`total`] = parseInt(this.dataP[`talles`]) * parseInt(valor)
+            : this.dataP[`total`] = parseInt(valor) * parseInt(this.dataP[`total_por_talle`])
+
+
+          }
+
+          this.arrayBotonCarga[`${nombre}`] = !this.arrayBotonCarga[`${nombre}`];
+          console.log(this.dataP)
+
+        }else if(res.ok == false){
+
+
+          this.arrayBotonCarga[`${nombre}`] = !this.arrayBotonCarga[`${nombre}`];
+
+        }
+      }
+    )
+  }
+
+  enviarDistribucion(){
+    this.servicioProduccion.putProductosEditar(this.dataP.id, {enviar_distribucion:(this.dataP.enviar_distribucion == false ||  this.dataP.enviar_distribucio == "false" ? true : false) }).subscribe(
+      res => {
+     
+
+        if(res.ok == true){
+       
+          this.dataP.enviar_distribucion = (this.dataP.enviar_distribucion == false ||  this.dataP.enviar_distribucio == "false" ? true : false);
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal!',
+
+          })
+        }(error:any)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal!',
+
+          })
+        }
+      }
+    )
+
   }
 
 /*   funcVentaView(nombre:string){

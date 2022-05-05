@@ -1,0 +1,78 @@
+<div class="sm:px-4 xl:w-auto sm:w-[1050px] animate__animated animate__slideInDown"  *ngIf="isSubTable" >
+    <!-- *ngIf="isSubTable"  -->
+    <div class="bg-white shadow overflow-y-auto">
+      
+        <table class="w-full whitespace-nowrap">
+            <thead>
+                <tr class="h-10 w-full text-sm leading-none text-gray-800 ">
+                    <th class="font-normal text-center "> Codigo</th>
+                    <th class="font-normal text-center ">Color</th>
+                    <th class="font-normal text-center ">Talle</th>
+                    <th class="font-normal text-center ">Cantidad</th>
+                    <th class="font-normal text-center ">Precio</th>
+                    <th class="font-normal text-center ">Total</th>
+                    <th class="font-normal text-center "></th>
+                </tr>
+            </thead>
+            <tbody class="w-full" *ngFor="let t of arrayCarritoProductosHijo.talles">
+
+                <tr class="h-auto text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
+                    <td class="pl-4 cursor-pointer">
+                        <div class="flex items-center">
+                          <!--   <div class="w-10 h-10">
+                                <img class="w-full h-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects.png" />
+                            </div> -->
+                            <div class="pl-4">
+                                <p class="font-medium text-center">{{arrayCarritoProductosHijo.codigo}}</p>
+<!--                                 <p class="text-xs leading-3 text-gray-600 pt-2">Herman Group</p>
+ -->                           </div>
+                        </div>
+                    </td>
+                    <td class="">
+                        <p class="text-sm font-medium leading-none text-gray-800 text-center">{{arrayCarritoProductosHijo.color}}</p>
+                     <!--    <div class="w-24 h-3 bg-gray-100 rounded-full mt-2">
+                            <div class="w-20 h-3 bg-green-progress rounded-full"></div>
+                        </div> -->
+                    </td>
+                    <td class="">
+                        <p class="font-medium text-center">{{t.talle}}</p>
+                        <!-- <p class="text-xs leading-3 text-gray-600 mt-2">5 tasks pending</p> -->
+                    </td>
+                    <td class="">
+                        <p class="font-medium text-center">{{t.cantidad}}</p>
+                       <!--  <p class="text-xs leading-3 text-gray-600 mt-2">$4,200 left</p> -->
+                    </td>
+                    <td class="">
+                        <p class="font-medium text-center">$ {{arrayCarritoProductosHijo.precio}}</p>
+                        <!-- <p class="text-xs leading-3 text-gray-600 mt-2">34 days</p> -->
+                    </td>
+                    <td class="">
+                        <p class="font-medium text-center">$ {{arrayCarritoProductosHijo.precio * t.cantidad}}</p>
+                        <!-- <p class="text-xs leading-3 text-gray-600 mt-2">34 days</p> -->
+                    </td>
+
+               <!--      <td class="pl-16">
+                        <div class="flex items-center">
+                            <img class="shadow-md w-8 h-8 rounded-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects(8).png" />
+                            <img class="shadow-md w-8 h-8 rounded-full -ml-2" src="https://cdn.tuk.dev/assets/templates/olympus/projects(9).png" />
+                            <img class="shadow-md w-8 h-8 rounded-full -ml-2" src="https://cdn.tuk.dev/assets/templates/olympus/projects(10).png" />
+                            <img class="shadow-md w-8 h-8 rounded-full -ml-2" src="https://cdn.tuk.dev/assets/templates/olympus/projects(11).png" />
+                        </div>
+                    </td> -->
+                    <td class="">
+                        <button class="focus:outline-none hover:rounded-full ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z" stroke="#A1A1AA" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M10 10.8334C10.4602 10.8334 10.8333 10.4603 10.8333 10.0001C10.8333 9.53984 10.4602 9.16675 10 9.16675C9.53976 9.16675 9.16666 9.53984 9.16666 10.0001C9.16666 10.4603 9.53976 10.8334 10 10.8334Z" stroke="#A1A1AA" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z" stroke="#A1A1AA" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+
+                    </td>
+                </tr>
+
+           
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -2,23 +2,57 @@
   <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 focus:outline-none mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm" (click)="modalBtn()">Open Modal</button>
 </div> -->
 
-<div [ngClass]="'z-50 fixed w-full flex justify-center inset-0 ' + (modal ? 'hidden' : 'block')" *ngIf>
-  <div  (click)="modalBtn()" class="w-full h-fullz-0 absolute inset-0" ></div>
+<div
+  [ngClass]="
+    'z-50 fixed w-full flex justify-center inset-0 ' +
+    (modal ? 'hidden' : 'block')
+  "
+>
+  <!-- <div  (click)="modalBtn()" class="w-full h-fullz-0 absolute inset-0" ></div> -->
   <div class="mx-auto container">
-      <div class="flex items-center justify-center h-full w-full ">
-          <div class="bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5 ">
-              <div class="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
-                  <p class="text-base font-semibold">Producto</p>
-                  <button role="button" aria-label="close label"  (click)="modalBtn()" class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
-                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
-                          <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
-                  </button>
-              </div>
-              <div class="m-5 ">
-
-                <!--   <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center h-full w-full">
+      <div
+        class="bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5"
+      >
+        <div
+          class="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between"
+        >
+          <p class="text-base font-semibold">Producto</p>
+          <button
+            role="button"
+            aria-label="close label"
+            (click)="
+              servicioVentas.abrirCerrarVentana =
+                !servicioVentas.abrirCerrarVentana
+            "
+            class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
+          >
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21 7L7 21"
+                stroke="#A1A1AA"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M7 7L21 21"
+                stroke="#A1A1AA"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div class="m-5">
+          <!--   <div class="flex items-center justify-center">
                       <div tabindex="0" aria-label="img" role="img" class="focus:outline-none w-40 h-40 p-16 bg-gray-100 rounded-md flex items-center justify-center">
                           <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M22.5 12H22.515" stroke="#94A3B8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -28,239 +62,374 @@
                           </svg>
                       </div>
                   </div> -->
-                  
 
-                  <div class="flex flex-row ">
-                    <div class="flex flex-col justify-between p-4 leading-normal">
-                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Sumar a un producto ya existente</h5>
-                      <p class="mb-3 font-extralight text-gray-700 dark:text-gray-400">Podras sumar las cantidades mandadas a su local correpondiente y la cantidadd, sin necesidad de volver a escribir</p>
-                  </div>
+          <div class="flex flex-row">
+            <div class="flex flex-col justify-between p-4 leading-normal">
+              <h5
+                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              >
+                Sumar a un producto ya existente
+              </h5>
+              <p class="mb-3 font-extralight text-gray-700 dark:text-gray-400">
+                Podras sumar las cantidades mandadas a su local correpondiente y
+                la cantidadd, sin necesidad de volver a escribir
+              </p>
+            </div>
 
-  
-                  <div class="mx-auto ">
-                      <div class="container flex justify-center mx-auto">
-                          <div class="m-8">
-                              <!-- Code block starts -->
-                              <div class="relative">
-                                  <div class="bg-white dark:bg-gray-800 dark:border-gray-700 flex justify-between border rounded w-40 cursor-pointer" data-menu>
-                                      <p class="px-3 py-3 text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal font-normal">Basic Options</p>
-                                      <div class="bg-white dark:bg-gray-800 dark:border-gray-700 items-center flex rounded-r border-gray-300 border-l">
-                                          <div class="cursor-pointer text-gray-600 dark:text-gray-400 mx-3">
-                                              <svg (click)="openMenu(1)" xmlns="http://www.w3.org/2000/svg" [ngClass]="isOpenedList === 1 ? ' hidden ' : '  icon icon-tabler icon-tabler-chevron-up'" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                  <path stroke="none" d="M0 0h24v24H0z" />
-                                                  <polyline points="6 9 12 15 18 9" />
-                                              </svg>
-                                              <svg (click)="closeMenu()" xmlns="http://www.w3.org/2000/svg" [ngClass]="isOpenedList === 1 ? ' icon icon-tabler icon-tabler-chevron-down ' : ' hidden'" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                  <path stroke="none" d="M0 0h24v24H0z" />
-                                                  <polyline points="6 15 12 9 18 15" />
-                                              </svg>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <ul [ngClass]="isOpenedList === 1 ? 'visible transition duration-300 opacity-100 bg-white dark:bg-gray-800 shadow rounded mt-2 py-1 w-48 absolute':'hidden'">
-                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                              <path stroke="none" d="M0 0h24v24H0z" />
-                                              <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
-                                              <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
-                                              <line x1="3" y1="6" x2="3" y2="19" />
-                                              <line x1="12" y1="6" x2="12" y2="19" />
-                                              <line x1="21" y1="6" x2="21" y2="19" />
-                                          </svg>
-                                          <span class="ml-2 font-normal">Interface Settings</span>
-                                      </li>
-                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                              <path stroke="none" d="M0 0h24v24H0z" />
-                                              <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />
-                                              <rect x="9" y="3" width="6" height="4" rx="2" />
-                                          </svg>
-                                          <span class="ml-2 font-normal">Color Theme</span>
-                                      </li>
-                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center">
-                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                              <path stroke="none" d="M0 0h24v24H0z" />
-                                              <polyline points="8 16 10 10 16 8 14 14 8 16" />
-                                              <circle cx="12" cy="12" r="9" />
-                                          </svg>
-                                          <span class="ml-2 font-normal">Wallpaper</span>
-                                      </li>
-                                      <li><hr class="border-gray-200 dark:border-gray-700 my-1" /></li>
-                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center font-normal">
-                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-mobile" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                              <path stroke="none" d="M0 0h24v24H0z" />
-                                              <rect x="7" y="4" width="10" height="16" rx="1" />
-                                              <line x1="11" y1="5" x2="13" y2="5" />
-                                              <line x1="12" y1="17" x2="12" y2="17.01" />
-                                          </svg>
-                                          <span class="ml-2">Notifications</span>
-                                      </li>
-                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center font-normal">
-                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                              <path stroke="none" d="M0 0h24v24H0z" />
-                                              <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
-                                              <circle cx="9" cy="9" r="2" />
-                                          </svg>
-                                          <span class="ml-2">Account Data</span>
-                                      </li>
-                                      <li class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center font-normal">
-                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                              <path stroke="none" d="M0 0h24v24H0z" />
-                                              <line x1="18" y1="6" x2="6" y2="18" />
-                                              <line x1="6" y1="6" x2="18" y2="18" />
-                                          </svg>
-                                          <span class="ml-2">Sign Out</span>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <!-- Code block ends -->
-                          </div>
+            <div class="mx-auto">
+              <div class="container flex justify-center mx-auto">
+                <div class="m-8">
+                  <!-- Code block starts -->
+                  <div class="relative">
+                    <div
+                      class="bg-white dark:bg-gray-800 dark:border-gray-700 flex justify-between border rounded w-40 cursor-pointer"
+                      data-menu
+                    >
+                      <p
+                        class="px-3 py-3 text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal font-normal"
+                      >
+                        Basic Options
+                      </p>
+                      <div
+                        class="bg-white dark:bg-gray-800 dark:border-gray-700 items-center flex rounded-r border-gray-300 border-l"
+                      >
+                        <div
+                          class="cursor-pointer text-gray-600 dark:text-gray-400 mx-3"
+                        >
+                          <svg
+                            (click)="openMenu(1)"
+                            xmlns="http://www.w3.org/2000/svg"
+                            [ngClass]="
+                              isOpenedList === 1
+                                ? ' hidden '
+                                : '  icon icon-tabler icon-tabler-chevron-up'
+                            "
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <polyline points="6 9 12 15 18 9" />
+                          </svg>
+                          <svg
+                            (click)="closeMenu()"
+                            xmlns="http://www.w3.org/2000/svg"
+                            [ngClass]="
+                              isOpenedList === 1
+                                ? ' icon icon-tabler icon-tabler-chevron-down '
+                                : ' hidden'
+                            "
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <polyline points="6 15 12 9 18 15" />
+                          </svg>
+                        </div>
                       </div>
+                    </div>
+                    <ul
+                      [ngClass]="
+                        isOpenedList === 1
+                          ? 'visible transition duration-300 opacity-100 bg-white dark:bg-gray-800 shadow rounded mt-2 py-1 w-48 absolute'
+                          : 'hidden'
+                      "
+                    >
+                      <li
+                        class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-book"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" />
+                          <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                          <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                          <line x1="3" y1="6" x2="3" y2="19" />
+                          <line x1="12" y1="6" x2="12" y2="19" />
+                          <line x1="21" y1="6" x2="21" y2="19" />
+                        </svg>
+                        <span class="ml-2 font-normal">Interface Settings</span>
+                      </li>
+                      <li
+                        class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-clipboard"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" />
+                          <path
+                            d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2"
+                          />
+                          <rect x="9" y="3" width="6" height="4" rx="2" />
+                        </svg>
+                        <span class="ml-2 font-normal">Color Theme</span>
+                      </li>
+                      <li
+                        class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-compass"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" />
+                          <polyline points="8 16 10 10 16 8 14 14 8 16" />
+                          <circle cx="12" cy="12" r="9" />
+                        </svg>
+                        <span class="ml-2 font-normal">Wallpaper</span>
+                      </li>
+                      <li>
+                        <hr class="border-gray-200 dark:border-gray-700 my-1" />
+                      </li>
+                      <li
+                        class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center font-normal"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-device-mobile"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" />
+                          <rect x="7" y="4" width="10" height="16" rx="1" />
+                          <line x1="11" y1="5" x2="13" y2="5" />
+                          <line x1="12" y1="17" x2="12" y2="17.01" />
+                        </svg>
+                        <span class="ml-2">Notifications</span>
+                      </li>
+                      <li
+                        class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center font-normal"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-tag"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" />
+                          <path
+                            d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4"
+                          />
+                          <circle cx="9" cy="9" r="2" />
+                        </svg>
+                        <span class="ml-2">Account Data</span>
+                      </li>
+                      <li
+                        class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-gray-100 px-3 flex items-center font-normal"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-x"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" />
+                          <line x1="18" y1="6" x2="6" y2="18" />
+                          <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                        <span class="ml-2">Sign Out</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Code block ends -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="py-2" />
+          <form class="" [formGroup]="FormAgregarProductos" (ngSubmit)="agregarProductosNuevos(FormAgregarProductos.value)">
+            <div class="py-2">
+              <h5
+                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center"
+              >
+                Datos del producto
+              </h5>
+            </div>
+            <div class="flex items-center space-x-9 py-2">
+              <input
+                placeholder="Precio"
+                type="number"
+                min="0"
+                formControlName="precio"
+                class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+              />
+              <input
+                placeholder="Color"
+                formControlName="color"
+            
+                class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+              />
+            </div>
+
+       
+            <div class="flex items-center justify-center space-x-9 py-2">
+              <div class="flex flex-col w-6/12">
+                <label for="" class="text-gray-700 capitalize text-sm">
+                  re nombra el <span class="text-indigo-700">modelo</span>
+                  <br />
+                  nombre actual del
+                  <span class="text-indigo-700">modelo</span> (
+                  <span class="text-green-600 text-base"> gatito</span> )
+                </label>
+                <input
+                  placeholder="Modelo"
+                  formControlName="sub_modelo"
+                  class="focus:ring-2 focus:ring-gray-400 w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+                />
+              </div>
+              <div class="flex flex-col w-6/12">
+                <label for="" class="text-gray-700 capitalize text-sm">
+                  re nombra el <span class="text-indigo-700">dibujo</span>
+                  <br />
+                  nombre actual del
+                  <span class="text-indigo-700">dibujo</span> (
+                  <span class="text-green-600 text-base"> gatito</span> )
+                </label>
+                <input
+                  placeholder="Dibujo/Diseño"
+                  formControlName="sub_dibujo"
+                  class="focus:ring-2 focus:ring-gray-400 w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+                />
+              </div>
+            </div>
+            <div class="flex items-center space-x-9 py-2">
+             
+                <div
+                  tabindex="0"
+                  class="focus:outline-none focus:ring-2 focus:ring-gray-400 w-6/12 bg-white border rounded border-gray-200 py-2.5 px-3"
+                >
+                  <select
+                    formControlName="categoria"
+                    aria-label="select an option" 
+                    class="text-sm text-gray-500 w-full focus:outline-none border-none"
+                  >
+                    <option selected="" value="">Categorias</option>
+                    <option *ngFor=" let item of arrayCategorias"  [value]="item.id" >{{item.nombre}}</option>
+          
+                  </select>
+                </div>
+              </div>
+
+            <div class="mt-8 h-[100px] overflow-y-auto border">
+              <!-- home -->
+              <div class="grid grid-cols-3 gap-2 m-2">
+                <div
+                  class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0"
+                  *ngFor="let data of dataArrayTalle.talle"
+                >
+                  <div
+                    tabindex="0"
+                    aria-label="group icon"
+                    role="img"
+                    class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center"
+                  >
+                    <img
+                      src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"
+                      alt="icon"
+                    />
+                  </div>
+                  <div class="pl-3 w-full flex content-center">
+                    <div class="flex items-center justify-between w-full">
+                      <p
+                        tabindex="0"
+                        class="focus:outline-none text-sm leading-none"
+                      >
+                        <span class="text-indigo-700"
+                          >Talle: {{ data.talle }}
+                        </span>
+                        Cantidad:
+                        <span class="text-indigo-700">{{ data.cantidad_actual }}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
-            
-                
-                <hr class="py-2">
-                  <form class="" >
-                    <div class="py-2">
-                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Datos del producto</h5>
-
-                    </div>
-                      <div class="flex items-center space-x-9">
-                          <input placeholder="Precio" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
-                          <input placeholder="Color" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
-                      </div>
-                      <div class="flex items-center space-x-9 mt-8">
-                          <input placeholder="Email" type="email" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
-                          <div tabindex="0" class="focus:outline-none focus:ring-2 focus:ring-gray-400 w-1/2 bg-white border rounded border-gray-200 py-2.5 px-3">
-                              <select aria-label="select an option" class="text-sm text-gray-500 w-full focus:outline-none">
-                                  <option selected="" disabled="" value="">Categori</option>
-                                  <option>Designer</option>
-                                  <option>Developer</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div class="mt-8 h-[100px] overflow-y-auto">
-                         <!-- home -->
-                         <div class="grid grid-cols-3 gap-2 m-2">
-
-                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
-                                
-                            </div>
-                            <div class="pl-3 w-full flex content-center">
-                                <div class="flex items-center justify-between w-full">
-                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
-                                   
-                                </div>
-                            </div>
-                          </div>
-
-                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
-                                
-                            </div>
-                            <div class="pl-3 w-full flex content-center">
-                                <div class="flex items-center justify-between w-full">
-                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
-                                   
-                                </div>
-                            </div>
-                          </div>
-
-                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
-                                
-                            </div>
-                            <div class="pl-3 w-full flex content-center">
-                                <div class="flex items-center justify-between w-full">
-                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
-                                   
-                                </div>
-                            </div>
-                          </div>
-
-                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
-                                
-                            </div>
-                            <div class="pl-3 w-full flex content-center">
-                                <div class="flex items-center justify-between w-full">
-                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
-                                   
-                                </div>
-                            </div>
-                          </div>
-
-
-                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
-                                
-                            </div>
-                            <div class="pl-3 w-full flex content-center">
-                                <div class="flex items-center justify-between w-full">
-                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
-                                   
-                                </div>
-                            </div>
-                          </div>
-
-                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
-                                
-                            </div>
-                            <div class="pl-3 w-full flex content-center">
-                                <div class="flex items-center justify-between w-full">
-                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
-                                   
-                                </div>
-                            </div>
-                          </div>
-
-                          <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
-                            <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/notification_1-svg3.svg"  alt="icon"/>
-                                
-                            </div>
-                            <div class="pl-3 w-full flex content-center">
-                                <div class="flex items-center justify-between w-full">
-                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="text-indigo-700">Talle: 1 </span> Cantidad: <span class="text-indigo-700">30</span></p>
-                                   
-                                </div>
-                            </div>
-                          </div>
-
-
-                       
-
-
-
-                          
-                    
-
-
-
-                       
-                         </div>
-
-                         <!-- end -->
-
-                        
-                      </div>
-                  </form>
-                  <div class="flex items-center justify-between mt-9">
-                      <button role="button" aria-label="close button"  (click)="modalBtn()" class="focus:ring-2 focus:ring-offset-2 focus:bg-gray-600 focus:ring-gray-600 focus:outline-none px-6 py-3 bg-gray-600 hover:bg-gray-500 shadow rounded text-sm text-white">Cancel</button>
-                      <button aria-label="add user" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add User</button>
-                  </div>
               </div>
+
+              <!-- end -->
+            </div>
+          <div class="flex items-center justify-between mt-9">
+            <button
+              role="button"
+              aria-label="close button"
+              type="button"
+              (click)="
+              servicioVentas.abrirCerrarVentana =
+                !servicioVentas.abrirCerrarVentana
+            "
+              class="focus:ring-2 focus:ring-offset-2 focus:bg-gray-600 focus:ring-gray-600 focus:outline-none px-6 py-3 bg-gray-600 hover:bg-gray-500 shadow rounded text-sm text-white"
+            >
+              Cancel
+            </button>
+            <button
+           type="submit"
+              aria-label="add user"
+              role="button"
+              class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white"
+            >
+              Agregar
+            </button>
+
           </div>
+        </form>
+
+        </div>
       </div>
+    </div>
   </div>
 </div>
 <!-- <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
@@ -279,7 +448,6 @@
       <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">2 hours ago</p>
   </div>
 </div> -->
-
 
 <!-- <div class="w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0">
   <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">

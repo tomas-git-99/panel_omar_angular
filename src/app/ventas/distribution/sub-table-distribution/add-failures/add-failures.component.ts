@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { VentasService } from 'src/app/ventas/servicios/ventas.service';
 
 @Component({
   selector: 'app-add-failures',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddFailuresComponent implements OnInit {
 
-  constructor() { }
+  @Input() dataArrayTalle: any = [];
+
+
+  constructor(public servicioVentas:VentasService) { }
 
   ngOnInit(): void {
+    console.log(this.dataArrayTalle);
   }
 
 }

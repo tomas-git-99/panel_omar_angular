@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faBuilding, faPaintBrush, faPaintRoller, faPalette, faScroll, faTShirt } from '@fortawesome/free-solid-svg-icons';
+import { ProduccionService } from '../servicios/produccion.service';
 
 @Component({
   selector: 'app-agregar',
@@ -15,7 +16,7 @@ export class AgregarComponent implements OnInit {
   faScroll = faScroll;
   faPaintRoller = faPaintRoller;
 
-  constructor() { }
+  constructor(public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
   }

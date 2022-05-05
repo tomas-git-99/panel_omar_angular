@@ -1,5 +1,5 @@
 
-        <section class="bg-white dark:bg-gray-900" *ngIf>
+        <section [ngClass]="'bg-white dark:bg-gray-900 animate__animated  ' + (servicioProduccion.ventanaDeAgregarOpciones == true ? servicioProduccion.EntrarAlPlano : servicioProduccion.SalirDelPlano)" *ngIf="servicioProduccion.ventanaDeAgregarOpciones">
             <div class="container px-6 py-10 mx-auto">
                 <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">Explora <br> toda las opciones <span class="underline decoration-blue-500"></span></h1>
               <!--   
@@ -25,7 +25,7 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non corrupti doloribus voluptatum eveniet
                         </p>
  -->
-                        <a href="#" class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                        <a  (click)="servicioProduccion.abrirVentanaAgregraProductos = !servicioProduccion.abrirVentanaAgregraProductos" (click)="servicioProduccion.ventanaDeAgregarOpciones = !servicioProduccion.ventanaDeAgregarOpciones" class=" cursor-pointer inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -46,7 +46,7 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non corrupti doloribus voluptatum eveniet
                         </p>
  -->
-                        <a href="#" class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                        <a (click)="servicioProduccion.abrirVentanaAgregraTaller = !servicioProduccion.abrirVentanaAgregraTaller"  (click)="servicioProduccion.ventanaDeAgregarOpciones = !servicioProduccion.ventanaDeAgregarOpciones" class=" cursor-pointer inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -55,7 +55,7 @@
 
 
 
-                    <div class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl ">
+                    <div class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl " >
                         <span class="inline-block text-blue-500 dark:text-blue-400">
                             <fa-icon [icon]="faPaintRoller" class=""  size="lg"  ></fa-icon>
 
@@ -67,26 +67,26 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non corrupti doloribus voluptatum eveniet
                         </p>
  -->
-                        <a href="#" class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                        <a (click)="servicioProduccion.abrirVentanaAgregraEstampador = !servicioProduccion.abrirVentanaAgregraEstampador"  (click)="servicioProduccion.ventanaDeAgregarOpciones = !servicioProduccion.ventanaDeAgregarOpciones" class=" cursor-pointer inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </a>
                     </div>
 
-                    <div class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl ">
-                        <span class="inline-block text-blue-500 dark:text-blue-400">
-                            <fa-icon [icon]="faScroll" class="" size="lg" ></fa-icon>
+                    <div class="p-8 space-y-3 border-2 border-gray-400 dark:border-gray-300 rounded-xl " *ngIf>
+                        <span class="inline-block text-gray-500 dark:text-gray-400">
+                            <fa-icon [icon]="faScroll" class="line-through" size="lg" ></fa-icon>
 
                         </span>
 
-                        <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">agregar rollo nuevo</h1>
+                        <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white line-through	">agregar rollo nuevo</h1>
 <!-- 
                         <p class="text-gray-500 dark:text-gray-300">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non corrupti doloribus voluptatum eveniet
                         </p>
  -->
-                        <a href="#" class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                        <a class="inline-flex p-2 text-gray-500 capitalize transition-colors duration-200 transform bg-gray-100 rounded-full dark:bg-gray-500 dark:text-white hover:underline hover:text-gray-600 dark:hover:text-gray-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -97,4 +97,8 @@
             </div>
         </section>
 
-<app-producto-nuevo></app-producto-nuevo>
+<app-producto-nuevo *ngIf="servicioProduccion.abrirVentanaAgregraProductos" ></app-producto-nuevo>
+
+<app-agregar-taller *ngIf="servicioProduccion.abrirVentanaAgregraTaller"></app-agregar-taller>
+
+<app-agregar-estampador *ngIf="servicioProduccion.abrirVentanaAgregraEstampador"></app-agregar-estampador>

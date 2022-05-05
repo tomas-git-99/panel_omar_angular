@@ -13,10 +13,14 @@ export class CartSubTableComponent implements OnInit {
   isMenu: boolean = false;
 
   @Input() isSubTable: boolean = false;
+  @Input() arrayCarritoProductosHijo:any
+
+  
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.arrayCarritoProductosHijo)
   }
 
 

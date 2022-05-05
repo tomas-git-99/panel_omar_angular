@@ -1,0 +1,136 @@
+<div [ngClass]="'mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50 animate__animated '  + (servicioProduccion.ventanaDeAgregarOpciones == false ? servicioProduccion.EntrarAlPlano : servicioProduccion.SalirDelPlano)">
+  <div
+    class="px-6 py-4 rounded-md text-lg flex items-center justify-center w-full"
+  >
+    <div class="bg-white p-5 shadow rounded-lg">
+      <div class="flex justify-between my-6">
+        <p class="text-3xl font-medium text-gray-800 capitalize">
+          Nuevo taller
+        </p>
+        <button
+        (click)="servicioProduccion.ventanaDeAgregarOpciones = !servicioProduccion.ventanaDeAgregarOpciones"
+
+        (click)="servicioProduccion.abrirVentanaAgregraTaller = !servicioProduccion.abrirVentanaAgregraTaller"  
+          role="button"
+          aria-label="close label"
+          class="mr-2 focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 7L7 21"
+              stroke="#A1A1AA"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M7 7L21 21"
+              stroke="#A1A1AA"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- centro input begin-->
+      <div>
+        <form action="" autocomplete="disabled" [formGroup]="formMandarData" (ngSubmit)="enviarForm(formMandarData.value)">
+          <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
+            <div class="relative z-0 mb-6 w-full group">
+              <input
+                type="text"
+                formControlName="nombre_completo"
+                id="floating_codigo"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required=""
+                autocomplete="disabled"
+              />
+              <label
+                for="floating_email"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Nombre completo</label
+              >
+            </div>
+
+            <div class="relative z-0 mb-6 w-full group">
+              <input
+                type="text"
+                formControlName="direccion"
+                id="floating_nombre"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required=""
+                autocomplete="disabled"
+              />
+              <label
+                for="floating_password"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Direccion</label
+              >
+            </div>
+          </div>
+
+          <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
+            <div class="relative z-0 mb-6 w-full group">
+              <input
+                type="text"
+             
+                formControlName="telefono"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required=""
+                autocomplete="disabled"
+              />
+              <label
+                for="floating_email"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Telefono</label
+              >
+            </div>
+
+            <!--   <div class="relative z-0 mb-6 w-full group">
+              <input
+                type="text"
+                name="modelo"
+                formControlName="modelo"
+                id="floating_nombre"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required=""
+                autocomplete="disabled"
+              />
+              <label
+                for="floating_password"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Modelo / Articulo</label
+              >
+            </div> -->
+          </div>
+
+          <div class="grid justify-center">
+            <button
+            type="submit"
+            class="flex justify-center items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
+          >
+          <svg *ngIf="BotonCarga" width="20" height="20" fill="currentColor" class="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
+            </path>
+          </svg>
+            {{BotonCarga ? 'Cargando...' : 'Guardar'}}
+          </button>
+          </div>
+        </form>
+      </div>
+      <!-- centro input end-->
+    </div>
+  </div>
+</div>

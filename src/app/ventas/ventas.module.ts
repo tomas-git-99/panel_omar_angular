@@ -30,7 +30,16 @@ import { AddNoteComponent } from './history/modify/center-modify-history/add-not
 import { EditProductsMultipleComponent } from './history/modify/center-modify-history/edit-products-multiple/edit-products-multiple.component';
 import { EditClientsComponent } from './history/modify/center-modify-history/edit-clients/edit-clients.component';
 import { ModifyHomeComponent } from './home/center/modify-home/modify-home.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditArticuloCartComponent } from './generate-voucher/shopping-cart/edit-articulo-cart/edit-articulo-cart.component';
+import { ClienteExistenteComponent } from './generate-voucher/check-out/cliente-existente/cliente-existente.component';
+import { SubTableModifyOrdenComponent } from './history/modify/sub-table-modify-orden/sub-table-modify-orden.component';
+import { OpcionesComponent } from './opciones/opciones.component';
+import { AgregarCategoriaComponent } from './opciones/agregar-categoria/agregar-categoria.component';
+import { MigrarProductosComponent } from './opciones/migrar-productos/migrar-productos.component';
+import { AgregarNuevoLocalComponent } from './opciones/agregar-nuevo-local/agregar-nuevo-local.component';
+import { PaginacionComponent } from './paginacion/paginacion.component';
 
 
 
@@ -66,13 +75,22 @@ import { ModifyHomeComponent } from './home/center/modify-home/modify-home.compo
     EditProductsMultipleComponent,
     EditClientsComponent,
     ModifyHomeComponent,
+    EditArticuloCartComponent,
+    ClienteExistenteComponent,
+    SubTableModifyOrdenComponent,
+    OpcionesComponent,
+    AgregarCategoriaComponent,
+    MigrarProductosComponent,
+    AgregarNuevoLocalComponent,
+    PaginacionComponent,
     
     
   ],
   imports: [
     CommonModule,
     VentasRoutingModule,
-
+    FontAwesomeModule,
+    ReactiveFormsModule
 
     
   ],

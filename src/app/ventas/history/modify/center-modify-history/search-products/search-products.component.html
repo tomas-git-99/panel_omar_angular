@@ -1,128 +1,128 @@
+<div
+  class="mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50"
+  id="signin-success-message"
+>
+  <div
+    class="px-6 py-4 rounded-md text-lg flex items-center justify-center w-full"
+  >
+    <div class="bg-white rounded-md shadow">
+      <p class="text-2xl text-center text-gray-700 font-semibold">
+        Agregar Nuevo Producto
+      </p>
 
- 
- 
-<div [ngClass]="'z-60 absolute flex justify-center items-center inset-0 '" >
-    <!--  <div  class="w-full h-fullz-0 absolute inset-0" ></div> -->
-     <div class=" container">
-         <div class="flex items-center justify-center  ">
-
- 
- <div class="bg-white  rounded-md shadow">
-
-    <p class="text-2xl text-center text-gray-700 font-semibold">Agregar Nuevo Producto</p>
-
-    
-    <section class="relative w-full max-w-md px-5 py-4 mx-auto rounded-md">
-
+      <section class="relative w-full max-w-md px-5 py-4 mx-auto rounded-md">
         <div class="grid grid-cols-2 gap-2">
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+              <svg
+                class="w-5 h-5 text-gray-400"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </span>
 
-            <div class="relative">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
-                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </span>
-        
-                <input type="text" class="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" placeholder="Search">
-    
-            </div>
-    
+            <input
+              type="text"
+              #box 
+              (keyup.enter)="onKey(box.value, local)"
+              class="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              placeholder="Buscar por codigo y modelo..."
+            />
+          </div>
 
-                <select id="animals" class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" name="animals">
-                    <option value="" class="">
-                        Filtro por Local:
-                    </option>
-                    <option value="dog">
-                        Dog
-                    </option>
-                    <option value="cat">
-                        Cat
-                    </option>
-                    <option value="hamster">
-                        Hamster
-                    </option>
-                    <option value="parrot">
-                        Parrot
-                    </option>
-                    <option value="spider">
-                        Spider
-                    </option>
-                    <option value="goldfish">
-                        Goldfish
-                    </option>
-                </select>
+          <select
+          #local 
+            class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
             
-            
-            
+          >
+            <option value="" class="">Ninguno:</option>
+            <option *ngFor="let locales of arrayLocales" [value]="locales.id" >
+              {{locales.nombre}}
+            </option>
+          </select>
         </div>
 
+          <div class="absolute inset-x-0 px-6 py-3 mx-5 mt-4 overflow-y-auto bg-white border rounded-md max-h-72 dark:bg-gray-800 dark:border-transparent " >
 
-     
-        
-    
-      <!--   <div class="absolute inset-x-0 px-6 py-3 mx-5 mt-4 overflow-y-auto bg-white border rounded-md max-h-72 dark:bg-gray-800 dark:border-transparent ">
-
-            <a href="#" class="block py-1">
+            <a href="#" class="block py-1" *ngFor="let producto of arrayProductos">
                 
-                <h3 class="font-medium text-gray-700 dark:text-gray-100 hover:underline">Camiseta - Pop Pop </h3>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Codigo: <span class="text-indigo-700 "> 145 </span>ID:<span class="text-indigo-700 ">15</span></p>
-                <h3 class="mt-1 font-normal text-xs text-gray-600 dark:text-gray-100 ">Color : Rojo | Tela : Modal | Local : Central</h3>
+                <h3 class="font-medium text-gray-700 dark:text-gray-100 hover:underline">{{producto.sud_modelo == null ? producto.productoDetalles.producto.modelo : producto.sud_modelo }} - {{producto.sub_dibujo == null ? (producto.productoDetalles.producto.estampado == null ? '': producto.productoDetalles.producto.estampado.dibujo) : producto.sub_dibujo }}</h3>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Codigo: <span class="text-indigo-700 "> {{producto.productoDetalles == null ? producto.id : producto.productoDetalles.producto.codigo}} </span></p>
+                <h3 class="mt-1 font-normal text-xs text-gray-600 dark:text-gray-100 ">Color : {{producto.color}} | Tela : {{producto.productoDetalles.producto.tela}} | Local : {{producto.productoDetalles.local.nombre}}</h3>
             </a>
 
        
-        </div> -->
+        </div>
+      </section>
 
-        
+      <hr />
 
-    </section>
-    
-    <hr>
-    
-    <div class="grid justify-center py-3 gap-3" *ngIf>
+      <div class="grid justify-center py-3 gap-3" *ngIf>
+        <p class="font-medium text-gray-700 text-center">
+          Nombre del producto mas precio
+        </p>
 
-        <p class="font-medium text-gray-700 text-center">Nombre del producto mas precio</p>
-
-        <div class="grid grid-cols-3 gap-10 sm:flex sm:flex-wrap md:gap-4 sm:justify-between lg:justify-start mt-4 ">
-
-            <div class="flex flex-col ">
-                <label for="talle" class="text-gray-600 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-center">1 <span class="font-light ">(34)</span> </label>
-                <input 
-                id="email" 
-                autocomplete="off" 
-                class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow w-[40px] h-[40px]"/>
-            </div>
-
-            
+        <div
+          class="grid grid-cols-3 gap-10 sm:flex sm:flex-wrap md:gap-4 sm:justify-between lg:justify-start mt-4"
+        >
+          <div class="flex flex-col">
+            <label
+              for="talle"
+              class="text-gray-600 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-center"
+              >1 <span class="font-light">(34)</span>
+            </label>
+            <input
+              id="email"
+              autocomplete="off"
+              class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow w-[40px] h-[40px]"
+            />
+          </div>
         </div>
 
-
-
-
-         <div class="relative z-0 mb-6 w-full group ">
-            <input type="email" name="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-            <label for="floating_email" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Escribir curva rapido</label>
+        <div class="relative z-0 mb-6 w-full group">
+          <input
+            type="email"
+            name="floating_email"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            required
+          />
+          <label
+            for="floating_email"
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Escribir curva rapido</label
+          >
         </div>
 
-
-        <div class="relative z-0 mb-6 w-full group ">
-            <input type="email" name="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-            <label for="floating_email" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cambiar el precio</label>
+        <div class="relative z-0 mb-6 w-full group">
+          <input
+            type="email"
+            name="floating_email"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            required
+          />
+          <label
+            for="floating_email"
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Cambiar el precio</label
+          >
         </div>
 
-
-    <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-        Agregar
-    </button>
+        <button
+          class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+        >
+          Agregar
+        </button>
+      </div>
     </div>
-  
-    
-    
-    
-    
- </div>
- 
-
-
-</div>
-</div>
+  </div>
 </div>

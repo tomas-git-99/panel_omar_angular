@@ -16,6 +16,13 @@ import { ProductoNuevoComponent } from './agregar/producto-nuevo/producto-nuevo.
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EliminarOfallasComponent } from './distribucion/view-center/eliminar-ofallas/eliminar-ofallas.component';
+import { AgregarTallerComponent } from './agregar/agregar-taller/agregar-taller.component';
+import { AgregarEstampadorComponent } from './agregar/agregar-estampador/agregar-estampador.component';
+
+import { TablasComponent } from './cargas/tablas/tablas.component';
+import { PaginacionProduccionComponent } from './paginacion-produccion/paginacion-produccion.component';
+
+
 
 
 @NgModule({
@@ -31,15 +38,24 @@ import { EliminarOfallasComponent } from './distribucion/view-center/eliminar-of
     SubTableDisProduccionComponent,
     AgregarComponent,
     ProductoNuevoComponent,
-    EliminarOfallasComponent
+    EliminarOfallasComponent,
+    AgregarTallerComponent,
+    AgregarEstampadorComponent,
+    TablasComponent,
+    PaginacionProduccionComponent,
+  
+
+    
   ],
   imports: [
     CommonModule,
     ProduccionRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-
     HttpClientModule,
+    
+
+
   ]
 })
 export class ProduccionModule { }

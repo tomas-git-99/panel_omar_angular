@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { InfoProductos } from '../../inter/productosVentasTodos';
+import { VentasService } from '../../servicios/ventas.service';
 
 @Component({
   selector: 'app-sub-table',
@@ -12,9 +14,15 @@ export class SubTableComponent implements OnInit {
 
   isMenu: boolean = false;
 
-  @Input() isSubTable: boolean = false;
+  seleccionIDproducto!:number;
 
-  constructor() { }
+  @Input() isSubTable!: boolean ;
+
+  @Input() arraySubProductos!:InfoProductos
+
+  arrayPruebas:any[] = [1,2,3];
+
+  constructor(public servicioVentas:VentasService) { }
 
   ngOnInit(): void {
   }
@@ -23,10 +31,13 @@ export class SubTableComponent implements OnInit {
   viewSubTable(){
     this.isSubTable = !this.isSubTable;
     
+    
   }
 
-  viewModify(){
-    this.isModify = !this.isModify;
+  viewModify(id: number){
+    //this.isModify = !this.isModify;
+    this.seleccionIDproducto = id;
+
   }
 
 }

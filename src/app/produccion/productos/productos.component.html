@@ -19,7 +19,7 @@
                  <!--    <p class="font-medium">
                       Filters
                     </p> -->
-                    <button (click)="viewFilter()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md">
+                    <button (click)="valueFilter = !valueFilter" [ngClass]="'px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md '">
                         Filtros
                       </button>
               
@@ -28,63 +28,50 @@
                     </button> -->
                   </div>
               
-                  <div class="absolute bg-white animate__animated animate__slideInDown animate__faster p-4 rounded-md shadow" *ngIf="valueFilter">
+                  <div [ngClass]="'absolute bg-white animate__animated animate__slideInDown animate__faster p-4 rounded-md shadow ' + (valueFilter ? 'block' : 'hidden')" >
+                    <!-- *ngIf="valueFilter" -->
                     <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
-                      <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                      <select *ngIf class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                         <option value="">All Type</option>
                         <option value="for-rent">For Rent</option>
                         <option value="for-sale">For Sale</option>
                       </select>
               
-                      <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                      <select *ngIf class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                         <option value="">Furnish Type</option>
                         <option value="fully-furnished">Fully Furnished</option>
                         <option value="partially-furnished">Partially Furnished</option>
                         <option value="not-furnished">Not Furnished</option>
                       </select>
+                      <div>
+                          <div class="border p-3 rounded-md hover:bg-gray-50 cursor-pointer" (click)="listaDeFiltros = !listaDeFiltros">
+                              Opciones
+                          </div>
+                          <div [ngClass]="'absolute flex flex-col border  bg-white p-5 shadow rounded-md ' + (listaDeFiltros ? 'block' : 'hidden') " >
+                            <label class="inline-flex items-center mt-3">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="modelo" (change)="seleccionDeCheck($event)"><span class="ml-2 text-gray-700">Modelo</span>
+                            </label>
+                            <label class="inline-flex items-center mt-3">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="tela" (change)="seleccionDeCheck($event)"><span class="ml-2 text-gray-700">Tela</span>
+                            </label>
+                            <label class="inline-flex items-center mt-3">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="peso_promedio" (change)="seleccionDeCheck($event)" ><span class="ml-2 text-gray-700">Peso Promedio</span>
+                            </label>
+                            <label class="inline-flex items-center mt-3">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="taller" (change)="seleccionDeCheck($event)" ><span class="ml-2 text-gray-700">Taller</span>
+                            </label>
+                            <label class="inline-flex items-center mt-3">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="dibujo" (change)="seleccionDeCheck($event)" ><span class="ml-2 text-gray-700">Dibujo</span>
+                            </label>
+                            <label class="inline-flex items-center mt-3">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="edad" (change)="seleccionDeCheck($event)"><span class="ml-2 text-gray-700">Edad</span>
+                            </label>
+                          </div>
+
+            
+                      </div>
               
-                      <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                        <option value="">Any Price</option>
-                        <option value="1000">RM 1000</option>
-                        <option value="2000">RM 2000</option>
-                        <option value="3000">RM 3000</option>
-                        <option value="4000">RM 4000</option>
-                      </select>
-              
-                      <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                        <option value="">Floor Area</option>
-                        <option value="200">200 sq.ft</option>
-                        <option value="400">400 sq.ft</option>
-                        <option value="600">600 sq.ft</option>
-                        <option value="800 sq.ft">800</option>
-                        <option value="1000 sq.ft">1000</option>
-                        <option value="1200 sq.ft">1200</option>
-                      </select>
-              
-                      <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                        <option value="">Bedrooms</option>
-                        <option value="1">1 bedroom</option>
-                        <option value="2">2 bedrooms</option>
-                        <option value="3">3 bedrooms</option>
-                        <option value="4">4 bedrooms</option>
-                        <option value="5">5 bedrooms</option>
-                      </select>
-              
-                      <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                        <option value="">Bathrooms</option>
-                        <option value="1">1 bathroom</option>
-                        <option value="2">2 bathrooms</option>
-                        <option value="3">3 bathrooms</option>
-                        <option value="4">4 bathrooms</option>
-                        <option value="5">5 bathrooms</option>
-                      </select>
-              
-                      <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                        <option value="">Bathrooms</option>
-                        <option value="1">1 space</option>
-                        <option value="2">2 space</option>
-                        <option value="3">3 space</option>
-                      </select>
+
                     </div>
                   </div>
                 </div>
@@ -213,6 +200,9 @@
                                     Modelo
                                 </th>
                                 <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-700  text-center text-sm uppercase font-normal">
+                                    Dibujo
+                                </th>
+                                <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-700  text-center text-sm uppercase font-normal">
                                     Tela
                                 </th>
                                 <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-700  text-center text-sm uppercase font-normal">
@@ -235,7 +225,7 @@
                             </tr>
                         </thead>
                         <tbody *ngFor="let d of arrayProducto">
-                            <tr  [ngClass]="d.taller == null ? 'bg bg-gray-200' : (d.fecha_de_entrada == null) ? 'bg-red-200' : (d.estado_pago == false) ?'bg-yellow-200' :'bg-green-200' ">
+                            <tr  [ngClass]="d.taller == null ? 'bg bg-gray-200' : (d.fecha_de_entrada == null || d.fecha_de_entrada == '') ? 'bg-red-200' : (d.estado_pago == false || d.estado_pago == 'false' ) ?'bg-yellow-200' :'bg-green-200' ">
                                <!--  class="bg bg-red-300" -->
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
                                    {{d.codigo}} 
@@ -243,6 +233,11 @@
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
                                     
                                     {{d.modelo}}
+                                    
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
+                                    
+                                    {{d.estampado == null ? "- -" : d.estampado.dibujo}}
                                     
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
@@ -257,13 +252,13 @@
                                     {{d.taller == null  ? 'Sin Taller' : d.taller.nombre_completo}}
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
-                                    {{d.fecha_de_salida == null ? 'Sin fecha' : servicioProduccion.fechaARG(d.fecha_de_salida)}}
+                                    {{d.fecha_de_salida == null || d.fecha_de_salida == '' ? 'Sin fecha' : servicioProduccion.fechaARG(d.fecha_de_salida)}}
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
-                                    {{d.fecha_de_entrada == null ? 'Sin fecha' : servicioProduccion.fechaARG(d.fecha_de_entrada)}}
+                                    {{d.fecha_de_entrada == null || d.fecha_de_entrada == '' ? 'Sin fecha' : servicioProduccion.fechaARG(d.fecha_de_entrada)}}
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center">
-                                    {{d.estado_pago == false ? 'Sin pago' : 'Pagado'}}
+                                    {{d.estado_pago == false || d.estado_pago == "false" ? 'Sin pago' : 'Pagado'}}
                                 </td>
                                 <td class=" border-b border-gray-200 text-sm text-gray-600 text-center ">
                                     <button (click)="mostrarProductos(d.id)" type="button" class="text-gray-600 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 ">
@@ -272,13 +267,66 @@
                                     </button>
                                 </td>
                             </tr>
-                       
-                          
                         </tbody>
+
+                        <tbody class="" *ngFor="let item of cargaArray" >
+                            <tr class="bg-white " *ngIf="cargaDeTables">
                         
+                        
+                                <td class="py-3" >
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                             
+                                <td class="" >
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                                <td class="">
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                             
+                             
+                                <td class="">
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                                <td class="">
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                        
+                        
+                                <td class="">
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                                <td class="">
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                        
+                        
+                                <td class="">
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                                <td class="">
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                        
+                        
+                                <td class="">
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                                <td class="">
+                                    <div class="bg-gray-200 w-11/12 animate-pulse h-8  rounded-2xl"></div>
+                                </td>
+                            </tr>
+                        
+                        </tbody>
                     </table>
 
-                    <div class="px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between">
+                    <app-paginacion-produccion
+                    [conteoDePagina]="(cantidadPaginas)"
+                    (paginacion)="paginacion($event)"
+                    >
+
+                    </app-paginacion-produccion>
+                  <!--   <div class="px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between">
                         <nav aria-label="Page navigation example">
                             <ul class="inline-flex items-center -space-x-px  overflow-x-auto " #categoryScrollX
                             style="max-width:330px"
@@ -300,18 +348,6 @@
                                      >{{i + 1}}</a>
                                 </li>
 
-                     <!--              <li>
-                                    <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                                  </li>
-                                  <li>
-                                    <a href="#" aria-current="page" class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                                  </li>
-                                  <li>
-                                    <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                                  </li>
-                                  <li>
-                                    <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                                  </li> -->
                             </div>
 
 
@@ -325,41 +361,9 @@
                             </ul>
                           </nav>
                         
-<!--                         <div class="flex items-center">
-                            <button type="button" class="w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100">
-                                <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z">
-                                    </path>
-                                </svg>
-                            </button>
-                            <div class="flex items-center" *ngFor="let t of items">
-                                <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100 ">
-                                    {{t.id}}
-                                </button>
-                            </div>
-
-                            <button type="button" class="w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100">
-                                2
-                            </button>
-                            <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-gray-600 bg-white hover:bg-gray-100">
-                                3
-                            </button>
-                            <button type="button" class="w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100">
-                                4
-                            </button>
-
-                            <button type="button" class="w-full p-4 border-t border-b border-r text-base  rounded-r-xl text-gray-600 bg-white hover:bg-gray-100">
-                                <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
-                                    </path>
-                                </svg>
-                            </button>
-
-                            
-                        </div> -->
 
 
-                    </div>
+                    </div> -->
 
                 </div>
                 
@@ -372,3 +376,106 @@
 
 
 
+    <div class=" fixed inset-0 flex items-center z-50 " *ngIf>
+        <div class=" px-6 py-4 rounded-md text-lg flex items-center justify-center w-full">
+
+           
+    <section class="bg-white dark:bg-gray-900">
+        <div class="container px-6 py-12 mx-auto">
+            <h1 class="text-2xl font-semibold text-center text-gray-800 lg:text-4xl dark:text-white">Have any Questions?</h1>
+
+            <div class="mt-8 xl:mt-16 lg:flex lg:-mx-12">
+                <div class="lg:mx-12">
+                    <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Contenido</h1>
+                    
+                    <div class="mt-4 space-y-4 lg:mt-8">
+                        <a href="#" class="block text-blue-500 dark:text-blue-400 hover:underline">Todos</a>
+                        <a href="#" class="block text-gray-500 dark:text-gray-300 hover:underline">Editar Producto</a>
+                        <a href="#" class="block text-gray-500 dark:text-gray-300 hover:underline">Editar Estampado</a>
+                        <a href="#" class="block text-gray-500 dark:text-gray-300 hover:underline">Editar Taller</a>
+                        <a href="#" class="block text-gray-500 dark:text-gray-300 hover:underline">Pagos</a>
+                    </div>
+                </div>
+                
+                <div class="flex-1 mt-8 lg:mx-12 lg:mt-0">
+                    
+                    
+
+                    
+
+                  
+
+                   <div class="flex flex-row gap-5 pb-5">
+
+                    <div class="flex flex-col overflow-hidden ">
+                        <div class="bg-stone-100 mx-4 rounded-t-lg text-center shadow">
+                            <p class="text-gray-600">
+                                Modelo
+                            </p>
+                        </div>
+                        <div class="bg-gray-800  px-6 rounded-md shadow" >
+                            
+                            <p class="text-white">
+                                Campera c/v
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="flex flex-col overflow-hidden ">
+                        <div class="bg-stone-100 mx-4 rounded-t-lg text-center shadow">
+                            <p class="text-gray-600">
+                                Modelo
+                            </p>
+                        </div>
+                        <div class="bg-gray-800  px-6 rounded-md shadow" >
+                            
+                            <p class="text-white">
+                                Campera c/v
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="flex flex-col overflow-hidden ">
+                        <div class="bg-stone-100 mx-4 rounded-t-lg text-center shadow">
+                            <p class="text-gray-600">
+                                Modelo
+                            </p>
+                        </div>
+                        <div class="bg-gray-800  px-6 rounded-md shadow" >
+                            
+                            <p class="text-white">
+                                Campera c/v
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col overflow-hidden ">
+                        <div class="bg-stone-100 mx-4 rounded-t-lg text-center shadow">
+                            <p class="text-gray-600">
+                                Modelo
+                            </p>
+                        </div>
+                        <div class="bg-gray-800  px-6 rounded-md shadow" >
+                            
+                            <p class="text-white">
+                                Campera c/v
+                            </p>
+                        </div>
+                    </div>
+
+                   </div>
+
+
+              
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+        </div>
+    </div>

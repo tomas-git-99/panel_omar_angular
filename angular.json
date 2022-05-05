@@ -17,6 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "raf",
+              "@babel/runtime-corejs3",
+              "core-js",
+              "raf",
+              "xlsx",
+              "@babel/runtime"
+            ],
             "outputPath": "dist/panel-omar-new-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -29,15 +37,17 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

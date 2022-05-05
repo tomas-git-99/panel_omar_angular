@@ -1,180 +1,325 @@
 
-<div class="flex  justify-center px-4 h-full w-full relative">
-    <div class="fixed overflow-y-auto w-11/12 h-screen py-10 max-w-lg">
-       <div class="bg-white rounded-md relative">
-            <div onclick="modalHandler(false)" class="absolute inset-0 m-auto w-5 h-5 mr-4 mt-4 cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-        </div>
-        <div class="bg-gray-100 rounded-tl-md rounded-tr-md md:px-10 px-5 pt-9 pb-2.5">
-            <div class="sm:flex justify-between">
+<!-- pruebas -->
+
+<div class="w-full h-screen flex justify-center items-center">
+  <div class="flex lg:flex-row md:flex-col sm:flex-col w-full">
+    <div class="w-full flex justify-center flex-col items-center">
+      <h3 class="text-gray-600 text-lg font-medium underline py-3">
+        Comprobante para cliente
+      </h3>
+      <div class="max-w-lg w-full">
+        <div class="bg-white rounded-md relative">
+          <div
+            onclick="modalHandler(false)"
+            class="absolute inset-0 m-auto w-5 h-5 mr-4 mt-4 cursor-pointer"
+          ></div>
+
+          <!-- empieza el pdf -->
+          <div class="" id="pruebaHtml">
+            <div
+              class="bg-gray-100 rounded-tl-md rounded-tr-md md:px-10 px-5 pt-9 pb-2.5"
+            >
+              <div class="sm:flex justify-between">
                 <div>
-                  <!--   <svg width="65" height="43" viewBox="0 0 65 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M39.2096 5.81325C35.6428 8.21248 31.4751 8.68642 16.4229 4.27679C6.74157 1.44026 0.0118366 8.76797 3.01063e-05 18.4299C-0.00587317 23.226 0.856005 27.8673 2.9009 31.8763C5.34367 36.6605 15.4949 46.456 17.0133 38.0788C23.2707 3.56766 24.5694 28.7419 31.1811 28.2691C35.6581 27.9488 36.6121 -1.98722 47.1199 39.4971C49.9783 50.7829 64.936 30.8835 64.936 18.4299C64.936 13.8241 64.1544 9.36127 62.2536 5.47286C57.5097 -4.23281 46.4115 0.967502 39.2096 5.81325Z" fill="url(#paint0_radial)"></path>
-                        <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="65" height="43">
-                            <path d="M39.2096 5.81325C35.6428 8.21248 31.4751 8.68642 16.4229 4.27679C6.74157 1.44026 0.0118366 8.76797 3.01063e-05 18.4299C-0.00587317 23.226 0.856005 27.8673 2.9009 31.8763C5.34367 36.6605 15.4949 46.456 17.0133 38.0788C23.2707 3.56766 24.5694 28.7419 31.1811 28.2691C35.6581 27.9488 36.6121 -1.98722 47.1199 39.4971C49.9783 50.7829 64.936 30.8835 64.936 18.4299C64.936 13.8241 64.1544 9.36127 62.2536 5.47286C57.5097 -4.23281 46.4115 0.967502 39.2096 5.81325Z" fill="white"></path>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M7.11465 40.7973C7.11465 40.7973 13.136 20.2324 29.0748 36.6607C42.8814 50.8906 61.3067 31.5786 61.3067 31.5786L60.126 49.4251L31.4361 55.4527H1.44751L7.11465 40.7973Z" fill="url(#paint1_linear)"></path>
-                            <path d="M20.8105 -3.64205C20.8105 -3.64205 6.87875 -3.64205 9.59425 15.5045C10.8528 24.377 9.20582 34.5129 -5.12614 37.9238C-19.4581 41.3347 -9.96801 -6.23039 -9.96801 -6.23039L26.8318 -27.0435L20.8105 -3.64205Z" fill="url(#paint2_radial)"></path>
-                            <path d="M32.4906 -6.52198C32.4906 -6.52198 31.0703 15.8914 44.9619 15.4221C58.8535 14.9541 64.9386 20.7643 64.9787 30.821C65.0189 40.8777 83.5776 10.1367 83.5776 10.1367L59.1333 -17.8965L32.4906 -6.52198Z" fill="url(#paint3_radial)"></path>
-                        </g>
-                        <circle cx="26.7861" cy="39.6431" r="2.50001" fill="#E05500"></circle>
-                        <circle cx="36.7859" cy="39.6431" r="2.50001" fill="#E05500"></circle>
-                        <defs>
-                            <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(32.4688 21.4197) rotate(-0.0175754) scale(57.9778 58.0384)">
-                                <stop stop-color="#FF9900"></stop>
-                                <stop offset="1" stop-color="#C41700"></stop>
-                            </radialGradient>
-                            <linearGradient id="paint1_linear" x1="-3.76862" y1="40.2451" x2="77.4031" y2="46.0197" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#FF9900"></stop>
-                                <stop offset="1" stop-color="#C41700"></stop>
-                            </linearGradient>
-                            <radialGradient id="paint2_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(6.89195 5.52766) rotate(-0.0435159) scale(35.6073 88.254)">
-                                <stop stop-color="#FF9900"></stop>
-                                <stop offset="1" stop-color="#C41700"></stop>
-                            </radialGradient>
-                            <radialGradient id="paint3_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(58.0142 7.47283) rotate(-0.026438) scale(45.6493 68.7402)">
-                                <stop stop-color="#FF9900"></stop>
-                                <stop offset="1" stop-color="#C41700"></stop>
-                            </radialGradient>
-                        </defs>
-                    </svg> -->
-
-                    <img class="w-32" src="https://firebasestorage.googleapis.com/v0/b/node-chat-destruccion.appspot.com/o/img-milena%2Ficon-removebg-preview.png?alt=media&token=7f1cecfe-a59f-4ae7-90b3-a4be42dea3a8" alt="" srcset="">
-                    <p class="text-lg font-bold text-gray-500 mt-2">Milena</p>
-                    <div class="mt-2">
-<!--                         <p class="text-xs font-semibold leading-3 text-gray-800 uppercase">RECIPIENT</p>
-
- -->                        <p class="text-xs leading-5 text-gray-500 uppercase mt-1">Bogota 3481 - BS. AS<br />CEL: +549 116253-6201<br />11-5180-4160(Stefy)<br />11-5693-0533(Silvia)</p>
-                    </div>
-                   <!--  <div class="mt-3">
-                        <div class="flex space-x-1 items-center text-xs leading-3">
-                            <p class="text-blue-500">@</p>
-                            <p class="text-gray-500">company.mail@gmail.com</p>
-                        </div>
-                        <div class="flex space-x-1 items-center text-xs leading-3 mt-2">
-                            <p class="text-blue-500">m</p>
-                            <p class="text-gray-500">+386 714 505 8385</p>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="mt-4 sm:mt-0 sm:flex flex-col sm:items-end sm:text-right">
-                    <div class="py-2.5 px-5 bg-red-100 rounded-full text-xs leading-3 text-red-500 w-24 sm:w-auto">Pendiente</div>
-                    <p class="text-xs leading-5 text-light-blue mt-3">
-                        Tomas Lopez <br /><span class="text-gray-500">1331 Colombia <br />Ezpeleta,  CP:3456<br />Buenos Aires</span>
+                  <img
+                    class="w-32"
+                    src="/assets/icon/logo.png"
+                    alt=""
+                    srcset=""
+                  />
+                  <p class="text-lg font-bold text-gray-500 mt-2">Milena</p>
+                  <div class="mt-2">
+                    <p class="text-xs leading-5 text-gray-500 uppercase mt-1">
+                      Bogota 3481 - BS. AS<br />CEL: +549 116253-6201<br />11-5180-4160(Stefy)<br />11-5693-0533(Silvia)
                     </p>
-                    <div class="mt-3">
-                        <div class="flex space-x-1 items-center text-xs leading-3">
-                            <p class="text-blue-500">@</p>
-                            <p class="text-gray-500">tomas@hotmail.com</p>
-                        </div>
-                        <div class="flex space-x-1 items-center sm:justify-end text-xs leading-3 mt-2">
-                            <p class="text-blue-500">Cel:</p>
-                            <p class="text-gray-500">+549 123456789</p>
-                        </div>
-                    </div>
-                    <div class="mt-6 text-xs leading-3 sm:text-right">
-                        <p class="text-gray-800 uppercase">Transporte</p>
-                        <p class="text-gray-500 mt-1">#IDO-2202-2</p>
-               <!--          <div class="mt-3">
-                            <p class="text-gray-800 uppercase">Invoice date</p>
-                            <p class="text-gray-500 mt-1">February 2, 2020</p>
-                        </div> -->
-                    </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="pt-3.5 pb-9 px-10">
-            <div class="w-full overflow-x-auto">
-                <table class="w-full">
-                    <thead class="text-xs leading-none text-gray-500 border-b border-gray-200 text-left">
-                        <tr>
-                            <th class="pb-2">Modelo & Diseño</th>
-                            <th class="pb-2">Cantidad</th>
-                            <th class="pb-2">Precio UD</th>
-                            <th class="pb-2 text-right">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="text-xs leading-3 text-gray-800 text-left border-b border-gray-200">
-                            <td class="py-4 w-1/2">Natural Herbs</td>
-                            <td class="py-4">14 grams</td>
-                            <td class="py-4">$15</td>
-                            <td class="py-4 text-right">$28</td>
-                        </tr>
-                        <tr class="text-xs leading-3 text-gray-800 text-left border-b border-gray-200">
-                            <td class="py-4 w-1/2">Active Plus</td>
-                            <td class="py-4">7 grams</td>
-                            <td class="py-4">$7.5</td>
-                            <td class="py-4 text-right">$14</td>
-                        </tr>
+                <div
+                  class="mt-4 sm:mt-0 sm:flex flex-col sm:items-end sm:text-right"
+                >
+                  <p class="px-5 text-xs leading-3 text-red-500">Pendiente</p>
 
-
-                        <tr class="text-xs leading-3 text-gray-800 text-left border-b border-gray-200">
-                            <td class="py-4 w-1/2">Active Plus</td>
-                            <td class="py-4">7 grams</td>
-                            <td class="py-4">$7.5</td>
-                            <td class="py-4 text-right">$14</td>
-                        </tr>
-
-                        <tr class="text-xs leading-3 text-gray-800 text-left border-b border-gray-200">
-                            <td class="py-4 w-1/2">Active Plus</td>
-                            <td class="py-4">7 grams</td>
-                            <td class="py-4">$7.5</td>
-                            <td class="py-4 text-right">$14</td>
-                        </tr>
-
-                        <tr class="text-xs leading-3 text-gray-800 text-left border-b border-gray-200">
-                            <td class="py-4 w-1/2">Active Plus</td>
-                            <td class="py-4">7 grams</td>
-                            <td class="py-4">$7.5</td>
-                            <td class="py-4 text-right">$14</td>
-                        </tr>
-
-                        <tr class="text-xs leading-3 text-gray-800 text-left border-b border-gray-200">
-                            <td class="py-4 w-1/2">Active Plus</td>
-                            <td class="py-4">7 grams</td>
-                            <td class="py-4">$7.5</td>
-                            <td class="py-4 text-right">$14</td>
-                        </tr>
+                  <p class="text-xs leading-5 text-light-blue mt-3">
+                    {{ dataDeOrden.cliente.nombre }}
+                    {{
+                      dataDeOrden.cliente.apellido == null
+                        ? ""
+                        : dataDeOrden.cliente.apellido
+                    }}
+                    <br />
+                    <span class="text-gray-500"
+                      >
+                      {{ dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.direccion }} <br />{{
                         
-                        <tr class="text-xs leading-3 text-gray-800 text-left">
-                            <td class="py-4 w-1/2"></td>
-                            <td class="py-4 border-b border-gray-200">Sub total</td>
-                            <td class="border-b border-gray-200 py-4"></td>
-                            <td class="border-b border-gray-200 py-4 text-right">$14</td>
-                        </tr>
-                        <tr class="text-xs leading-3 text-gray-800 text-left">
-                            <td class="py-4 w-1/2"></td>
-                            <td class="py-4 border-b border-gray-200">10% Tax</td>
-                            <td class="border-b border-gray-200 py-4"></td>
-                            <td class="border-b border-gray-200 py-4 text-right">$2</td>
-                        </tr>
-                        <tr class="text-xs leading-3 text-gray-800 text-left">
-                            <td class="py-4 w-1/2"></td>
-                            <td class="py-4 font-bold">TOTAL</td>
-                            <td class="py-4"></td>
-                            <td class="text-indigo-400 py-4 text-right">$42</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="mt-9">
-                <p class="text-xs leading-4 text-gray-500">All amounts are in dollars. Please make the payment within 15 days from the issue of date of this invoice.</p>
-                <div class="flex items-center justify-between mt-8">
-                    <button onclick="modalHandler(false)" class="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">Close</button>
-                    <button class="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Send Invoice</button>
+                        dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.localidad
+
+                      }}, {{ dataDeOrden.cliente_direccion == null ? '' : 'CP : ' + dataDeOrden.cliente_direccion.cp }}<br />{{
+                        dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.provincia
+                      }}
+                      </span
+                    >
+                  </p>
+                  <div class="mt-3">
+                    <div class="flex space-x-1 items-center text-xs leading-3">
+                      <p class="text-blue-500">@</p>
+                      <p class="text-gray-500">
+                        {{ dataDeOrden.cliente.email }}
+                      </p>
+                    </div>
+                    <div
+                      class="flex space-x-1 items-center sm:justify-end text-xs leading-3 mt-2"
+                    >
+                      <p class="text-blue-500">Cel:</p>
+                      <p class="text-gray-500">
+                        {{ dataDeOrden.cliente.telefono }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mt-6 text-xs leading-3 sm:text-right">
+                    <p class="text-gray-800 uppercase">
+                      {{ dataDeOrden.ordenEstado[0].transporte }}
+                    </p>
+                    <p class="text-gray-500 mt-1">#{{ dataDeOrden.id }}</p>
+                  </div>
                 </div>
+              </div>
             </div>
+            <div class="pt-3.5 pb-4 px-10">
+              <div class="w-full overflow-x-auto">
+                <table class="w-full">
+                  <thead
+                    class="text-xs leading-none text-gray-500 border-b border-gray-200 text-left"
+                  >
+                    <tr>
+                      <th class="pb-2">Modelo & Diseño</th>
+                      <th class="pb-2 text-center">Cantidad</th>
+                      <th class="pb-2 text-center">Precio UD</th>
+                      <th class="pb-2 text-right">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let data of nuevoArrayConPro">
+                    <tr
+                      class="text-xs leading-3 text-gray-800 text-left border-gray-200"
+                    >
+                      <td class="py-1 w-1/2">
+                        {{ data.modelo }} - {{ data.dibujo }}
+                      </td>
+                      <td class="py-1 text-center">
+                        {{ cantidad(data.talles) }}
+                      </td>
+                      <td class="py-1 text-center">${{ data.precio }}</td>
+                      <td class="py-1 text-right">
+                        ${{ cantidadTotalProducto(data) }}
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="text-xs leading-3 text-gray-800 text-left">
+                      <td class="py-2 w-1/2"></td>
+                      <td class="py-2 border-b border-gray-200">Total</td>
+                      <td class="border-b border-gray-200 py-4"></td>
+                      <td class="border-b border-gray-200 py-4 text-right">
+                        ${{ cantidadTotal() }}
+                      </td>
+                    </tr>
+                    <tr
+                      class="text-xs leading-3 text-gray-800 text-left"
+                      *ngFor="let des of dataDeOrden.descuento"
+                    >
+                      <td class="py-2 w-1/2"></td>
+                      <td class="py-2 border-b border-gray-200">Descuento</td>
+                      <td class="border-b border-gray-200 py-4"></td>
+                      <td class="border-b border-gray-200 py-4 text-right">
+                        ${{ des.precio }}
+                      </td>
+                    </tr>
+                    <tr class="text-xs leading-3 text-gray-800 text-left">
+                      <td class="py-4 w-1/2"></td>
+                      <td class="py-4 font-bold">TOTAL</td>
+                      <td class="py-4"></td>
+                      <td class="text-indigo-400 py-4 text-right">
+                        ${{ cantidadTotalConDescuento() }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div
+                class="flex flex-row"
+                *ngFor="let des of dataDeOrden.descuento"
+              >
+                <p class="text-xs font-extralight leading-4 text-gray-800">
+                  Descuendo: ${{ des.precio }} - {{ des.motivo }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- final del pdf -->
+
+          <div class="pb-2 px-4">
+            <div class="flex items-center justify-between mt-8">
+              <button
+                onclick="modalHandler(false)"
+                class="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white"
+              >
+                Salir
+              </button>
+
+              <button
+                (click)="pdf('pruebaHtml')"
+                class="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white"
+              >
+                Imprimir
+              </button>
+            </div>
+          </div>
         </div>
-       </div>
+      </div>
     </div>
+
+    <div class="w-full flex justify-center flex-col items-center">
+      <h3 class="text-gray-600 text-lg font-medium underline py-3">
+        Comprobante para el Armado
+      </h3>
+
+      <div class="max-w-lg w-full">
+        <div class="bg-white rounded-md relative">
+          <div
+            onclick="modalHandler(false)"
+            class="absolute inset-0 m-auto w-5 h-5 mr-4 mt-4 cursor-pointer"
+          ></div>
+
+          <!-- empieza el pdf -->
+          <div class="" id="pruebaHtml2">
+            <div
+              class="bg-gray-100 rounded-tl-md rounded-tr-md md:px-10 px-5 pt-9 pb-2.5"
+            >
+              <div class="sm:flex justify-between">
+                <div>
+                  <img
+                    class="w-32"
+                    src="/assets/icon/logo.png"
+                    alt=""
+                    srcset=""
+                  />
+                  <p class="text-lg font-bold text-gray-500 mt-2">Milena</p>
+                  <div class="mt-2">
+                    <p class="text-xs leading-5 text-gray-500 uppercase mt-1">
+                      Bogota 3481 - BS. AS<br />CEL: +549 116253-6201<br />11-5180-4160(Stefy)<br />11-5693-0533(Silvia)
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="mt-4 sm:mt-0 sm:flex flex-col sm:items-end sm:text-right"
+                >
+                  <p class="px-5 text-xs leading-3 text-red-500">Pendiente</p>
+
+                  <p class="text-xs leading-5 text-light-blue mt-3">
+                    {{ dataDeOrden.cliente.nombre }}
+                    {{
+                      dataDeOrden.cliente.apellido == null
+                        ? ""
+                        : dataDeOrden.cliente.apellido
+                    }}
+                    <br /><span class="text-gray-500"
+                      > {{ dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.direccion }} <br />{{
+                        
+                        dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.localidad
+
+                      }}, {{ dataDeOrden.cliente_direccion == null ? '' : 'CP : ' + dataDeOrden.cliente_direccion.cp }}<br />{{
+                        dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.provincia
+                      }}</span
+                    >
+                  </p>
+                  <div class="mt-3">
+                    <div class="flex space-x-1 items-center text-xs leading-3">
+                      <p class="text-blue-500">@</p>
+                      <p class="text-gray-500">
+                        {{ dataDeOrden.cliente.email }}
+                      </p>
+                    </div>
+                    <div
+                      class="flex space-x-1 items-center sm:justify-end text-xs leading-3 mt-2"
+                    >
+                      <p class="text-blue-500">Cel:</p>
+                      <p class="text-gray-500">
+                        {{ dataDeOrden.cliente.telefono }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mt-6 text-xs leading-3 sm:text-right">
+                    <p class="text-gray-800 uppercase">
+                      {{ dataDeOrden.ordenEstado[0].transporte }}
+                    </p>
+                    <p class="text-gray-500 mt-1">#{{ dataDeOrden.id }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-3.5 pb-4 px-10">
+              <div class="w-full overflow-x-auto pb-6">
+                <table class="w-full">
+                  <thead
+                    class="text-xs leading-none text-gray-500 border-b border-gray-200 text-left"
+                  >
+                    <tr>
+                      <th class="pb-2">Modelo & Diseño</th>
+                      <th class="pb-2">Cantidad</th>
+                      <th class="pb-2 text-center">Color</th>
+                      <th class="pb-2 text-center">Talle</th>
+                      <!-- <th class="pb-2 text-center">Cantidad</th> -->
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let data of nuevoArrayConPro">
+                    <tr
+                      class="text-xs leading-3 text-gray-800 text-left border-gray-200"
+                    >
+                      <td class="py-1">
+                        {{ data.modelo }} - {{ data.dibujo }}
+                      </td>
+                      <td class="py-1 text-center">
+                        {{ cantidad(data.talles) }}
+                      </td>
+                      <td class="py-1 text-center">{{ data.color }}</td>
+                      <td class="py-1 text-center">
+                        {{ tallesObtener(data.talles) }}
+                      </td>
+                      <!-- <td class="py-1 text-center">67</td> -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="grid grid-cols-3 border-t gap-2" >
+                <p class="text-xs font-extralight leading-4 text-gray-800 py-2" *ngFor="let notas of dataDeOrden.nota">
+                  <span class="text-xs text-indigo-500"
+                    >COD: ({{notas.producto_ventas.id}})| {{notas.producto_ventas.sub_modelo == null ? notas.producto_ventas.productoDetalles.producto.modelo : notas.producto_ventas.sub_modelo }} {{notas.producto_ventas.sub_dibujo == null ? notas.producto_ventas.productoDetalles.producto.estampado.dibujo : notas.producto_ventas.sub_dibujo }} :</span
+                  >
+                  {{notas.nota}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- final del pdf -->
+
+          <div class="pb-2 px-4">
+            <div class="flex items-center justify-between mt-8">
+              <button
+                onclick="modalHandler(false)"
+                class="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white"
+              >
+                Salir
+              </button>
+
+              <button
+                (click)="pdf('pruebaHtml2')"
+                class="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white"
+              >
+                Imprimir
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-

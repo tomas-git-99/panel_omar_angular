@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ProduccionService } from 'src/app/produccion/servicios/produccion.service';
+import { VentasService } from '../../servicios/ventas.service';
 
 @Component({
   selector: 'app-sub-table-distribution',
@@ -14,9 +16,15 @@ export class SubTableDistributionComponent implements OnInit {
   @Input() isSubTable: boolean = false;
   @Input() isSubTableFailures: boolean = false;
 
-  constructor() { }
+  @Input() subTablaArray: any;
+
+  ArraySubTalles: any[] = [];
+  ArraySubTallesBool: boolean = false;
+
+  constructor( public servicioVentas:VentasService,public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
+    console.log(this.subTablaArray)
   }
 
 
@@ -29,4 +37,13 @@ export class SubTableDistributionComponent implements OnInit {
     this.isSubTableFailures = !this.isSubTableFailures;
   }
 
+  agregarVentas(id:string){
+    
+    this.subTablaArray.distribucion.map( (e:any) => {
+      if(e.id == id){
+        this.ArraySubTalles = e;
+    
+      }
+    })
+  }
 }

@@ -1,0 +1,112 @@
+<div class="mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50" >
+  <div
+    class="px-6 py-4 rounded-md text-lg flex items-center justify-center w-full"
+  >
+    <div
+      class="flex flex-col max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10"
+    >
+    <div class="px-4 flex justify-between">
+      <div
+      class="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl dark:text-white"
+    >
+      Crear nuevo usuario
+    </div>
+      <button  (click)="servicio.abrirCerrarVentanCrearUsuario = !servicio.abrirCerrarVentanCrearUsuario"  role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </button>
+    </div>
+   
+
+      <div class="p-6 mt-8">
+        <form action="" [formGroup]="formUsuario" (ngSubmit)="nuevoUsuario(formUsuario.value)" >
+          <div class="flex flex-col mb-2">
+            <div class="relative">
+              <input
+                type="text"
+            
+                class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            
+                placeholder="Usuario Ej : Roma67, TomasLego"
+                formControlName="usuario"
+              />
+            </div>
+          </div>
+          <div class="flex gap-4 mb-2">
+            <div class="relative">
+              <input
+                type="text"
+                id="create-account-first-name"
+                class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                placeholder="Nombre"
+                formControlName="nombre"
+              />
+            </div>
+            <div class="relative">
+              <input
+                type="text"
+                id="create-account-last-name"
+                class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                placeholder="DNI-CUIL"
+                formControlName="dni_cuil"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col mb-2">
+            <div class="relative">
+              <input
+                type="text"
+                id="create-account-email"
+                class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                placeholder="Contraseña"
+                formControlName="password"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col mb-2 ">
+            <label class="text-gray-700" for="animals">
+              Roles
+              <select
+              #rol
+              formControlName="roles"
+
+                class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              >
+                <option value="">Opciones</option>
+                <option value="admin">Admin</option>
+                <option value="ventas">Ventas</option>
+                <option value="produccion">Producccion</option>
+             
+              </select>
+            </label>
+          </div>
+
+          <div class="flex flex-col mb-2 " *ngIf="rol.value == 'ventas'">
+            <label class="text-gray-700" for="">
+                Locales
+                <select
+                formControlName="local"
+                  class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                >
+                  <option value="">Opciones</option>
+                  <option  *ngFor="let item of arrayLocales" [value]="item.id">{{item.nombre}}</option>
+               
+               
+                </select>
+              </label>
+          </div>
+          <div class="flex w-full my-4">
+            <button
+              type="submit"
+              class="py-2 px-4 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            >
+              Crear
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

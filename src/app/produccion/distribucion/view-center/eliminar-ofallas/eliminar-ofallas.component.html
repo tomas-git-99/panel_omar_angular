@@ -8,7 +8,7 @@
             <div class="bg-gray-100 rounded-tl-md rounded-tr-md px-2 md:py-4 py-7  flex items-center justify-between">
 
                 <div class="flex flex-col">      
-                    <p class="text-base font-semibold text-gray-500">Fallas :</p>
+                    <p class="text-base font-semibold text-gray-500">Todas las talles :</p>
 
                     <p class="text-sm font-light text-gray-600"></p>
                 </div>
@@ -29,9 +29,9 @@
 
                       
                             <div>
-                                <p class="font-light text-sm text-gray-500 ">Talle: <span class="font-light text-sm text-indigo-600">{{data.talle}}</span>  , Cantida: <span class="font-light text-sm text-indigo-600">{{data.cantidad}}</span></p>
+                                <p class="font-light text-sm text-gray-500 ">Talle: <span class="font-light text-sm text-indigo-600">{{data.talle}}</span>  , Cantida: <span class="font-light text-sm text-indigo-600">{{data.cantidad_actual}}</span></p>
                             </div>
-                            <button role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+                            <button (click)="EliminarTalle(data.id, data.talle)" role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
                                 <svg width="18" height="18" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -64,7 +64,7 @@
 
                 <div class="flex justify-center py-2">
 
-                    <button aria-label="add user" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none px-4 py-2 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Eliminar todo</button>
+                    <button aria-label="add user" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none px-4 py-2 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white" (click)="EliminarDistribucionComplet()">Eliminar todo</button>
 
                 </div>
 

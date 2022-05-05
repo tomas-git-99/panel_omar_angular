@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IProductosData } from '../interfaces/interface_produccion';
 import { ProduccionService } from '../servicios/produccion.service';
 
@@ -20,9 +20,30 @@ export class ProductosComponent implements OnInit {
 
   estadoDePagina:number = 0;
 
+  listaDeFiltros:boolean = false
+
+  cargaArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  cargaDeTables:boolean = false;
+
+
+  objDeFiltro:any = {
+    modelo:'',
+    tela:'',
+    peso_promedio:'',
+    taller:'',
+    dibujo:'',
+  }
+
+  @Input() cantidadPaginas:number = 0;
+
   daataPrueba!:IProductosData
   @ViewChild('categoryScrollX')categoryScrollX!:ElementRef<HTMLInputElement>;
   @ViewChild('box')box!:ElementRef<HTMLInputElement>;
+
+  filtroInput:string[] = [];
+  historialDeBusqueda:string ='';
+ 
 
   constructor(public servicioProduccion:ProduccionService) {
 
@@ -31,13 +52,7 @@ export class ProductosComponent implements OnInit {
   valueFilter:boolean = false;
 
   ngOnInit(): void {
-/*     this.servicioProduccion.getProductos().subscribe(
-      (res) => {
-        this.arrayProducto = res.data;
-        this.calcularPaginas(res.contador);
 
-      }
-    ); */
     this.productosYbuscador();
 
     
@@ -48,14 +63,53 @@ export class ProductosComponent implements OnInit {
       }
     );
   }
+  paginaciones(pagina:any){
+    console.log(pagina)
 
+  }
 
-  productosYbuscador(busqueda: string = '', pagina: string | number = 0){
-
-    this.servicioProduccion.getProductos(busqueda, pagina).subscribe(
+  productosYbuscador(
+    busqueda: string = '', 
+    pagina: any | string | number = 0,
+    modelo:string = '',
+    tela:string = '',
+    peso_promedio:string = '',
+    taller:string = '',
+    dibujo:string = '',
+    edad:string = ''
+    ){
+    this.historialDeBusqueda = busqueda;
+    this.cargaDeTables = true;
+    this.servicioProduccion.getProductos(
+      busqueda, 
+      pagina, 
+      modelo, 
+      tela,
+      peso_promedio,
+      taller,
+      dibujo,
+      edad
+      ).subscribe(
       (res) => {
-        this.arrayProducto = res.data;
-        this.calcularPaginas(res.contador);
+        
+        if(res.ok == true){
+          
+          this.cantidadPaginas = res.contador;
+
+          this.cargaDeTables = false;
+
+          this.arrayProducto = res.data;
+          this.calcularPaginas(res.contador);
+
+
+        
+        }else{
+          this.cargaDeTables = false;
+
+        }
+      
+      },(error) => {
+        this.cargaDeTables = false;
 
       }
     );
@@ -81,7 +135,11 @@ export class ProductosComponent implements OnInit {
       this.moveCategory('left', 40)
     } */
 
-    this.productosYbuscador( '', this.estadoDePagina + '0');
+    this.filtroInput.length > 0 
+    ? this.inputConfiltros(this.filtroInput, this.historialDeBusqueda, this.estadoDePagina + '0')
+    : this.productosYbuscador('', this.estadoDePagina + '0');
+
+   /*  this.productosYbuscador( '', this.estadoDePagina + '0'); */
 
     console.log(this.estadoDePagina +'0')
   
@@ -95,13 +153,18 @@ export class ProductosComponent implements OnInit {
       if((this.items[this.items.length - 1]) > this.estadoDePagina )
       
       this.estadoDePagina +=  1;
-      this.productosYbuscador('', this.estadoDePagina + '0');
+      this.filtroInput.length > 0 
+      ? this.inputConfiltros(this.filtroInput, this.historialDeBusqueda, this.estadoDePagina + '0')
+      : this.productosYbuscador('', this.estadoDePagina + '0');
       this.moveCategory('right', 20);
 
     }else{
       if(this.estadoDePagina > 0)
       this.estadoDePagina -= 1;
-      this.productosYbuscador('', this.estadoDePagina + '0');
+      this.filtroInput.length > 0 
+      ? this.inputConfiltros(this.filtroInput, this.historialDeBusqueda, this.estadoDePagina + '0')
+      : this.productosYbuscador('', this.estadoDePagina + '0');
+      
       this.moveCategory('left', 20)
 
     }
@@ -140,8 +203,62 @@ export class ProductosComponent implements OnInit {
 
 
   onKey(searchValue: any): void {  
-    console.log(searchValue);
-    this.box.nativeElement.value = '';
-    this.productosYbuscador(searchValue);
+/* 
+    this.inputConfiltros(
+      this.filtroInput, 
+      searchValue,
+      this.objDeFiltro.mo
+      ); */
+
+      this.productosYbuscador(
+        searchValue, 0, 
+        this.objDeFiltro.modelo, 
+        this.objDeFiltro.tela,
+        this.objDeFiltro.peso_promedio,
+        this.objDeFiltro.taller,
+        this.objDeFiltro.dibujo,
+        this.objDeFiltro.edad
+        );
+
   }
+
+  paginacion(value: any){
+    this.productosYbuscador(
+      this.historialDeBusqueda, 
+      value, 
+      this.objDeFiltro.modelo, 
+      this.objDeFiltro.tela,
+      this.objDeFiltro.peso_promedio,
+      this.objDeFiltro.taller,
+      this.objDeFiltro.dibujo,
+      this.objDeFiltro.edad
+      );
+  }
+  inputConfiltros(valor:any, palabra:string = '' , skip:number | string = 0){ 
+
+    this.servicioProduccion.postProductosObtnerProductos(({data:valor}),palabra, skip).subscribe(
+      (res) => {
+        console.log(res)
+        this.arrayProducto = res.data;
+        this.calcularPaginas(res.contador);
+
+      }
+    );
+  }
+
+
+  seleccionDeCheck(valor:any):void {
+
+    this.objDeFiltro[valor.target.value] = !this.objDeFiltro[valor.target.value];
+
+
+    if(valor.target.checked == true){
+      this.filtroInput.push(valor.target.value);
+    }else{
+      this.filtroInput.splice(this.filtroInput.indexOf(valor.target.value), 1);
+    }  
+  }
+
+
+
 }

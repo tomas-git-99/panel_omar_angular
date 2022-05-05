@@ -7,11 +7,20 @@ import { VentasModule } from './ventas/ventas.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProduccionModule } from './produccion/produccion.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { LoginComponent } from './login/login.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { CrearUsuarioComponent } from './usuario/crear-usuario/crear-usuario.component';
+import { EditarUsuarioComponent } from './usuario/editar-usuario/editar-usuario.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
+    LoginComponent,
+    UsuarioComponent,
+    CrearUsuarioComponent,
+    EditarUsuarioComponent,
+
     
     
   ],
@@ -21,12 +30,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     VentasModule,
     ProduccionModule,
     FontAwesomeModule,
-
+    ReactiveFormsModule,
+    
     
     
   ],
   exports: [
-    SidebarComponent
+    SidebarComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

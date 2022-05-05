@@ -1,4 +1,4 @@
-<div class="flex h-screen justify-center items-center ">
+<div [ngClass]="'flex h-screen justify-center items-center animate__animated ' + (servicioProduccion.ventanaDeAgregarOpciones == false ? servicioProduccion.EntrarAlPlano : servicioProduccion.SalirDelPlano)">
   <div class="bg-white rounded-lg shadow-md">
     <!-- content start -->
     <div class="m-8">
@@ -7,6 +7,9 @@
           nuevo producto
         </p>
         <button
+        (click)="servicioProduccion.ventanaDeAgregarOpciones = !servicioProduccion.ventanaDeAgregarOpciones"
+        (click)="servicioProduccion.abrirVentanaAgregraProductos = !servicioProduccion.abrirVentanaAgregraProductos" 
+      
         role="button"
         aria-label="close label"
         class="mr-2 focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
@@ -158,8 +161,8 @@
               <div class="grid xl:grid-cols-2 sm:grid-cols-2 sm:gap-6 xl:gap-6">
                 <div class="relative z-0 mb-6 w-full group">
                   <input
-                    type="number"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    type="text"
+                  
                     name="peso_promedio"
                     formControlName="peso_promedio"
                     id="floating_peso_promedio"
@@ -175,7 +178,8 @@
                 </div>
                 <div class="relative z-0 mb-6 w-full group">
                   <input
-                    type="text"
+                    type="number"
+                    #totalPortalle
                     name="total_por_talle"
                     formControlName="total_por_talle"
                     id="floating_total_por_talle"
@@ -203,6 +207,7 @@
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 name="talles"
                 formControlName="talles"
+                #Talles
                 id="floating_talles"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -219,6 +224,8 @@
                 type="number"
                 name="total"
                 formControlName="total"
+                [ngModel]="sumaTotal(totalPortalle.value, Talles.value)"
+                [attr.disabled]="true"
                 id="floating"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -272,9 +279,9 @@
                     name="id_taller"
                     formControlName="id_taller"
                   >
-                    <option [ngValue]="'2'" selected>Opciones</option>
-                    <option [ngValue]="'dog'">Dog</option>
-                    <option [ngValue]="'gato'">gato</option>
+                    <option [value]="" selected>Opciones</option>
+                    <option  *ngFor="let taller of arrayTaller" [value]="taller.id">{{taller.nombre_completo}}</option>
+           
                   </select>
                 </div>
     

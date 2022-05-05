@@ -1,4 +1,4 @@
-<div class="sm:px-4 xl:w-auto  animate__animated animate__slideInDown z-30 w-full" *ngIf="true" >
+<div class="sm:px-4 xl:w-auto  animate__animated animate__slideInDown z-30 w-full" *ngIf="isSubTable" >
     <!-- *ngIf="isSubTable"  -->
     <div class=" bg-white overflow-y-auto flex justify-center" >
         <!-- shadow -->
@@ -19,7 +19,7 @@
               
                 </tr>
             </thead>
-            <tbody class="w-full">
+            <tbody class="w-full" *ngFor="let data of subTablaArray.distribucion">
                 <tr class="h-14 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
                     <td class="cursor-pointer">
                         <div class="flex items-center">
@@ -31,27 +31,27 @@
                        
                             </div>
                             <div class="pl-4">
-                                <p class="font-medium">120</p>
+                                <p class="font-medium">{{servicioProduccion.funcConteoTotalDeCantidad(data.talle)}}</p>
                                 <!-- <p class="text-xs leading-3 text-gray-600 pt-2">Herman Group</p> -->
                             </div>
                         </div>
                     </td>
                     <td class="">
-                        <p class="text-sm font-medium leading-none text-gray-800 ">4,6,8,12,14</p>
+                        <p class="text-sm font-medium leading-none text-gray-800 ">{{servicioProduccion.funcOrdenarTalles(data.talle)}}</p>
                        <!--  <div class="w-24 h-3 bg-gray-100 rounded-full mt-2">
                             <div class="w-20 h-3 bg-green-progress rounded-full"></div>
                         </div> -->
                     </td>
                     <td class="">
-                        <p class="font-medium">Modal</p>
+                        <p class="font-medium capitalize">{{subTablaArray.tela}}</p>
                         <!-- <p class="text-xs leading-3 text-gray-600 mt-2">5 tasks pending</p> -->
                     </td>
                     <td class="">
-                        <p class="font-medium">Central</p>
+                        <p class="font-medium capitalize">{{data.local.nombre}}</p>
                         <!-- <p class="text-xs leading-3 text-gray-600 mt-2">$4,200 left</p> -->
                     </td>
                     <td class="">
-                        <p class="font-medium">Nena</p>
+                        <p class="font-medium capitalize">{{subTablaArray.edad}}</p>
                         <!-- <p class="text-xs leading-3 text-gray-600 mt-2">34 days</p> -->
                     </td>
                     <td class="">
@@ -72,6 +72,9 @@
                            
 
                             <button
+                            (click)="agregarVentas(data.id)"
+
+                            (click)="servicioVentas.abrirCerrarVentana = !servicioVentas.abrirCerrarVentana"
                             class="py-2 px-3 text-sm focus:outline-none leading-none text-gray-600 bg-green-200 hover:bg-green-100 rounded flex flex-row items-center gap-[5px]"
                           >
                        
@@ -105,6 +108,8 @@
                            
 
                             <button
+                            (click)="agregarVentas(data.id)"
+                            (click)="servicioVentas.abrirCerrarVentanaFailures = !servicioVentas.abrirCerrarVentanaFailures"
                             class="py-2 px-3 text-sm focus:outline-none leading-none text-gray-600 bg-red-300	 hover:bg-red-200	 rounded flex flex-row items-center gap-[5px]"
                           >
                        
@@ -150,10 +155,10 @@
 </div>
 
 
-<app-add-sales></app-add-sales>
+<app-add-sales [dataArrayTalle]="ArraySubTalles"   *ngIf="servicioVentas.abrirCerrarVentana"></app-add-sales>
 
 
-<app-add-failures></app-add-failures>
+<app-add-failures [dataArrayTalle]="ArraySubTalles" *ngIf="servicioVentas.abrirCerrarVentanaFailures"></app-add-failures>
 
 
 

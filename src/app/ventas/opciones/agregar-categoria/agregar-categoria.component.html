@@ -1,0 +1,36 @@
+<div class="mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50">
+  <div
+    class="px-6 py-4 rounded-md text-lg flex items-center justify-center w-full"
+  >
+    <div class="bg-white p-6 shadow-md">
+        <div class="flex justify-between py-2">
+            <p class="text-gray-500 text-2xl font-medium"> Agregar Categoria</p>
+
+            <button  (click)="servicioVentas.abrirCerrarVentanaAgregarCategorias = !servicioVentas.abrirCerrarVentanaAgregarCategorias" role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </button>
+        </div>
+        <hr>
+      <div class="relative py-4">
+        <label for="name-with-label" class="text-gray-700"> Categoria </label>
+        <input
+          type="text"
+          id="name-with-label"
+          class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+          name="nombre"
+          placeholder="Nombre de la categoria"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+      >
+        Agregar
+      </button>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { HistoryComponent } from './history/history.component';
 import { DistributionComponent } from './distribution/distribution.component';
 import { CheckOutComponent } from './generate-voucher/check-out/check-out.component';
 import { VentasComponent } from './ventas.component';
+import { OpcionesComponent } from './opciones/opciones.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       {path:'generar', component: GenerateVoucherComponent},
       {path:'historial', component: HistoryComponent},
       {path:'distribucion', component: DistributionComponent},
+      {path:'opciones', component: OpcionesComponent},
     
       {path:'**', redirectTo: 'inicio'}
     ]

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IAgregarDistribucion } from 'src/app/produccion/interfaces/interface_produccion';
 import { ProduccionService } from 'src/app/produccion/servicios/produccion.service';
+import { VentasService } from 'src/app/ventas/servicios/ventas.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class AddLocalComponent implements OnInit {
 
   dataInfo: IAgregarDistribucion[] = [];
 
+  arrayDeLocales:any
   @Output()
   prueba:EventEmitter<string> = new EventEmitter<string>();
 
@@ -26,14 +28,24 @@ export class AddLocalComponent implements OnInit {
   arrayAgregarDis:EventEmitter<IAgregarDistribucion[]> = new EventEmitter<IAgregarDistribucion[]>();
 
   @Input()dataAntiguaVentana:IAgregarDistribucion[]= []
-  constructor(public servicioProduccion:ProduccionService) { }
+
+  @Input()dataArrayHistorial:any;
+
+  constructor(public servicioProduccion:ProduccionService,public servicioVentas:VentasService) { }
 
   ngOnInit(): void {
+    console.log(this.dataArrayHistorial)
 
     this.cantidad_restar = this.servicioProduccion.cantidadDistribucion$
     //this.dataInfo = JSON.parse(localStorage.getItem('dataForm')!);
 
     this.dataInfo = this.dataAntiguaVentana;
+
+    this.servicioVentas.getObtenerLocales().subscribe( (res:any) => {
+      this.arrayDeLocales = res.data;
+      console.log(this.arrayDeLocales)
+    }
+    )
 
   }
 
@@ -50,7 +62,7 @@ export class AddLocalComponent implements OnInit {
     setTimeout(() => {
       this.estadoDeAlerta = false;
     }
-    , 4000);
+    , 20000);
 
   }
 
@@ -63,9 +75,15 @@ export class AddLocalComponent implements OnInit {
 
     data.map( (item, index) => {
       if(item.local === local){
+
+        item.talle.map( can => this.cantidad_restar += parseInt(can.cantidad) )
+
+        this.servicioProduccion.cambiosCantidad$.emit(this.cantidad_restar)
         data.splice(index,1);
-        //localStorage.setItem('dataForm',JSON.stringify(data));
-    this.arrayAgregarDis.emit(this.dataInfo);
+
+
+
+        this.arrayAgregarDis.emit(this.dataInfo);
         
       }
     })
@@ -76,29 +94,19 @@ export class AddLocalComponent implements OnInit {
         if(item.local === local){
           item.talle.map( (talleData, indexTalle) => {
             if(talleData.talle === talle){
-              console.log('estoy aca')
-              item.talle.splice(indexTalle,1);
-    this.arrayAgregarDis.emit(this.dataInfo);
+             
+             
+              this.servicioProduccion.cambiosCantidad$.emit( this.cantidad_restar += parseInt(talleData.cantidad))
 
-              //localStorage.setItem('dataForm',JSON.stringify(data));
-              //this.dataInfo = JSON.parse(localStorage.getItem('dataForm')!);
+              item.talle.splice(indexTalle,1);
+              this.arrayAgregarDis.emit(this.dataInfo);
+
             }
           })
         }
 
       })
 
-/*       if(data.some(x => x.local === local) === true && data.some(x => x.talle.length < 0) === true){
-        data.map( (item, index) => {
-
-          if(item.local === local){
-            data.splice(index,1);
-            localStorage.setItem('dataForm',JSON.stringify(data));
-            this.dataInfo = JSON.parse(localStorage.getItem('dataForm')!);
-          }
-          
-        })
-      } */
     }
   }
 
@@ -111,6 +119,7 @@ export class AddLocalComponent implements OnInit {
   
   funcRestarSumar(accion:string, array:any ):any{
 
+  
     if(accion === 'sumar'){
 
 
@@ -134,11 +143,29 @@ export class AddLocalComponent implements OnInit {
   }
   formDistribucion(cantidad:any, talle:any, local:string):any{
 
+    if(local == ''){
+
+      return alert("Seleccione un local")
+    }
+
+
+    for(let x of this.dataArrayHistorial){
+
+      if(x.local == local){
+
+        for( let t of x.talle){
+      
+            if(t.talle == talle){
+              this.funcAlertas('Error', 'El local ya tiene este talle guardado anteriormente . Por favor seleccione otro local o talle, o elimine el talle guardado')
+              return false;
+            }
+        }
+      }
+
+    }
+
     if(this.dataInfo === null || this.dataInfo.length == 0) {
 
-
-
-    //this.funcRestarSumar('restar', cantidad);
 
     if(this.funcRestarSumar('restar', cantidad) == false){
       return false;
@@ -157,10 +184,14 @@ export class AddLocalComponent implements OnInit {
     this.arrayAgregarDis.emit(this.dataInfo);
 
 
-    console.log('se creo nuevo array')
       
     }else{
       let data:IAgregarDistribucion[] = this.dataInfo;
+
+
+
+
+      
 
 
       for(let item of data){
@@ -184,14 +215,15 @@ export class AddLocalComponent implements OnInit {
     
           this.arrayAgregarDis.emit(this.dataInfo);
 
-          console.log('local nuevo');
+        
           return;
         }
 
 
         if(item.local === local){
 
-          //for(let talles of item.talle){
+
+
 
             if(data.some(x => x.local === local) === true && item.talle.some(x => x.talle === talle) === false){
 
@@ -204,17 +236,15 @@ export class AddLocalComponent implements OnInit {
                 talle: talle,
                 cantidad: cantidad
               });
-              console.log('se agrego talle')
-              //this.funcRestarSumar('restar', cantidad);
-
-              //localStorage.setItem('dataForm',JSON.stringify(data));
-             // this.dataInfo = JSON.parse(localStorage.getItem('dataForm')!);
+            
+              
               this.arrayAgregarDis.emit(this.dataInfo);
 
               return;
               
             }else{
-              //console.log('ya existe talle')
+              console.log("entre aca")
+
 
               this.funcAlertas('alerta','ya existe talle, en el local');
               return;
@@ -226,6 +256,15 @@ export class AddLocalComponent implements OnInit {
       }
     
 
+    }
+
+
+  }
+
+
+  obtenerSoloElnombre(id:any){
+    if (this.arrayDeLocales !== undefined) {
+      return this.arrayDeLocales.find((x: any) => x.id === parseInt(id)).nombre;
     }
 
 
