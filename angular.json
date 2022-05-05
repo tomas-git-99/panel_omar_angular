@@ -79,7 +79,7 @@
           "configurations": {
             "production": {
               "browserTarget": "panel-omar-new-angular:build:production",
-              "proxyConfig": "src/environments/environment.prod.ts"
+              "proxyConfig": "proxy.conf.json"
             },
             "development": {
               "browserTarget": "panel-omar-new-angular:build:development"

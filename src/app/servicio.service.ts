@@ -34,7 +34,7 @@ putEditarUsuario(id:any, data:any){
 }
 
 postLogin(data:any){
-  return this.http.post<any>(environment.urlBackendProduccion + 'usuarios/login', data)
+  return this.http.post<any>('api/usuarios/login', data)
 }
 
 
