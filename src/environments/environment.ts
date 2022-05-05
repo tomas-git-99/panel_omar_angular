@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-  urlBackendProduccion: 'http://137.184.178.187:3000/'
+  urlBackendProduccion: 'http://localhost:3000/'
 };
 
 /*
