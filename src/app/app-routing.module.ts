@@ -16,28 +16,28 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    canActivate: [TokenGuard]
+   /*  canActivate: [TokenGuard] */
 
   },{
     path: 'usuario',
     component: UsuarioComponent,
-    canActivate: [AdminGuard]
+   /*  canActivate: [AdminGuard] */
   },
   {
 
     path: 'ventas',
-    canActivate: [ AuthGuard  ],
+   /*  canActivate: [ AuthGuard  ], */
     loadChildren: () => import('./ventas/ventas.module').then(m => m.VentasModule)
   },
   {
     path: 'produccion',
-    canActivate: [ AuthGuard ],
+  /*   canActivate: [ AuthGuard ], */
     loadChildren: () => import('./produccion/produccion.module').then(m => m.ProduccionModule)
   },
   {
     path: 'checkout',
     component: CheckOutComponent,
-    canActivate: [ AuthGuard ],
+    /* canActivate: [ AuthGuard ], */
 
   },
   {
@@ -49,7 +49,7 @@ const routes: Routes = [
   {
     path: 'invoice/:id',
     component: InvoicesComponent,
-    canActivate: [ AuthGuard ],
+    /* canActivate: [ AuthGuard ], */
 
   },
 ];
