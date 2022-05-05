@@ -78,8 +78,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "panel-omar-new-angular:build:production",
-              "proxyConfig": "proxy.conf.json"
+              "browserTarget": "panel-omar-new-angular:build:production"
             },
             "development": {
               "browserTarget": "panel-omar-new-angular:build:development"

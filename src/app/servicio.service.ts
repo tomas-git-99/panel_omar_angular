@@ -15,8 +15,7 @@ export class ServicioService {
   abrirCerrarVentanModificarUsuario:boolean = false;
   abrirCerrarVentanCrearUsuario:boolean = false
   constructor(private http: HttpClient) { }
- //urlBackendProduccion: 'http://192.168.1.49:3000/'
-  //urlBackendProduccion: 'http://137.184.178.187:3000/'
+
 
 
   //crear usuario 
@@ -34,7 +33,7 @@ putEditarUsuario(id:any, data:any){
 }
 
 postLogin(data:any){
-  return this.http.post<any>('api/usuarios/login', data)
+  return this.http.post<any>(environment.urlBackendProduccion + 'usuarios/login', data)
 }
 
 
