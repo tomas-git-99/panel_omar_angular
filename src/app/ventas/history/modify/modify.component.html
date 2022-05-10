@@ -483,7 +483,7 @@
                         Factura Tipo:
                         <span class="text-indigo-700">{{
                           servicioVentas.evitarNulloVacios(
-                            detallesDeOrden.ordenEstado[0].factura
+                            detallesDeOrden.ordenEstado.factura
                           )
                         }}</span>
                       </p>
@@ -492,9 +492,10 @@
                       >
                         Fecha de pago:
                         <span class="text-indigo-700">{{
-                          servicioVentas.evitarNulloVacios(
-                            detallesDeOrden.ordenEstado[0].fecha_de_pago
-                          )
+                          detallesDeOrden.ordenEstado.fecha_de_pago == null ? '' :
+                          servicioProduccion.fechaARG(servicioVentas.evitarNulloVacios(
+                            detallesDeOrden.ordenEstado.fecha_de_pago
+                          ))
                         }}</span>
                       </p>
                       <p
@@ -503,7 +504,7 @@
                         Forma de pago:
                         <span class="text-indigo-700">{{
                           servicioVentas.evitarNulloVacios(
-                            detallesDeOrden.ordenEstado[0].metodo_de_pago
+                            detallesDeOrden.ordenEstado.metodo_de_pago
                           )
                         }}</span>
                       </p>
@@ -513,9 +514,9 @@
                         Armado por:
                         <span class="text-indigo-700">{{
                           servicioVentas.evitarNulloVacios(
-                            detallesDeOrden.ordenEstado[0].armado == null
+                            detallesDeOrden.ordenEstado.armado == null
                               ? null
-                              : detallesDeOrden.ordenEstado[0].armado.nombre
+                              : detallesDeOrden.ordenEstado.armado.nombre
                           )
                         }}</span>
                       </p>
@@ -524,10 +525,10 @@
                       >
                         Fecha de envio:
                         <span class="text-indigo-700">{{
-                          detallesDeOrden.ordenEstado[0].fecha_de_envio == null ? '':
+                          detallesDeOrden.ordenEstado.fecha_de_envio == null ? '':
                           (servicioProduccion.fechaARG(
                             servicioVentas.evitarNulloVacios(
-                              detallesDeOrden.ordenEstado[0].fecha_de_envio
+                              detallesDeOrden.ordenEstado.fecha_de_envio
                             )
                           ))
                         }}</span>
@@ -537,7 +538,7 @@
                       >
                         Transporte:
                         <span class="text-indigo-700">{{
-                          detallesDeOrden.ordenEstado[0].transporte
+                          detallesDeOrden.ordenEstado.transporte
                         }}</span>
                       </p>
                     </div>

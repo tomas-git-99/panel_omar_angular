@@ -5,26 +5,52 @@
       <div class="bg-white rounded-md shadow">
         <!-- content start -->
 
-        
         <div class="grid m-7 gap-4">
-            <div class="flex justify-between">
-                <h3 class="text-gray-600 text-lg font-medium">Editar</h3>
-                <button  (click)="cerrarVentana.emit(false)" role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
-                    <svg width="25" height="25" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-            </div>
+          <div class="flex justify-between">
+            <h3 class="text-gray-600 text-lg font-medium">Editar</h3>
+            <button
+              (click)="cerrarVentana.emit(false)"
+              role="button"
+              aria-label="close label"
+              class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
+            >
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 28 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 7L7 21"
+                  stroke="#A1A1AA"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M7 7L21 21"
+                  stroke="#A1A1AA"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+          </div>
           <select
-
             class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-           #opciones
+            #opciones
             (change)="valueEdit($event.target)"
           >
             <option value="" class="">Opciones:</option>
             <option value="cliente">Cliente</option>
-            <option value="direccion" >Direccion</option>
+            <option value="direccion" *ngIf="estadoDeDireccion">
+              Direccion
+            </option>
+
+            <option value="orden">Detalles de orden</option>
+
           </select>
           <!-- 
     <p class="font-light text-gray-600 text-xs text-center">
@@ -33,95 +59,248 @@
 
           <hr />
 
-          <div *ngIf="opciones.value =='cliente' ? true :false">
+          <div *ngIf="opciones.value == 'cliente' ? true : false">
             <select
-            #editCliente
-            class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-           
-            (change)="valueEdit($event.target)"
-          >
-            <option value="" class="">Opciones cliente:</option>
-            <option value="nombre">Nombre</option>
-            <option value="apellido">Apellido</option>
-            <option value="dni_cuil">DNI o CUIL</option>
-            <option value="email">Email</option>
-            <option value="telefono">Telefono</option>
-          </select>
-
-          <div class="grid gap-5" *ngIf="editCliente.value == '' ? false: true">
-            <label class="font-semibold text-gray-700">Editar:</label>
-            <!--         <textarea class="resize-y rounded-md"></textarea> -->
-
-            <div class="relative z-0 mb-6 w-full group">
-              <input
-                type="text"
-                [name]="editCliente.value"
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-                #editClienteInput
-              />
-              <label
-                for="floating_email"
-                class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >{{ editCliente.value | uppercase }}</label
-              >
-            </div>
-            <button
-            (click)="editarCliente(editCliente.value, editClienteInput)"
-              class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+              #editCliente
+              class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              (change)="valueEdit($event.target)"
             >
-              Cambiar
-            </button>
-          </div>
+              <option value="" class="">Opciones cliente:</option>
+              <option value="nombre">Nombre</option>
+              <option value="apellido">Apellido</option>
+              <option value="dni_cuil">DNI o CUIL</option>
+              <option value="email">Email</option>
+              <option value="telefono">Telefono</option>
+            </select>
+
+            <div
+              class="grid gap-5"
+              *ngIf="editCliente.value == '' ? false : true"
+            >
+              <label class="font-semibold text-gray-700">Editar:</label>
+              <!--         <textarea class="resize-y rounded-md"></textarea> -->
+
+              <div class="relative z-0 mb-6 w-full group">
+                <input
+                  type="text"
+                  [name]="editCliente.value"
+                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+                  #editClienteInput
+                />
+                <label
+                  for="floating_email"
+                  class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >{{ editCliente.value | uppercase }}</label
+                >
+              </div>
+              <button
+                (click)="editarCliente(editCliente.value, editClienteInput)"
+                class="flex items-center justify-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+              >
+                <svg
+                  *ngIf="BotonCarga"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="mr-2 animate-spin"
+                  viewBox="0 0 1792 1792"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z"
+                  ></path>
+                </svg>
+                Cambiar
+              </button>
+            </div>
           </div>
 
-          <div *ngIf="opciones.value =='direccion' ? true :false"> 
+          <div *ngIf="opciones.value == 'direccion' ? true : false">
             <select
-
-            class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-           
-            (change)="valueEdit($event.target)"
-            #editDireccion
-          >
-            <option value="" class="">Opciones direccion:</option>
-            <option value="direccion">Direccion</option>
-            <option value="cp">Codigo postal</option>
-            <option value="localidad">Localidad</option>
-            <option value="provincia">Provincia</option>
-
-          </select>
-          <div class="grid gap-5" *ngIf="editDireccion.value == '' ? false: true">
-            <label class="font-semibold text-gray-700"> Editar:</label>
-            <!--         <textarea class="resize-y rounded-md"></textarea> -->
-
-            <div class="relative z-0 mb-6 w-full group">
-              <input
-                type="text"
-                [name]="editDireccion.value"
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                #editDireccionInput
-                required
-              />
-              <label
-                for="floating_email"
-                class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >{{ editDireccion.value | uppercase }}</label
-              >
-            </div>
-            <button
-            (click)="editarDireccion(editDireccion.value,editDireccionInput )"
-              class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+              class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              (change)="valueEdit($event.target)"
+              #editDireccion
             >
-              Cambiar
-            </button>
-          </div>
-          </div>
+              <option value="" class="">Opciones direccion:</option>
+              <option value="direccion">Direccion</option>
+              <option value="cp">Codigo postal</option>
+              <option value="localidad">Localidad</option>
+              <option value="provincia">Provincia</option>
+            </select>
+            <div
+              class="grid gap-5"
+              *ngIf="editDireccion.value == '' ? false : true"
+            >
+              <label class="font-semibold text-gray-700"> Editar:</label>
+              <!--         <textarea class="resize-y rounded-md"></textarea> -->
 
+              <div class="relative z-0 mb-6 w-full group">
+                <input
+                  type="text"
+                  [name]="editDireccion.value"
+                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  #editDireccionInput
+                  required
+                />
+                <label
+                  for="floating_email"
+                  class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >{{ editDireccion.value | uppercase }}</label
+                >
+              </div>
+              <button
+                (click)="
+                  editarDireccion(editDireccion.value, editDireccionInput)
+                "
+                class="flex items-center justify-center x-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+              >
+                <svg
+                  *ngIf="BotonCarga"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="mr-2 animate-spin"
+                  viewBox="0 0 1792 1792"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z"
+                  ></path>
+                </svg>
+                Cambiar
+              </button>
+            </div>
+
+           
+
+          </div>
+          <div *ngIf="opciones.value == 'orden' ? true : false">
+            <select
+              class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              (change)="valueEdit($event.target)"
+              #editOrdenEstado
+            >
+              <option value="" class="">Opciones:</option>
+              <option value="metodo_de_pago">Metodo de pago</option>
+              <option value="factura">Tipo de factura</option>
+              <option value="pagado">Pagado</option>
+              <option value="transporte">Transporte</option>
+              <option value="fecha_de_envio">Fecha de envio</option>
+              <option value="armado">Armado</option>
+            </select>
+            <div
+              class="grid gap-5"
+              *ngIf="editOrdenEstado.value == 'fecha_de_envio'  || editOrdenEstado.value == 'transporte' || editOrdenEstado.value == 'factura' || editOrdenEstado.value == 'metodo_de_pago' "
+            >
+              <label class="font-semibold text-gray-700"> Editar:</label>
+
+              <div class="relative z-0 mb-6 w-full group">
+                <input
+                  [type]="editOrdenEstado.value == 'fecha_de_envio' ? 'date' : 'text'"
+                  [name]="editOrdenEstado.value"
+                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  #editOrdenEstadoInput
+                  required
+                />
+                <label
+                  for="floating_email"
+                  class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >{{ editOrdenEstado.value | uppercase }}</label
+                >
+              </div>
+              <button
+                (click)="editOrdenEstadoPUT(editOrdenEstado.value, editOrdenEstadoInput)"
+                class="flex items-center justify-center x-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+              >
+                <svg
+                  *ngIf="BotonCarga"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="mr-2 animate-spin"
+                  viewBox="0 0 1792 1792"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z"
+                  ></path>
+                </svg>
+                Cambiar
+              </button>
+
+
+            </div>
+
+            <div *ngIf="editOrdenEstado.value == 'pagado' " class="flex justify-center flex-col items-center gap-5 pt-5">
+              <select
+              class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+           #valueDePago
+            >
+              <option value="" class="">Opciones:</option>
+              <option value="true">Si</option>
+              <option value="false">No</option>
+           
+            </select>
+
+            <button
+            (click)="editOrdenEstadoPUT(editOrdenEstado.value, valueDePago)"
+            class="flex items-center justify-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+          >
+            <svg
+              *ngIf="BotonCarga"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="mr-2 animate-spin"
+              viewBox="0 0 1792 1792"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z"
+              ></path>
+            </svg>
+            Cambiar
+          </button>
+            </div>
+
+            <div *ngIf="editOrdenEstado.value == 'armado' " class="flex justify-center flex-col items-center gap-5 pt-5">
+              <select
+              class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+           #armadoPor
+            >
+              <option value="" class="">Opciones:</option>
+              <option  *ngFor="let local of arrayLocales" [value]="local.id">{{local.nombre}}</option>
+            
+           
+            </select>
+
+
+            <button
+            (click)="editOrdenEstadoPUT(editOrdenEstado.value, armadoPor)"
+           
+            class="flex items-center justify-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+          >
+            <svg
+              *ngIf="BotonCarga"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="mr-2 animate-spin"
+              viewBox="0 0 1792 1792"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z"
+              ></path>
+            </svg>
+            Cambiar
+          </button>
+            </div>
           <!-- nota -->
-
-        
         </div>
 
         <!-- content end -->

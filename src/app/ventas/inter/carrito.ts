@@ -27,6 +27,7 @@ export interface Carrito {
     color:            string;
     sub_modelo:       null | string;
     sub_dibujo:       null | string;
+    sub_local:       null | string;
     productoDetalles: ProductoDetalles;
   }
   

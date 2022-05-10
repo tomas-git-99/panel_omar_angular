@@ -78,8 +78,8 @@ export class ModifyComponent implements OnInit {
         this.arrayCarritoProductos.push({
           id: x.productoVentas.id,
           color:x.productoVentas.color,
-          codigo: x.productoVentas.productoDetalles.producto.codigo,
-          local: x.productoVentas.productoDetalles.local,
+          codigo: (  x.productoVentas.productoDetalles == null ? x.productoVentas.id : x.productoVentas.productoDetalles.producto.codigo),
+          local: (  x.productoVentas.productoDetalles == null ? x.productoVentas.sub_local  : x.productoVentas.productoDetalles.local),
           modelo:
             x.productoVentas.sub_modelo == null
               ? x.productoVentas.productoDetalles.producto.modelo
@@ -139,16 +139,15 @@ export class ModifyComponent implements OnInit {
   }
 
   IDoCodigoParaNota(id: number){
-    let data = this.detallesDeOrden.orden_detalle
+  /*   let data = this.detallesDeOrden.orden_detalle
     .find( (d:any )=> d.productoVentas.id == id)
 
+    console.log(data);
     if(data.productoVentas.productoDetalles == null){
-
       return id
-
     }else{
       return data.productoVentas.productoDetalles.producto.codigo
-    }
+    } */
   }
 
   seleccionIDproducto(id:number | string){

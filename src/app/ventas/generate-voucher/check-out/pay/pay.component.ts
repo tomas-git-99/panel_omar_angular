@@ -58,9 +58,22 @@ export class PayComponent implements OnInit {
     return parseInt( totalProductos ) - parseInt( descuentos )  ;
   }
 
-  enviarForm(value: FormaDePago){
+  enviarForm(value: FormaDePago | any){
 
     console.log(value);
+
+
+    Object.keys(value).map(function(key, index) {
+      if(value[key] == ''){
+        delete value[key];
+      }
+    });
+
+    if(value.pagado == 'true'){
+      value.pagado == true
+    }else if(value.pagado == 'false'){
+      value.pagado == false
+    }
 
     let id_usuario = localStorage.getItem('id_usuario');
     let {cliente} = JSON.parse(localStorage.getItem('cliente') || '[]');
@@ -72,6 +85,9 @@ export class PayComponent implements OnInit {
       console.log(res)
       if(res.ok === true) {
 
+        localStorage.removeItem('cliente');
+        localStorage.removeItem('notas');
+        localStorage.removeItem('descuentos');
         this.router.navigate([`/invoice/${res.data.id}`]);
         this.cargaDeBoton = false;
 

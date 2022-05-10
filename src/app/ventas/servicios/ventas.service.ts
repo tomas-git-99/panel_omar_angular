@@ -280,4 +280,16 @@ export class VentasService {
   postCrearProuductoVentas(data:any){
     return this.http.post(environment.urlBackendProduccion + 'productos-ventas' , data);
   }
+
+  putEditarCliente(id_cliente:any,data:any){
+    return this.http.put(environment.urlBackendProduccion + 'cliente/'+id_cliente, data);
+  }
+
+  putEditarDireccion(id_direccion:any,data:any){
+    return this.http.put(environment.urlBackendProduccion + 'cliente/direccion/'+id_direccion, data);
+  }
+
+  putEditarOrdenEstado(id:any,data:any){
+    return this.http.put(environment.urlBackendProduccion + 'estado-orden/'+id, data);
+  }
 }

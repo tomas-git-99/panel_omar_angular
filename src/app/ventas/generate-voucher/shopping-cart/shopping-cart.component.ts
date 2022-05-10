@@ -95,6 +95,8 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   arreglarCarrito(carrito: CarritoElement[]) {
+
+    console.log(carrito)
     carrito.map((x) => {
       if (
         this.arrayCarritoProductos.some((t) => t.id == x.producto.id) == false
@@ -103,8 +105,8 @@ export class ShoppingCartComponent implements OnInit {
         this.arrayCarritoProductos.push({
           id: x.producto.id,
           color:x.producto.color,
-          codigo: x.producto.productoDetalles.producto.codigo,
-          local: x.producto.productoDetalles.local,
+          codigo: ( x.producto.productoDetalles == null ? x.producto.id : x.producto.productoDetalles.producto.codigo),
+          local: ( x.producto.productoDetalles == null ?   x.producto.sub_local :  x.producto.productoDetalles.local  ),
           modelo:
             x.producto.sub_modelo == null
               ? x.producto.productoDetalles.producto.modelo

@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="text-xs md:text-sm leading-none text-gray-600 mt-2 flex flex-col">
                                         <span class="font-medium">Fecha emision: <span class="font-light"> {{servicioProduccion.fechaARG(item.created_at)}}</span> </span> 
-                                        <span class="font-medium">Fecha de pago: <span class="font-light"> {{item.ordenEstado.fecha_de_pago == null ? '- -' : servicioProduccion.fechaARG(item.ordenEstado.fecha_de_pago) }}</span> </span> 
+                                        <span class="font-medium">Fecha de pago: <span class="font-light"> {{item.ordenEstado == null ? '- -' : ( item.ordenEstado.fecha_de_pago == null ? '- -' : servicioProduccion.fechaARG(item.ordenEstado.fecha_de_pago)) }}</span> </span> 
                                     </div>
                                 </div>
                             </div>

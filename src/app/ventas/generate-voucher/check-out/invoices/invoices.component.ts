@@ -67,7 +67,7 @@ export class InvoicesComponent implements OnInit {
         this.nuevoArrayConPro.push({
           id: x.productoVentas.id,
           color:x.productoVentas.color,
-          codigo: x.productoVentas.productoDetalles.producto.codigo,
+          codigo: x.productoVentas.productoDetalles == null ?   x.productoVentas.id : x.productoVentas.productoDetalles.producto.codigo,
           local: x.productoVentas.productoDetalles == null ? '': x.productoVentas.productoDetalles.local.nombre,
           modelo:
             x.productoVentas.sub_modelo == null

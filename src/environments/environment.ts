@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  urlBackendProduccion: 'https://tiendamilena.com.ar/api/'
-
+  urlBackendProduccion: 'http://localhost:9000/api/'
  // urlBackendProduccion: 'http://localhost:3000/'
 };
 

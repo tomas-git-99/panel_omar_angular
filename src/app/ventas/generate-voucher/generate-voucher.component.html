@@ -241,7 +241,7 @@
                          </div>
                         </td>
                         <td class="">
-                            <p class="font-medium text-center capitalize">{{producto.productoDetalles == null ? '- -': producto.productoDetalles.local.nombre}}</p>
+                            <p class="font-medium text-center capitalize">{{  producto.sub_local == null ?  (producto.productoDetalles == null ? '- -': producto.productoDetalles.local.nombre ): producto.sub_local.nombre }}</p>
                          
                         </td>
                         <td class="">
