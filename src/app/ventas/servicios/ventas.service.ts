@@ -268,4 +268,16 @@ export class VentasService {
   putEditarCarrito(id_carrito:any, data:any){
     return this.http.put(environment.urlBackendProduccion + 'carrito/'+ id_carrito , data);
   }
+
+  postCrearLocal(data:any){
+    return this.http.post(environment.urlBackendProduccion + 'local' , data);
+  }
+
+  postCrearCategoria(data:any){
+    return this.http.post(environment.urlBackendProduccion + 'categoria' , data);
+  }
+
+  postCrearProuductoVentas(data:any){
+    return this.http.post(environment.urlBackendProduccion + 'productos-ventas' , data);
+  }
 }

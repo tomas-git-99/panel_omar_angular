@@ -15,6 +15,10 @@ export class PagosComponent implements OnInit {
   faScroll = faScroll;
   faPaintRoller = faPaintRoller;
   faPerson = faPerson;
+
+
+
+  abrirVentanaTalleres: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

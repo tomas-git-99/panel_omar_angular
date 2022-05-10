@@ -31,6 +31,7 @@ export class EstampadoComponent implements OnInit {
     this.servicioProduccion.getObtenerEstampado(busqueda, pagina).subscribe(
       (res) => {
         this.arrayEstampados = res.data
+
         this.conteoDepagina = res.contador;
         //this.calcularPaginas(res.contador);
 
@@ -51,5 +52,18 @@ export class EstampadoComponent implements OnInit {
     console.log(value);
     this.productosYbuscador(value)
 
+  }
+
+  dataSeleccionada:any;
+
+  abrirCerrarVentanaModificarProducto:boolean = false
+
+
+  editarEstampado(id:number){
+    this.arrayEstampados.forEach(element => {
+      if(element.id == id){
+        this.dataSeleccionada = element;
+      }
+    });
   }
 }

@@ -8,6 +8,9 @@ import { VentasService } from '../servicios/ventas.service';
 })
 export class OpcionesComponent implements OnInit {
 
+
+  abrirVentana:boolean = false
+
   constructor(public servicioVentas:VentasService) { }
 
   ngOnInit(): void {

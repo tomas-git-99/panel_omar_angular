@@ -19,7 +19,7 @@
 
           <input
             type="text"
-            placeholder="Buscar..."
+            placeholder="Buscar por codigo..."
             #box
             (keyup.enter)="onKey(box.value)"
             class="px-8 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
@@ -318,6 +318,8 @@
                 <button
                   type="button"
                   class="text-gray-600 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700"
+                  (click)="editarEstampado(items.id)"
+                  (click)="abrirCerrarVentanaModificarProducto = !abrirCerrarVentanaModificarProducto"
                 >
                   <img src="/assets/icon/edits.png" alt="" class="w-7" />
                 </button>
@@ -336,3 +338,12 @@
     </div>
   </div>
 </div>
+
+
+<app-modificar-estampado
+*ngIf="abrirCerrarVentanaModificarProducto"
+[dataSeleccionadaMODY]="dataSeleccionada"
+(AbrirCerrarVentana)="abrirCerrarVentanaModificarProducto = !abrirCerrarVentanaModificarProducto"
+>
+
+</app-modificar-estampado>

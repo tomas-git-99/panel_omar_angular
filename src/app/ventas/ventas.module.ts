@@ -40,6 +40,7 @@ import { AgregarCategoriaComponent } from './opciones/agregar-categoria/agregar-
 import { MigrarProductosComponent } from './opciones/migrar-productos/migrar-productos.component';
 import { AgregarNuevoLocalComponent } from './opciones/agregar-nuevo-local/agregar-nuevo-local.component';
 import { PaginacionComponent } from './paginacion/paginacion.component';
+import { AgregarProductosComponent } from './opciones/agregar-productos/agregar-productos.component';
 
 
 
@@ -83,6 +84,7 @@ import { PaginacionComponent } from './paginacion/paginacion.component';
     MigrarProductosComponent,
     AgregarNuevoLocalComponent,
     PaginacionComponent,
+    AgregarProductosComponent,
     
     
   ],

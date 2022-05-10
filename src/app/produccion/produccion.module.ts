@@ -21,6 +21,10 @@ import { AgregarEstampadorComponent } from './agregar/agregar-estampador/agregar
 
 import { TablasComponent } from './cargas/tablas/tablas.component';
 import { PaginacionProduccionComponent } from './paginacion-produccion/paginacion-produccion.component';
+import { VerTalleresComponent } from './agregar/ver-talleres/ver-talleres.component';
+import { ModificarEstampadoComponent } from './estampado/modificar-estampado/modificar-estampado.component';
+import { TalleresComponent } from './pagos/talleres/talleres.component';
+import { ParaImprimirTallerComponent } from './pagos/talleres/para-imprimir-taller/para-imprimir-taller.component';
 
 
 
@@ -43,6 +47,10 @@ import { PaginacionProduccionComponent } from './paginacion-produccion/paginacio
     AgregarEstampadorComponent,
     TablasComponent,
     PaginacionProduccionComponent,
+    VerTalleresComponent,
+    ModificarEstampadoComponent,
+    TalleresComponent,
+    ParaImprimirTallerComponent,
   
 
     

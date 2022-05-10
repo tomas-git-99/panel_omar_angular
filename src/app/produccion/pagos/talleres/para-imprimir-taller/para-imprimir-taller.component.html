@@ -1,0 +1,142 @@
+<div class="fixed inset-0 flex items-center justify-center z-50">
+  <div
+    class="px-6 py-4 rounded-md text-lg flex items-center justify-center w-full"
+  >
+    <div
+      class="relative overflow-x-auto shadow-md sm:rounded-lg bg-gray-100 p-5 "
+    >
+
+    <div class="flex w-full justify-end">
+      
+      <button  (click)="AbrirCerrarVentana.emit(false)" role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </button>
+    </div>
+
+    <div class="" id="imprimir">
+      <div class="flex gap-5 py-5 ">
+       
+        <p class="text-gray-700 font-medium"> Taller:  <span class="text-indigo-500 font-normal"> {{dataInsertada.taller.nombre_completo}}</span> </p>
+        <p class="text-gray-700 font-medium"> De: <span class="text-indigo-500 font-normal"> {{servicioProduccion.fechaARG (dataInsertada.de)}}</span>  </p>
+        <p class="text-gray-700 font-medium"> Hasta: <span class="text-indigo-500 font-normal"> {{servicioProduccion.fechaARG(dataInsertada.hasta)}} </span> </p>
+
+
+ 
+    </div>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Codigo</th>
+          <th scope="col" class="px-6 py-3 text-center">Modelo</th>
+          <th scope="col" class="px-6 py-3 text-center">Fecha</th>
+          <th scope="col" class="px-6 py-3">Cantida Entregada</th>
+          <th scope="col" class="px-6 py-3 text-center">Precio</th>
+          <th scope="col" class="px-6 py-3">Total</th>
+        </tr>
+      </thead>
+      <tbody
+        *ngFor="let item of dataArray.producto; let i = index"
+        [attr.data-index]="i"
+      >
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+          >
+            {{ item.codigo }}
+          </th>
+          <td class="px-6 text-center">{{item.modelo}}</td>
+          <td class="px-6 text-center">{{ servicioProduccion.fechaARG(item.fecha_de_entrada)}}</td>
+          <td class="px-6 text-center">{{ item.cantidad_entregada }}</td>
+          <td class="px-6 ">
+            <div class="relative">
+              <input
+                type="number"
+                min="0"
+                id="rounded-email"
+                class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-16 h-10 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                placeholder=""
+                (keyup)="onChange($event.target, item.cantidad_entregada, item.id)"
+              />
+            </div>
+          </td>
+          <td class="px-6 py-4 text-center" [id]="item.id">$0</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex w-full justify-end py-3">
+      <p class="text-gray-600 text-2xl ">
+        Total: <span>{{ totalPrecios | currency }}</span>
+      </p>
+    </div>
+  
+    </div>
+     
+
+    
+        <div  class=" flex w-full justify-between items-center content-center">
+          <button
+          (click)="pdf('imprimir')"
+            type="button"
+            class="py-2 px-4 flex justify-center items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            <svg
+              *ngIf="botonDeCarga"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="mr-2 animate-spin"
+              viewBox="0 0 1792 1792"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z"
+              ></path>
+            </svg>
+            Imprimir
+          </button>
+
+
+          <button
+            type="button"
+            (click)="pagar()"
+            class="py-2 px-4 flex justify-center items-center bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            <svg
+              *ngIf="botonDeCarga"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="mr-2 animate-spin"
+              viewBox="0 0 1792 1792"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z"
+              ></path>
+            </svg>
+            Pagar
+          </button>
+
+
+        </div>
+      
+    
+    </div>
+  </div>
+</div>
+
+<style>
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>
