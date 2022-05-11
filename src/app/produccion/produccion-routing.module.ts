@@ -8,6 +8,7 @@ import { PagosComponent } from './pagos/pagos.component';
 import { RollosComponent } from './rollos/rollos.component';
 import { DistribucionComponent } from './distribucion/distribucion.component';
 import { AgregarComponent } from './agregar/agregar.component';
+import { EmpleadosComponent } from './pagos/empleados/empleados.component';
 
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [
       {path:'distribucion', component: DistribucionComponent},
       {path:'pago', component: PagosComponent},
       {path:'rollos', component: RollosComponent},
+      {path:'empleados', component: EmpleadosComponent},
       {path:'**', redirectTo: 'producto'}
     ]
   },

@@ -25,9 +25,16 @@ import { VerTalleresComponent } from './agregar/ver-talleres/ver-talleres.compon
 import { ModificarEstampadoComponent } from './estampado/modificar-estampado/modificar-estampado.component';
 import { TalleresComponent } from './pagos/talleres/talleres.component';
 import { ParaImprimirTallerComponent } from './pagos/talleres/para-imprimir-taller/para-imprimir-taller.component';
+import { EmpleadosComponent } from './pagos/empleados/empleados.component';
 
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 
-
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -51,6 +58,7 @@ import { ParaImprimirTallerComponent } from './pagos/talleres/para-imprimir-tall
     ModificarEstampadoComponent,
     TalleresComponent,
     ParaImprimirTallerComponent,
+    EmpleadosComponent,
   
 
     
@@ -61,7 +69,7 @@ import { ParaImprimirTallerComponent } from './pagos/talleres/para-imprimir-tall
     FontAwesomeModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    FullCalendarModule
 
 
   ]

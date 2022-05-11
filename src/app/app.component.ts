@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faFilter, faUser } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import { ProduccionService } from './produccion/servicios/produccion.service';
 import { ServicioService } from './servicio.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class AppComponent {
   ventanaProduccion:boolean = false;
   ventanaVentas:boolean = false;
 
-  constructor(public servicio:ServicioService, private router:Router){
+  constructor(public servicio:ServicioService, private router:Router, public servicioProduccion:ProduccionService){
 
     this.nombreUsuario = localStorage.getItem('usuario')
 
@@ -84,6 +85,34 @@ export class AppComponent {
     usuarios: '/usuario',
 
   }
+
+  ngOnInit(): void {
+
+    this.servicioProduccion.actualizarPagina$.subscribe( () => {
+
+      this.nombreUsuario = localStorage.getItem('usuario')
+  
+      localStorage.getItem('rol') === 'admin'
+      ? this.mostrartPanelUsuario = true
+      : this.mostrartPanelUsuario = false;
+  
+  
+      if(localStorage.getItem('rol') == 'ventas'){
+        this.ventanaVentas = true;
+      }else if (localStorage.getItem('rol') == 'produccion'){
+        this.ventanaProduccion = true;
+      }else if (localStorage.getItem('rol') == 'admin'){
+        this.ventanaVentas = true;
+        this.ventanaProduccion = true;
+    
+      }
+    })
+
+  
+  }
+
+
+ 
 
   sizeIconNav = '25px'
 

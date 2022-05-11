@@ -53,6 +53,10 @@ export class ProductosComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.servicioProduccion.actualizarPagina$.emit(true)
+
+    
+
     this.productosYbuscador();
 
     

@@ -16,6 +16,9 @@ export class AgregarComponent implements OnInit {
   faScroll = faScroll;
   faPaintRoller = faPaintRoller;
 
+
+  abrirVentanaVerTaller: boolean = false;
+
   constructor(public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {

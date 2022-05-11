@@ -12,6 +12,17 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { CrearUsuarioComponent } from './usuario/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './usuario/editar-usuario/editar-usuario.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
+
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProduccionModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    
+    FullCalendarModule
     
     
   ],

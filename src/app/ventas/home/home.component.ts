@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ProduccionService } from 'src/app/produccion/servicios/produccion.service';
 import { InfoProductos, ProductosVentasTodos } from '../inter/productosVentasTodos';
 import { VentasService } from '../servicios/ventas.service';
 
@@ -57,9 +58,11 @@ export class HomeComponent implements OnInit {
 
   valorInput = null;
 
-  constructor(public servicioVentas:VentasService) { }
+  constructor(public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
+
+    this.servicioProduccion.actualizarPagina$.emit(true)
 
     this.servicioVentas.getObtenerLocales().subscribe(
       res => {

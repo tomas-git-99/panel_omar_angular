@@ -43,6 +43,10 @@ export class ProduccionService {
   SalirDelPlano:string = "animate__bounceOutLeft";
   EntrarAlPlano:string = "animate__bounceInRight";
 
+
+  //recargar pagina 
+  actualizarPagina$ = new EventEmitter<any>();
+
   constructor(private http: HttpClient) { }
 
 
@@ -236,4 +240,14 @@ export class ProduccionService {
   putPagarTaller(taller:number | string, de:any, hasta:any, data:any){
     return this.http.put<any>(environment.urlBackendProduccion + 'pagos/talleres/pago?taller='+ + taller + '&de=' + de + '&hasta=' + hasta, data);
   }
+
+  putEditarTaller(id_taller:any, data:any){
+    return this.http.put<any>(environment.urlBackendProduccion + 'taller/'+ id_taller, data);
+  }
+
+
+  getTallerALL( busqueda:string = '', pagina:number | string = 0 ){
+    return this.http.get<any>(environment.urlBackendProduccion + 'taller/full'+'?keyword=' + busqueda + '&skip=' + pagina);
+  }
+
 }

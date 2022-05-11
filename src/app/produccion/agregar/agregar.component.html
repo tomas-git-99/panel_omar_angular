@@ -216,14 +216,11 @@
         <h1
           class="text-2xl font-semibold text-gray-700 capitalize dark:text-white"
         >
-          agregar producto nuevo
+        ver talleres o editar
         </h1>
      
         <a
-          (click)="
-            servicioProduccion.abrirVentanaAgregraProductos =
-              !servicioProduccion.abrirVentanaAgregraProductos
-          "
+        (click)="abrirVentanaVerTaller = !abrirVentanaVerTaller"
           (click)="
             servicioProduccion.ventanaDeAgregarOpciones =
               !servicioProduccion.ventanaDeAgregarOpciones
@@ -248,7 +245,7 @@
       </div>
 
       <div
-        class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl"
+        class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl" *ngIf=""
       >
         <span class="inline-block text-blue-500 dark:text-blue-400">
           <fa-icon [icon]="faBuilding" class="" size="lg"></fa-icon>
@@ -257,14 +254,11 @@
         <h1
           class="text-2xl font-semibold text-gray-700 capitalize dark:text-white"
         >
-          agregar taller nuevo
+          ver talleres o editar
         </h1>
    
         <a
-          (click)="
-            servicioProduccion.abrirVentanaAgregraTaller =
-              !servicioProduccion.abrirVentanaAgregraTaller
-          "
+          (click)="abrirVentanaVerTaller = !abrirVentanaVerTaller"
           (click)="
             servicioProduccion.ventanaDeAgregarOpciones =
               !servicioProduccion.ventanaDeAgregarOpciones
@@ -289,7 +283,7 @@
       </div>
 
       <div
-        class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl"
+        class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl"  *ngIf=""
       >
         <span class="inline-block text-blue-500 dark:text-blue-400">
           <fa-icon [icon]="faPaintRoller" class="" size="lg"></fa-icon>
@@ -385,4 +379,11 @@
 
 
 
-<app-ver-talleres *ngIf></app-ver-talleres>
+<app-ver-talleres 
+*ngIf="abrirVentanaVerTaller"
+(cerrarVentana)="abrirVentanaVerTaller = !abrirVentanaVerTaller"
+(cerrarVentana)="
+            servicioProduccion.ventanaDeAgregarOpciones =
+              !servicioProduccion.ventanaDeAgregarOpciones
+          "
+></app-ver-talleres>
