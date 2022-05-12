@@ -48,7 +48,7 @@
         <div class="flex gap-5">
           <div class="flex flex-col">
             <label for="name-with-label" class="text-gray-700">
-              Modelo ( {{ productoSeleccionado.sub_modelo }} )
+              Modelo ( {{ servicioVentas.evitarNulloVacios(productoSeleccionado.sub_modelo) }} )
             </label>
             <input
               type="text"
@@ -59,7 +59,7 @@
 
           <div class="flex flex-col">
             <label for="name-with-label" class="text-gray-700">
-              Diseño/Dibujo ( {{ productoSeleccionado.sub_dibujo }} )
+              Diseño/Dibujo ( {{ servicioVentas.evitarNulloVacios(productoSeleccionado.sub_dibujo) }} )
             </label>
             <input
               type="text"
@@ -71,7 +71,7 @@
         <div class="flex gap-5">
           <div class="flex flex-col">
             <label for="name-with-label" class="text-gray-700">
-              Color ( {{ productoSeleccionado.color }} )
+              Color ( {{ servicioVentas.evitarNulloVacios(productoSeleccionado.color) }} )
             </label>
             <input
               type="text"
@@ -83,7 +83,7 @@
 
           <div class="flex flex-col">
             <label for="name-with-label" class="text-gray-700">
-              Precio ( {{ productoSeleccionado.precio }} )
+              Precio ( {{ servicioVentas.evitarNulloVacios(productoSeleccionado.precio) }} )
             </label>
             <input
               type="text"
@@ -101,7 +101,7 @@
                 formControlName="sub_local"
             >
               <option value="">
-                Local: ( {{ productoSeleccionado.sub_local.nombre }})
+                Local: ( {{ productoSeleccionado.sub_local == null ? 'No tiene' : productoSeleccionado.sub_local }} )
               </option>
               <option  *ngFor="let local of arrayDeLocales" [value]="local.id">{{local.nombre}}</option>
             </select>
@@ -135,7 +135,7 @@
                 formControlName="categoria"
               >
                 <option value="">
-                  Categoria: ( {{ productoSeleccionado.categoria.nombre }})
+                  Categoria: ( {{  productoSeleccionado.categoria == null ? 'No tiene' : productoSeleccionado.categoria }} )
                 </option>
                 <option *ngFor="let categoria of arrayDeCatergoria" [value]="categoria.id">{{categoria.nombre}}</option>
               </select>
