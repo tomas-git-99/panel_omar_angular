@@ -94,7 +94,7 @@ export class AgregarProductosComponent implements OnInit {
 
 
     Object.keys(values).map(function(key, index) {
-      if(values[key] == ''){
+      if(values[key] == '' || values[key] == null){
         delete values[key];
       }
     });
@@ -118,7 +118,8 @@ export class AgregarProductosComponent implements OnInit {
             timer: 1500
           })
           this.BotonCarga = false;
-        
+          this.arrayDeTalles = [];
+          this.FormAgregarProductos.reset();
 
         }else{
           this.BotonCarga = false;

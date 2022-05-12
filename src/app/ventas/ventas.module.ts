@@ -41,6 +41,7 @@ import { MigrarProductosComponent } from './opciones/migrar-productos/migrar-pro
 import { AgregarNuevoLocalComponent } from './opciones/agregar-nuevo-local/agregar-nuevo-local.component';
 import { PaginacionComponent } from './paginacion/paginacion.component';
 import { AgregarProductosComponent } from './opciones/agregar-productos/agregar-productos.component';
+import { MoficadorDeProductosBetaComponent } from './generate-voucher/moficador-de-productos-beta/moficador-de-productos-beta.component';
 
 
 
@@ -85,6 +86,7 @@ import { AgregarProductosComponent } from './opciones/agregar-productos/agregar-
     AgregarNuevoLocalComponent,
     PaginacionComponent,
     AgregarProductosComponent,
+    MoficadorDeProductosBetaComponent,
     
     
   ],

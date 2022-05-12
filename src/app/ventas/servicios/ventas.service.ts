@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { Carrito } from '../inter/carrito';
 import { HistorialOrden } from '../inter/ordenHistorial';
 import { Distribucion, ProductosVentasTodos, TallesVenta } from '../inter/productosVentasTodos';
@@ -291,5 +291,13 @@ export class VentasService {
 
   putEditarOrdenEstado(id:any,data:any){
     return this.http.put(environment.urlBackendProduccion + 'estado-orden/'+id, data);
+  }
+
+  putEditarTallesVentas(id:any,data:any){
+    return this.http.put(environment.urlBackendProduccion + 'ventas-talles/'+id, data);
+  }
+
+  deleteProductoVenta(id:any){
+    return this.http.delete(environment.urlBackendProduccion + 'productos-ventas/'+id);
   }
 }

@@ -1,22 +1,43 @@
 <div
   class="mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50"
   id="signin-success-message"
-
 >
   <div
     class="px-6 py-4 rounded-md text-lg flex items-center justify-center w-full"
   >
     <div class="bg-white shadow p-2">
       <div class="flex justify-end">
-        <button (click)="abrirCerrarVentana.emit(false)" role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+        <button
+          (click)="abrirCerrarVentana.emit(false)"
+          role="button"
+          aria-label="close label"
+          class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 7L7 21"
+              stroke="#A1A1AA"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M7 7L21 21"
+              stroke="#A1A1AA"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
           </svg>
-    </button>
-
+        </button>
       </div>
-    
+
       <div>
         <h3 class="text-center text-gray-600">Talles</h3>
         <div class="flex flex-row items-center">
@@ -35,7 +56,9 @@
               (click)="eleccionar(data.id)"
             >
               <div class="flex justify-between">
-                <p class="font-medium text-gray-700 text-sm">Talle: {{data.talle}}</p>
+                <p class="font-medium text-gray-700 text-sm">
+                  Talle: {{ data.talle }}
+                </p>
 
                 <button
                   role="button"
@@ -68,7 +91,8 @@
                 </button>
               </div>
               <p class="font-medium text-gray-700 text-sm">
-                Cantidad: <span class="text-green-600">{{data.cantidad}}</span>
+                Cantidad:
+                <span class="text-green-600">{{ data.cantidad }}</span>
               </p>
             </div>
           </div>
@@ -76,51 +100,47 @@
 
         <!-- Input nuevo valor -->
         <div class="grid gap-2" *ngIf="numeroSeleccionado > 0">
-        <h3 class="text-center text-gray-600">Cantidad</h3>
-            
+          <h3 class="text-center text-gray-600">Cantidad</h3>
 
-        <div class="flex flex-column item-center gap-4 justify-center">
+          <div class="flex flex-column item-center gap-4 justify-center">
             <button (click)="restar()">
-                <fa-icon [icon]="faMinus" style="color: gray" size="sm"></fa-icon>
-              </button>
+              <fa-icon [icon]="faMinus" style="color: gray" size="sm"></fa-icon>
+            </button>
 
-          <div class="relative">
-            <input
-              type="number"
-              min="1" max="999"
-              id="rounded-email"
-              [value]="cantidadSeleccionada"
-              class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-14 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              
-            />
+            <div class="relative">
+              <input
+                type="number"
+                min="1"
+                max="999"
+                id="rounded-email"
+                [value]="cantidadSeleccionada"
+                class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-14 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              />
+            </div>
+            <button (click)="sumar()">
+              <fa-icon [icon]="faPlus" style="color: gray" size="sm"></fa-icon>
+            </button>
           </div>
-          <button (click)="sumar()">
-            <fa-icon [icon]="faPlus" style="color: gray" size="sm"></fa-icon>
-          </button>
 
+          <div class="flex justify-center">
+            <button
+              (click)="guardarCambios()"
+              type="button"
+              class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-3/12 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            >
+              Modificar
+            </button>
+          </div>
         </div>
-
-        <div class="flex justify-center">
-
-<button (click)="guardarCambios()" type="button" class="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-3/12 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-    Modificar
-</button>
-
-        </div>
-
-    </div>
-
-
       </div>
     </div>
   </div>
 </div>
 
-
 <style>
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  </style>
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>

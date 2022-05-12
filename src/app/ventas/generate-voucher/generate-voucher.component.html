@@ -249,7 +249,23 @@
                           
                         </td>
                         <td class="">
-                            <div class="flex items-center">
+
+                          
+                            <div class="flex items-center gap-2">
+                              <div class="bg-red-300 border-2 p-2 rounded-md cursor-pointer hover:bg-red-200" (click)="eliminarProducto(producto.id)">
+                                <fa-icon [icon]="faTrash" class="text-gray-600 hover:text-gray-700" >
+  
+                                    </fa-icon>
+                              
+                                </div>
+  
+                              <div class="border-2 p-2 rounded-md cursor-pointer hover:bg-white" (click)="seleccionDeProductoModificar(producto.id)">
+                              <fa-icon [icon]="faWrech" class="text-gray-600 hover:text-gray-700" >
+
+                                  </fa-icon>
+                            
+                              </div>
+
                                 <button (click)="agregarCarrito(producto.id)" class=" bg-white transition duration-150 ease-in-out hover:border-indigo-600 hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-3 py-2 text-xs">Agregar a carrito</button>
 
                                
@@ -304,3 +320,12 @@
 </body>
 <app-shopping-cart *ngIf="servicioVentas.abrirCerrarVentanaCarritoDeCompras"></app-shopping-cart>
 <app-quick-views  [id_producto]="id_producto_Padre" ></app-quick-views>
+
+
+<app-moficador-de-productos-beta
+*ngIf="abriCerrarVentana"
+(cerrarVentana)="abriCerrarVentana = !abriCerrarVentana"
+[productoSeleccionado]="enviarProductoSeleccionado"
+[arrayDeCatergoria]="categoriaArrays"
+[arrayDeLocales]="localesArray"
+></app-moficador-de-productos-beta>
