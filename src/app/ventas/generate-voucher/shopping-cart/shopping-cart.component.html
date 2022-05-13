@@ -348,6 +348,7 @@
   *ngIf="abrirCerrarVentanaEditarProducto"
   (abrirCerrarVentana)="abrirCerrarVentanaEditarProducto = !abrirCerrarVentanaEditarProducto"
   [arrayDeTallesYproductos]="arrayProducotData"
+  (eliminarElUltimoProducto)="eliminarProducto($event)"
 ></app-edit-articulo-cart>
 <app-change-price *ngIf="servicioVentas.abrirCerrarVentanaCambiarPrecio" [arrayCarritoProductosHijo]="arrayCarritoProductos" ></app-change-price>
 <app-note         *ngIf="servicioVentas.abrirCerrarVentanaAgregarNota"  [arrayCarritoProductosHijo]="arrayCarritoProductos"   ></app-note>

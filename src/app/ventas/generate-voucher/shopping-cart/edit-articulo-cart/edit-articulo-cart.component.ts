@@ -49,6 +49,11 @@ export class EditArticuloCartComponent implements OnInit {
   @Output()
   abrirCerrarVentana = new EventEmitter<boolean>();
 
+  @Output()
+  eliminarElUltimoProducto = new EventEmitter<number| string>();
+
+  dataParaModificar:any;
+
   numeroSeleccionado: number = 0;
   cantidadSeleccionada: number = 0;
 
@@ -60,15 +65,35 @@ export class EditArticuloCartComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.arrayDeTallesYproductos);
+
+    // orden por talle usadon orden this.arrayDeTallesYproductos.talles
+
+    this.arrayDeTallesYproductos.talles.sort((a: any, b: any) => {
+      if (a.talle < b.talle) {
+        return -1;
+      }
+      if (a.talle > b.talle) {
+        return 1;
+      }
+      return 0;
+    }
+    );
+
   }
 
   eleccionar(numero: number) {
+
+    console.log(numero);
     this.idCarrito = numero;
-    this.numeroSeleccionado = numero;
+    this.numeroSeleccionado == numero 
+    ?this.numeroSeleccionado = 0
+    :this.numeroSeleccionado = numero;
 
     this.arrayDeTallesYproductos.talles.map((x: any) => {
       if (x.id == numero) {
         this.cantidadSeleccionada = x.cantidad;
+
+        this.dataParaModificar = x
       }
     });
   }
@@ -121,6 +146,11 @@ export class EditArticuloCartComponent implements OnInit {
             this.arrayDeTallesYproductos.talles.splice(index, 1);
           }
         })
+
+        if (this.arrayDeTallesYproductos.talles.length == 0) {
+          console.log('eliminar');
+          this.eliminarElUltimoProducto.emit(this.arrayDeTallesYproductos.id);
+        }
         Swal.fire('Deleted!', 'Se elimino correctamente', 'success');
 
       }else{

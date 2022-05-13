@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('rol', res.data.roles);
 
         res.data.roles == 'ventas'
-        ? localStorage.setItem('local', res.data.local)
+        ? localStorage.setItem('local',  JSON.stringify(res.data.local))
         :'';
 
         res.data.roles == 'ventas'

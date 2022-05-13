@@ -38,7 +38,11 @@ export class QuickViewsComponent implements OnInit {
     });
 
     this.servicioVentas.arrayDeProductoCarrito$.subscribe((x: Datum) => {
+
+
       this.dataProducto = x;
+
+    
 
       x.talles_ventas.map((p) => {
         const control = <FormArray>this.FormularioProductos.get('talles');
@@ -79,6 +83,14 @@ export class QuickViewsComponent implements OnInit {
             title: '',
             showConfirmButton: false,
             timer: 1500
+          })
+
+          this.dataProducto.talles_ventas.map((p) => {
+            limpiarTalles.map((t) => {
+              if (p.talles === t.talle) {
+                p.cantidad -= t.cantidad;
+              }
+            })
           })
         }else{
           Swal.fire({

@@ -31,7 +31,7 @@ export class NoteComponent implements OnInit {
   }
 
   agregarNota(id:string, nota:string){
-    console.log(id, nota)
+ 
 
     if(id == '' || nota == ''){
 
@@ -43,6 +43,7 @@ export class NoteComponent implements OnInit {
       localStorage.setItem('notas', JSON.stringify([{id_producto:id.split(',')[0], codigo:id.split(',')[1], nota:nota}]));
 
       this.servicioVentas.actualizarLista$.emit(true);
+
     }else{
 
       

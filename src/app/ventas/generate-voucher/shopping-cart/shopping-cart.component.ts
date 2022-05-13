@@ -70,7 +70,9 @@ export class ShoppingCartComponent implements OnInit {
       : this.todasLasNotas = JSON.parse(localStorage.getItem('notas') || '[]')
       
       this.servicioVentas.actualizarLista$.subscribe( () => {
+        
         this.descuentoTotal = 0;
+
         JSON.parse(localStorage.getItem('descuentos') || '[]').map((x:any) => {
           this.descuentoTotal += parseInt(x.precio)
         })
@@ -219,5 +221,17 @@ export class ShoppingCartComponent implements OnInit {
       ? (this.descuento = true)
       : null;
     this.isOpenedList = -1;
+  }
+
+  eliminarProducto(id: any) {
+   
+    this.arrayCarritoProductos.map((x, i) => {
+      if (x.id == id) {
+        console.log("eliminando producto");
+        this.arrayCarritoProductos.splice(i, 1);
+      }
+    }
+    );
+  
   }
 }

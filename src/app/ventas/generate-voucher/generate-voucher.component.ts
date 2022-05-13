@@ -48,6 +48,10 @@ export class GenerateVoucherComponent implements OnInit {
   localesArray:any;
   categoriaArrays:any
 
+  id_local:any = '';
+
+  estasEnELLOcal:string = '';
+  
   constructor(public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
@@ -72,8 +76,24 @@ export class GenerateVoucherComponent implements OnInit {
     )
 
 
+    this.id_local = JSON.parse(localStorage.getItem('local') as any) ;
 
-    this.productosYbuscador()
+    if (this.id_local !== null) {
+      
+      this.productosYbuscador('',0, this.id_local.id);
+
+      this.estasEnELLOcal = this.id_local.nombre;
+
+    }else{
+
+      this.estasEnELLOcal = 'Todos'
+      console.log(this.estasEnELLOcal)
+
+      this.productosYbuscador();
+    }
+
+
+
   }
   changeCategory(category: string | number){
     if(category == 0 || category == '0'){
@@ -123,6 +143,12 @@ export class GenerateVoucherComponent implements OnInit {
       (data:any)=>{
         console.log(data)
         this.arrayProductos = data.data;
+
+        this.arrayProductos.map( (x:any )=> {
+          x.talles_ventas.sort((a:any, b:any) => {
+            return a.talles - b.talles;
+          })
+        })
         this.calcularPaginas(data.contador);
 
       }
@@ -185,7 +211,18 @@ export class GenerateVoucherComponent implements OnInit {
 
 
   onKey(value:string){
+
+    if (this.id_local !== null) {
+      //this.productosYbuscador('',0, this.id_local);
+      console.log(this.id_local.id)
+      this.productosYbuscador( value, 0, this.id_local.id, this.categoriaGuardada,this.objDeFiltro.codigo, this.objDeFiltro.dibujo, this.objDeFiltro.color);
+  
+      }else{
+      //this.productosYbuscador('',0, this.id_local);
     this.productosYbuscador( value, 0, '', this.categoriaGuardada,this.objDeFiltro.codigo, this.objDeFiltro.dibujo, this.objDeFiltro.color);
+
+  
+      }
   }
   objDeFiltro:any = {
     modelo:'',

@@ -186,4 +186,9 @@ BotonCarga:boolean = false;
       }
     )
   }
+
+
+  cambioCantidad(event: any) {
+    this.cantidadSeleccionada = event.value
+  }
 }

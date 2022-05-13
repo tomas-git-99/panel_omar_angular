@@ -40,7 +40,7 @@
           </svg>
         </button>
       </div>
-      <form  [formGroup]="formEditar" (ngSubmit)="enviarModificacion(formEditar.value)" >
+      <form  [formGroup]="formEditar" (ngSubmit)="enviarModificacion(formEditar.value)" (keydown.enter)="$event.preventDefault()">
 
       <div class="flex flex-col gap-4">
 
@@ -101,7 +101,7 @@
                 formControlName="sub_local"
             >
               <option value="">
-                Local: ( {{ productoSeleccionado.sub_local == null ? 'No tiene' : productoSeleccionado.sub_local }} )
+                Local: ( {{ productoSeleccionado.sub_local == null ? 'No tiene' : productoSeleccionado.sub_local.nombre }} )
               </option>
               <option  *ngFor="let local of arrayDeLocales" [value]="local.id">{{local.nombre}}</option>
             </select>
@@ -135,7 +135,7 @@
                 formControlName="categoria"
               >
                 <option value="">
-                  Categoria: ( {{  productoSeleccionado.categoria == null ? 'No tiene' : productoSeleccionado.categoria }} )
+                  Categoria: ( {{  productoSeleccionado.categoria == null ? 'No tiene' : productoSeleccionado.categoria.nombre }} )
                 </option>
                 <option *ngFor="let categoria of arrayDeCatergoria" [value]="categoria.id">{{categoria.nombre}}</option>
               </select>
@@ -162,6 +162,7 @@
               max="999"
               id="rounded-email"
               [value]="cantidadSeleccionada"
+              (input)="cambioCantidad ($event.target) "
               class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-16 text-center bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
             />
           </div>
