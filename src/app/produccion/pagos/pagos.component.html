@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <div class="bg-white border rounded-md hover:shadow-lg cursor-pointer transition ease-in-out delay-150 ">
+            <div class="bg-white border rounded-md hover:shadow-lg cursor-pointer transition ease-in-out delay-150 " (click)="abrirVentanaEstampado = !abrirVentanaEstampado">
                 <div class="m-8 flex items-center gap-3">
                     <fa-icon [icon]="faShirt" size="2x" style="color:grey" ></fa-icon>
                     <h2 class="text-gray-700 text-3xl">Estampadores</h2>
@@ -34,6 +34,6 @@
 
 
 <app-talleres *ngIf="abrirVentanaTalleres" (AbrirCerrarVentana)="abrirVentanaTalleres = !abrirVentanaTalleres"></app-talleres>
-
+<app-estampadores  *ngIf="abrirVentanaEstampado"  (AbrirCerrarVentana)="abrirVentanaEstampado = !abrirVentanaEstampado"></app-estampadores>
 
 

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { faTrash, faWrench } from '@fortawesome/free-solid-svg-icons';
 import { ProduccionService } from 'src/app/produccion/servicios/produccion.service';
 import Swal from 'sweetalert2';
 import { VentasService } from '../../servicios/ventas.service';
@@ -12,6 +13,9 @@ export class ModifyComponent implements OnInit {
   dropDownList:any
   constructor( public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
   isSubTable: boolean = false;
+
+  faWrech = faWrench;
+  faTrash = faTrash;
 
   @Input() detallesDeOrden: any ;
   arrayCarritoProductos: any[] = [];
@@ -27,6 +31,7 @@ export class ModifyComponent implements OnInit {
   boolVentanaEditCliente:boolean = false
   boolVentanaAgregarNotaDescuento:boolean = false
   boolVentanaEditarProductoMultiple:boolean = false
+  boolVentanaBuscarProducto:boolean = false
 
   productoSeleccionadoIDEdit:number | string= 0;
 
@@ -54,7 +59,7 @@ export class ModifyComponent implements OnInit {
         total += x.precio * x.cantidad ;
       }
     )
-
+ 
     descuento.map(
       x =>{
      
@@ -94,6 +99,7 @@ export class ModifyComponent implements OnInit {
         : x.precio_nuevo,
         talles:[
           {
+            id: x.id,
             talle: x.talle,
             cantidad: x.cantidad,
        
@@ -107,11 +113,21 @@ export class ModifyComponent implements OnInit {
 
         this.arrayCarritoProductos.find( l => l.id == x.productoVentas.id)
         .talles.push({
+          id: x.id,
           talle: x.talle,
           cantidad: x.cantidad
         })
       }
     });
+
+
+    this.arrayCarritoProductos.map(x => {
+      //ordenar los talles 
+      x.talles.sort(function(a:any, b:any) {
+        return a.talle - b.talle;
+      }
+      );
+    })
   }
 
   sumaDePrecioTotalDeUnProducto(producto:any[] ,precio:number):any {

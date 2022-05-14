@@ -5,40 +5,14 @@ import { ProduccionService } from 'src/app/produccion/servicios/produccion.servi
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-para-imprimir-taller',
-  templateUrl: './para-imprimir-taller.component.html',
-  styleUrls: ['./para-imprimir-taller.component.css']
+  selector: 'app-para-imprimir-estampado',
+  templateUrl: './para-imprimir-estampado.component.html',
+  styleUrls: ['./para-imprimir-estampado.component.css']
 })
-export class ParaImprimirTallerComponent implements OnInit {
+export class ParaImprimirEstampadoComponent implements OnInit {
 
 
 
-  arrayPrueba:any = [
-    {
-      id:2,
-      cantidad: 30
-    },
-    {
-      id:3,
-      cantidad: 50
-    },
-    {
-      id:4,
-      cantidad: 100
-    },
-    {
-      id:5,
-      cantidad: 140
-    }
-  ];
-
-
-  precioNuevo:any = [];
-
-  arrayDePrecios:any = [];
-
-  totalPrecios:number = 0;
-  
   @Output()
   AbrirCerrarVentana: EventEmitter<any> = new EventEmitter();
 
@@ -48,12 +22,16 @@ export class ParaImprimirTallerComponent implements OnInit {
   @Input()
   dataInsertada:any;;
 
+  precioNuevo:any = [];
+
+  arrayDePrecios:any = [];
+
+  totalPrecios:number = 0;
+  
   constructor(public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
-
-
-
+    console.log(this.dataArray);
   }
 
   onChange(precio: any, cantidad:any, id:any){
@@ -67,7 +45,7 @@ export class ParaImprimirTallerComponent implements OnInit {
 
       if(isNaN(parseInt(precio.value) * parseInt(cantidad))){
 
-        seleccion.innerHTML = '$ 0';
+        seleccion.innerHTML = '$ 0' ;
         this.precioNuevo.map((x:any) => {
           if(x.id == id){
             x.total = 0;
@@ -121,7 +99,7 @@ export class ParaImprimirTallerComponent implements OnInit {
         })
         this.funcionDeTotals()
         
-        seleccion.innerHTML ='$ ' + (parseInt(precio.value) * parseInt(cantidad));
+        seleccion.innerHTML = '$ ' + (parseInt(precio.value) * parseInt(cantidad));
       }
     
 
@@ -144,8 +122,11 @@ export class ParaImprimirTallerComponent implements OnInit {
     total = 0;
   
   }
-  
+
+
+
   botonDeCarga:boolean = false;
+
 
   pdf(tag:string){
     this.botonDeCarga = true;
@@ -184,9 +165,10 @@ export class ParaImprimirTallerComponent implements OnInit {
 
   botonDePagar:boolean = false;
   pagar(){
-    this.botonDePagar = true;
+
     console.log(this.precioNuevo)
-    this.servicioProduccion.putPagarTaller(this.dataInsertada.taller.id, this.dataInsertada.de, this.dataInsertada.hasta, this.precioNuevo).subscribe(
+    this.botonDePagar = true;
+    this.servicioProduccion.putPagarEstampador(this.dataInsertada.estampador.id, this.dataInsertada.de, this.dataInsertada.hasta, this.precioNuevo).subscribe(
       (res:any) => {
 
         if(res.ok == true){
@@ -198,6 +180,7 @@ export class ParaImprimirTallerComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
+          
         }else{
           this.botonDePagar = false;
 
@@ -212,5 +195,6 @@ export class ParaImprimirTallerComponent implements OnInit {
       }
       )
   }
+  
 
 }

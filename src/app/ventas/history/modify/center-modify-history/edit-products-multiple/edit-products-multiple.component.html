@@ -1,132 +1,156 @@
-<div [ngClass]="'z-60 absolute flex justify-center items-center inset-0 '">
-  <!--  <div  class="w-full h-fullz-0 absolute inset-0" ></div> -->
-  <div class="container">
-    <div class="flex items-center justify-center">
-      <div class="bg-white rounded-md shadow">
-        <!-- content start -->
 
-        <div class="grid m-7 gap-4">
-          <div class="flex justify-between">
-            <h3 class="text-gray-600 text-lg font-medium">Cambiar:</h3>
-            <button
-              (click)="cerrarVentana.emit(false)"
-              role="button"
-              aria-label="close label"
-              class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
-            >
-              <svg
-                width="25"
-                height="25"
-                viewBox="0 0 28 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 7L7 21"
-                  stroke="#A1A1AA"
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  d="M7 7L21 21"
-                  stroke="#A1A1AA"
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </button>
-          </div>
-
-          <select
-            id="animals"
-            class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-            name="animals"
+<div
+  class="mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50"
+  id="signin-success-message"
+>
+  <div
+    class="px-6 py-4 rounded-md text-lg flex items-center justify-center w-full"
+  >
+    <div class="bg-white shadow-lg p-2 rounded-md">
+      <div class="flex justify-end">
+        <button
+          (click)="cerrarVentana.emit(false)"
+          role="button"
+          aria-label="close label"
+          class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <option value="" class="">Opciones:</option>
-            <option value="dog" *ngIf>Cambiar cantidad</option>
-            <option value="precio">Cambiar precio</option>
-          </select>
+            <path
+              d="M21 7L7 21"
+              stroke="#A1A1AA"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M7 7L21 21"
+              stroke="#A1A1AA"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-          <p class="font-light text-gray-600 text-xs text-center">
-            *Lo cambios se aplicaran a todos los <br />
-            productos seleccionados con el mismo codigo
+      <div>
+        <h3 class="text-center text-gray-600">Talles</h3>
+        <div class="flex flex-row items-center">
+          <p class="text-gray-500 text-xs">
+            <fa-icon [icon]="faInfo" style="color: gray" size="sm"></fa-icon>
+            Seleccione una de sus articulos para poder modificarlo
           </p>
-
-          <hr />
-
-          <!-- nota -->
-          <div class="grid gap-5">
-            <!-- <select id="animals" class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" name="animals">
-            <option value="" class="">
-                Producto:
-            </option>
-            <option value="dog">
-                Descuesto
-            </option>
-            <option value="cat">
-                Nota
-            </option>
-          
-        </select> -->
-
-            <label class="font-semibold text-gray-700"></label>
-            <div class="relative z-0 mb-6 w-full group">
-              <input
-                type="number"
-                name="floating_email"
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                #precio
-                required
-              />
-              <label
-                for="floating_email"
-                class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >Cantidad</label
-              >
-            </div>
-            <!--   <div class="relative z-0 mb-6 w-full group ">
-            <input type="email" name="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-            <label for="floating_email" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Escribir curva rapido</label>
-        </div> -->
-            <button
-            (click)="cambiarPrecio(precio.value)"
-              class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+        </div>
+        <div class="grid xl:grid-cols-4 sm:grid-cols-2 gap-2">
+          <div *ngFor="let data of arrayDeTallesYproductos.talles">
+            <div
+              [ngClass]="
+                'rounded-md p-1 hover:shadow cursor-pointer border z-10 ' +
+                (data.id == numeroSeleccionado ? 'border-indigo-500' : '')
+              "
+              
             >
-              Cambiar
-            </button>
-          </div>
+              <div class="flex  ">
 
-          <div class="grid gap-5" *ngIf>
-            <label class="font-semibold text-gray-700">Precio nuevo:</label>
-            <!--         <textarea class="resize-y rounded-md"></textarea> -->
+                <div class="flex flex-col  w-5/6"  (click)="eleccionar(data.id)">
+                  <p class="font-medium text-gray-700 text-sm">
+                    Talle: {{ data.talle }}
+                  </p>
+                  <p class="font-medium text-gray-700 text-sm">
+                    Cantidad:
+                    <span class="text-green-600">{{ data.cantidad }}</span>
+                  </p>
+                  
+                </div>
 
-            <div class="relative z-0 mb-6 w-full group">
-              <input
-                type="email"
-                name="floating_email"
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                for="floating_email"
-                class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >$</label
-              >
+                <div class=" flex items-start w-1/6">
+                  <button
+                  role="button"
+                  aria-label="close label"
+                  (click)="eliminarProducto(data.id)" 
+                  class=" focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none z-50"
+                >
+               <!-- -->
+                  <svg
+                    width=" 18"
+                    height="18"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M21 7L7 21"
+                      stroke="#A1A1AA"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M7 7L21 21"
+                      stroke="#A1A1AA"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </button>
+                </div>
+
+              </div>
+         
             </div>
-            <button
-              class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
-            >
-              Cambiar
-            </button>
           </div>
         </div>
 
-        <!-- content end -->
+        <!-- Input nuevo valor -->
+        <div class="grid gap-2" *ngIf="numeroSeleccionado > 0">
+          <h3 class="text-center text-gray-600">Talle: {{dataParaModificar.talle}} Cantidad: {{dataParaModificar.cantidad}}</h3>
+
+          <div class="flex flex-column item-center gap-4 justify-center">
+            <button (click)="restar()">
+              <fa-icon [icon]="faMinus" style="color: gray" size="sm"></fa-icon>
+            </button>
+
+            <div class="relative">
+              <input
+                type="number"
+                min="1"
+                max="999"
+                id="rounded-email"
+                [value]="cantidadSeleccionada"
+                class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-14 text-center bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              />
+            </div>
+            <button (click)="sumar()">
+              <fa-icon [icon]="faPlus" style="color: gray" size="sm"></fa-icon>
+            </button>
+          </div>
+
+          <div class="flex justify-center">
+            <button
+              
+              type="button"
+              class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-3/12 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            >
+              Modificar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>

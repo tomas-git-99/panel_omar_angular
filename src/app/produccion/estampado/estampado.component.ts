@@ -31,6 +31,7 @@ export class EstampadoComponent implements OnInit {
     this.servicioProduccion.getObtenerEstampado(busqueda, pagina).subscribe(
       (res) => {
         this.arrayEstampados = res.data
+        console.log(this.arrayEstampados);
 
         this.conteoDepagina = res.contador;
         //this.calcularPaginas(res.contador);

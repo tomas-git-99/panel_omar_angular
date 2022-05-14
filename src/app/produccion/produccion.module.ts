@@ -29,7 +29,9 @@ import { EmpleadosComponent } from './pagos/empleados/empleados.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { EstampadoresComponent } from './pagos/estampadores/estampadores.component';
+import { ParaImprimirEstampadoComponent } from './pagos/estampadores/para-imprimir-estampado/para-imprimir-estampado.component'; // a plugin!
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -59,6 +61,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     TalleresComponent,
     ParaImprimirTallerComponent,
     EmpleadosComponent,
+    EstampadoresComponent,
+    ParaImprimirEstampadoComponent,
   
 
     

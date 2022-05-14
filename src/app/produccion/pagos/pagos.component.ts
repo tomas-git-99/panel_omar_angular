@@ -19,6 +19,7 @@ export class PagosComponent implements OnInit {
 
 
   abrirVentanaTalleres: boolean = false;
+  abrirVentanaEstampado: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

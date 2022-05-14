@@ -274,7 +274,7 @@
             </tr>
           </thead>
           <tbody *ngFor="let items of arrayEstampados">
-            <tr class="bg bg-red-300">
+            <tr  [ngClass]="items.estampador == null ? 'bg bg-gray-200' : (items.fecha_de_entrada == null || items.fecha_de_entrada == '') ? 'bg-red-200' : (items.items == false || items.items == 'false' ) ?'bg-yellow-200' :'bg-green-200' ">
               <!--  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-600 text-center flex justify-center">
                                     <div class="bg bg-red-500 w-8 h-8 rounded-full">
 
@@ -310,7 +310,7 @@
               <td
                 class="px-5 py-5 border-b border-gray-200 text-sm text-gray-600 text-center"
               >
-                {{ items.estado_pago == true ? "Pagado" : "No pagado" }}
+                {{ items.pagado == true ? "Pagado" : "No pagado" }}
               </td>
               <td
                 class="border-b border-gray-200 text-sm text-gray-600 text-center"

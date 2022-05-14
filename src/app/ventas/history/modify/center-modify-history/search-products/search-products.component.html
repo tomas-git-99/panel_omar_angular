@@ -6,10 +6,20 @@
     class="px-6 py-4 rounded-md text-lg flex items-center justify-center w-full"
   >
     <div class="bg-white rounded-md shadow">
-      <p class="text-2xl text-center text-gray-700 font-semibold">
-        Agregar Nuevo Producto
-      </p>
 
+      <div class="flex justify-between px-5 py-2">
+        <p class="text-2xl text-center text-gray-700 font-semibold">
+          Agregar Nuevo Producto
+        </p>
+  
+        <button  (click)="cerrarVentana.emit(false)" role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+      </button>
+      </div>
+   
       <section class="relative w-full max-w-md px-5 py-4 mx-auto rounded-md">
         <div class="grid grid-cols-2 gap-2">
           <div class="relative">
@@ -32,6 +42,8 @@
             <input
               type="text"
               #box 
+              autocomplete="off"
+      
               (keyup.enter)="onKey(box.value, local)"
               class="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
               placeholder="Buscar por codigo y modelo..."
@@ -50,13 +62,13 @@
           </select>
         </div>
 
-          <div class="absolute inset-x-0 px-6 py-3 mx-5 mt-4 overflow-y-auto bg-white border rounded-md max-h-72 dark:bg-gray-800 dark:border-transparent " >
+          <div class="absolute inset-x-0 px-6 py-3 mx-5 mt-4 overflow-y-auto bg-white border rounded-md max-h-72 dark:bg-gray-800 dark:border-transparent z-50 " *ngIf="abrirOpcionesDeBuscador">
 
-            <a href="#" class="block py-1" *ngFor="let producto of arrayProductos">
+            <a class="block py-1 p-2 hover:border hover:rounded-md cursor-pointer " *ngFor="let producto of arrayProductos" (click)="abrirProducto(producto.id)">
                 
-                <h3 class="font-medium text-gray-700 dark:text-gray-100 hover:underline">{{producto.sud_modelo == null ? producto.productoDetalles.producto.modelo : producto.sud_modelo }} - {{producto.sub_dibujo == null ? (producto.productoDetalles.producto.estampado == null ? '': producto.productoDetalles.producto.estampado.dibujo) : producto.sub_dibujo }}</h3>
+                <h3 class="font-medium text-gray-700 dark:text-gray-100 hover:underline">{{producto.productoDetalles == null ? producto.sub_modelo  : producto.productoDetalles.producto.modelo }} - {{producto.productoDetalles == null ? producto.sub_dibujo : (producto.productoDetalles.producto.estampado == null ? '': producto.productoDetalles.producto.estampado.dibujo)  }}</h3>
                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Codigo: <span class="text-indigo-700 "> {{producto.productoDetalles == null ? producto.id : producto.productoDetalles.producto.codigo}} </span></p>
-                <h3 class="mt-1 font-normal text-xs text-gray-600 dark:text-gray-100 ">Color : {{producto.color}} | Tela : {{producto.productoDetalles.producto.tela}} | Local : {{producto.productoDetalles.local.nombre}}</h3>
+                <h3 class="mt-1 font-normal text-xs text-gray-600 dark:text-gray-100 ">Color : {{producto.color}} | Tela : {{"producto.productoDetalles.producto.tela"}} | Local : {{producto.productoDetalles == null ? producto.sub_local.nombre : producto.productoDetalles.local.nombre}}</h3>
             </a>
 
        
@@ -65,23 +77,26 @@
 
       <hr />
 
-      <div class="grid justify-center py-3 gap-3" *ngIf>
+      <div class="grid justify-center py-3 gap-3" *ngIf="abrirVentaDeAgregar">
         <p class="font-medium text-gray-700 text-center">
-          Nombre del producto mas precio
+          {{productoSeleccionado.productoDetalles == null ? productoSeleccionado.sub_modelo  : productoSeleccionado.productoDetalles.producto.modelo }} 
+          - {{productoSeleccionado.productoDetalles == null ? productoSeleccionado.sub_dibujo : (productoSeleccionado.productoDetalles.producto.estampado == null ? '': productoSeleccionado.productoDetalles.producto.estampado.dibujo)  }}
+          - {{ productoSeleccionado.precio == null ? '$ --' : '$' + productoSeleccionado.precio }}
         </p>
 
         <div
           class="grid grid-cols-3 gap-10 sm:flex sm:flex-wrap md:gap-4 sm:justify-between lg:justify-start mt-4"
         >
-          <div class="flex flex-col">
+          <div class="flex flex-col" *ngFor="let talle of productoSeleccionado.talles_ventas">
             <label
               for="talle"
               class="text-gray-600 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-center"
-              >1 <span class="font-light">(34)</span>
+              > {{talle.talles}}<span class="font-light">({{talle.cantidad}})</span>
             </label>
             <input
-              id="email"
+              [id]="talle.id"
               autocomplete="off"
+              [value]="valueCambiar"
               class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow w-[40px] h-[40px]"
             />
           </div>
@@ -91,9 +106,12 @@
           <input
             type="email"
             name="floating_email"
+
             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required
+            (keyup)="totalCurva($event.target )"
+            
           />
           <label
             for="floating_email"
@@ -102,13 +120,25 @@
           >
         </div>
 
+
+<div class="bg-yellow-200 border-yellow-600 text-yellow-600 border-l-4 p-2" role="alert" *ngIf="stockFalse">
+  <p class="font-bold">
+      Alerta
+  </p>
+  <p>
+      No ahi sotck sufiente, TALLE : {{tallerSeleccionado}}
+  </p>
+</div>
+
+
         <div class="relative z-0 mb-6 w-full group">
           <input
-            type="email"
+            type="number"
             name="floating_email"
             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required
+            #precioNuevo
           />
           <label
             for="floating_email"
@@ -118,8 +148,14 @@
         </div>
 
         <button
-          class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+        (click)="agregarProducto(precioNuevo.value)"
+          class="flex justify-center items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
         >
+
+        <svg *ngIf="cargaBoton" width="20" height="20" fill="currentColor" class="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+          <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
+          </path>
+      </svg>
           Agregar
         </button>
       </div>

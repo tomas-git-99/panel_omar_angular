@@ -5,7 +5,7 @@
       <!-- content start -->
 
       <div
-        class="py-14 px-4 md:px-6 2xl:px-20 lg:px-15 sm:px-10 2xl:container 2xl:mx-auto bg-white  "
+        class="py-14 px-4 md:px-6 2xl:px-20 lg:px-15 sm:px-10 2xl:container 2xl:mx-auto bg-slate-100 shadow-md"
 
       >
         <div class="flex justify-between items-center space-y-2  px-7">
@@ -52,7 +52,7 @@
 
               <!-- product start -->
               <div
-                class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 overflow-auto w-[900px] min-h-[500px]"
+                class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 overflow-auto w-[900px] "
               >
                 <div class="overflow-x-hidden sm:w-full" *ngFor="let items of arrayCarritoProductos">
                   <table class="w-full whitespace-nowrap">
@@ -84,6 +84,14 @@
                                 />
                               </svg>
                             </div>
+                          </div>
+                        </td>
+                        <td class="pl-5">
+                          <div class="flex items-center">
+                            <p class="text-xl leading-none text-gray-800 ml-2 font-medium">
+                              {{items.codigo}}
+
+                            </p>
                           </div>
                         </td>
                         <td class="pl-5">
@@ -133,20 +141,47 @@
                         </td>
 
                         <td class="pl-5">
-                          <button
+                       <!--    <button
                           (click)="eliminarMultiplesProductos(items.id)"
-                            class="mx-2 my-2 bg-red-200 transition duration-150 ease-in-out focus:outline-none hover:bg-red-300 rounded text-gray-600 px-6 py-2 text-xs"
+                            class="bg-red-200 transition duration-150 ease-in-out focus:outline-none hover:bg-red-300 rounded text-gray-600 p-3 text-xs"
                           >
-                            Eliminar
-                          </button>
+                          <fa-icon
+                          [icon]="faTrash"
+                          >
 
-                          <button
+                          </fa-icon>
+                          </button> -->
+
+                         <!--  <button
                           (click)="seleccionIDproducto(items.id)"
                           (click)="boolVentanaEditarProductoMultiple = !boolVentanaEditarProductoMultiple"
-                            class="mx-2 my-2 bg-gray-200 transition duration-150 ease-in-out focus:outline-none hover:bg-gray-300 rounded text-gray-700 px-6 py-2 text-xs"
+                            class=" bg-gray-200 transition duration-150 ease-in-out focus:outline-none hover:bg-gray-300 rounded text-gray-700 p-3 text-xs"
                           >
-                            Editar
-                          </button>
+                            <fa-icon
+                            [icon]="faWrech"
+                            >
+
+                            </fa-icon>
+                          </button> -->
+                          <div class="flex items-center gap-2">
+                            <div class="bg-red-300 border-2 p-2 rounded-md cursor-pointer hover:bg-red-200" 
+                            (click)="eliminarMultiplesProductos(items.id)"
+                            >
+                              <fa-icon [icon]="faTrash" class="text-gray-600 hover:text-gray-700" >
+
+                                  </fa-icon>
+                            
+                              </div>
+                          <div class="border-2 p-2 rounded-md cursor-pointer hover:bg-white" 
+                          (click)="seleccionIDproducto(items.id)"
+                          (click)="boolVentanaEditarProductoMultiple = !boolVentanaEditarProductoMultiple"
+                          >
+                            <fa-icon [icon]="faWrech" class="text-gray-600 hover:text-gray-700" >
+
+                                </fa-icon>
+                          
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     </tbody>
@@ -359,6 +394,7 @@
                 Cancelar pedido
               </button>
               <button
+              (click)="boolVentanaBuscarProducto = !boolVentanaBuscarProducto"
                 class="mx-2 my-2 bg-green-500 transition duration-150 ease-in-out focus:outline-none rounded text-white border px-6 py-2 text-base hover:bg-green-400"
               >
                 Agregar producto
@@ -564,7 +600,15 @@
 
       <!--  <app-center-modify-history ></app-center-modify-history> -->
 
-      <app-search-products *ngIf=""></app-search-products>
+      <app-search-products 
+      
+      *ngIf="boolVentanaBuscarProducto"
+      (cerrarVentana)="boolVentanaBuscarProducto = !boolVentanaBuscarProducto"
+      [productoYaEnLista]="arrayCarritoProductos"
+
+      >
+        
+      </app-search-products>
 
       <app-add-note 
       *ngIf="boolVentanaAgregarNotaDescuento"
@@ -574,7 +618,7 @@
       <app-edit-products-multiple 
       *ngIf="boolVentanaEditarProductoMultiple"
       (cerrarVentana)="boolVentanaEditarProductoMultiple = !boolVentanaEditarProductoMultiple"
-      [arrayOrden]="detallesDeOrden"
+      [arrayOrden]="arrayCarritoProductos"
       [productoSeleccionadoID]="productoSeleccionadoIDEdit"
       ></app-edit-products-multiple>
 

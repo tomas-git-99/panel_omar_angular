@@ -250,4 +250,15 @@ export class ProduccionService {
     return this.http.get<any>(environment.urlBackendProduccion + 'taller/full'+'?keyword=' + busqueda + '&skip=' + pagina);
   }
 
+
+  getObtenerDataParaPagosEstampadores(estampador:number | string, de:string, hasta:string){
+    return this.http.get<any>(environment.urlBackendProduccion + 'pagos/estampadores?estampador='+ estampador + '&de=' + de + '&hasta=' + hasta);
+  }
+
+
+  putPagarEstampador(estampador:number | string, de:any, hasta:any, data:any){
+    return this.http.put<any>(environment.urlBackendProduccion + 'pagos/estampadores/pago?estampador='+ + estampador + '&de=' + de + '&hasta=' + hasta, data);
+  }
+  
+
 }
