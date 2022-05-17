@@ -339,4 +339,9 @@ export class VentasService {
   deleteOrden(id_orden:any){
     return this.http.delete(environment.urlBackendProduccion + 'orden/'+ id_orden );
   }
+
+
+  putCambiarPrecioCarrito(id_usuario:any, id_producto:any, data:any){
+    return this.http.put(environment.urlBackendProduccion + 'carrito/'+id_usuario+'/'+id_producto, data);
+  }
 }

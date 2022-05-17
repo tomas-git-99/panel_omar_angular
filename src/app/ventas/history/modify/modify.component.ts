@@ -107,9 +107,7 @@ export class ModifyComponent implements OnInit {
         ? (x.productoVentas.productoDetalles.producto.estampado == null ? '- - ':  x.productoVentas.productoDetalles.producto.estampado.dibujo)
         : x.productoVentas.sub_dibujo,
 
-        precio: x.precio_nuevo == null 
-        ? x.productoVentas.precio
-        : x.precio_nuevo,
+        precio: x.precio,
         talles:[
           {
             id: x.id,

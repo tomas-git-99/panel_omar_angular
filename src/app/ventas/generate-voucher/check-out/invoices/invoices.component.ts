@@ -131,9 +131,7 @@ export class InvoicesComponent implements OnInit {
         ? (x.productoVentas.productoDetalles.producto.estampado.length > 0 ? x.productoVentas.productoDetalles.producto.estampado[0].dibujo : '')
         : x.productoVentas.sub_dibujo,
 
-        precio: x.precio_nuevo == null 
-        ? x.productoVentas.precio
-        : x.precio_nuevo,
+        precio: x.precio,
         talles:[
           {
             talle: x.talle,

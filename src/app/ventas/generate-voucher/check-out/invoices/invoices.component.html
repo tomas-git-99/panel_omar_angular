@@ -37,7 +37,7 @@
                 <div
                   class="mt-4 sm:mt-0 sm:flex flex-col sm:items-end sm:text-right"
                 >
-                  <p class="px-5 text-xs leading-3 text-red-500">Pendiente</p>
+                <p [ngClass]="'px-5 text-xs leading-3 ' + (dataDeOrden.ordenEstado.pagado == true ? 'text-green-500': 'text-red-500 ')">{{dataDeOrden.ordenEstado.pagado == true ? 'Pagado' : 'Pendiente'}}</p>
 
                   <p class="text-xs leading-5 text-light-blue mt-3">
                     {{ dataDeOrden.cliente.nombre == null ? '- - ' : dataDeOrden.cliente.nombre }}
