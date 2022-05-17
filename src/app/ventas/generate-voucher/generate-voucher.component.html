@@ -346,7 +346,11 @@ f
           </tr>
         </tbody>
       </table>
-      <div
+      <app-paginacion
+      [conteoDePagina]="(cantidadPaginas)"
+        (paginacion)="paginacion($event)"
+      ></app-paginacion>
+      <!-- <div
         class="px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between"
       >
         <nav aria-label="Page navigation example">
@@ -414,7 +418,7 @@ f
             </li>
           </ul>
         </nav>
-      </div>
+      </div> -->
     </div>
   </div>
 </body>

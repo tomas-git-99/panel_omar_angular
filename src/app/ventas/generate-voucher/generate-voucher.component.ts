@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { faCartShopping, faChevronLeft, faChevronRight, faTrash, faWrench } from '@fortawesome/free-solid-svg-icons';
 import { ProduccionService } from 'src/app/produccion/servicios/produccion.service';
 import Swal from 'sweetalert2';
@@ -51,6 +51,9 @@ export class GenerateVoucherComponent implements OnInit {
   id_local:any = '';
 
   estasEnELLOcal:string = '';
+
+  @Input() cantidadPaginas:number = 0;
+
   
   constructor(public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
 
@@ -103,6 +106,8 @@ export class GenerateVoucherComponent implements OnInit {
       this.id_local = this.localesArray.find( (x:any) => x.id == id.target.value);
       this.productosYbuscador('',0, this.id_local.id);
     }else{
+      this.valueGuardo = '';
+      this.id_local = '';
       this.productosYbuscador();
 
     }
@@ -164,13 +169,21 @@ export class GenerateVoucherComponent implements OnInit {
             return a.talles - b.talles;
           })
         })
-        this.calcularPaginas(data.contador);
+       // this.calcularPaginas(data.contador);
+        this.cantidadPaginas = data.contador
 
       }
     )
 
   }
 
+  paginacion(pagina:any){
+
+  console.log(pagina)
+
+  this.productosYbuscador(this.valueGuardo, pagina, (this.id_local  == null || this.id_local == '' ? '': this.id_local.id ));
+
+  }
 
   cambioDePagina(paginaSiguiente:any) {
 
@@ -250,10 +263,10 @@ export class GenerateVoucherComponent implements OnInit {
 
   filtrosOpciones:boolean = false
   filtrosFechas:boolean = false
-
+  valueGuardo:string = ''
 
   onKey(value:string){
-
+    this.valueGuardo = value;
     if (this.id_local !== null) {
       //this.productosYbuscador('',0, this.id_local);
       console.log(this.id_local.id)
@@ -261,9 +274,8 @@ export class GenerateVoucherComponent implements OnInit {
   
       }else{
       //this.productosYbuscador('',0, this.id_local);
-    this.productosYbuscador( value, 0, '', this.categoriaGuardada,this.objDeFiltro.codigo, this.objDeFiltro.dibujo, this.objDeFiltro.color);
+      this.productosYbuscador( value, 0, '', this.categoriaGuardada,this.objDeFiltro.codigo, this.objDeFiltro.dibujo, this.objDeFiltro.color);
 
-  
       }
   }
   objDeFiltro:any = {
