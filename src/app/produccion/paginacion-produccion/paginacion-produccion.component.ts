@@ -11,6 +11,7 @@ export class PaginacionProduccionComponent implements OnInit, OnChanges {
 
  
   estadoDePagina:number  = 0;
+  
   @Input() conteoDePagina!:number ;
 
   @Output() 

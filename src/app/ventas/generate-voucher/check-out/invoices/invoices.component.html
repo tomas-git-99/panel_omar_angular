@@ -27,9 +27,9 @@
                     alt=""
                     srcset=""
                   />
-                  <p class="text-lg font-bold text-gray-500 mt-2">Milena</p>
+                  <p class="text-lg font-bold text-gray-500 mt-1">Milena</p>
                   <div class="mt-2">
-                    <p class="text-xs leading-5 text-gray-500 uppercase mt-1">
+                    <p class="text-xs leading-4 text-gray-500 capitalize mt-1 font-normal">
                       Bogota 3481 - BS. AS<br />CEL: +549 116253-6201<br />11-5180-4160(Stefy)<br />11-5693-0533(Silvia)
                     </p>
                   </div>
@@ -40,20 +40,20 @@
                   <p class="px-5 text-xs leading-3 text-red-500">Pendiente</p>
 
                   <p class="text-xs leading-5 text-light-blue mt-3">
-                    {{ dataDeOrden.cliente.nombre }}
+                    {{ dataDeOrden.cliente.nombre == null ? '- - ' : dataDeOrden.cliente.nombre }}
                     {{
                       dataDeOrden.cliente.apellido == null
                         ? ""
                         : dataDeOrden.cliente.apellido
                     }}
                     <br />
-                    <span class="text-gray-500"
+                    <span *ngIf="dataDeOrden.cliente_direccion == null ? false :true" class="text-gray-500"
                       >
                       {{ dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.direccion }} <br />{{
                         
                         dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.localidad
 
-                      }}, {{ dataDeOrden.cliente_direccion == null ? '' : 'CP : ' + dataDeOrden.cliente_direccion.cp }}<br />{{
+                      }}{{ dataDeOrden.cliente_direccion == null ? '' : 'CP : ' + dataDeOrden.cliente_direccion.cp }}<br />{{
                         dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.provincia
                       }}
                       </span
@@ -62,8 +62,8 @@
                   <div class="mt-3">
                     <div class="flex space-x-1 items-center text-xs leading-3">
                       <p class="text-blue-500">@</p>
-                      <p class="text-gray-500">
-                        {{ dataDeOrden.cliente.email }}
+                      <p class="text-gray-500 ">
+                        {{ servicioVentas.evitarNulloVacios( dataDeOrden.cliente.email ) }}
                       </p>
                     </div>
                     <div
@@ -71,15 +71,15 @@
                     >
                       <p class="text-blue-500">Cel:</p>
                       <p class="text-gray-500">
-                        {{ dataDeOrden.cliente.telefono }}
+                        {{  servicioVentas.evitarNulloVacios(dataDeOrden.cliente.telefono) }}
                       </p>
                     </div>
                   </div>
                   <div class="mt-6 text-xs leading-3 sm:text-right">
                     <p class="text-gray-800 uppercase">
-                      {{ dataDeOrden.ordenEstado.transporte }}
+                      {{  servicioVentas.evitarNulloVacios(dataDeOrden.ordenEstado.transporte) }}
                     </p>
-                    <p class="text-gray-500 mt-1">#{{ dataDeOrden.id }}</p>
+                    <p class="text-gray-500 mt-1">#ID{{ dataDeOrden.id }}</p>
                   </div>
                 </div>
               </div>
@@ -107,9 +107,9 @@
                       <td class="py-1 text-center">
                         {{ cantidad(data.talles) }}
                       </td>
-                      <td class="py-1 text-center">${{ data.precio }}</td>
+                      <td class="py-1 text-center">{{ data.precio |currency}}</td>
                       <td class="py-1 text-right">
-                        ${{ cantidadTotalProducto(data) }}
+                        {{ cantidadTotalProducto(data) | currency}}
                       </td>
                     </tr>
                   </tbody>
@@ -119,7 +119,7 @@
                       <td class="py-2 border-b border-gray-200">Total</td>
                       <td class="border-b border-gray-200 py-4"></td>
                       <td class="border-b border-gray-200 py-4 text-right">
-                        ${{ cantidadTotal() }}
+                        {{ cantidadTotal() | currency }}
                       </td>
                     </tr>
                     <tr
@@ -138,7 +138,7 @@
                       <td class="py-4 font-bold">TOTAL</td>
                       <td class="py-4"></td>
                       <td class="text-indigo-400 py-4 text-right">
-                        ${{ cantidadTotalConDescuento() }}
+                        {{ cantidadTotalConDescuento() | currency }}
                       </td>
                     </tr>
                   </tbody>
@@ -159,7 +159,7 @@
           <div class="pb-2 px-4">
             <div class="flex items-center justify-between mt-8">
               <button
-                onclick="modalHandler(false)"
+                (click)="salir()"
                 class="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white"
               >
                 Salir
@@ -194,64 +194,70 @@
             <div
               class="bg-gray-100 rounded-tl-md rounded-tr-md md:px-10 px-5 pt-9 pb-2.5"
             >
-              <div class="sm:flex justify-between">
-                <div>
+              <div class="sm:flex justify-between items-center">
+                <div >
                   <img
-                    class="w-32"
+                    class=""
+                    style="width:350px"
                     src="/assets/icon/logo.png"
                     alt=""
                     srcset=""
                   />
-                  <p class="text-lg font-bold text-gray-500 mt-2">Milena</p>
-                  <div class="mt-2">
+                  <p class="text-lg font-bold text-gray-500 mt-2" *ngIf>Milena</p>
+                  <div class="mt-2" *ngIf>
                     <p class="text-xs leading-5 text-gray-500 uppercase mt-1">
                       Bogota 3481 - BS. AS<br />CEL: +549 116253-6201<br />11-5180-4160(Stefy)<br />11-5693-0533(Silvia)
                     </p>
                   </div>
                 </div>
-                <div
-                  class="mt-4 sm:mt-0 sm:flex flex-col sm:items-end sm:text-right"
-                >
-                  <p class="px-5 text-xs leading-3 text-red-500">Pendiente</p>
 
-                  <p class="text-xs leading-5 text-light-blue mt-3">
+                <div
+                  class="mt-4 sm:mt-0 sm:flex flex-col sm:items-end sm:text-right w-full borde"
+                >
+                  <p [ngClass]="'px-5 text-xs leading-3 ' + (dataDeOrden.ordenEstado.pagado == true ? 'text-green-500': 'text-red-500 ')">{{dataDeOrden.ordenEstado.pagado == true ? 'Pagado' : 'Pendiente'}}</p>
+
+                  <p class="text-xs leading-5 text-light-blue mt-3 ">
                     {{ dataDeOrden.cliente.nombre }}
                     {{
                       dataDeOrden.cliente.apellido == null
                         ? ""
                         : dataDeOrden.cliente.apellido
                     }}
-                    <br /><span class="text-gray-500"
+                    <br /><span *ngIf="dataDeOrden.cliente_direccion == null ? false :true" class="text-gray-500"
                       > {{ dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.direccion }} <br />{{
                         
                         dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.localidad
 
-                      }}, {{ dataDeOrden.cliente_direccion == null ? '' : 'CP : ' + dataDeOrden.cliente_direccion.cp }}<br />{{
+                      }}{{ dataDeOrden.cliente_direccion == null ? '' : 'CP : ' + dataDeOrden.cliente_direccion.cp }}<br />{{
                         dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.provincia
                       }}</span
                     >
                   </p>
                   <div class="mt-3">
-                    <div class="flex space-x-1 items-center text-xs leading-3">
+                    <div class="flex space-x-1 items-center text-xs leading-3" *ngIf="dataDeOrden.cliente.email == null || dataDeOrden.cliente.email == ''  ? false : true">
                       <p class="text-blue-500">@</p>
                       <p class="text-gray-500">
-                        {{ dataDeOrden.cliente.email }}
+                        {{ servicioVentas.evitarNulloVacios(dataDeOrden.cliente.email )}}
                       </p>
                     </div>
                     <div
                       class="flex space-x-1 items-center sm:justify-end text-xs leading-3 mt-2"
+                      *ngIf="dataDeOrden.cliente.telefono == null || dataDeOrden.cliente.telefono == ''  ? false : true"
                     >
                       <p class="text-blue-500">Cel:</p>
                       <p class="text-gray-500">
-                        {{ dataDeOrden.cliente.telefono }}
+                        {{ servicioVentas.evitarNulloVacios(dataDeOrden.cliente.telefono )}}
                       </p>
                     </div>
                   </div>
-                  <div class="mt-6 text-xs leading-3 sm:text-right">
-                    <p class="text-gray-800 uppercase">
-                      {{ dataDeOrden.ordenEstado.transporte }}
+                  <div class="mt-6 text-xs leading-3 sm:text-right" 
+                 
+
+                  >
+                    <p class="text-gray-800 uppercase"  *ngIf="dataDeOrden.cliente.transporte == null || dataDeOrden.cliente.transporte == ''  ? false : true">
+                      {{ servicioVentas.evitarNulloVacios(dataDeOrden.ordenEstado.transporte) }}
                     </p>
-                    <p class="text-gray-500 mt-1">#{{ dataDeOrden.id }}</p>
+                    <p class="text-gray-500 mt-1">#ID{{ dataDeOrden.id }}</p>
                   </div>
                 </div>
               </div>
@@ -304,7 +310,7 @@
           <div class="pb-2 px-4">
             <div class="flex items-center justify-between mt-8">
               <button
-                onclick="modalHandler(false)"
+                (click)="salir()"
                 class="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white"
               >
                 Salir

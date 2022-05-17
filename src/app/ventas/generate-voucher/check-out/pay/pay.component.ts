@@ -60,26 +60,35 @@ export class PayComponent implements OnInit {
 
   enviarForm(value: FormaDePago | any){
 
-    console.log(value);
-
+    
 
     Object.keys(value).map(function(key, index) {
       if(value[key] == ''){
-        delete value[key];
+
+        if(key == 'pagado'){
+          value.pagado = false;
+        }else{
+          delete value[key];
+
+        }
       }
     });
 
-    if(value.pagado == 'true'){
+
+
+  /*   if(value.pagado == 'true'){
       value.pagado == true
     }else if(value.pagado == 'false'){
       value.pagado == false
-    }
+    } */
 
     let id_usuario = localStorage.getItem('id_usuario');
     let {cliente} = JSON.parse(localStorage.getItem('cliente') || '[]');
     let notas = JSON.parse(localStorage.getItem('notas') || '[]');
     let descuentos = JSON.parse(localStorage.getItem('descuentos') || '[]');
     this.cargaDeBoton = true;
+
+    console.log(value);
     this.servicioVentas.postGenerarOrden(id_usuario, {cliente:cliente, notas, descuentos, orden_estado:value})
     .subscribe( (res:any) => {
       console.log(res)

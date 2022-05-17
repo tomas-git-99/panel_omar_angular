@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faTrash, faWrench } from '@fortawesome/free-solid-svg-icons';
 import { ProduccionService } from 'src/app/produccion/servicios/produccion.service';
 import Swal from 'sweetalert2';
@@ -11,7 +12,7 @@ import { VentasService } from '../../servicios/ventas.service';
 })
 export class ModifyComponent implements OnInit {
   dropDownList:any
-  constructor( public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
+  constructor(private router:Router, public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
   isSubTable: boolean = false;
 
   faWrech = faWrench;
@@ -35,13 +36,25 @@ export class ModifyComponent implements OnInit {
 
   productoSeleccionadoIDEdit:number | string= 0;
 
+  idORDEN:number = 0;
+
   ngOnInit(): void {
 
     console.log(this.detallesDeOrden)
 
+    this.idORDEN = this.detallesDeOrden.id;
+
     this.arreglarOrden(this.detallesDeOrden.orden_detalle)
 
-    this.calcularEltotal(this.detallesDeOrden.orden_detalle, this.detallesDeOrden.descuento)
+    this.calcularEltotal(this.detallesDeOrden.orden_detalle, this.detallesDeOrden.descuento);
+
+    this.servicioVentas.actualizarOrdenTotalDescuento.subscribe(
+      ()=> {
+    this.calcularEltotal(this.detallesDeOrden.orden_detalle, this.detallesDeOrden.descuento);
+
+      }
+    )
+
 
   }
   viewSubTable(id:any){
@@ -91,7 +104,7 @@ export class ModifyComponent implements OnInit {
               : x.productoVentas.sub_modelo,
 
         dibujo: x.productoVentas.sub_dibujo == null 
-        ? (x.productoVentas.productoDetalles.producto.estampado.length > 0 ? x.productoVentas.productoDetalles.producto.estampado[0].dibujo : '')
+        ? (x.productoVentas.productoDetalles.producto.estampado == null ? '- - ':  x.productoVentas.productoDetalles.producto.estampado.dibujo)
         : x.productoVentas.sub_dibujo,
 
         precio: x.precio_nuevo == null 
@@ -155,15 +168,29 @@ export class ModifyComponent implements OnInit {
   }
 
   IDoCodigoParaNota(id: number){
-  /*   let data = this.detallesDeOrden.orden_detalle
-    .find( (d:any )=> d.productoVentas.id == id)
+    
 
-    console.log(data);
-    if(data.productoVentas.productoDetalles == null){
-      return id
+    if(this.detallesDeOrden.nota == null){
+     
+      return;
+
     }else{
-      return data.productoVentas.productoDetalles.producto.codigo
-    } */
+      let data = this.detallesDeOrden.orden_detalle
+      .find( (d:any )=> d.productoVentas.id == id)
+
+  
+
+      if(data != undefined){
+        if(data.productoVentas.productoDetalles == null){
+          return id
+        }else{
+          return data.productoVentas.productoDetalles.producto.codigo
+        }
+      }
+  
+  
+    }
+   
   }
 
   seleccionIDproducto(id:number | string){
@@ -173,6 +200,8 @@ export class ModifyComponent implements OnInit {
   }
 
   eliminarMultiplesProductos(id: number  | string){
+
+    console.log(id)
     Swal.fire({
       title: 'Esta seguro que quiere eliminar este producto?',
       text: "Si lo hace, eliminara por completo el producto con ese CODIGO",
@@ -183,11 +212,33 @@ export class ModifyComponent implements OnInit {
       confirmButtonText: 'Si'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
+
+        this.servicioVentas.deleteUNProductoDeOrden( this.idORDEN, id).subscribe(
+          (res:any) => {
+            console.log(res)
+            if(res.ok == true){
+              Swal.fire(
+                'Eliminado!',
+                'El producto fue eliminado correctamente',
+                'success'
+              )
+              this.arrayCarritoProductos.map ( (x, i) => {
+                if(x.id == id){
+                  this.arrayCarritoProductos.splice(i,1)
+                }
+              })
+
+
+            }else{
+              Swal.fire(
+                'Error!',
+                'No se pudo eliminar el producto',
+                'error'
+              )
+            }
+          }
         )
+    
       }
     })
   }
@@ -204,11 +255,25 @@ export class ModifyComponent implements OnInit {
       confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
+
+        this.servicioVentas.deleteOrden( this.idORDEN).subscribe(
+          (res:any) => {
+            console.log(res)
+            if(res.ok == true){
+              Swal.fire(
+                'Eliminado!',
+                'El pedido fue eliminado correctamente',
+                'success'
+              )
+            
+            }else{
+              Swal.fire(
+                'Error!',
+                'No se pudo eliminar el pedido',
+                'error'
+              )
+            }
+          })
       }
     })
   }
@@ -225,16 +290,45 @@ export class ModifyComponent implements OnInit {
       confirmButtonText: 'SI'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
+
+        this.servicioVentas.deleteUNnotaDeOrden(id).subscribe(
+
+          (res:any) => {
+            console.log(res)
+    
+            if(res.ok == true){
+              Swal.fire(
+                'Eliminado!',
+                'El descuento fue eliminado correctamente',
+                'success'
+              )
+
+              this.detallesDeOrden.nota.map( (x:any, i:any) => {
+                if(x.id == id){
+                  this.detallesDeOrden.nota.splice(i,1)
+                }
+              })
+
+
+              
+              }else{
+                Swal.fire(
+                  'Error!',
+                  'No se pudo eliminar el descuento',
+                  'error'
+                )
+              }
+
+            }
         )
+     
       }
     })
   }
 
   eliminarDescuento(id: number  | string){
+
+    console.log(id)
     Swal.fire({
       title: 'Esta seguro que quiere eliminar el descuento?',
       text: "",
@@ -245,12 +339,47 @@ export class ModifyComponent implements OnInit {
       confirmButtonText: 'SI'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
+        this.servicioVentas.deleteUNDescuentoDeOrden(id).subscribe(
+
+          (res:any) => {
+            console.log(res)
+    
+            if(res.ok == true){
+              Swal.fire(
+                'Eliminado!',
+                'El descuento fue eliminado correctamente',
+                'success'
+              )
+
+              this.detallesDeOrden.descuento.map( (x:any, i:any) => {
+                if(x.id == id){
+                  this.detallesDeOrden.descuento.splice(i,1)
+                }
+              })
+    this.calcularEltotal(this.detallesDeOrden.orden_detalle, this.detallesDeOrden.descuento);
+
+              
+              }else{
+                Swal.fire(
+                  'Error!',
+                  'No se pudo eliminar el descuento',
+                  'error'
+                )
+              }
+
+            }
         )
       }
     })
+  }
+
+
+  imprimir(){
+    this.servicioVentas.mandarParaImprimir = this.detallesDeOrden;
+    this.router.navigate([`/invoice/${this.idORDEN}`]);
+
+    
+
+
   }
 }

@@ -61,6 +61,17 @@ export class VentasService {
 
   agregarDisctribucionArray:any;
 
+  //orden
+
+
+  mandarParaImprimir:any;
+  
+
+
+  actualizarOrdenTotalDescuento = new EventEmitter();
+
+
+
   constructor(private http: HttpClient) { 
 
   }
@@ -203,8 +214,8 @@ export class VentasService {
 
   //obtener historial de ordenes 
 
-  getObtenerHistorialOrdenes(busqueda:string = '', pagina:string | number= ''){
-    return this.http.get<HistorialOrden>(environment.urlBackendProduccion + 'orden'+'?keyword=' + busqueda + '&skip=' + pagina);
+  getObtenerHistorialOrdenes(busqueda:string = '', pagina:string | number= '', local:string = '', fechaInicio='', fechaFinal=''){
+    return this.http.get<HistorialOrden>(environment.urlBackendProduccion + 'orden'+'?keyword=' + busqueda + '&skip=' + pagina + '&local=' + local + '&fechaInicio=' + fechaInicio + '&fechaFinal=' + fechaFinal);
   }
 
   postCrearProductosParaVenta(id_distribucion:any, data:any){
@@ -299,5 +310,33 @@ export class VentasService {
 
   deleteProductoVenta(id:any){
     return this.http.delete(environment.urlBackendProduccion + 'productos-ventas/'+id);
+  }
+
+  postAgregarNuevoArticuloOrden(id_orden:any,data:any){
+    return this.http.post(environment.urlBackendProduccion + 'orden/completo/'+id_orden, data);
+  }
+
+  deleteUNProductoDeOrden(id_orden:any,id_producto:any){
+    return this.http.delete(environment.urlBackendProduccion + 'orden/todos/'+id_orden+'/'+id_producto);
+  }
+
+  postAgregarNotas(id_orden:any,id_producto:any, data:any){
+    return this.http.post(environment.urlBackendProduccion + 'nota-descuento/nota/'+id_orden+'/'+id_producto, data);
+  }
+
+  postAgregarDescuentos(id_orden:any, data:any){
+    return this.http.post(environment.urlBackendProduccion + 'nota-descuento/descuento/'+id_orden, data);
+  }
+
+  deleteUNDescuentoDeOrden(id_descuento:any){
+    return this.http.delete(environment.urlBackendProduccion + 'nota-descuento/descuento/'+id_descuento);
+  }
+
+  deleteUNnotaDeOrden(id_orden:any){
+    return this.http.delete(environment.urlBackendProduccion + 'nota-descuento/nota/'+id_orden);
+  }
+
+  deleteOrden(id_orden:any){
+    return this.http.delete(environment.urlBackendProduccion + 'orden/'+ id_orden );
   }
 }

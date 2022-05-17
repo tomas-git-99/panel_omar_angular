@@ -43,7 +43,7 @@ export interface Descuento {
 export interface Nota {
     id:              number;
     nota:            string;
-    producto_ventas: Producto;
+    producto_ventas: Producto ;
 }
 
 export interface Producto {

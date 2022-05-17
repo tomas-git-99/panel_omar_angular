@@ -26,39 +26,92 @@ export class InvoicesComponent implements OnInit {
 
   constructor(public servicioVentas:VentasService, private router:Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { console.log(this.servicioVentas.mandarParaImprimir )
 
 
+    if(this.servicioVentas.mandarParaImprimir != undefined){
+      this.dataDeOrden = this.servicioVentas.mandarParaImprimir;
+      console.log('estoy con la data mandada')
+      this.arreglarOrden()
+    }else{
 
+      console.log('use UN get')
 
-    this.servicioVentas.getObtenerOrdenPorID(this.router.url.split('/')[2]).subscribe
-    (
-      res => {
-        if (res.ok == true){
-          if (res.data == null){
-            this.router.navigate(['/ventas/historial']);
-
-          }
-          console.log(res);
-          this.dataDeOrden = res.data;
-          this.arreglarOrden()
-        }else{
-          this.router.navigate(['/ventas/historial']);
-
-        }
+      this.servicioVentas.getObtenerOrdenPorID(this.router.url.split('/')[2]).subscribe
+      (
+        res => {
+          if (res.ok == true){
+            if (res.data == null){
+              this.router.navigate(['/ventas/historial']);
   
-      },(error) =>{
-        this.router.navigate(['/ventas/historial']);
-      }
-    )
+            }
+            console.log(res);
+            this.dataDeOrden = res.data;
+            this.arreglarOrden()
+          }else{
+            this.router.navigate(['/ventas/historial']);
+  
+          }
+    
+        },(error) =>{
+          this.router.navigate(['/ventas/historial']);
+        }
+      )
+  
+    }
 
+
+
+  
 
     console.log(this.nuevoArrayConPro);
   }
 
+  ngOnChanges(){
+
+    console.log(this.servicioVentas.mandarParaImprimir )
+
+
+    if(this.servicioVentas.mandarParaImprimir != undefined){
+      this.dataDeOrden = this.servicioVentas.mandarParaImprimir;
+      console.log('estoy con la data mandada')
+    }else{
+
+      console.log('use UN get')
+
+      this.servicioVentas.getObtenerOrdenPorID(this.router.url.split('/')[2]).subscribe
+      (
+        res => {
+          if (res.ok == true){
+            if (res.data == null){
+              this.router.navigate(['/ventas/historial']);
+  
+            }
+            console.log(res);
+            this.dataDeOrden = res.data;
+            this.arreglarOrden()
+          }else{
+            this.router.navigate(['/ventas/historial']);
+  
+          }
+    
+        },(error) =>{
+          this.router.navigate(['/ventas/historial']);
+        }
+      )
+  
+    }
+
+
+
+  
+
+    console.log(this.nuevoArrayConPro);
+  }
+  
+
 
   arreglarOrden(){
-    console.log(this.dataDeOrden);
     this.dataDeOrden.orden_detalle.map((x:any) => {
       if (
         this.nuevoArrayConPro.some((t:any) => t.id == x.productoVentas.id) == false
@@ -147,7 +200,7 @@ export class InvoicesComponent implements OnInit {
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
       return doc;
     }).then((docResult) => {
-      docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+      docResult.save(`${new Date().toISOString()}.pdf`);
     });
 
   
@@ -223,6 +276,12 @@ export class InvoicesComponent implements OnInit {
     })
 
     return talles;
+
+  }
+
+
+  salir(){
+    this.router.navigate([`/ventas/historial`]);
 
   }
 

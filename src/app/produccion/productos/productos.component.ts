@@ -98,7 +98,7 @@ export class ProductosComponent implements OnInit {
         
         if(res.ok == true){
 
-          console.log(res)
+        
           
           this.cantidadPaginas = res.contador;
 

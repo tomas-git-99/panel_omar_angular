@@ -24,9 +24,15 @@ export class SearchProductsComponent implements OnInit {
 
   @Output()
   cerrarVentana:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Input()
+  idORDENseleccionado:number = 0;
+
   constructor(public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
+
+    console.log(this.idORDENseleccionado)
     this.servicioVentas.getObtenerLocales().subscribe(
       (res)=>{
        
@@ -179,7 +185,7 @@ export class SearchProductsComponent implements OnInit {
 
     let datos = {
       id_producto: this.productoSeleccionado.id,
-      precio_nuevo: parseInt(precioNuevo),
+      precio_nuevo: precioNuevo == '' ? 0 :parseInt(precioNuevo),
       talles:data
     }
 
@@ -187,6 +193,28 @@ export class SearchProductsComponent implements OnInit {
     
 
     console.log(datos)
+
+    this.servicioVentas.postAgregarNuevoArticuloOrden(this.idORDENseleccionado, datos).subscribe(
+      (res:any)=>{
+        console.log(res)
+        if(res.ok == true){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: '',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal!',
+
+          })
+        }
+      }
+    )
   
   }
 }

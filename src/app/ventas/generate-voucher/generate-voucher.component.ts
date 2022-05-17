@@ -95,6 +95,21 @@ export class GenerateVoucherComponent implements OnInit {
 
 
   }
+
+  seleccionDeLocal(id:any){
+
+    if(id.target.value != ''){
+
+      this.id_local = this.localesArray.find( (x:any) => x.id == id.target.value);
+      this.productosYbuscador('',0, this.id_local.id);
+    }else{
+      this.productosYbuscador();
+
+    }
+
+
+
+  }
   changeCategory(category: string | number){
     if(category == 0 || category == '0'){
       this.productosYbuscador();
@@ -163,9 +178,17 @@ export class GenerateVoucherComponent implements OnInit {
     this.estadoDePagina = parseInt(paginaSiguiente.target.attributes.id.nodeValue)
 
 
-    this.productosYbuscador( '', this.estadoDePagina + '0');
+    //this.productosYbuscador( '', this.estadoDePagina + '0');
 
-    console.log(this.estadoDePagina +'0')
+    if(this.id_local != ''){
+      this.productosYbuscador( '', this.estadoDePagina + '0', this.id_local.id);
+
+    }else{
+      this.productosYbuscador( '', this.estadoDePagina + '0');
+
+    }
+
+ 
   
 
   }
@@ -173,18 +196,37 @@ export class GenerateVoucherComponent implements OnInit {
 
   cambioDePaginaNext(derechaIzquierda:boolean){
 
+    console.log(derechaIzquierda)
+
     if(derechaIzquierda == true){
-      if((this.items[this.items.length - 1]) > this.estadoDePagina )
+      if((this.items[this.items.length - 1]) > this.estadoDePagina ){
+        if(this.id_local != ''){
+          this.estadoDePagina +=  1;
+          this.productosYbuscador('', this.estadoDePagina + '0', this.id_local.id);
+          this.moveCategory('right', 20);
+        }else{
+          this.estadoDePagina +=  1;
+          this.productosYbuscador('', this.estadoDePagina + '0');
+          this.moveCategory('right', 20);
+        }
+      }
       
-      this.estadoDePagina +=  1;
-      this.productosYbuscador('', this.estadoDePagina + '0');
-      this.moveCategory('right', 20);
+
 
     }else{
-      if(this.estadoDePagina > 0)
-      this.estadoDePagina -= 1;
-      this.productosYbuscador('', this.estadoDePagina + '0');
-      this.moveCategory('left', 20)
+
+      if(this.estadoDePagina > 0){
+        if(this.id_local != ''){
+          this.estadoDePagina -= 1;
+          this.productosYbuscador('', this.estadoDePagina + '0', this.id_local.id);
+          this.moveCategory('left', 20)
+        }else{
+          this.estadoDePagina -= 1;
+          this.productosYbuscador('', this.estadoDePagina + '0');
+          this.moveCategory('left', 20)
+        }}
+      
+
 
     }
   }

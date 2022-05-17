@@ -10,8 +10,9 @@ export class PaginacionComponent implements OnInit {
   constructor() { }
 
  
-  @Input() 
-  estadoDePagina:number = 0;
+  estadoDePagina:number  = 0;
+  
+  @Input() conteoDePagina!:number ;
 
   @Output() 
   paginacion = new EventEmitter<number | string>();
@@ -24,9 +25,16 @@ export class PaginacionComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.calcularPaginas(this.estadoDePagina)
   }
 
+
+  ngOnChanges(){
+    console.log(this.estadoDePagina)
+    this.calcularPaginas(this.conteoDePagina)
+
+  }
+
+  
 
     //paginacion
   
@@ -92,7 +100,4 @@ export class PaginacionComponent implements OnInit {
       this.items = Array(cantidadPaginas).fill(0).map((x,i)=>i);
   
     }
-  
-    //paginacion end
-
 }

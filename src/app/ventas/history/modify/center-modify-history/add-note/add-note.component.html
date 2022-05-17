@@ -29,7 +29,7 @@
 
           <hr />
 
-          <!-- nota -->
+          <!-- nota  -->
           <div class="grid gap-5" *ngIf="opciones.value == 'nota' ? true : false">
             <select
             #IDproducto
@@ -37,7 +37,7 @@
         
             >
               <option value="" class="">Producto:</option>
-              <option value="1">Descuesto</option>
+              <option  *ngFor="let producto of productoNoRepetidos" [value]="producto.id">COD: {{producto.codigo}} | {{producto.modelo}} - {{producto.dibujo}}</option>
        
             </select>
 
