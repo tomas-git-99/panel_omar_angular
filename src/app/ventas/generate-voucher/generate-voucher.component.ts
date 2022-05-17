@@ -117,11 +117,25 @@ export class GenerateVoucherComponent implements OnInit {
   }
   changeCategory(category: string | number){
     if(category == 0 || category == '0'){
-      this.productosYbuscador();
+     
+      if (this.id_local !== null) {
+      
+        this.productosYbuscador('',0, this.id_local.id);
+  
+        this.estasEnELLOcal = this.id_local.nombre;
+  
+      }else{
+  
+        this.estasEnELLOcal = 'Todos'
+        console.log(this.estasEnELLOcal)
+  
+        this.productosYbuscador();
+      }
+  
 
     }else{
       this.categoriaGuardada = category;
-      this.productosYbuscador('', '', '', category);
+      this.productosYbuscador('', 0, this.id_local.id, category);
     }
     category === this.valueHomeCategory ? this.valueHomeCategory : this.valueHomeCategory = category;
   }
@@ -181,7 +195,7 @@ export class GenerateVoucherComponent implements OnInit {
 
   console.log(pagina)
 
-  this.productosYbuscador(this.valueGuardo, pagina, (this.id_local  == null || this.id_local == '' ? '': this.id_local.id ));
+  this.productosYbuscador(this.valueGuardo, pagina, (this.id_local  == null || this.id_local == '' ? '': this.id_local.id ), this.categoriaGuardada);
 
   }
 

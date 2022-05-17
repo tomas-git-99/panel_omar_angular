@@ -43,7 +43,7 @@ const routes: Routes = [
   {
     path: 'payment',
     component: PayComponent,
-    canActivate: [AuthGuard ],
+    //canActivate: [AuthGuard ],
 
   },
   {
