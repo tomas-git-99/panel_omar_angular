@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faFilter, faUser } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import { Usuario } from './interfaces/usuario';
 import { ProduccionService } from './produccion/servicios/produccion.service';
 import { ServicioService } from './servicio.service';
 
@@ -17,31 +18,31 @@ export class AppComponent {
 
   faUser = faUser;
   faFilter = faFilter;
-  nombreUsuario:string | null = "";
+  dataUsuario!:Usuario;
 
   ventanaProduccion:boolean = false;
   ventanaVentas:boolean = false;
 
   constructor(public servicio:ServicioService, private router:Router, public servicioProduccion:ProduccionService){
 
-    this.nombreUsuario = localStorage.getItem('usuario')
+    this.dataUsuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
 
-    localStorage.getItem('rol') === 'admin'
+    this.dataUsuario.roles === 'admin'
     ? this.mostrartPanelUsuario = true
     : this.mostrartPanelUsuario = false;
 
 
-    if(localStorage.getItem('rol') == 'ventas'){
+    if( this.dataUsuario.roles == 'ventas'){
       this.ventanaVentas = true;
-    }else if (localStorage.getItem('rol') == 'produccion'){
+    }else if ( this.dataUsuario.roles == 'produccion'){
       this.ventanaProduccion = true;
-    }else if (localStorage.getItem('rol') == 'admin'){
+    }else if ( this.dataUsuario.roles == 'admin'){
       this.ventanaVentas = true;
       this.ventanaProduccion = true;
   
     }
   }
-  title = 'panel-omar-new-angular';
+  title = 'Milena';
   isList: number = 0;
   isMenu: boolean = false;
   isSearch: boolean = false;
@@ -90,18 +91,21 @@ export class AppComponent {
 
     this.servicioProduccion.actualizarPagina$.subscribe( () => {
 
-      this.nombreUsuario = localStorage.getItem('usuario')
+
+
+    this.dataUsuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
+
   
-      localStorage.getItem('rol') === 'admin'
+    this.dataUsuario.roles === 'admin'
       ? this.mostrartPanelUsuario = true
       : this.mostrartPanelUsuario = false;
   
   
-      if(localStorage.getItem('rol') == 'ventas'){
+      if(this.dataUsuario.roles == 'ventas'){
         this.ventanaVentas = true;
-      }else if (localStorage.getItem('rol') == 'produccion'){
+      }else if (this.dataUsuario.roles == 'produccion'){
         this.ventanaProduccion = true;
-      }else if (localStorage.getItem('rol') == 'admin'){
+      }else if (this.dataUsuario.roles == 'admin'){
         this.ventanaVentas = true;
         this.ventanaProduccion = true;
     
@@ -164,10 +168,7 @@ export class AppComponent {
       confirmButtonText: 'Salir!'
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem('id_usuario');
-        localStorage.removeItem('roles');
-        localStorage.removeItem('local');
-        localStorage.removeItem('id');
+        localStorage.removeItem('dataUsuario');
         this.router.navigate(['']);
         return;
       }

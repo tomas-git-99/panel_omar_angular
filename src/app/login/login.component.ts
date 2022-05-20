@@ -30,16 +30,13 @@ export class LoginComponent implements OnInit {
       res => {
 
        if(res.ok == true){
-        //localStorage.setItem('token', res.token);
-        console.log(res)
+      
         localStorage.setItem('dataUsuario',  JSON.stringify(res.data))
-        localStorage.setItem('id_usuario', res.data.id);
+  /*       localStorage.setItem('id_usuario', res.data.id);
         localStorage.setItem('usuario', res.data.usuario);
         localStorage.setItem('rol', res.data.roles);
-
-        res.data.roles == 'ventas'
-        ? localStorage.setItem('local',  JSON.stringify(res.data.local))
-        :'';
+ */
+      
 
         res.data.roles == 'ventas'
         ? this.router.navigate(['/ventas'])
@@ -49,10 +46,10 @@ export class LoginComponent implements OnInit {
 
 
 
-        Swal.fire({
+      /*   Swal.fire({
           icon: 'success',
           title: 'Bienvenido',
-        })
+        }) */
         
        }else{
          Swal.fire({

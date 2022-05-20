@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { faCartShopping, faChevronLeft, faChevronRight, faTrash, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { Usuario } from 'src/app/interfaces/usuario';
 import { ProduccionService } from 'src/app/produccion/servicios/produccion.service';
 import Swal from 'sweetalert2';
 import { ProductosVentas } from '../inter/ventas';
@@ -48,13 +49,17 @@ export class GenerateVoucherComponent implements OnInit {
   localesArray:any;
   categoriaArrays:any
 
-  id_local:any = '';
-
-  estasEnELLOcal:string = '';
 
   @Input() cantidadPaginas:number = 0;
 
+
+  dataUsuarioLocal!:Usuario;
+  estasEnELLOcal:string = '';
+  localActual:number = 0;
+
+  boolEstadoUnLocalOTodos:boolean = false;
   
+
   constructor(public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
@@ -79,19 +84,19 @@ export class GenerateVoucherComponent implements OnInit {
     )
 
 
-    this.id_local = JSON.parse(localStorage.getItem('local') as any) ;
+    this.dataUsuarioLocal = JSON.parse(localStorage.getItem('dataUsuario') as any);
 
-    if (this.id_local !== null) {
-      
-      this.productosYbuscador('',0, this.id_local.id);
+    if (this.dataUsuarioLocal.local !== null) {
+    
+      this.localActual = this.dataUsuarioLocal.local.id
 
-      this.estasEnELLOcal = this.id_local.nombre;
+      this.productosYbuscador('',0, this.localActual);
+
+      this.estasEnELLOcal = this.dataUsuarioLocal.local.nombre;
 
     }else{
 
-      this.estasEnELLOcal = 'Todos'
-      console.log(this.estasEnELLOcal)
-
+      this.boolEstadoUnLocalOTodos = true;
       this.productosYbuscador();
     }
 
@@ -103,11 +108,12 @@ export class GenerateVoucherComponent implements OnInit {
 
     if(id.target.value != ''){
 
-      this.id_local = this.localesArray.find( (x:any) => x.id == id.target.value);
-      this.productosYbuscador('',0, this.id_local.id);
+      this.localActual = this.localesArray.find( (x:any) => x.id == id.target.value);
+      this.productosYbuscador('',0, this.localActual);
+
     }else{
       this.valueGuardo = '';
-      this.id_local = '';
+      //this.localActual = 0;
       this.productosYbuscador();
 
     }
@@ -115,14 +121,17 @@ export class GenerateVoucherComponent implements OnInit {
 
 
   }
+
+
   changeCategory(category: string | number){
+
     if(category == 0 || category == '0'){
      
-      if (this.id_local !== null) {
+      if (this.localActual !== 0) {
       
-        this.productosYbuscador('',0, this.id_local.id);
+        this.productosYbuscador('',0, this.localActual);
   
-        this.estasEnELLOcal = this.id_local.nombre;
+        //this.estasEnELLOcal = ;
   
       }else{
   
@@ -135,7 +144,7 @@ export class GenerateVoucherComponent implements OnInit {
 
     }else{
       this.categoriaGuardada = category;
-      this.productosYbuscador('', 0, this.id_local.id, category);
+      this.productosYbuscador('', 0, this.localActual, category);
     }
     category === this.valueHomeCategory ? this.valueHomeCategory : this.valueHomeCategory = category;
   }
@@ -193,9 +202,9 @@ export class GenerateVoucherComponent implements OnInit {
 
   paginacion(pagina:any){
 
-  console.log(pagina)
 
-  this.productosYbuscador(this.valueGuardo, pagina, (this.id_local  == null || this.id_local == '' ? '': this.id_local.id ), this.categoriaGuardada);
+
+  this.productosYbuscador(this.valueGuardo, pagina, (this.localActual  == 0 ? '': this.localActual), this.categoriaGuardada);
 
   }
 
@@ -207,8 +216,8 @@ export class GenerateVoucherComponent implements OnInit {
 
     //this.productosYbuscador( '', this.estadoDePagina + '0');
 
-    if(this.id_local != ''){
-      this.productosYbuscador( '', this.estadoDePagina + '0', this.id_local.id);
+    if(this.localActual != 0){
+      this.productosYbuscador( '', this.estadoDePagina + '0', this.localActual);
 
     }else{
       this.productosYbuscador( '', this.estadoDePagina + '0');
@@ -227,9 +236,9 @@ export class GenerateVoucherComponent implements OnInit {
 
     if(derechaIzquierda == true){
       if((this.items[this.items.length - 1]) > this.estadoDePagina ){
-        if(this.id_local != ''){
+        if(this.localActual != 0){
           this.estadoDePagina +=  1;
-          this.productosYbuscador('', this.estadoDePagina + '0', this.id_local.id);
+          this.productosYbuscador('', this.estadoDePagina + '0', this.localActual);
           this.moveCategory('right', 20);
         }else{
           this.estadoDePagina +=  1;
@@ -243,9 +252,9 @@ export class GenerateVoucherComponent implements OnInit {
     }else{
 
       if(this.estadoDePagina > 0){
-        if(this.id_local != ''){
+        if(this.localActual != 0){
           this.estadoDePagina -= 1;
-          this.productosYbuscador('', this.estadoDePagina + '0', this.id_local.id);
+          this.productosYbuscador('', this.estadoDePagina + '0', this.localActual);
           this.moveCategory('left', 20)
         }else{
           this.estadoDePagina -= 1;
@@ -281,10 +290,10 @@ export class GenerateVoucherComponent implements OnInit {
 
   onKey(value:string){
     this.valueGuardo = value;
-    if (this.id_local !== null) {
+    if (this.localActual !== 0) {
       //this.productosYbuscador('',0, this.id_local);
-      console.log(this.id_local.id)
-      this.productosYbuscador( value, 0, this.id_local.id, this.categoriaGuardada,this.objDeFiltro.codigo, this.objDeFiltro.dibujo, this.objDeFiltro.color);
+   
+      this.productosYbuscador( value, 0, this.localActual, this.categoriaGuardada,this.objDeFiltro.codigo, this.objDeFiltro.dibujo, this.objDeFiltro.color);
   
       }else{
       //this.productosYbuscador('',0, this.id_local);

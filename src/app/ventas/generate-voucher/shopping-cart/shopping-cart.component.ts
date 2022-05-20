@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPercent, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Usuario } from 'src/app/interfaces/usuario';
 import Swal from 'sweetalert2';
 import { CarritoElement } from '../../inter/carrito';
 import { VentasService } from '../../servicios/ventas.service';
@@ -44,6 +45,9 @@ export class ShoppingCartComponent implements OnInit {
 
   arrayProducotData: any
   abrirCerrarVentanaEditarProducto:boolean = false;
+
+  dataUsuarioLocal:Usuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
+
   openMenu(source: any) {
     this.isOpenedList = source;
   }
@@ -55,7 +59,7 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.servicioVentas
-      .getObtenerCarrito(localStorage.getItem('id_usuario'))
+      .getObtenerCarrito(this.dataUsuarioLocal.id)
       .subscribe((res) => {
         this.arreglarCarrito(res.data.carrito);
       });
@@ -249,7 +253,7 @@ export class ShoppingCartComponent implements OnInit {
       confirmButtonText: 'SI',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.servicioVentas.deleteCarritoTodo( localStorage.getItem('id_usuario'), id_producto)
+        this.servicioVentas.deleteCarritoTodo( this.dataUsuarioLocal.id, id_producto)
         .subscribe(
           (res:any) => {
             if(res.ok == true){

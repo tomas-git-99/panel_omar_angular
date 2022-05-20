@@ -5,6 +5,7 @@ import { VentasService } from '../../servicios/ventas.service';
 //import localidades  from '../../../../assets/json/localidades.json';
 import { Localidades } from '../../inter/ventas';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-check-out',
@@ -73,7 +74,13 @@ export class CheckOutComponent implements OnInit {
 
     if(value.cliente.cliente.nombre == '' ){
 
-      alert('Tiene que poner un nombre');
+
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'Al menos tiene llenar el campo de "Nombre"!',
+      });
+      return;
     }
 
     if(
@@ -92,7 +99,6 @@ export class CheckOutComponent implements OnInit {
 
     this.router.navigate(['/payment']);
 
-    console.log(value);
    
   }
 }

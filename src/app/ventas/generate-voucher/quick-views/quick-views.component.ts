@@ -11,6 +11,7 @@ import { VentasService } from '../../servicios/ventas.service';
 import { Datum } from '../../inter/ventas';
 import { Carrito } from '../../inter/carrito';
 import Swal from 'sweetalert2';
+import { Usuario } from 'src/app/interfaces/usuario';
 @Component({
   selector: 'app-quick-views',
   templateUrl: './quick-views.component.html',
@@ -72,9 +73,9 @@ export class QuickViewsComponent implements OnInit {
       }
     });
 
-  
+    let dataUsuarioLocal:Usuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
     
-    this.servicioVentas.postAgregarCarrito( localStorage.getItem('id_usuario'),this.id_producto,{data:limpiarTalles}).subscribe( 
+    this.servicioVentas.postAgregarCarrito( dataUsuarioLocal.id , this.id_producto,{data:limpiarTalles}).subscribe( 
       (x:any)=> {
         if(x.ok === true){
           Swal.fire({

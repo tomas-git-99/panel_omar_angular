@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/interfaces/usuario';
 import { VentasService } from 'src/app/ventas/servicios/ventas.service';
 import Swal from 'sweetalert2';
 
@@ -12,6 +13,10 @@ export class ChangePriceComponent implements OnInit {
   @Input() changePrecioSub: boolean = false;
 
   @Input() arrayCarritoProductosHijo:any
+
+
+  dataUsuarioLocal:Usuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
+
 
   constructor(public servicioVentas: VentasService) { }
 
@@ -37,9 +42,9 @@ export class ChangePriceComponent implements OnInit {
   cambiarPrecio(id_producto:number | string,precio:number | string){
     console.log(id_producto,precio)
 
-    const id_usuario = localStorage.getItem('id_usuario')
+   
 
-    this.servicioVentas.putCambiarPrecioCarrito(id_usuario, id_producto, {precio_nuevo:precio})
+    this.servicioVentas.putCambiarPrecioCarrito(this.dataUsuarioLocal.id, id_producto, {precio_nuevo:precio})
     .subscribe(
       (res:any) => {
         if(res.ok == true){

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/interfaces/usuario';
 import { FormaDePago } from 'src/app/ventas/inter/ventas';
 import { VentasService } from 'src/app/ventas/servicios/ventas.service';
 import Swal from 'sweetalert2';
@@ -83,14 +84,17 @@ export class PayComponent implements OnInit {
       value.pagado == false
     } */
 
-    let id_usuario = localStorage.getItem('id_usuario');
+     let dataUsuarioLocal:Usuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
+
+
+
     let {cliente} = JSON.parse(localStorage.getItem('cliente') || '[]');
     let notas = JSON.parse(localStorage.getItem('notas') || '[]');
     let descuentos = JSON.parse(localStorage.getItem('descuentos') || '[]');
     this.cargaDeBoton = true;
 
     console.log(value);
-    this.servicioVentas.postGenerarOrden(id_usuario, {cliente:cliente, notas, descuentos, orden_estado:value})
+    this.servicioVentas.postGenerarOrden(dataUsuarioLocal.id , {cliente:cliente, notas, descuentos, orden_estado:value})
     .subscribe( (res:any) => {
       console.log(res)
       if(res.ok === true) {
