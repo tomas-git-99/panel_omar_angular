@@ -275,6 +275,9 @@ export class VentasService {
   deleteCarritoSoloUno(id_carrito:any){
     return this.http.delete(environment.urlBackendProduccion + 'carrito/'+ id_carrito);
   }
+  deleteCarritoTodo(id_usuario:any, id_producto:any){
+    return this.http.delete(environment.urlBackendProduccion + 'carrito/'+ id_usuario + '/' + id_producto);
+  }
 
   putEditarCarrito(id_carrito:any, data:any){
     return this.http.put(environment.urlBackendProduccion + 'carrito/'+ id_carrito , data);

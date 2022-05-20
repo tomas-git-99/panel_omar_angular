@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPercent } from '@fortawesome/free-solid-svg-icons';
+import { faPercent, faTrash } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 import { CarritoElement } from '../../inter/carrito';
 import { VentasService } from '../../servicios/ventas.service';
 
@@ -14,7 +15,7 @@ import { VentasService } from '../../servicios/ventas.service';
 export class ShoppingCartComponent implements OnInit {
 
   faPercent = faPercent;
-
+  faTrash = faTrash;
   dropDownList: any;
 
   isMenu: boolean = false;
@@ -233,5 +234,59 @@ export class ShoppingCartComponent implements OnInit {
     }
     );
   
+  }
+
+  eliminarProductosTODO(id_producto: any) {
+
+
+    Swal.fire({
+      title: 'Estas seguro que quieres eliminar este producto?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'SI',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicioVentas.deleteCarritoTodo( localStorage.getItem('id_usuario'), id_producto)
+        .subscribe(
+          (res:any) => {
+            if(res.ok == true){
+              
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: '',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              // eliminar de arrayCarritoProductos por id_producto
+              this.arrayCarritoProductos.map((x, i) => {
+                if (x.id == id_producto) {
+                  this.arrayCarritoProductos.splice(i, 1);
+                }
+              }
+              );
+           
+    
+            }else{
+    
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salió mal!',
+    
+              })
+            }
+          }
+        )
+        
+      }
+
+    })
+
+ 
+    
   }
 }

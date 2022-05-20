@@ -40,7 +40,6 @@ export class ModifyComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.detallesDeOrden)
 
     this.idORDEN = this.detallesDeOrden.id;
 
@@ -87,7 +86,6 @@ export class ModifyComponent implements OnInit {
 
 
   arreglarOrden(data: any[]) {
-    console.log(data);
     data.map((x) => {
       if (
         this.arrayCarritoProductos.some((t) => t.id == x.productoVentas.id) == false
@@ -119,7 +117,6 @@ export class ModifyComponent implements OnInit {
         ],
         });
       
-        console.log(this.arrayCarritoProductos);
       } else {
 
         this.arrayCarritoProductos.find( l => l.id == x.productoVentas.id)
@@ -194,12 +191,10 @@ export class ModifyComponent implements OnInit {
   seleccionIDproducto(id:number | string){
 
     this.productoSeleccionadoIDEdit = id;
-    console.log(id)
   }
 
   eliminarMultiplesProductos(id: number  | string){
 
-    console.log(id)
     Swal.fire({
       title: 'Esta seguro que quiere eliminar este producto?',
       text: "Si lo hace, eliminara por completo el producto con ese CODIGO",
@@ -213,7 +208,6 @@ export class ModifyComponent implements OnInit {
 
         this.servicioVentas.deleteUNProductoDeOrden( this.idORDEN, id).subscribe(
           (res:any) => {
-            console.log(res)
             if(res.ok == true){
               Swal.fire(
                 'Eliminado!',
@@ -256,7 +250,7 @@ export class ModifyComponent implements OnInit {
 
         this.servicioVentas.deleteOrden( this.idORDEN).subscribe(
           (res:any) => {
-            console.log(res)
+
             if(res.ok == true){
               Swal.fire(
                 'Eliminado!',
@@ -292,7 +286,6 @@ export class ModifyComponent implements OnInit {
         this.servicioVentas.deleteUNnotaDeOrden(id).subscribe(
 
           (res:any) => {
-            console.log(res)
     
             if(res.ok == true){
               Swal.fire(
@@ -326,7 +319,6 @@ export class ModifyComponent implements OnInit {
 
   eliminarDescuento(id: number  | string){
 
-    console.log(id)
     Swal.fire({
       title: 'Esta seguro que quiere eliminar el descuento?',
       text: "",
@@ -340,7 +332,6 @@ export class ModifyComponent implements OnInit {
         this.servicioVentas.deleteUNDescuentoDeOrden(id).subscribe(
 
           (res:any) => {
-            console.log(res)
     
             if(res.ok == true){
               Swal.fire(

@@ -85,6 +85,7 @@ export class QuickViewsComponent implements OnInit {
             timer: 1500
           })
 
+          this.FormularioProductos.reset();
           this.dataProducto.talles_ventas.map((p) => {
             limpiarTalles.map((t) => {
               if (p.talles === t.talle) {

@@ -165,6 +165,9 @@ export class AppComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem('id_usuario');
+        localStorage.removeItem('roles');
+        localStorage.removeItem('local');
+        localStorage.removeItem('id');
         this.router.navigate(['']);
         return;
       }
