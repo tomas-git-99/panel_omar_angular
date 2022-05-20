@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormaDePago } from 'src/app/ventas/inter/ventas';
 import { VentasService } from 'src/app/ventas/servicios/ventas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pay',
@@ -102,6 +103,12 @@ export class PayComponent implements OnInit {
 
       }else{
         this.cargaDeBoton = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Algo salió mal!',
+
+        })
       }
 
     })
