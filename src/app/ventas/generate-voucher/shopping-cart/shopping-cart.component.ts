@@ -97,6 +97,16 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   completarDatos(){
+
+    if(this.arrayCarritoProductos.length <= 0){
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'No hay productos en el carrito',
+
+      })
+      return;
+    }
     localStorage.setItem('totalSoloProducto', this.sumaTotalCarrito().toString())
     this.router.navigate(['/checkout']);
   }

@@ -126,6 +126,8 @@ export class GenerateVoucherComponent implements OnInit {
   changeCategory(category: string | number){
 
     if(category == 0 || category == '0'){
+
+      this.categoriaGuardada = '';
      
       if (this.localActual !== 0) {
       
@@ -136,7 +138,6 @@ export class GenerateVoucherComponent implements OnInit {
       }else{
   
         this.estasEnELLOcal = 'Todos'
-        console.log(this.estasEnELLOcal)
   
         this.productosYbuscador();
       }
@@ -184,9 +185,9 @@ export class GenerateVoucherComponent implements OnInit {
 
     this.servicioVentas.getProductos(busqueda, pagina, local, categoria, codigo, dibujo, color).subscribe(
       (data:any)=>{
-        console.log(data)
+    
         this.arrayProductos = data.data;
-
+        
         this.arrayProductos.map( (x:any )=> {
           x.talles_ventas.sort((a:any, b:any) => {
             return a.talles - b.talles;

@@ -66,6 +66,7 @@ export class VentasService {
 
   mandarParaImprimir:any;
   
+  
 
 
   actualizarOrdenTotalDescuento = new EventEmitter();

@@ -27,6 +27,10 @@ export class AppComponent {
 
     this.dataUsuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
 
+    if(this.dataUsuario == null){
+      this.router.navigate(['/']);
+      return;
+    }
     this.dataUsuario.roles === 'admin'
     ? this.mostrartPanelUsuario = true
     : this.mostrartPanelUsuario = false;
@@ -88,14 +92,22 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-
+   
+   
+ 
     this.servicioProduccion.actualizarPagina$.subscribe( () => {
 
 
 
     this.dataUsuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
 
-  
+    if(this.dataUsuario == null){
+      this.router.navigate(['/']);
+      return;
+
+    }
+
+    console.log(this.dataUsuario);
     this.dataUsuario.roles === 'admin'
       ? this.mostrartPanelUsuario = true
       : this.mostrartPanelUsuario = false;
@@ -113,6 +125,7 @@ export class AppComponent {
     })
 
   
+
   }
 
 

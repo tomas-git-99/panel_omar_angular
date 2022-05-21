@@ -527,7 +527,7 @@
         <div class="flex gap-5">
           <fa-icon [icon]="faUser" style="color:gray" size="1x" ></fa-icon>
           <p class="text-gray-600">
-{{dataUsuario.usuario}}
+{{dataUsuario == null ? '': dataUsuario.usuario}}
           </p>
         </div>
         <a
