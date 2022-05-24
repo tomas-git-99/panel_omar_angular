@@ -316,7 +316,9 @@
             <td class="">
               <div class="flex items-center gap-2">
                 <div
+                *ngIf="permisoDeEliminarOeditar"
                   class="bg-red-300 border-2 p-2 rounded-md cursor-pointer hover:bg-red-200"
+
                   (click)="eliminarProducto(producto.id)"
                 >
                   <fa-icon
@@ -327,6 +329,8 @@
                 </div>
 
                 <div
+                *ngIf="permisoDeEliminarOeditar"
+
                   class="border-2 p-2 rounded-md cursor-pointer hover:bg-white"
                   (click)="seleccionDeProductoModificar(producto.id)"
                 >

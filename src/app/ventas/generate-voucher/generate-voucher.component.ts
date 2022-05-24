@@ -58,6 +58,8 @@ export class GenerateVoucherComponent implements OnInit {
   localActual:number = 0;
 
   boolEstadoUnLocalOTodos:boolean = false;
+
+  permisoDeEliminarOeditar:boolean = false;
   
 
   constructor(public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
@@ -85,6 +87,11 @@ export class GenerateVoucherComponent implements OnInit {
 
 
     this.dataUsuarioLocal = JSON.parse(localStorage.getItem('dataUsuario') as any);
+
+
+    this.dataUsuarioLocal.roles == "admin"
+    ? this.permisoDeEliminarOeditar = true
+    : this.permisoDeEliminarOeditar = false;
 
     if (this.dataUsuarioLocal.local !== null) {
     
