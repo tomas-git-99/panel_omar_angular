@@ -173,6 +173,9 @@ export class HistoryComponent implements OnInit {
 
   cambioDeLocal(data:any) {
     this.localGuardado = data.value;
+
+    this.productosYbuscador('', 0, this.localGuardado, this.fecha_before, this.fecha_after);
+
   }
 
   reset(){

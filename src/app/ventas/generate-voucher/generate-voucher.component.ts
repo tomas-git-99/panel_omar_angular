@@ -114,11 +114,13 @@ export class GenerateVoucherComponent implements OnInit {
   seleccionDeLocal(id:any){
 
     if(id.target.value != ''){
+      console.log(id.target.value)
 
-      this.localActual = this.localesArray.find( (x:any) => x.id == id.target.value);
-      this.productosYbuscador('',0, this.localActual);
+      this.localActual = id.target.value;
+      this.productosYbuscador('',0, id.target.value);
 
     }else{
+      console.log(id.target.value)
       this.valueGuardo = '';
       //this.localActual = 0;
       this.productosYbuscador();
