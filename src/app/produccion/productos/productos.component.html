@@ -57,15 +57,43 @@
                             <label class="inline-flex items-center mt-3">
                                 <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="peso_promedio" (change)="seleccionDeCheck($event)" ><span class="ml-2 text-gray-700">Peso Promedio</span>
                             </label>
-                            <label class="inline-flex items-center mt-3">
+                      <!--       <label class="inline-flex items-center mt-3">
                                 <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="taller" (change)="seleccionDeCheck($event)" ><span class="ml-2 text-gray-700">Taller</span>
-                            </label>
+                            </label> -->
                             <label class="inline-flex items-center mt-3">
                                 <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="dibujo" (change)="seleccionDeCheck($event)" ><span class="ml-2 text-gray-700">Dibujo</span>
                             </label>
                             <label class="inline-flex items-center mt-3">
                                 <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="edad" (change)="seleccionDeCheck($event)"><span class="ml-2 text-gray-700">Edad</span>
                             </label>
+
+                            <div class="talleres">
+                                <label class="inline-flex items-center mt-3">
+                                  <input
+                                    type="checkbox"
+                                    class="form-checkbox h-5 w-5 text-gray-600"
+                                    value="taller"
+                                    (change)=" BoltallerArray = !BoltallerArray"
+                                  /><span class="ml-2 text-gray-700">Taller</span>
+                                </label>
+                  
+                                <div class=" flex flex-col justify-start pl-7" *ngFor="let taller of arrayTalleresFiltro">
+                  
+                                  <label class="inline-flex items-center mt-1" *ngIf="BoltallerArray">
+                                    <input
+                                      type="checkbox"
+                                      class="form-checkbox h-3 w-3 text-gray-600"
+                                      [value]="taller.id"
+                                      (change)="seleccionTaller($event)"
+                                    /><span class="ml-2 text-gray-700">{{taller.nombre_completo}}</span>
+                                  </label>
+
+
+                                
+                  
+                  
+                                </div>
+                              </div>
                           </div>
 
             

@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import Swal from 'sweetalert2';
 import { IProductosData } from '../interfaces/interface_produccion';
 import { ProduccionService } from '../servicios/produccion.service';
 
@@ -35,6 +36,10 @@ export class ProductosComponent implements OnInit {
     dibujo:'',
   }
 
+  BoltallerArray:boolean = false;
+  soloUnaTaller:number = 0;
+  guardarIDtaller:number = 0;
+
   @Input() cantidadPaginas:number = 0;
 
   daataPrueba!:IProductosData
@@ -51,10 +56,17 @@ export class ProductosComponent implements OnInit {
 
   valueFilter:boolean = false;
 
+  arrayTalleresFiltro!:any[];
+
   ngOnInit(): void {
 
     this.servicioProduccion.actualizarPagina$.emit(true)
-
+    this.servicioProduccion.getTaller().subscribe( 
+      res => {
+        this.arrayTalleresFiltro = res.data;
+        console.log(this.arrayTalleresFiltro)
+      }
+    )
     
 
     this.productosYbuscador();
@@ -67,8 +79,38 @@ export class ProductosComponent implements OnInit {
       }
     );
   }
+
   paginaciones(pagina:any){
     console.log(pagina)
+
+  }
+
+
+  seleccionTaller(event:any){
+
+
+    if(this.soloUnaTaller == 1 && this.guardarIDtaller != event.target.value){
+      event.target.checked = false;
+       Swal.fire(
+        {
+          title: 'Solo se permite seleccionar un taller a la vez',
+          icon: 'warning',
+          allowEnterKey:true
+        }
+      )
+
+      return
+    }else{
+      this.soloUnaTaller = 0
+      this.guardarIDtaller = 0
+    }
+
+    if(event.target.checked){
+      console.log(event.target.value );
+      this.soloUnaTaller = 1;
+      this.guardarIDtaller = event.target.value;
+    }
+
 
   }
 
