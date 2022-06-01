@@ -122,7 +122,7 @@ export class GenerateVoucherComponent implements OnInit {
     }else{
       console.log(id.target.value)
       this.valueGuardo = '';
-      //this.localActual = 0;
+      this.localActual = 0;
       this.productosYbuscador();
 
     }
@@ -143,9 +143,12 @@ export class GenerateVoucherComponent implements OnInit {
         this.productosYbuscador('',0, this.localActual);
   
         //this.estasEnELLOcal = ;
+        console.log(this.localActual);
+        console.log('entro 1')
   
       }else{
-  
+
+        console.log('entro 2')
         this.estasEnELLOcal = 'Todos'
   
         this.productosYbuscador();
@@ -153,6 +156,8 @@ export class GenerateVoucherComponent implements OnInit {
   
 
     }else{
+      console.log('entro 3')
+
       this.categoriaGuardada = category;
       this.productosYbuscador('', 0, this.localActual, category);
     }

@@ -85,7 +85,16 @@ export class ProductosComponent implements OnInit {
 
   }
 
+  resetTallerFiltro(event:any){
+    if(event.target.checked == false){
+      this.soloUnaTaller = 0
+      this.guardarIDtaller = 0
 
+      this.objDeFiltro.taller = '';
+      this.productosYbuscador();
+
+    }
+  }
   seleccionTaller(event:any){
 
 
@@ -100,15 +109,35 @@ export class ProductosComponent implements OnInit {
       )
 
       return
-    }else{
+    }
+    
+    if(event.target.checked == false && this.guardarIDtaller == event.target.value){
       this.soloUnaTaller = 0
       this.guardarIDtaller = 0
+
+      this.objDeFiltro.taller = '';
+      console.log('hola 1')
+
+      this.productosYbuscador();
+
     }
 
     if(event.target.checked){
-      console.log(event.target.value );
+      console.log('hola 2')
       this.soloUnaTaller = 1;
       this.guardarIDtaller = event.target.value;
+
+      this.objDeFiltro.taller = this.guardarIDtaller;
+
+      this.productosYbuscador(
+        '', 0, 
+        this.objDeFiltro.modelo, 
+        this.objDeFiltro.tela,
+        this.objDeFiltro.peso_promedio,
+        this.objDeFiltro.taller,
+        this.objDeFiltro.dibujo,
+        this.objDeFiltro.edad
+        );
     }
 
 
@@ -139,6 +168,8 @@ export class ProductosComponent implements OnInit {
       (res) => {
         
         if(res.ok == true){
+
+       
 
         
           
