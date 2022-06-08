@@ -16,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { NewEditUsuarioComponent } from './usuario/new-edit-usuario/new-edit-usuario.component'; // a plugin!
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -31,6 +32,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UsuarioComponent,
     CrearUsuarioComponent,
     EditarUsuarioComponent,
+    NewEditUsuarioComponent,
 
     
     

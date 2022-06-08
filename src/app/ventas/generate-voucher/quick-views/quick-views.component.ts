@@ -63,21 +63,34 @@ export class QuickViewsComponent implements OnInit {
   }
 
   formProducto(data: {
-    talles: [{ talle: number; cantidad: number | string }];
+    talles: [{ talle: number; cantidad: any }];
   }) {
-    let limpiarTalles: any[] = [];
+   /*  let limpiarTalles: any[] = [];
 
     data.talles.map((x) => {
-      if (x.cantidad > 0 || x.cantidad !== '') {
+      console.log(x.cantidad);
+      if (x.cantidad > 0 || x.cantidad != '' || x.cantidad != null) {
         limpiarTalles.push({ talle: x.talle, cantidad: x.cantidad });
+      }
+    });
+ */
+    data.talles.map((x, index) => {
+
+      if (x.cantidad == 0 || x.cantidad == '' || x.cantidad == null) {
+        //eliminar del array
+        data.talles.splice(index, 1);
       }
     });
 
     let dataUsuarioLocal:Usuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
+
+
+    //console.log(  data.talles);
     
-    this.servicioVentas.postAgregarCarrito( dataUsuarioLocal.id , this.id_producto,{data:limpiarTalles}).subscribe( 
+    this.servicioVentas.postAgregarCarrito( dataUsuarioLocal.id , this.id_producto,{data:data.talles}).subscribe( 
       (x:any)=> {
-        if(x.ok === true){
+        console.log(x);
+        if(x.ok == true){
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -86,14 +99,18 @@ export class QuickViewsComponent implements OnInit {
             timer: 1500
           })
 
-          this.FormularioProductos.reset();
+
           this.dataProducto.talles_ventas.map((p) => {
-            limpiarTalles.map((t) => {
+            data.talles.map((t) => {
               if (p.talles === t.talle) {
-                p.cantidad -= t.cantidad;
+                p.cantidad -= parseInt(t.cantidad);
               }
             })
           })
+
+        /*   this.FormularioProductos.controls['talles'].controls.map((x:any) => {
+            x.value.cantidad = ''
+          }) */
         }else{
           Swal.fire({
             position: 'center',
@@ -105,6 +122,16 @@ export class QuickViewsComponent implements OnInit {
 
           })
         }
+      }, (error) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Algo salio mal',
+          text: error.error.message,
+
+          showConfirmButton: true,
+
+        })
       }
       )
 

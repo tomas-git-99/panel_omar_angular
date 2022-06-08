@@ -76,7 +76,7 @@ export class GenerateVoucherComponent implements OnInit {
 
         })
         })
-        console.log(this.categoryChange)
+        
       }
     )
     this.servicioVentas.getObtenerLocales().subscribe(
@@ -201,6 +201,7 @@ export class GenerateVoucherComponent implements OnInit {
       (data:any)=>{
     
         this.arrayProductos = data.data;
+       
         
         this.arrayProductos.map( (x:any )=> {
           x.talles_ventas.sort((a:any, b:any) => {

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPercent, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Usuario } from 'src/app/interfaces/usuario';
@@ -47,6 +47,9 @@ export class ShoppingCartComponent implements OnInit {
   abrirCerrarVentanaEditarProducto:boolean = false;
 
   dataUsuarioLocal:Usuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
+
+  @Input()
+  arrayProductosEnVista:any;
 
   openMenu(source: any) {
     this.isOpenedList = source;
@@ -113,7 +116,7 @@ export class ShoppingCartComponent implements OnInit {
 
   arreglarCarrito(carrito: CarritoElement[]) {
 
-    console.log(carrito)
+   
     carrito.map((x) => {
       if (
         this.arrayCarritoProductos.some((t) => t.id == x.producto.id) == false
@@ -282,6 +285,15 @@ export class ShoppingCartComponent implements OnInit {
                 }
               }
               );
+
+           /*    this.arrayProductosEnVista.map((x:any, i:any) => {
+
+                if(x.id == id_producto){
+                  x.talles_ventas.map( (p:any) => {
+
+                  })
+                }
+              }) */
            
     
             }else{

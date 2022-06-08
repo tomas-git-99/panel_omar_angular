@@ -430,7 +430,9 @@
 </body>
 <app-shopping-cart
   *ngIf="servicioVentas.abrirCerrarVentanaCarritoDeCompras"
+  [arrayProductosEnVista]="arrayProductos"
 ></app-shopping-cart>
+
 <app-quick-views [id_producto]="id_producto_Padre"></app-quick-views>
 
 <app-moficador-de-productos-beta
