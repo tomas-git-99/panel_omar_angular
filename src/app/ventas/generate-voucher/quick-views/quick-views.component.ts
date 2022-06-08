@@ -65,6 +65,9 @@ export class QuickViewsComponent implements OnInit {
   formProducto(data: {
     talles: [{ talle: number; cantidad: any }];
   }) {
+
+    let limpiarTalles: any[] = [];
+
    /*  let limpiarTalles: any[] = [];
 
     data.talles.map((x) => {
@@ -76,18 +79,23 @@ export class QuickViewsComponent implements OnInit {
  */
     data.talles.map((x, index) => {
 
-      if (x.cantidad == 0 || x.cantidad == '' || x.cantidad == null) {
+      if (x.cantidad != 0 || x.cantidad != '' ) {
         //eliminar del array
-        data.talles.splice(index, 1);
+        
+        //data.talles.splice(index, 1);
+        if(x.cantidad  != null){
+          limpiarTalles.push({ talle: x.talle, cantidad: x.cantidad  });
+
+        }
+
       }
     });
 
     let dataUsuarioLocal:Usuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
 
 
-    //console.log(  data.talles);
     
-    this.servicioVentas.postAgregarCarrito( dataUsuarioLocal.id , this.id_producto,{data:data.talles}).subscribe( 
+    this.servicioVentas.postAgregarCarrito( dataUsuarioLocal.id , this.id_producto, {data:limpiarTalles}).subscribe( 
       (x:any)=> {
         console.log(x);
         if(x.ok == true){
@@ -101,16 +109,14 @@ export class QuickViewsComponent implements OnInit {
 
 
           this.dataProducto.talles_ventas.map((p) => {
-            data.talles.map((t) => {
+            limpiarTalles.map((t) => {
               if (p.talles === t.talle) {
-                p.cantidad -= parseInt(t.cantidad);
+
+                //console.log(typeof t.cantidad == 'string' ? parseInt(t.cantidad) : t.cantidad)
+                p.cantidad -= typeof t.cantidad == 'string' ? parseInt(t.cantidad) : t.cantidad ;
               }
             })
           })
-
-        /*   this.FormularioProductos.controls['talles'].controls.map((x:any) => {
-            x.value.cantidad = ''
-          }) */
         }else{
           Swal.fire({
             position: 'center',
