@@ -92,7 +92,7 @@ taller:false,
   enviarDato(nombre:string, valor:string){
     let formData:any = {};
 
-    formData[`${nombre}`] = valor;
+    formData[`${nombre}`] = valor == '' ? null : valor;
     this.arrayBotonCarga[`${nombre}`] = !this.arrayBotonCarga[`${nombre}`];
 
 
@@ -112,22 +112,36 @@ taller:false,
 
             };
 
+          
+
           }else if(nombre == "total_por_talle" || nombre == "talles"){
 
             nombre == "total_por_talle"
             ? this.dataP[`total`] = parseInt(this.dataP[`talles`]) * parseInt(valor)
             : this.dataP[`total`] = parseInt(valor) * parseInt(this.dataP[`total_por_talle`])
-
+           
 
           }
 
           this.arrayBotonCarga[`${nombre}`] = !this.arrayBotonCarga[`${nombre}`];
-          console.log(this.dataP)
+          Swal.fire(
+            'OK!',
+            'Se ha actualizado el producto',
+            'success'
+          )
+
 
         }else if(res.ok == false){
 
 
           this.arrayBotonCarga[`${nombre}`] = !this.arrayBotonCarga[`${nombre}`];
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: res.message,
+          
+          })
 
         }
       }
