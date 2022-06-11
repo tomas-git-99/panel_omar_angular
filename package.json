@@ -28,6 +28,7 @@
     "@tailwindcss/typography": "^0.5.2",
     "date-fns": "^2.28.0",
     "jspdf": "^2.5.1",
+    "moment": "^2.29.3",
     "ngx-useful-swiper": "^10.0.1",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.4.8",
