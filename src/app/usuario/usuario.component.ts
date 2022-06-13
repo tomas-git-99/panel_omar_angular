@@ -12,6 +12,9 @@ export class UsuarioComponent implements OnInit {
 
   arrayUsuariosMandar!:any
 
+
+  ventanaDeEditNueva:boolean = false;
+
   constructor(public servicio:ServicioService) { }
 
   ngOnInit(): void {

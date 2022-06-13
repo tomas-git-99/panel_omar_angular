@@ -1,5 +1,6 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { faFill, faFilter } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-edit-usuario',
@@ -59,6 +60,11 @@ export class NewEditUsuarioComponent implements OnInit {
 
 
 
+  @Output()
+  cerrarVentana: EventEmitter<boolean> = new EventEmitter<boolean>();
+  
+
+
   constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {}
@@ -87,10 +93,21 @@ export class NewEditUsuarioComponent implements OnInit {
 
   FunCambiarPassword(passwordUno:string, passwordDos:string) {
     if(passwordUno == '' || passwordDos == ''){
+
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'No se puede dejar los espacios vacios!',
+      })
       return
     }
 
     if( passwordUno !== passwordDos){
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'La contraseña tiene que ser iguales!',
+      })
       return
     }
   }

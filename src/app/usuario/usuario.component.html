@@ -42,8 +42,8 @@
           <ul class="flex flex-col">
             <li class="border-gray-400 flex flex-row mb-2" *ngFor="let user of arrayUsuarios">
               <div
-              
-                class="transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4"
+              (click)="ventanaDeEditNueva = !ventanaDeEditNueva"
+                class=" transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4"
               >
             <!--     <div
                   class="flex flex-col w-10 h-10 justify-center items-center mr-4"
@@ -70,10 +70,10 @@
                   </div>
                 </div>
                 <button class="w-24 text-right flex justify-end" 
-                (click)="modificarUsuario(user.id)"
-                (click)="servicio.abrirCerrarVentanModificarUsuario = !servicio.abrirCerrarVentanModificarUsuario"
-
+               
                 >
+             <!--    (click)="modificarUsuario(user.id)"
+                (click)="servicio.abrirCerrarVentanModificarUsuario = !servicio.abrirCerrarVentanModificarUsuario" -->
 
                   <svg
                     width="20"
@@ -114,7 +114,8 @@
 
 
 <app-new-edit-usuario 
-*ngIf=""
+*ngIf="ventanaDeEditNueva"
+(cerrarVentana)="ventanaDeEditNueva = !ventanaDeEditNueva"
 >
   
 </app-new-edit-usuario>
