@@ -12,7 +12,12 @@
         <h1 class="text-2xl font-medium text-gray-800">
           Configuracion de usuario
         </h1>
-        <button  (click)="cerrarVentana.emit(false)" role="button" aria-label="close label"  class="">
+        <button
+          (click)="cerrarVentana.emit(false)"
+          role="button"
+          aria-label="close label"
+          class=""
+        >
           <svg
             width="28"
             height="28"
@@ -116,7 +121,7 @@
                 id="password"
                 type="password"
                 #passwordUno
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring "
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
 
@@ -130,7 +135,9 @@
                 id="passwordConfirmation"
                 type="password"
                 #passwordDos
-                [ngClass]="'block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:outline-none'"
+                [ngClass]="
+                  'block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:outline-none'
+                "
               />
             </div>
           </div>
@@ -153,6 +160,7 @@
       <div class="p-4 border-b-2">
         <div
           class="flex justify-between cursor-pointer"
+
           (click)="permisoDeLocales = !permisoDeLocales"
         >
           <h1 class="font-semibold text-gray-700 text-lg">
@@ -161,27 +169,33 @@
           <p class="font-semibold text-gray-900 text-sm flex flex-col">
             Cambiar
             <span class="font-light text-gray-600 text-xs flex justify-end">
-              hola
+              {{UsuarioSeleccionado.permisos == null ? '0' : UsuarioSeleccionado.permisos.permisosLocales.length }}
+              {{ 'Locales'}}
             </span>
           </p>
         </div>
 
-        <div *ngIf="permisoDeLocales" class="pl-6">
-          <div class="border-t-2">
-            <div class="flex justify-between py-2 border-b-2">
-              <p>Nombre del local</p>
+        <div *ngIf="permisoDeLocales" class="pl-6" >
+          <div class="border-t-2"   >
+            <div class="flex justify-between py-2 border-b-2" *ngFor="let local of UsuarioSeleccionado.permisos.permisosLocales">
+              <p>{{local.local.nombre}}</p>
 
               <span class="font-medium text-blue-800 text-sm">Eliminar</span>
             </div>
-            <div class="flex justify-between py-2 border-b-2">
+          <!--   <div class="flex justify-between py-2 border-b-2">
               <p>Nombre del local</p>
 
               <span class="font-medium text-blue-800 text-sm">Eliminar</span>
-            </div>
+            </div> -->
           </div>
 
           <div class="py-2">
-            <p class="text-blue-800 text-sm font-medium cursor-pointer" (click)="agregarNuevoLocal = !agregarNuevoLocal">Agregar nuevo local</p>
+            <p
+              class="text-blue-800 text-sm font-medium cursor-pointer"
+              (click)="agregarNuevoLocal = !agregarNuevoLocal"
+            >
+              Agregar nuevo local
+            </p>
           </div>
         </div>
       </div>
@@ -217,7 +231,10 @@
           </div>
 
           <div class="py-2">
-            <p class="text-blue-800 text-sm font-medium cursor-pointer" (click)="agregarNuevaVentana = !agregarNuevaVentana">
+            <p
+              class="text-blue-800 text-sm font-medium cursor-pointer"
+              (click)="agregarNuevaVentana = !agregarNuevaVentana"
+            >
               Agregar nuevo permiso
             </p>
           </div>
@@ -236,7 +253,12 @@
   <div class="flex flex-col gap-4 bg-white p-5 rounded-md">
     <div class="flex justify-between border-b-2">
       <h2 class="text-2xl font-medium text-gray-800">Agregar</h2>
-      <button role="button" aria-label="close label" class="" (click)="agregarNuevoLocal = !agregarNuevoLocal">
+      <button
+        role="button"
+        aria-label="close label"
+        class=""
+        (click)="agregarNuevoLocal = !agregarNuevoLocal"
+      >
         <svg
           width="28"
           height="28"
@@ -286,7 +308,12 @@
   <div class="flex flex-col gap-4 bg-white p-5 rounded-md w-1/5">
     <div class="flex justify-between border-b-2">
       <h2 class="text-2xl font-medium text-gray-800">Agregar</h2>
-      <button role="button" aria-label="close label" class="" (click)="agregarNuevaVentana = !agregarNuevaVentana">
+      <button
+        role="button"
+        aria-label="close label"
+        class=""
+        (click)="agregarNuevaVentana = !agregarNuevaVentana"
+      >
         <svg
           width="28"
           height="28"

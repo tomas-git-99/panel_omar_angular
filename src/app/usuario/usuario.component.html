@@ -42,6 +42,7 @@
           <ul class="flex flex-col">
             <li class="border-gray-400 flex flex-row mb-2" *ngFor="let user of arrayUsuarios">
               <div
+              (click)="usuarioSeleccionEnviar = user"
               (click)="ventanaDeEditNueva = !ventanaDeEditNueva"
                 class=" transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4"
               >
@@ -114,6 +115,7 @@
 
 
 <app-new-edit-usuario 
+[UsuarioSeleccionado]="usuarioSeleccionEnviar"
 *ngIf="ventanaDeEditNueva"
 (cerrarVentana)="ventanaDeEditNueva = !ventanaDeEditNueva"
 >

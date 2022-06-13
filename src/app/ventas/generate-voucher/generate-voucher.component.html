@@ -145,20 +145,24 @@
         <p
           class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-700"
         >
-          Estas en el local : <span *ngIf="boolEstadoUnLocalOTodos == true ? false : true" class="capitalize text-indigo-700"> {{estasEnELLOcal}} </span>
+          Estas en el local :
+          <span
+            *ngIf="boolEstadoUnLocalOTodos == true ? false : true"
+            class="capitalize text-indigo-700"
+          >
+            {{ estasEnELLOcal }}
+          </span>
 
           <select
-          *ngIf="boolEstadoUnLocalOTodos"
-          (change)="seleccionDeLocal($event)"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            *ngIf="boolEstadoUnLocalOTodos"
+            (change)="seleccionDeLocal($event)"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option selected="" value="">Todos</option>
             <option *ngFor="let local of localesArray" [value]="local.id">
               {{ local.nombre }}
             </option>
           </select>
-
-          
         </p>
 
         <div>
@@ -259,26 +263,27 @@
               <p class="font-medium text-center">
                 {{
                   producto.sub_modelo == null
-                    ? producto.productoDetalles.producto.modelo
+                    ? producto.productoDetalles.producto.modelo == null
+                      ? ""
+                      : producto.productoDetalles.producto.modelo
                     : producto.sub_modelo
                 }}
               </p>
-              <p class="text-xs leading-3 text-gray-600 pt-2 text-center">
-                {{
+              <p class="text-xs leading-3 text-gray-600 pt-2 text-center"
+              >{{
                   producto.sub_dibujo == null
-                    ? producto.productoDetalles.producto.estampado == null
+                    ? producto.productoDetalles == null
                       ? "- -"
                       : producto.productoDetalles.producto.estampado.dibujo
                     : producto.sub_dibujo
-                }}
-              </p>
+                }}</p>
             </td>
 
             <td class="">
               <p
                 class="text-sm font-medium leading-none text-gray-800 text-center"
               >
-                {{ producto.color }}
+                {{ producto.color == null ? "- -" : producto.color }}
               </p>
             </td>
             <td class="">
@@ -316,9 +321,8 @@
             <td class="">
               <div class="flex items-center gap-2">
                 <div
-                *ngIf="permisoDeEliminarOeditar"
+                  *ngIf="permisoDeEliminarOeditar"
                   class="bg-red-300 border-2 p-2 rounded-md cursor-pointer hover:bg-red-200"
-
                   (click)="eliminarProducto(producto.id)"
                 >
                   <fa-icon
@@ -329,8 +333,7 @@
                 </div>
 
                 <div
-                *ngIf="permisoDeEliminarOeditar"
-
+                  *ngIf="permisoDeEliminarOeditar"
                   class="border-2 p-2 rounded-md cursor-pointer hover:bg-white"
                   (click)="seleccionDeProductoModificar(producto.id)"
                 >
@@ -353,7 +356,7 @@
         </tbody>
       </table>
       <app-paginacion
-      [conteoDePagina]="(cantidadPaginas)"
+        [conteoDePagina]="cantidadPaginas"
         (paginacion)="paginacion($event)"
       ></app-paginacion>
       <!-- <div

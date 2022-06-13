@@ -207,7 +207,10 @@ export class GenerateVoucherComponent implements OnInit {
           x.talles_ventas.sort((a:any, b:any) => {
             return a.talles - b.talles;
           })
+
         })
+
+        console.log(this.arrayProductos)
        // this.calcularPaginas(data.contador);
         this.cantidadPaginas = data.contador
 

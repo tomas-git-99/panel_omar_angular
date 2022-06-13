@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ServicioService } from '../servicio.service';
+import { UsuariosNew } from './interface/usuarios';
 
 @Component({
   selector: 'app-usuario',
@@ -14,6 +16,9 @@ export class UsuarioComponent implements OnInit {
 
 
   ventanaDeEditNueva:boolean = false;
+
+
+  usuarioSeleccionEnviar!:UsuariosNew;
 
   constructor(public servicio:ServicioService) { }
 

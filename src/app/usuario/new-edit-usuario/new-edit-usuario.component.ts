@@ -1,6 +1,9 @@
-import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { faFill, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { Usuario } from 'src/app/interfaces/usuario';
 import Swal from 'sweetalert2';
+import { UsuariosNew, PermisosLocales,  PermisosVentanas} from '../interface/usuarios';
+
 
 @Component({
   selector: 'app-new-edit-usuario',
@@ -62,12 +65,17 @@ export class NewEditUsuarioComponent implements OnInit {
 
   @Output()
   cerrarVentana: EventEmitter<boolean> = new EventEmitter<boolean>();
-  
+
+
+  @Input()
+  UsuarioSeleccionado!:UsuariosNew;
 
 
   constructor(private elementRef: ElementRef) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.UsuarioSeleccionado);
+  }
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -146,5 +154,22 @@ export class NewEditUsuarioComponent implements OnInit {
     }
     
   }
+
+/* 
+  get arrayNull(arrayPermisos: PermisosLocales | PermisosVentanas):PermisosLocales | PermisosVentanas | []{
+
+    let array:[]=[]
+    if(arrayPermisos == null){
+
+      return array
+
+    }else{
+
+      return arrayPermisos
+
+    }
+  } */
+
+
 
 }
