@@ -367,6 +367,8 @@ export class GenerateVoucherComponent implements OnInit {
         this.servicioVentas.deleteProductoVenta(id).subscribe(
           (res:any)=>{
 
+            console.log(res)
+
             if(res.ok == true){
 
               this.arrayProductos.map( (x:any) => {

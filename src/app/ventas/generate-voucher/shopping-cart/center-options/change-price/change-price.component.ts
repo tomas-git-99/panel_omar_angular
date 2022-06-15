@@ -39,9 +39,19 @@ export class ChangePriceComponent implements OnInit {
     this.changePrecioSub = !this.changePrecioSub;
   }
 
-  cambiarPrecio(id_producto:number | string,precio:number | string){
+  cambiarPrecio(id_producto:number | string, precio:number | string){
     console.log(id_producto,precio)
 
+    if(typeof(precio) != "number"){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Solo se puede colocar numeros',
+
+      })
+
+      return;
+    }
    
 
     this.servicioVentas.putCambiarPrecioCarrito(this.dataUsuarioLocal.id, id_producto, {precio_nuevo:precio})

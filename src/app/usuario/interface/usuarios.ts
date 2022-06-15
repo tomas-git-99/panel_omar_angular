@@ -3,7 +3,7 @@ export interface UsuariosNew {
     id: number;
     nombre: string;
     dni_cuil: string;
-    roles: string
+    roles: string ; 
     usuario: string;
     local:Local,
     permisos: Permisos
@@ -27,7 +27,7 @@ export interface PermisosVentanas{
 }
 
 
-interface Local {
+export interface Local {
     id:number; 
     nombre:string;
 }

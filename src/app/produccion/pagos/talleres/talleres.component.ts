@@ -28,6 +28,7 @@ export class TalleresComponent implements OnInit {
     this.servicioProduccion.getTaller().subscribe(
       (res)=>{
         this.arrayTaller = res.data;
+        
       }
     )
   }
@@ -55,9 +56,25 @@ export class TalleresComponent implements OnInit {
           de: de,
           hasta: hasta
         }
+
+        if(res.data === [] || res.data.length === 0){
+
+          Swal.fire({
+            icon: 'info',
+            title: 'Oops...',
+            text: 'No ahi ningun producto con esas fechas. Verifique bien',
+          })
+
+          return;
+        }else{
+          this.dataProducto = res.data;
+          this.abrirVentanaImprimir = true;
+        }
        
-        this.dataProducto = res.data;
-        this.abrirVentanaImprimir = true;
+     
+
+   
+
         
       })
 

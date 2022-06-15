@@ -185,7 +185,10 @@ export class ParaImprimirTallerComponent implements OnInit {
   botonDePagar:boolean = false;
   pagar(){
     this.botonDePagar = true;
-    console.log(this.precioNuevo)
+
+
+    //console.log(this.precioNuevo)
+    
     this.servicioProduccion.putPagarTaller(this.dataInsertada.taller.id, this.dataInsertada.de, this.dataInsertada.hasta, this.precioNuevo).subscribe(
       (res:any) => {
 
@@ -210,7 +213,14 @@ export class ParaImprimirTallerComponent implements OnInit {
         }
 
       }
-      )
+      ), (error:any) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Algo salió mal!',
+
+        })
+      }
   }
 
 }

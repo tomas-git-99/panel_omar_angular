@@ -10,7 +10,7 @@
     <div>
       <div class="flex justify-between border-b-2 border-b-green-800">
         <h1 class="text-2xl font-medium text-gray-800">
-          Configuracion de usuario
+          Configuracion de usuario - {{UsuarioSeleccionado.nombre == null ? '': UsuarioSeleccionado.nombre }} / {{UsuarioSeleccionado.usuario == null ? '': UsuarioSeleccionado.usuario }}
         </h1>
         <button
           (click)="cerrarVentana.emit(false)"
@@ -54,7 +54,7 @@
           <p class="font-semibold text-gray-900 text-sm flex flex-col">
             Cambiar
             <span class="font-light text-gray-600 text-xs flex justify-end">
-              hola
+             
             </span>
           </p>
         </div>
@@ -63,7 +63,7 @@
           <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 border-t-2">
             <div class="">
               <label class="text-gray-700 dark:text-gray-200" for="username"
-                >Usuario</label
+                >Usuario {{UsuarioSeleccionado.usuario}}</label
               >
               <input
                 #usuario
@@ -74,7 +74,7 @@
 
             <div>
               <label class="text-gray-700 dark:text-gray-200" for="emailAddress"
-                >Nombre</label
+                >Nombre {{UsuarioSeleccionado.nombre == null ? '- -' : UsuarioSeleccionado.nombre}}</label
               >
               <input
                 #nombre
@@ -106,7 +106,7 @@
           <p class="font-semibold text-gray-900 text-sm flex flex-col">
             Cambiar
             <span class="font-light text-gray-600 text-xs flex justify-end">
-              hola
+              
             </span>
           </p>
         </div>
@@ -177,7 +177,7 @@
 
         <div *ngIf="permisoDeLocales" class="pl-6" >
           <div class="border-t-2"   >
-            <div class="flex justify-between py-2 border-b-2" *ngFor="let local of UsuarioSeleccionado.permisos.permisosLocales">
+            <div class="flex justify-between py-2 border-b-2" *ngFor="let local of (UsuarioSeleccionado.permisos == null ? [] : (UsuarioSeleccionado.permisos.permisosLocales == null ? [] : UsuarioSeleccionado.permisos.permisosLocales))">
               <p>{{local.local.nombre}}</p>
 
               <span class="font-medium text-blue-800 text-sm">Eliminar</span>
@@ -211,23 +211,23 @@
           <p class="font-semibold text-gray-900 text-sm flex flex-col">
             Cambiar
             <span class="font-light text-gray-600 text-xs flex justify-end">
-              hola
+              {{UsuarioSeleccionado.permisos == null ? '0' : UsuarioSeleccionado.permisos.permisosVentanas.length}} Bloqueos
             </span>
           </p>
         </div>
 
         <div *ngIf="permisoDeVentanas" class="pl-6">
-          <div class="border-t-2">
-            <div class="flex justify-between py-2 border-b-2">
-              <p>Nombre del local</p>
+          <div class="border-t-2"  >
+            <div class="flex justify-between py-2 border-b-2" *ngFor="let ventana of (UsuarioSeleccionado.permisos == null ? [] : (UsuarioSeleccionado.permisos.permisosVentanas == null ? [] : UsuarioSeleccionado.permisos.permisosVentanas))">
+              <p>{{ventana.nombre}}</p>
 
               <span class="font-medium text-blue-800 text-sm">Eliminar</span>
             </div>
-            <div class="flex justify-between py-2 border-b-2">
+          <!--   <div class="flex justify-between py-2 border-b-2">
               <p>Nombre del local</p>
 
               <span class="font-medium text-blue-800 text-sm">Eliminar</span>
-            </div>
+            </div> -->
           </div>
 
           <div class="py-2">
@@ -286,9 +286,11 @@
     <label class="text-gray-700" for="animals">
       Locales
       <select
+      (change)="seleccionDeLocal($event.target!)"
         class="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
       >
-        <option value="">Opciones</option>
+        <option value="0">Opciones</option>
+        <option *ngFor="let local of dataLocales" [value]="local.id">{{local.nombre}}</option>
       </select>
     </label>
 
@@ -357,7 +359,7 @@
               {{
                 seleccionDeVentan == 0
                   ? "Sin seleccionar"
-                  : nombreDeLoSeleccionado("produccion")
+                  : nombreDeLoSeleccionado(UsuarioSeleccionado.roles)
               }}
             </span>
           </span>
@@ -389,7 +391,7 @@
             aria-labelledby="listbox-label"
             aria-activedescendant="listbox-item-3"
             class="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
-            *ngFor="let item of ventanasProduccion"
+            *ngFor="let item of (UsuarioSeleccionado.roles  == 'ventas' ? ventanasVentas : ventanasProduccion)"
           >
             <li
               id="listbox-item-0"

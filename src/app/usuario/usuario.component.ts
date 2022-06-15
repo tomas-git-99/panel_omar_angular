@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ServicioService } from '../servicio.service';
-import { UsuariosNew } from './interface/usuarios';
+import { VentasService } from '../ventas/servicios/ventas.service';
+import { UsuariosNew, Local } from './interface/usuarios';
 
 @Component({
   selector: 'app-usuario',
@@ -20,7 +21,9 @@ export class UsuarioComponent implements OnInit {
 
   usuarioSeleccionEnviar!:UsuariosNew;
 
-  constructor(public servicio:ServicioService) { }
+  dataLocal!:Local[];
+  
+  constructor(public servicio:ServicioService, public servicioVentas:VentasService) { }
 
   ngOnInit(): void {
     this.servicio.getObtenerSoloUsuario().subscribe(
@@ -29,6 +32,14 @@ export class UsuarioComponent implements OnInit {
         this.arrayUsuarios = res.data
       }
     )
+
+    this.servicioVentas.getObtenerLocales().subscribe(
+      (res:any)=>{
+        this.dataLocal = res.data;
+      }
+    )
+
+  
   }
 
   modificarUsuario(id:string){

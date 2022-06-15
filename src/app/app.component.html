@@ -789,6 +789,16 @@
   </div>
 </div>
 
+<div class="flex items-center justify-center sticky top-0 z-50 shadow border bg-slate-50 rounded-md" *ngIf="estadoInternet != ''">
+
+  <p class="font-medium text-red-500 text-xl py-3" *ngIf="estadoInternet == 'offline'">
+    Sin conexion de intenet
+  </p>
+  <p class="font-medium text-green-500 text-xl py-3" *ngIf="estadoInternet == 'online'">
+    Conexion Internet
+  </p>
+</div>
+
 <div (click)="salir()">
   <router-outlet></router-outlet>
 </div>

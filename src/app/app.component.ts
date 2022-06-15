@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Event, Router } from '@angular/router';
 import { faFilter, faUser } from '@fortawesome/free-solid-svg-icons';
+import { fromEvent } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Usuario } from './interfaces/usuario';
 import { ProduccionService } from './produccion/servicios/produccion.service';
 import { ServicioService } from './servicio.service';
-
+import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -91,10 +92,42 @@ export class AppComponent {
 
   }
 
+  public estadoInternet:string = '';
+
+  @Output()
+  estadoDeInternet:EventEmitter<string> = new EventEmitter<string>();
+
   ngOnInit(): void {
-   
-   
- 
+
+
+
+    fromEvent(window, 'offline').pipe(
+      debounceTime(100)).subscribe(
+        (event: any) => {
+          //console.log(event);
+          this.estadoInternet = event.type;
+          this.estadoDeInternet.emit(this.estadoInternet)
+
+        }
+      )
+      fromEvent(window, 'online').pipe(
+        debounceTime(100)).subscribe(
+          (event: any) => {
+            //console.log(event);
+          this.estadoInternet = event.type;
+          this.estadoDeInternet.emit(this.estadoInternet)
+          }
+        )
+
+        this.estadoDeInternet.subscribe( x => {
+          console.log(x);
+          if( x == 'online'){
+
+            setTimeout(() => {
+              this.estadoInternet = '';
+            }, 3000);
+          }
+        })
     this.servicioProduccion.actualizarPagina$.subscribe( () => {
 
 
@@ -129,7 +162,10 @@ export class AppComponent {
   }
 
 
- 
+ OnChanges(){
+  console.log(this.estadoInternet)
+
+ }
 
   sizeIconNav = '25px'
 

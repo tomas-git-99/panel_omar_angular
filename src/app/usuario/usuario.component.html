@@ -115,6 +115,7 @@
 
 
 <app-new-edit-usuario 
+[dataLocales]="dataLocal"
 [UsuarioSeleccionado]="usuarioSeleccionEnviar"
 *ngIf="ventanaDeEditNueva"
 (cerrarVentana)="ventanaDeEditNueva = !ventanaDeEditNueva"
