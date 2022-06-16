@@ -1,8 +1,8 @@
-<div class="mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50">
-  <div class="flex flex-col items-center justify-center w-full bg-white">
+<div class="flex items-center justify-center z-50 border border-red-500 w-full">
+  <div class="flex flex-col items-center justify-center  bg-white w-10/12">
     <full-calendar
       [options]="calendarOptions"
-      style="width: 80%"
+      style="width: 95%"
     ></full-calendar>
 
     <div>
@@ -15,25 +15,31 @@
     </div>
 
     <div class="w-5/12">
-      <div class="flex justify-between border p-2" *ngFor=" let data of datoDeEmpleado">
+      <div
+        class="flex justify-between border p-2"
+        *ngFor="let data of datoDeEmpleado"
+      >
         <p class="flex flex-col font-semibold text-gray-800">
-          {{data.fecha}}
-          <span class="text-gray-600 text-xs"> {{data.hora_entrada}}hs a {{data.hora_de_salida}}hs </span>
+          {{ data.fecha }}
+          <span class="text-gray-600 text-xs">
+            {{ data.hora_entrada }}hs a {{ data.hora_de_salida }}hs
+          </span>
         </p>
-        <p class="flex items-center">{{calcularEntreHoras(data.hora_entrada, data.hora_de_salida)}}</p>
+        <p class="flex items-center">
+          {{ calcularEntreHoras(data.hora_entrada, data.hora_de_salida) }}
+        </p>
       </div>
 
       <div *ngIf>
-          <p class="font-semibold text-gray-800">Bonificacion</p>
+        <p class="font-semibold text-gray-800">Bonificacion</p>
         <div class="flex justify-between py-2 px-4">
-            <p>capo</p>
-            <p>$600</p>
-          </div>
+          <p>capo</p>
+          <p>$600</p>
+        </div>
       </div>
-      
 
       <div class="flex justify-end py-4">
-        <p>Total de horas: {{hotaCero}}</p>
+        <p>Total de horas: {{ result.asHours() }}</p>
       </div>
 
       <div class="flex justify-between">
@@ -51,14 +57,11 @@
 
       <div>
         <div class="flex items-center gap-10">
-            Pago por hora: 
+          Pago por hora:
           <input
-        
             class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-            
           />
         </div>
-        
       </div>
     </div>
   </div>

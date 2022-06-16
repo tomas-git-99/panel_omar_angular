@@ -40,7 +40,7 @@ export class ChangePriceComponent implements OnInit {
   }
 
   cambiarPrecio(id_producto:number | string, precio:number | string){
-    console.log(id_producto,precio)
+  /*   console.log(id_producto,precio)
 
     if(typeof(precio) != "number"){
       Swal.fire({
@@ -51,7 +51,7 @@ export class ChangePriceComponent implements OnInit {
       })
 
       return;
-    }
+    } */
    
 
     this.servicioVentas.putCambiarPrecioCarrito(this.dataUsuarioLocal.id, id_producto, {precio_nuevo:precio})
