@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('usuario', res.data.usuario);
         localStorage.setItem('rol', res.data.roles);
  */
+
+        this.servicio.loginActivador.emit(true);
       
 
         res.data.roles == 'ventas'
@@ -45,11 +47,8 @@ export class LoginComponent implements OnInit {
         : this.router.navigate(['/produccion']);
 
 
-
-      /*   Swal.fire({
-          icon: 'success',
-          title: 'Bienvenido',
-        }) */
+     
+        this.servicio.abrirVentanasConPermisos();
         
        }else{
          Swal.fire({

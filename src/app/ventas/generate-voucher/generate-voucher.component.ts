@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { faCartShopping, faChevronLeft, faChevronRight, faTrash, faWrench } from '@fortawesome/free-solid-svg-icons';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { ProduccionService } from 'src/app/produccion/servicios/produccion.service';
+import { UsuariosNew } from 'src/app/usuario/interface/usuarios';
 import Swal from 'sweetalert2';
 import { ProductosVentas } from '../inter/ventas';
 import { VentasService } from '../servicios/ventas.service';
@@ -55,7 +56,8 @@ export class GenerateVoucherComponent implements OnInit {
 
   dataUsuarioLocal!:Usuario;
   estasEnELLOcal:string = '';
-  localActual:number = 0;
+
+  localActual:any = 0;
 
   boolEstadoUnLocalOTodos:boolean = false;
 
@@ -66,6 +68,9 @@ export class GenerateVoucherComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+    //console.log(this.verrificarCuantosLocalesTiene(JSON.parse(localStorage.getItem('dataUsuario') as any)))
+    //this.productosYbuscador('',0,this.verrificarCuantosLocalesTiene(JSON.parse(localStorage.getItem('dataUsuario') as any)))
     this.servicioVentas.getObtenerCategorias().subscribe(
       res => {
         this.categoriaArrays = res.data;
@@ -82,6 +87,7 @@ export class GenerateVoucherComponent implements OnInit {
     this.servicioVentas.getObtenerLocales().subscribe(
       res => {
         this.localesArray = res.data;
+        console.log(this.localesArray)
       }
     )
 
@@ -95,7 +101,8 @@ export class GenerateVoucherComponent implements OnInit {
 
     if (this.dataUsuarioLocal.local !== null) {
     
-      this.localActual = this.dataUsuarioLocal.local.id
+      //this.localActual = this.dataUsuarioLocal.local.id
+      this.localActual = this.verrificarCuantosLocalesTiene(JSON.parse(localStorage.getItem('dataUsuario') as any))
 
       this.productosYbuscador('',0, this.localActual);
 
@@ -210,7 +217,6 @@ export class GenerateVoucherComponent implements OnInit {
 
         })
 
-        console.log(this.arrayProductos)
        // this.calcularPaginas(data.contador);
         this.cantidadPaginas = data.contador
 
@@ -395,6 +401,43 @@ export class GenerateVoucherComponent implements OnInit {
       }
     })
 
+  }
+
+
+  verrificarCuantosLocalesTiene(localUsuario:UsuariosNew):number[]{
+
+    let locales:number[] = [];
+
+    if(localUsuario.permisos.permisosLocales != null){
+      localUsuario.permisos.permisosLocales.map( (x) => {
+        locales.push(x.local.id);
+      })
+      locales.push(localUsuario.local.id);
+      return locales
+
+    }else{
+      locales.push(localUsuario.local.id);
+      return locales
+
+    }
+  }
+
+  nombreDeLocales():string[]{
+    let localUsuario:UsuariosNew = JSON.parse(localStorage.getItem('dataUsuario') as any);
+    let locales:string[] = [];
+
+    if(localUsuario.permisos.permisosLocales != null){
+      localUsuario.permisos.permisosLocales.map( (x) => {
+        locales.push(x.local.nombre);
+      })
+      locales.push(localUsuario.local.nombre);
+      return locales
+
+    }else{
+      locales.push(localUsuario.local.nombre);
+      return locales
+
+    }
   }
 
 }

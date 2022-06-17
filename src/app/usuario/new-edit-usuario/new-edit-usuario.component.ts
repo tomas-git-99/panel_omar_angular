@@ -7,8 +7,9 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { faFill, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faFill, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Usuario } from 'src/app/interfaces/usuario';
+import { ServicioService } from 'src/app/servicio.service';
 import Swal from 'sweetalert2';
 import {
   UsuariosNew,
@@ -27,6 +28,17 @@ import {
 })
 export class NewEditUsuarioComponent implements OnInit {
   faFillter = faFilter;
+
+
+  faEye = faEye;
+  faEyeBlind = faEyeSlash;
+
+
+  botonViewPassword:boolean = true;
+  botonViewPassword2:boolean = true;
+
+  viewPassword:string = 'password';
+  viewPassword2:string = 'password';
 
   iconNav = {
     productos: '/assets/icon/productos.png',
@@ -91,7 +103,7 @@ export class NewEditUsuarioComponent implements OnInit {
   @Input()
   dataLocales!: Local[];
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, public servicio:ServicioService) {}
 
   ngOnInit(): void {
     console.log(this.UsuarioSeleccionado);
@@ -115,9 +127,60 @@ export class NewEditUsuarioComponent implements OnInit {
   cambiarNombreOUsuario(nombre: string, usuario: string) {
     console.log('nombre: ' + nombre, 'usuario: ' + usuario);
 
+
+    let data:any = {}
+
     if (nombre == '' && usuario == '') {
+
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'No se puede dejar campos vacios',
+      });
+
       return;
     }
+
+    if (nombre != '') {
+
+      data['nombre'] = nombre;
+    }
+
+    if(usuario != ''){
+
+      data['usuario'] = usuario;
+    }
+
+    this.servicio.putEditarUsuario( this.UsuarioSeleccionado.id, data)
+    .subscribe(
+      res => {
+        if(res.ok == true){
+          Swal.fire({
+            icon: 'success',
+            title: 'Exito',
+            text: 'Se actualizo el usuario',
+          });
+
+          if(nombre != ''){
+            this.UsuarioSeleccionado.nombre = nombre;
+          }
+
+          if(usuario != ''){
+            this.UsuarioSeleccionado.usuario = usuario;
+          }
+
+
+
+        }else{
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se pudo actualizar el usuario',
+          });
+        }
+      }
+    )
   }
 
   FunCambiarPassword(passwordUno: string, passwordDos: string) {
@@ -134,10 +197,30 @@ export class NewEditUsuarioComponent implements OnInit {
       Swal.fire({
         icon: 'warning',
         title: 'Oops...',
-        text: 'La contraseña tiene que ser iguales!',
+        text: 'La contraseña tienen que ser iguales!',
       });
       return;
     }
+
+
+    this.servicio.putEditarUsuario( this.UsuarioSeleccionado.id, { password: passwordUno} )
+    .subscribe(
+      res => {
+        if(res.ok == true){
+          Swal.fire({
+            icon: 'success',
+            title: 'Exito',
+            text: 'Contraseña cambiada!',
+          });
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error al cambiar la contraseña!',
+          });
+        }
+      }
+    )
   }
 
   seleccionarVentana(id: number) {
@@ -188,6 +271,44 @@ export class NewEditUsuarioComponent implements OnInit {
     if (this.seleccionDeVentan === 0) {
       return;
     }
+
+    let data = this.UsuarioSeleccionado.roles == 'ventas' 
+    ? this.ventanasVentas.find(v => v.id === this.seleccionDeVentan ) 
+    : this.ventanasProduccion.find(v => v.id === this.seleccionDeVentan ) ;
+    this.servicio.postAgregarNuevoPermisoVentana(this.UsuarioSeleccionado.permisos.id, { id_ventana:data?.id! , nombre:data?.nombre! })
+    .subscribe( 
+      (res) => {
+
+        if(res.ok == true){
+          Swal.fire({
+            icon: 'success',
+            title: 'Exito',
+            text: 'Se agrego el permiso correctamente',
+          });
+
+          this.UsuarioSeleccionado.permisos.permisosVentanas.push({
+            id:res.data.id,
+            id_ventana:data?.id! , 
+            nombre:data?.nombre!
+          })
+
+ 
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo agregar el permiso',
+          });
+        }
+
+      }, (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo agregar el permiso',
+        });
+      }
+    )
   }
 
   seleccionDeLocal(eventTarget: EventTarget) {
@@ -230,7 +351,7 @@ export class NewEditUsuarioComponent implements OnInit {
     }
 
 
-    //verificar si tiene permisos
+   /*  //verificar si tiene permisos
     if(this.UsuarioSeleccionado.permisos == null){
       this.UsuarioSeleccionado['permisos'] = {id:0,permisosLocales: [], permisosVentanas:[]};
     }
@@ -241,7 +362,117 @@ export class NewEditUsuarioComponent implements OnInit {
       id: 0, // local el id que mando el permiso
       local:{id:localSeleccionado.id,nombre:localSeleccionado.nombre},
     });
+ */
 
+  }
+
+
+  agregarLocalNuevo(target:string) {
+
+    if (target == '') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'El nombre del local no puede estar vacio! ',
+      });
+      return;
+    }
+
+    this.servicio.postAgregarNuevoPermisoLocal(this.UsuarioSeleccionado.permisos.id, { id_local:target })
+    .subscribe(
+      res => {
+        console.log(res)
+        if(res.ok == true){
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Exito',
+            text: 'Se agrego el permiso correctamente',
+          });
+
+          let data = this.dataLocales.find(x => x.id == parseInt(target))
+          this.UsuarioSeleccionado.permisos.permisosLocales.push({
+            id: res.data.id, // local el id que mando el permiso
+            local:{id:data?.id!, nombre: data?.nombre!}});
+    
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo agregar el permiso',
+          });
+        }
+      }, err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo agregar el permiso',
+        });
+      }
+    )
+
+
+  }
+
+  eliminarLocal(id:number) {
+    this.servicio.deleteEliminarPermisoLocal(id)
+    .subscribe(
+      res => {
+
+        if(res.ok === true) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Exito',
+            text: 'Se elimino el permiso correctamente',
+          });
+          
+          //eliminar por index el local de permisosLocal 
+          this.UsuarioSeleccionado.permisos.permisosLocales.splice(
+            this.UsuarioSeleccionado.permisos.permisosLocales.findIndex(
+              (x) => x.id == id
+            ),
+            1
+          );
+
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo eliminar el permiso',
+          });
+        }
+      })
+  }
+
+  eliminarVentana(id: number){
+    this.servicio.deleteEliminarPermisoVentana(id)
+    .subscribe(
+      res => {
+          
+          if(res.ok === true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Exito',
+              text: 'Se elimino el permiso correctamente',
+            });
+            
+            //eliminar por index el local de permisosLocal 
+            this.UsuarioSeleccionado.permisos.permisosVentanas.splice(
+              this.UsuarioSeleccionado.permisos.permisosVentanas.findIndex(
+                (x) => x.id == id
+              ),
+              1
+            );
+  
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'No se pudo eliminar el permiso',
+            });
+          }
+        }
+    )
 
   }
 

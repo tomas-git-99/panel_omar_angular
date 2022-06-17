@@ -113,19 +113,21 @@
 
         <div *ngIf="cambiarPassword" class="pl-6">
           <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 border-t-2">
-            <div class="">
+            <div class="relative">
               <label class="text-gray-700 dark:text-gray-200" for="password"
                 >Contraseña</label
               >
               <input
                 id="password"
-                type="password"
+                [type]="viewPassword"
                 #passwordUno
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
+              <fa-icon *ngIf="botonViewPassword" class="absolute  right-2 bottom-3 cursor-pointer" [icon]="faEye" (click)="botonViewPassword = !botonViewPassword" (click)="viewPassword = 'text'" ></fa-icon>
+              <fa-icon *ngIf="botonViewPassword == true ? false : true"  class="absolute  right-2 bottom-3 cursor-pointer" [icon]="faEyeBlind" (click)="botonViewPassword = !botonViewPassword" (click)="viewPassword = 'password'"></fa-icon>
             </div>
 
-            <div>
+            <div class="relative">
               <label
                 class="text-gray-700 dark:text-gray-200"
                 for="passwordConfirmation"
@@ -133,12 +135,17 @@
               >
               <input
                 id="passwordConfirmation"
-                type="password"
+                [type]="viewPassword2"
                 #passwordDos
                 [ngClass]="
                   'block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:outline-none'
                 "
               />
+            
+
+              <fa-icon *ngIf="botonViewPassword2" class="absolute  right-2 bottom-3 cursor-pointer" [icon]="faEye" (click)="botonViewPassword2 = !botonViewPassword2" (click)="viewPassword2 = 'text'" ></fa-icon>
+              <fa-icon *ngIf="botonViewPassword2 == true ? false : true"  class="absolute  right-2 bottom-3 cursor-pointer" [icon]="faEyeBlind" (click)="botonViewPassword2 = !botonViewPassword2" (click)="viewPassword2 = 'password'"></fa-icon>
+  
             </div>
           </div>
 
@@ -180,7 +187,7 @@
             <div class="flex justify-between py-2 border-b-2" *ngFor="let local of (UsuarioSeleccionado.permisos == null ? [] : (UsuarioSeleccionado.permisos.permisosLocales == null ? [] : UsuarioSeleccionado.permisos.permisosLocales))">
               <p>{{local.local.nombre}}</p>
 
-              <span class="font-medium text-blue-800 text-sm">Eliminar</span>
+              <span class="font-medium text-blue-800 text-sm cursor-pointer" (click)="eliminarLocal(local.id)">Eliminar</span>
             </div>
           <!--   <div class="flex justify-between py-2 border-b-2">
               <p>Nombre del local</p>
@@ -221,7 +228,7 @@
             <div class="flex justify-between py-2 border-b-2" *ngFor="let ventana of (UsuarioSeleccionado.permisos == null ? [] : (UsuarioSeleccionado.permisos.permisosVentanas == null ? [] : UsuarioSeleccionado.permisos.permisosVentanas))">
               <p>{{ventana.nombre}}</p>
 
-              <span class="font-medium text-blue-800 text-sm">Eliminar</span>
+              <span class="font-medium text-blue-800 text-sm cursor-pointer" (click)="eliminarVentana(ventana.id)">Eliminar</span>
             </div>
           <!--   <div class="flex justify-between py-2 border-b-2">
               <p>Nombre del local</p>
@@ -287,7 +294,8 @@
       Locales
       <select
       (change)="seleccionDeLocal($event.target!)"
-        class="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+      #valorLocal
+      class="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
       >
         <option value="0">Opciones</option>
         <option *ngFor="let local of dataLocales" [value]="local.id">{{local.nombre}}</option>
@@ -296,6 +304,7 @@
 
     <button
       type="button"
+      (click)="agregarLocalNuevo(valorLocal.value)"
       class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
     >
       Agregar
