@@ -47,6 +47,14 @@
                         : dataDeOrden.cliente.apellido
                     }}
                     <br />
+                    <span>
+                      DNI/CUIL:
+                      {{
+                         +  dataDeOrden.cliente.dni_cuil == null
+                          ? "- -"
+                          : dataDeOrden.cliente.dni_cuil
+                      }}
+                    </span>
                     <span *ngIf="dataDeOrden.cliente_direccion == null ? false :true" class="text-gray-500"
                       >
                       {{ dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.direccion }} <br />{{
@@ -223,7 +231,18 @@
                         ? ""
                         : dataDeOrden.cliente.apellido
                     }}
-                    <br /><span *ngIf="dataDeOrden.cliente_direccion == null ? false :true" class="text-gray-500"
+                    
+                    
+                    <br />
+                    <span>
+                      DNI/CUIL:
+                      {{
+                         +  dataDeOrden.cliente.dni_cuil == null
+                          ? "- -"
+                          : dataDeOrden.cliente.dni_cuil
+                      }}
+                    </span>
+                    <span *ngIf="dataDeOrden.cliente_direccion == null ? false :true" class="text-gray-500"
                       > {{ dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.direccion }} <br />{{
                         
                         dataDeOrden.cliente_direccion == null ? '' : dataDeOrden.cliente_direccion.localidad
