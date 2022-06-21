@@ -2,64 +2,101 @@
   class="mx-auto sm:w-3/4 md:w-2/4 fixed inset-0 flex items-center z-50"
   id="signin-success-message"
   *ngIf="servicioVentas.abrirCerrarVentanaCarrito"
-
 >
   <div
     class="px-6 py-4 rounded-md text-lg flex items-center justify-center w-full"
   >
     <div class="bg-white shadow border-2 border-gray-500 rounded-sm">
-
       <div class="flex justify-between px-6 py-1">
         <div></div>
         <div>
-          <button (click)="clearFormArray()" (click)="this.servicioVentas.abrirCerrarVentanaCarrito = !this.servicioVentas.abrirCerrarVentanaCarrito" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+          <button
+            (click)="clearFormArray()"
+            (click)="
+              this.servicioVentas.abrirCerrarVentanaCarrito =
+                !this.servicioVentas.abrirCerrarVentanaCarrito
+            "
+            type="button"
+            class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+          >
             <span class="sr-only">Close menu</span>
             <!-- Heroicon name: outline/x -->
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            <svg
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
       </div>
-    
 
       <!-- info de producto -->
-      <div class=" p-8">
+      <div class="p-8">
         <div class="flex flex-col gap-2">
-          <h3 class="text-3xl font-medium text-gray-800 ">{{dataProducto.sub_modelo == null ? dataProducto.productoDetalles.producto.modelo  : dataProducto.sub_modelo}} <p class="text-gray-500 font-extralight text-lg ">{{ dataProducto.sub_dibujo == null ? (dataProducto.productoDetalles.producto.estampado == null ? "- -" : dataProducto.productoDetalles.producto.estampado.dibujo) : dataProducto.sub_dibujo }}</p></h3>
-          
-          <p class="font-normal text-xl  text-gray-600"> $ {{dataProducto.precio}}</p>
-          <h5 class="text-2xl font-medium text-gray-700 ">Color</h5>
-          <p class="font-normal text-gray-600 ">{{dataProducto.color}}</p>
+          <h3 class="text-3xl font-medium text-gray-800">
+            {{
+              dataProducto.sub_modelo == null
+                ? dataProducto.productoDetalles.producto.modelo
+                : dataProducto.sub_modelo
+            }}
+            <p class="text-gray-500 font-extralight text-lg">
+              {{
+                dataProducto.sub_dibujo == null
+                  ? dataProducto.productoDetalles == null
+                    ? "- -"
+                    : (dataProducto.productoDetalles.producto.estampado == null ? "- -" : dataProducto.productoDetalles.producto.estampado.dibujo)
+                  : dataProducto.sub_dibujo
+              }}
+            </p>
+          </h3>
+
+          <p class="font-normal text-xl text-gray-600">
+            $ {{ dataProducto.precio }}
+          </p>
+          <h5 class="text-2xl font-medium text-gray-700">Color</h5>
+          <p class="font-normal text-gray-600">{{ dataProducto.color }}</p>
         </div>
 
         <div class="py-2">
-          <h3 class="text-2xl font-medium text-gray-700 ">Talles</h3>
+          <h3 class="text-2xl font-medium text-gray-700">Talles</h3>
           <div class="flex-wrap grid grid-cols-4">
-
-            <div class="border m-2 p-1 hover:shadow" *ngFor="let data of dataProducto.talles_ventas">
+            <div
+              class="border m-2 p-1 hover:shadow"
+              *ngFor="let data of dataProducto.talles_ventas"
+            >
               <p class="font-medium text-gray-700 text-sm">
-                Talle: <span class="text-indigo-700">{{data.talles}}</span>
+                Talle: <span class="text-indigo-700">{{ data.talles }}</span>
               </p>
 
               <p class="font-medium text-gray-700 text-sm">
-                Cantidad: <span class="text-indigo-700">{{data.cantidad}}</span>
+                Cantidad:
+                <span class="text-indigo-700">{{ data.cantidad }}</span>
               </p>
             </div>
-
-           
-
           </div>
         </div>
       </div>
 
       <h3 class="text-2xl font-medium text-gray-800 text-center">Cantidad:</h3>
       <!-- agregar producto a carrito -->
-      <form action=""  [formGroup]='FormularioProductos' (ngSubmit)="formProducto(FormularioProductos.value)">
-
-        <div >
-          <div  formGroupName="talles" class="flex flex-row gap-2 px-5 py-5" >
-<!--             <div *ngFor="let child of FormularioProductos.get('type.options').controls; let i = index" class="flex flex-col ">
+      <form
+        action=""
+        [formGroup]="FormularioProductos"
+        (ngSubmit)="formProducto(FormularioProductos.value)"
+      >
+        <div>
+          <div formGroupName="talles" class="flex flex-row gap-2 px-5 py-5">
+            <!--             <div *ngFor="let child of FormularioProductos.get('type.options').controls; let i = index" class="flex flex-col ">
 
               <div [formGroupName]="i" class="flex flex-col gap-2">  
                   <input formControlName="talle"  class="border-none w-16 text-center  text-gray-600 bg-transparent" [attr.disabled]="true"/>
@@ -69,50 +106,68 @@
               </div>
             </div> -->
 
-            <div *ngFor="let child of FormularioProductos.get('talles').controls; let i = index" class="flex flex-col ">
-
-              <div  [formGroupName]="i" class="flex flex-col gap-2">  
-                  <input  formControlName="talle" type="number" class="border-none w-16 text-center  text-gray-600 bg-transparent" [attr.disabled]="true"/>
-                  <input  formControlName="cantidad" [ngModel]="valorTodosInput" type="number" class="border w-16 text-center rounded-md"/>
-              </div>
-
+            <div
+              *ngFor="
+                let child of FormularioProductos.get('talles').controls;
+                let i = index
+              "
+              class="flex flex-col"
+            >
+              <div [formGroupName]="i" class="flex flex-col gap-2">
+                <input
+                  formControlName="talle"
+                  type="number"
+                  class="border-none w-16 text-center text-gray-600 bg-transparent"
+                  [attr.disabled]="true"
+                />
+                <input
+                  formControlName="cantidad"
+                  [ngModel]="valorTodosInput"
+                  type="number"
+                  class="border w-16 text-center rounded-md"
+                />
               </div>
             </div>
           </div>
-      
-
-      <div class="flex justify-center w-full">
-        <div class="relative w-3/12">
-          <label for="name-with-label" class="text-gray-700">
-            Asignar curva
-          </label>
-          <input
-            
-            type="number"
-            id="name-with-label"
-            class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-            (keyup)="onKeyUp($event)" 
-            
-            />
         </div>
-      </div>
 
-      <div class="flex justify-center px-44 py-4">
-        
-<button type="submit" class="py-2 px-4 flex justify-center items-center  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-      <fa-icon [icon]="faCart" class="px-1"  ></fa-icon>
-      <svg *ngIf="" width="20" height="20" fill="currentColor" class="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-        <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
-        </path>
-    </svg>
+        <div class="flex justify-center w-full">
+          <div class="relative w-3/12">
+            <label for="name-with-label" class="text-gray-700">
+              Asignar curva
+            </label>
+            <input
+              type="number"
+              id="name-with-label"
+              class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              (keyup)="onKeyUp($event)"
+            />
+          </div>
+        </div>
 
-    Agregar
-</button>
+        <div class="flex justify-center px-44 py-4">
+          <button
+            type="submit"
+            class="py-2 px-4 flex justify-center items-center bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            <fa-icon [icon]="faCart" class="px-1"></fa-icon>
+            <svg
+              *ngIf=""
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="mr-2 animate-spin"
+              viewBox="0 0 1792 1792"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z"
+              ></path>
+            </svg>
 
-      </div>
-
-
-
+            Agregar
+          </button>
+        </div>
       </form>
     </div>
   </div>

@@ -34,6 +34,7 @@ export class QuickViewsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.FormularioProductos = this._builder.group({
       talles: this._builder.array([]),
     });
@@ -42,6 +43,7 @@ export class QuickViewsComponent implements OnInit {
 
 
       this.dataProducto = x;
+
 
     
 
