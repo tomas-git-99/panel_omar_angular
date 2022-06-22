@@ -54,6 +54,16 @@
  
       </div>
 
+      <div class="bg-yellow-300 p-2 rounded-sm" *ngIf="ventaDeAdvertencia">
+        <div class="flex flex-row gap-2 justify-center items-center">
+          <fa-icon [icon]="faWarning" style="color:#757500"> 
+          </fa-icon>
+          <p class="text-sm font-light">
+            No se agrego "Cantidad entrega"
+          </p>
+        </div>
+      </div>
+
       <div class="grid grid-cols-3">
         <ul class="flex flex-col divide divide-y">
           <li class="flex flex-row">

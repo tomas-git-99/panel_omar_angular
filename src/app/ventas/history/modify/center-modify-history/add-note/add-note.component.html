@@ -4,41 +4,68 @@
     <div class="flex items-center justify-center">
       <div class="bg-white rounded-md shadow">
         <div class="grid m-7 gap-4">
+          <div class="flex justify-between">
+            <h3 class="text-gray-600 text-lg font-medium">Agregar</h3>
+            <button
+              (click)="cerrarVentana.emit(false)"
+              role="button"
+              aria-label="close label"
+              class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none"
+            >
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 28 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 7L7 21"
+                  stroke="#A1A1AA"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M7 7L21 21"
+                  stroke="#A1A1AA"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+          </div>
 
-            <div class="flex justify-between">
-                <h3 class="text-gray-600 text-lg font-medium">
-                    Agregar
-                  </h3>
-                  <button  (click)="cerrarVentana.emit(false)" role="button" aria-label="close label"  class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
-                    <svg width="25" height="25" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>        
-            </div>
-   
           <select
-    
             class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
             #opciones
           >
             <option value="" class="">Opciones:</option>
             <option value="descuento">Descuesto</option>
+            <option value="suma">Suma</option>
             <option value="nota">Nota</option>
           </select>
 
           <hr />
 
           <!-- nota  -->
-          <div class="grid gap-5" *ngIf="opciones.value == 'nota' ? true : false">
+          <div
+            class="grid gap-5"
+            *ngIf="opciones.value == 'nota' ? true : false"
+          >
             <select
-            #IDproducto
+              #IDproducto
               class="block w-52 py-2 px-3 border border-gray-300 font-normal text-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-        
             >
               <option value="" class="">Producto:</option>
-              <option  *ngFor="let producto of productoNoRepetidos" [value]="producto.id">COD: {{producto.codigo}} | {{producto.modelo}} - {{producto.dibujo}}</option>
-       
+              <option
+                *ngFor="let producto of productoNoRepetidos"
+                [value]="producto.id"
+              >
+                COD: {{ producto.codigo }} | {{ producto.modelo }} -
+                {{ producto.dibujo }}
+              </option>
             </select>
 
             <label class="font-semibold text-gray-700">Nota para:</label>
@@ -48,15 +75,17 @@
             <label for="floating_email" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Escribir curva rapido</label>
         </div> -->
             <button
-            (click)="addNote(nota.value, IDproducto.value)"
+              (click)="addNote(nota.value, IDproducto.value)"
               class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
             >
-            
               Agregar
             </button>
           </div>
 
-          <div class="grid gap-5" *ngIf="opciones.value == 'descuento' ? true : false">
+          <div
+            class="grid gap-5"
+            *ngIf="opciones.value == 'descuento' ? true : false"
+          >
             <label class="font-semibold text-gray-700"
               >Motivo de descuento:</label
             >
@@ -78,11 +107,43 @@
               >
             </div>
             <button
-            (click)="addDescuento(inputText.value, inputValue.value)"
+              (click)="addDescuento(inputText.value, inputValue.value)"
               class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
             >
               Agregar
             </button>
+          </div>
+
+          <div
+          class="grid gap-5"
+          *ngIf="opciones.value == 'suma' ? true : false"
+          >
+          <label class="font-semibold text-gray-700"
+          >Motivo de agregado:</label
+        >
+        <textarea class="resize-y rounded-md" #inputTextSuma></textarea>
+
+        <div class="relative z-0 mb-6 w-full group">
+          <input
+            type="number"
+            name="precio"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            #inputValueSuma
+            required
+          />
+          <label
+            for="floating_email"
+            class="absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >$</label
+          >
+        </div>
+        <button
+        (click)="suma(inputTextSuma.value, inputValueSuma.value)"
+          class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#4F46E5] rounded-md hover:bg-[#473fd1] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+        >
+          Agregar
+        </button>
           </div>
         </div>
       </div>

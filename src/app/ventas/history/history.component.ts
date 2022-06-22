@@ -67,7 +67,6 @@ export class HistoryComponent implements OnInit {
       buscador, pagina, local, fechaInicio, fechaFinal
     ).subscribe( 
       res => {
-        console.log(res)
         this.arrayTodasLasOrdenes = res.data;
         this.cantidadPaginas = res.contador;
     }
@@ -150,7 +149,6 @@ export class HistoryComponent implements OnInit {
 
   funcFiltroDeFechas(fecha_1:Date | any , fecha_2:Date | any){
 
-    console.log(fecha_1, fecha_2)
     const tiempoTranscurrido = Date.now();
     const hoy = new Date(tiempoTranscurrido);
     this.fecha_before = fecha_1;
@@ -167,7 +165,7 @@ export class HistoryComponent implements OnInit {
   }
 
   paginacion(paginaSiguiente:any) {
-    console.log(paginaSiguiente)
+   
     this.productosYbuscador('', paginaSiguiente, this.localGuardado, this.fecha_before, this.fecha_after);
   }
 

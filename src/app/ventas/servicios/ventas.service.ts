@@ -336,6 +336,14 @@ export class VentasService {
     return this.http.delete(environment.urlBackendProduccion + 'nota-descuento/descuento/'+id_descuento);
   }
 
+  postAgregarSumaOrden(id_orden:any, data:any){
+    return this.http.post(environment.urlBackendProduccion + 'nota-descuento/agregado/'+id_orden, data);
+  }
+
+  deleteUNsumaOrden(id_suma:any){
+    return this.http.delete(environment.urlBackendProduccion + 'nota-descuento/agregado/'+id_suma);
+  }
+
   deleteUNnotaDeOrden(id_orden:any){
     return this.http.delete(environment.urlBackendProduccion + 'nota-descuento/nota/'+id_orden);
   }

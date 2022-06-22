@@ -141,4 +141,47 @@ export class AddNoteComponent implements OnInit {
       }
     )
   }
+
+  suma(motivo: string, precio: string){
+
+  
+
+    if (precio == '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ingrese un precio',
+      });
+      return;
+    }
+
+
+    this.servicioVentas.postAgregarSumaOrden(this.idOrdenSeleccion, {precio: precio, motivo: motivo})
+    .subscribe(
+      (res:any) => {
+        if (res.ok === true) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Exito',
+            text: '',
+          });
+          this.arrayOrden.sumaOrden.push(
+            {
+              id:res.data.id,
+              motivo:motivo,
+              precio:Number(precio),
+            }
+          );
+          this.servicioVentas.actualizarOrdenTotalDescuento.emit(true)
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error al agregar',
+          });
+        }
+      }
+    )
+
+  }
 }

@@ -12,6 +12,7 @@ export interface Orden {
     orden_detalle:     OrdenDetalle[];
     nota:              Nota[];
     descuento:         Descuento[];
+    sumaOrden:         SumaOrden[];
     ordenEstado:       OrdenEstado[];
     cliente:           Cliente;
     cliente_direccion: ClienteDireccion;
@@ -35,6 +36,11 @@ export interface ClienteDireccion {
 }
 
 export interface Descuento {
+    id:     number;
+    precio: number;
+    motivo: string;
+}
+export interface SumaOrden {
     id:     number;
     precio: number;
     motivo: string;
