@@ -10,6 +10,7 @@ import { CheckOutComponent } from './ventas/generate-voucher/check-out/check-out
 import { InvoicesComponent } from './ventas/generate-voucher/check-out/invoices/invoices.component';
 import { PayComponent } from './ventas/generate-voucher/check-out/pay/pay.component';
 import { ShoppingCartComponent } from './ventas/generate-voucher/shopping-cart/shopping-cart.component';
+import { TicketDetalleComponent } from './ventas/generate-voucher/ticket-detalle/ticket-detalle.component';
 import { VentasComponent } from './ventas/ventas.component';
 
 const routes: Routes = [
@@ -52,6 +53,11 @@ const routes: Routes = [
     /* canActivate: [ AuthGuard ], */
 
   },
+  {
+    path: 'ticket/:id',
+    component: TicketDetalleComponent,
+
+  }
 ];
 
 @NgModule({

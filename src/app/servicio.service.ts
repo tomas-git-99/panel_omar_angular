@@ -30,11 +30,13 @@ export class ServicioService {
 
   //funciones 
   abrirVentanasConPermisos() {
-    let dataUsuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
 
+    let dataUsuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
+    
     if(dataUsuario == null){
       this.router.navigate(['/']);
       return;
+  
     }
     this.UsuarioDeLaCuenta = dataUsuario.usuario;
 

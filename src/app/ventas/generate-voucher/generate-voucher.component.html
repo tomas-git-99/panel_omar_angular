@@ -237,7 +237,7 @@
           <tr class="h-16 w-full text-sm leading-none text-gray-800">
             <th class="font-normal text-center">Codigo</th>
             <th class="font-normal text-center">Modelo & Diseño</th>
-            <th class="font-normal text-center">Color</th>
+            <th class="font-normal text-center">Tela & Color</th>
             <th class="font-normal text-center">Talles</th>
             <th class="font-normal text-center">Local</th>
             <th class="font-normal text-center">Precio</th>
@@ -280,11 +280,21 @@
             </td>
 
             <td class="">
-              <p
-                class="text-sm font-medium leading-none text-gray-800 text-center"
-              >
-                {{ producto.color == null ? "- -" : producto.color }}
+            
+              <p class="font-medium text-center text-gray-900 py-1">
+                {{
+                   producto.sub_tela == null 
+                   ? producto.productoDetalles == null 
+                    ? '- -'
+                    : producto.productoDetalles.producto.tela
+                   : producto.sub_tela }}
               </p>
+              <p class="font-medium text-center text-gray-600"
+              >
+              {{ producto.color == null ? "- -" : producto.color }}
+            </p>
+
+
             </td>
             <td class="">
               <div class="flex justify-center">

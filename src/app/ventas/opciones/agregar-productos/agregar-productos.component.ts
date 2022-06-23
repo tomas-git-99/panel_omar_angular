@@ -31,6 +31,7 @@ export class AgregarProductosComponent implements OnInit {
       color: ['', Validators.required],
       sub_modelo: ['', Validators.required],
       sub_dibujo: ['', Validators.required],
+      sub_tela: ['', Validators.required],
       categoria: ['', Validators.required],
       sub_local: ['', Validators.required],
     });

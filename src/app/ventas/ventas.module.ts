@@ -43,6 +43,7 @@ import { PaginacionComponent } from './paginacion/paginacion.component';
 import { AgregarProductosComponent } from './opciones/agregar-productos/agregar-productos.component';
 import { MoficadorDeProductosBetaComponent } from './generate-voucher/moficador-de-productos-beta/moficador-de-productos-beta.component';
 import { LocalesComponent } from './opciones/editar-view/locales/locales.component';
+import { TicketDetalleComponent } from './generate-voucher/ticket-detalle/ticket-detalle.component';
 
 
 
@@ -89,6 +90,7 @@ import { LocalesComponent } from './opciones/editar-view/locales/locales.compone
     AgregarProductosComponent,
     MoficadorDeProductosBetaComponent,
     LocalesComponent,
+    TicketDetalleComponent,
     
     
   ],

@@ -31,11 +31,8 @@ export class InvoicesComponent implements OnInit {
 
     if(this.servicioVentas.mandarParaImprimir != undefined){
       this.dataDeOrden = this.servicioVentas.mandarParaImprimir;
-      console.log('estoy con la data mandada')
       this.arreglarOrden()
     }else{
-
-      console.log('use UN get')
 
       this.servicioVentas.getObtenerOrdenPorID(this.router.url.split('/')[2]).subscribe
       (
@@ -119,7 +116,8 @@ export class InvoicesComponent implements OnInit {
         //this.dataArraysSub[x.productoVentas.id] = false;
         this.nuevoArrayConPro.push({
           id: x.productoVentas.id,
-          color:x.productoVentas.color,
+          color:x.productoVentas.color == null ? '' : x.productoVentas.color,
+          tela:x.productoVentas.sub_tela == null ? ( x.productoVentas.productoDetalles == null  ? '' : x.productoVentas.productoDetalles.producto.tela): x.productoVentas.sub_tela ,
           codigo: x.productoVentas.productoDetalles == null ?   x.productoVentas.id : x.productoVentas.productoDetalles.producto.codigo,
           local: x.productoVentas.productoDetalles == null ? '': x.productoVentas.productoDetalles.local.nombre,
           modelo:
@@ -128,7 +126,8 @@ export class InvoicesComponent implements OnInit {
               : x.productoVentas.sub_modelo,
 
         dibujo: x.productoVentas.sub_dibujo == null 
-        ? (x.productoVentas.productoDetalles.producto.estampado.length > 0 ? x.productoVentas.productoDetalles.producto.estampado[0].dibujo : '')
+        ? x.productoVentas.productoDetalles == null 
+        ? '' : (x.productoVentas.productoDetalles.producto == null ? '' :x.productoVentas.productoDetalles.producto.estampado == null ? '' :x.productoVentas.productoDetalles.producto.estampado.dibujo )
         : x.productoVentas.sub_dibujo,
 
         precio: x.precio,
@@ -267,7 +266,7 @@ export class InvoicesComponent implements OnInit {
       if(index === 0){
         talles += `${element.talle}`;
       }else{
-        talles += ` - ${element.talle}`;
+        talles += ` -${element.talle}`;
       }
 
 

@@ -217,6 +217,7 @@ export class GenerateVoucherComponent implements OnInit {
 
         })
 
+
        // this.calcularPaginas(data.contador);
         this.cantidadPaginas = data.contador
 

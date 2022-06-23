@@ -64,6 +64,8 @@ export class ShoppingCartComponent implements OnInit {
     this.servicioVentas
       .getObtenerCarrito(this.dataUsuarioLocal.id)
       .subscribe((res) => {
+
+        console.log(res)
         this.arreglarCarrito(res.data.carrito);
       });
 
@@ -124,7 +126,7 @@ export class ShoppingCartComponent implements OnInit {
         this.dataArraysSub[x.producto.id] = false;
         this.arrayCarritoProductos.push({
           id: x.producto.id,
-          color:x.producto.color,
+          color:x.producto.color == null ? '' : x.producto.color ,
           codigo: ( x.producto.productoDetalles == null ? x.producto.id : x.producto.productoDetalles.producto.codigo),
           local: ( x.producto.productoDetalles == null ?   x.producto.sub_local :  x.producto.productoDetalles.local  ),
           modelo:
@@ -133,7 +135,8 @@ export class ShoppingCartComponent implements OnInit {
               : x.producto.sub_modelo,
 
         dibujo: x.producto.sub_dibujo == null 
-        ? (x.producto.productoDetalles.producto.estampado.length > 0 ? x.producto.productoDetalles.producto.estampado[0].dibujo : '')
+        ? x.producto.productoDetalles == null 
+          ? '' : (x.producto.productoDetalles.producto == null ? '' :x.producto.productoDetalles.producto.estampado == null ? '' :x.producto.productoDetalles.producto.estampado.dibujo )
         : x.producto.sub_dibujo,
 
         precio: x.precio_nuevo == null 
@@ -264,7 +267,7 @@ export class ShoppingCartComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'SI',
-    }).then((result) => {
+    }).then((result:any) => {
       if (result.isConfirmed) {
         this.servicioVentas.deleteCarritoTodo( this.dataUsuarioLocal.id, id_producto)
         .subscribe(

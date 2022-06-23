@@ -43,7 +43,7 @@ export interface Carrito {
     modelo:    string;
     edad:      string;
     tela:      string;
-    estampado: Estampado[];
+    estampado: Estampado;
   }
   
   export interface Estampado {
