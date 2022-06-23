@@ -8,17 +8,18 @@ import { DistributionComponent } from './distribution/distribution.component';
 import { CheckOutComponent } from './generate-voucher/check-out/check-out.component';
 import { VentasComponent } from './ventas.component';
 import { OpcionesComponent } from './opciones/opciones.component';
+import { AuthGuard } from '../seguridad/auth.guard';
 
 
 const routes: Routes = [
   { 
     path: '',
     children:[
-      {path:'inicio', component: HomeComponent},
-      {path:'generar', component: GenerateVoucherComponent},
-      {path:'historial', component: HistoryComponent},
-      {path:'distribucion', component: DistributionComponent},
-      {path:'opciones', component: OpcionesComponent},
+      {path:'inicio', component: HomeComponent, canActivate: [ AuthGuard  ]},
+      {path:'generar', component: GenerateVoucherComponent, canActivate: [ AuthGuard  ]},
+      {path:'historial', component: HistoryComponent,  canActivate: [ AuthGuard  ]},
+      {path:'distribucion', component: DistributionComponent,  canActivate: [ AuthGuard  ]},
+      {path:'opciones', component: OpcionesComponent,  canActivate: [ AuthGuard  ]},
     
       {path:'**', redirectTo: 'inicio'}
     ]

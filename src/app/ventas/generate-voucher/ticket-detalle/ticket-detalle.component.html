@@ -1,29 +1,33 @@
-<div class="flex w-full justify-center">
-    <p class="text-2xl font-semibold ">Total de articulos: {{nuevoArrayConPro.length}}</p>
-</div>
-<div class="flex w-full justify-center flex-wrap gap-5 p-5">
-  <div class="" *ngFor="let data of funcionParaCompletados(nuevoArrayConPro)">
-
-    <div [ngClass]="'flex  rounded-md shadow-md p-3 ' + (data.completo == false ? 'bg-white' : 'bg-green-100')" >
-        <div class="flex flex-col items-center justify-center w-40 ">
-            <p class="text-2xl font-medium">Total</p>
-            <p class="text-xl font-medium">{{totalDelOrden(data.talles)}}</p>
-        </div>
-        <div class="max-w-sm">
-            <p class="font-semibold text-lg"> Codigo: <span class="font-medium text-indigo-700">{{data.codigo}}</span> </p>
-            <p class="font-semibold text-lg"> Modelo: <span class="font-medium text-indigo-700"> {{data.modelo}} </span> </p>
-            <p class="font-semibold text-lg">Diseño: <span class="font-medium text-indigo-700">{{data.dibujo}}</span> </p>
-            <p class="font-semibold text-lg">Tela: <span class="font-medium text-indigo-700">{{data.tela == ''? '--' : data.tela}}</span> </p>
-            <p class="font-semibold text-lg">Color: <span class="font-medium text-indigo-700">{{data.color}}</span> </p>
-            <div class="flex flex-wrap gap-3 py-2">
-                <div *ngFor="let t of ordenarTalles(data.talles)"   [ngClass]="'cursor-default border  p-1 rounded-md  ' + ( t.estado == false ? 'bg-red-200' : 'bg-green-300') " (click)="cambiar(data.id, t.id)">
-                    <p class="font-semibold text-sm text-gray-600">Talle: {{t.talle}} </p>
-                    <p class="font-semibold text-sm text-gray-600">Cantidad: {{t.cantidad}}</p>
+<div class="fixed inset-0 flex flex-col z-50 w-full bg-slate-100 border-red-600  overflow-scroll">
+    <div class="flex w-full justify-center py-5 ">
+        <p class="text-3xl font-semibold ">Total de articulos: {{nuevoArrayConPro.length}}</p>
+    </div>
+    <div class="flex w-full justify-center flex-wrap gap-5 p-5">
+      <div class="" *ngFor="let data of funcionParaCompletados(nuevoArrayConPro)">
+    
+        <div [ngClass]="'flex  rounded-md shadow-md p-3 ' + (data.completo == false ? 'bg-white' : 'bg-green-100')" >
+            <div class="flex flex-col items-center justify-center w-40 ">
+                <p class="text-2xl font-medium">Total</p>
+                <p class="text-xl font-medium">{{totalDelOrden(data.talles)}}</p>
+            </div>
+            <div class="max-w-sm">
+                <p class="font-semibold text-lg"> Codigo: <span class="font-medium text-indigo-700">{{data.codigo}}</span> </p>
+                <p class="font-semibold text-lg"> Modelo: <span class="font-medium text-indigo-700"> {{data.modelo}} </span> </p>
+                <p class="font-semibold text-lg">Diseño: <span class="font-medium text-indigo-700">{{data.dibujo}}</span> </p>
+                <p class="font-semibold text-lg">Tela: <span class="font-medium text-indigo-700">{{data.tela == ''? '--' : data.tela}}</span> </p>
+                <p class="font-semibold text-lg">Color: <span class="font-medium text-indigo-700">{{data.color}}</span> </p>
+                <div class="flex flex-wrap gap-3 py-2">
+                    <div *ngFor="let t of ordenarTalles(data.talles)"   [ngClass]="'cursor-default border  p-1 rounded-md  ' + ( t.estado == false ? 'bg-red-200' : 'bg-green-300') " (click)="cambiar(data.id, t.id)">
+                        <p class="font-semibold text-sm text-gray-600">Talle: {{t.talle}} </p>
+                        <p class="font-semibold text-sm text-gray-600">Cantidad: {{t.cantidad}}</p>
+                    </div>
                 </div>
             </div>
         </div>
+    
+      
+      </div>
     </div>
-
-  
-  </div>
+    
 </div>
+

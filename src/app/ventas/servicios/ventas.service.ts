@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Carrito } from '../inter/carrito';
-import { HistorialOrden } from '../inter/ordenHistorial';
+import { HistorialOrden, Orden } from '../inter/ordenHistorial';
 import { Distribucion, ProductosVentasTodos, TallesVenta } from '../inter/productosVentasTodos';
 import { ProductosVentas } from '../inter/ventas';
 
@@ -10,6 +10,10 @@ import { ProductosVentas } from '../inter/ventas';
   providedIn: 'root'
 })
 export class VentasService {
+
+  //ticket token
+
+  dataOrdenToken!:Orden;
 
 
   //add-sales
@@ -355,5 +359,10 @@ export class VentasService {
 
   putCambiarPrecioCarrito(id_usuario:any, id_producto:any, data:any){
     return this.http.put(environment.urlBackendProduccion + 'carrito/'+id_usuario+'/'+id_producto, data);
+  }
+
+  getVerificacionTokenOrden(token:string){
+    return this.http.get<any>(environment.urlBackendProduccion + 'orden/ticket/t/verificar?token='+token);  
+
   }
 }

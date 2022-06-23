@@ -44,8 +44,7 @@ import { AgregarProductosComponent } from './opciones/agregar-productos/agregar-
 import { MoficadorDeProductosBetaComponent } from './generate-voucher/moficador-de-productos-beta/moficador-de-productos-beta.component';
 import { LocalesComponent } from './opciones/editar-view/locales/locales.component';
 import { TicketDetalleComponent } from './generate-voucher/ticket-detalle/ticket-detalle.component';
-
-
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 @NgModule({
@@ -98,8 +97,8 @@ import { TicketDetalleComponent } from './generate-voucher/ticket-detalle/ticket
     CommonModule,
     VentasRoutingModule,
     FontAwesomeModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    QRCodeModule
     
   ],
   exports: [

@@ -9,6 +9,7 @@ import { RollosComponent } from './rollos/rollos.component';
 import { DistribucionComponent } from './distribucion/distribucion.component';
 import { AgregarComponent } from './agregar/agregar.component';
 import { EmpleadosComponent } from './pagos/empleados/empleados.component';
+import { AuthGuard } from '../seguridad/auth.guard';
 
 
 
@@ -18,13 +19,13 @@ const routes: Routes = [
   { 
     path: '',
     children:[
-      {path:'agregar', component: AgregarComponent},
-      {path:'producto', component: ProductosComponent},
-      {path:'estampados', component: EstampadoComponent},
-      {path:'distribucion', component: DistribucionComponent},
-      {path:'pago', component: PagosComponent},
-      {path:'rollos', component: RollosComponent},
-      {path:'empleados', component: EmpleadosComponent},
+      {path:'agregar', component: AgregarComponent, canActivate: [ AuthGuard  ]},
+      {path:'producto', component: ProductosComponent, canActivate: [ AuthGuard  ]},
+      {path:'estampados', component: EstampadoComponent, canActivate: [ AuthGuard  ]},
+      {path:'distribucion', component: DistribucionComponent, canActivate: [ AuthGuard  ]},
+      {path:'pago', component: PagosComponent, canActivate: [ AuthGuard  ]},
+      {path:'rollos', component: RollosComponent, canActivate: [ AuthGuard  ]},
+      {path:'empleados', component: EmpleadosComponent, canActivate: [ AuthGuard  ]},
       {path:'**', redirectTo: 'producto'}
     ]
   },

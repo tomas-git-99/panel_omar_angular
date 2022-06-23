@@ -33,11 +33,13 @@ export class ServicioService {
 
     let dataUsuario = JSON.parse(localStorage.getItem('dataUsuario') as any);
     
-    if(dataUsuario == null){
+ /*    if(dataUsuario == null){
       this.router.navigate(['/']);
       return;
   
     }
+ */
+
     this.UsuarioDeLaCuenta = dataUsuario.usuario;
 
     if (dataUsuario.roles == 'ventas') {

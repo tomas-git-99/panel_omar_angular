@@ -24,15 +24,20 @@ export class InvoicesComponent implements OnInit {
 
   nuevoArrayConPro:any =[];
 
+  linkQR:string = '';
+
   constructor(public servicioVentas:VentasService, private router:Router) { }
 
   ngOnInit(): void { console.log(this.servicioVentas.mandarParaImprimir )
 
 
-    if(this.servicioVentas.mandarParaImprimir != undefined){
+  /*   if(this.servicioVentas.mandarParaImprimir != undefined){
       this.dataDeOrden = this.servicioVentas.mandarParaImprimir;
       this.arreglarOrden()
-    }else{
+    }else{}*/
+
+
+    console.log(window.location.hostname)
 
       this.servicioVentas.getObtenerOrdenPorID(this.router.url.split('/')[2]).subscribe
       (
@@ -43,6 +48,9 @@ export class InvoicesComponent implements OnInit {
   
             }
             console.log(res);
+            
+            this.linkQR = ( window.location.hostname == "localhost" ? 'http://localhost:4200' : 'https://tiendamilena.com.ar') +'/ticket/' + res.token
+
             this.dataDeOrden = res.data;
             this.arreglarOrden()
           }else{
@@ -55,7 +63,7 @@ export class InvoicesComponent implements OnInit {
         }
       )
   
-    }
+    
 
 
 

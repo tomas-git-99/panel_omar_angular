@@ -1,7 +1,7 @@
 
 <!-- pruebas -->
 
-<div class="w-full h-screen flex justify-center items-center">
+<div class="w-full  flex justify-center items-center">
   <div class="flex lg:flex-row md:flex-col sm:flex-col w-full">
     <div class="w-full flex justify-center flex-col items-center">
       <h3 class="text-gray-600 text-lg font-medium underline py-3">
@@ -209,7 +209,7 @@
       </div>
     </div>
 
-    <div class="w-full flex justify-center flex-col items-center">
+    <div class="w-full flex justify-center flex-col items-center ">
       <h3 class="text-gray-600 text-lg font-medium underline py-3">
         Comprobante para el Armado
       </h3>
@@ -339,7 +339,7 @@
                     {{ data.color }}
                   </p>
                       </td>
-                      <td class="py-1 text-center border w-16">
+                      <td class="py-1 text-center w-16">
                         {{ tallesObtener(data.talles) }}
                       </td>
                       <!-- <td class="py-1 text-center">67</td> -->
@@ -376,6 +376,27 @@
               </button>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="pt-5">
+        <div class="qrcodeImage">
+          <qrcode
+            [qrdata]="linkQR"
+            [allowEmptyString]="true"
+            [cssClass]="'center'"
+            [colorDark]="'#000000ff'"
+            [colorLight]="'#ffffffff'"
+            [elementType]="'img'"
+            [errorCorrectionLevel]="'M'"
+            [margin]="4"
+            [scale]="1"
+            [title]="'A custom title attribute'"
+            [width]="200"
+          ></qrcode>
+        </div>
+
+        <div class="flex w-full justify-center py-5">
+          <a [href]="linkQR" class="font-semibold text-indigo-600 text-xl">LINK</a>
         </div>
       </div>
     </div>

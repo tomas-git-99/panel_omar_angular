@@ -17,46 +17,48 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-   /*  canActivate: [TokenGuard] */
+   // canActivate: [AuthGuard]
 
   },{
     path: 'usuario',
     component: UsuarioComponent,
-   /*  canActivate: [AdminGuard] */
+    canActivate: [AuthGuard]
   },
   {
 
     path: 'ventas',
-   /*  canActivate: [ AuthGuard  ], */
-    loadChildren: () => import('./ventas/ventas.module').then(m => m.VentasModule)
+    loadChildren: () => import('./ventas/ventas.module').then(m => m.VentasModule),
+    canActivate: [ AuthGuard  ],
+
   },
   {
     path: 'produccion',
-  /*   canActivate: [ AuthGuard ], */
-    loadChildren: () => import('./produccion/produccion.module').then(m => m.ProduccionModule)
+    loadChildren: () => import('./produccion/produccion.module').then(m => m.ProduccionModule),
+    canActivate: [ AuthGuard ],
+
   },
   {
     path: 'checkout',
     component: CheckOutComponent,
-    /* canActivate: [ AuthGuard ], */
+    canActivate: [ AuthGuard ],
 
   },
   {
     path: 'payment',
     component: PayComponent,
-    //canActivate: [AuthGuard ],
+    canActivate: [AuthGuard ],
 
   },
   {
     path: 'invoice/:id',
     component: InvoicesComponent,
-    /* canActivate: [ AuthGuard ], */
+    canActivate: [ AuthGuard ],
 
   },
   {
-    path: 'ticket/:id',
+    path: 'ticket/:token',
     component: TicketDetalleComponent,
-
+    canActivate: [TokenGuard]
   }
 ];
 

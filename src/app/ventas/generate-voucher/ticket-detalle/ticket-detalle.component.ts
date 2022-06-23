@@ -16,27 +16,9 @@ export class TicketDetalleComponent implements OnInit {
   constructor(public servicioVentas: VentasService, private router: Router) {}
 
   ngOnInit(): void {
-    this.servicioVentas
-      .getObtenerOrdenPorID(this.router.url.split('/')[2])
-      .subscribe(
-        (res) => {
-          if (res.ok == true) {
-            if (res.data == null) {
-              this.router.navigate(['/ventas/historial']);
-            }
 
-            console.log(res);
-            //console.log(res);
-            this.dataDeOrden = res.data;
-            this.arreglarOrden();
-          } else {
-            this.router.navigate(['/ventas/historial']);
-          }
-        },
-        (error) => {
-          this.router.navigate(['/ventas/historial']);
-        }
-      );
+    this.dataDeOrden = this.servicioVentas.dataOrdenToken;
+    this.arreglarOrden()
   }
   arreglarOrden() {
     this.dataDeOrden.orden_detalle.map((x: any) => {
