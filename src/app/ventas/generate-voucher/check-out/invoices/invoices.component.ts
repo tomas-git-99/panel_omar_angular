@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faScissors } from '@fortawesome/free-solid-svg-icons';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { Orden } from 'src/app/ventas/inter/ordenHistorial';
@@ -12,6 +13,8 @@ import { VentasService } from 'src/app/ventas/servicios/ventas.service';
   styleUrls: ['./invoices.component.css']
 })
 export class InvoicesComponent implements OnInit {
+
+  faTijera = faScissors;
 
 
   arrayPrueba:any[] = [1,2,3,4]
@@ -180,34 +183,81 @@ export class InvoicesComponent implements OnInit {
 
   }
 
+  SinOConQR:boolean = true;
+
+  opcionesQR:boolean = false;
+
   pdf(tag:string){
-    const data:any = document.getElementById(`${tag}`);
-    const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: 'A4',compress:true });
-    //const doc = new jsPDF('p', 'pt', 'a4');
-    const options = {
-      background: 'white',
-      scale: 3
-    };
 
+
+    setTimeout(() => {
+      const data:any = document.getElementById(`${tag}`);
+      const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: 'A4',compress:true });
+      //const doc = new jsPDF('p', 'pt', 'a4');
+      const options = {
+        background: 'white',
+        scale: 3
+      };
   
+    
+  
+      html2canvas(data, options).then((canvas) => {
+  
+        const img = canvas.toDataURL('image/PNG');
+  
+        // Add image Canvas to PDF
+        const bufferX = 1;
+        const bufferY = 1;
+        const imgProps = (doc as any).getImageProperties(img);
+        const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  
+        doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+        return doc;
+      }).then((docResult) => {
+        docResult.save(`${new Date().toISOString()}.pdf`);
+      });
+  
+    }, 0);
+  
+  
+  }
 
-    html2canvas(data, options).then((canvas) => {
 
-      const img = canvas.toDataURL('image/PNG');
+  pdfQR(tag:string, estado:boolean){
 
-      // Add image Canvas to PDF
-      const bufferX = 1;
-      const bufferY = 1;
-      const imgProps = (doc as any).getImageProperties(img);
-      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    this.SinOConQR = estado;
 
-      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
-      return doc;
-    }).then((docResult) => {
-      docResult.save(`${new Date().toISOString()}.pdf`);
-    });
-
+    setTimeout(() => {
+      const data:any = document.getElementById(`${tag}`);
+      const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: 'A4',compress:true });
+      //const doc = new jsPDF('p', 'pt', 'a4');
+      const options = {
+        background: 'white',
+        scale: 3
+      };
+  
+    
+  
+      html2canvas(data, options).then((canvas) => {
+  
+        const img = canvas.toDataURL('image/PNG');
+  
+        // Add image Canvas to PDF
+        const bufferX = 1;
+        const bufferY = 1;
+        const imgProps = (doc as any).getImageProperties(img);
+        const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  
+        doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+        return doc;
+      }).then((docResult) => {
+        docResult.save(`${new Date().toISOString()}.pdf`);
+      });
+  
+    }, 0);
+  
   
   }
 
