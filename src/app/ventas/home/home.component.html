@@ -227,7 +227,7 @@
               </td>
               <td class="" >
           
-                  <p class="text-base font-normal leading-none text-gray-700 mr-2">Cod: {{items.codigo == null ? '- -' : items.codigo}}</p>
+                  <p class="text-base font-normal leading-none text-gray-700 mr-2">Cod: {{items.codigo == null ? '- -' : items.codigo || '- -'}}</p>
 <!--                   <p class="text-base font-normal leading-none text-gray-700 mr-2">Cod: {{items.codigo == null }}</p>
  -->              
                 
@@ -235,8 +235,8 @@
 
               <td class="" >
                 <div class="pl-5">
-                  <p class="text-base font-medium leading-none text-gray-700 mr-2">{{items.modelo}}</p>
-                  <p class="text-xs leading-3 text-gray-600 pt-2">{{items.estampado == null ? '- -' : items.estampado.dibujo}}</p>
+                  <p class="text-base font-medium leading-none text-gray-700 mr-2">{{items.modelo || '- -'}}</p>
+                  <p class="text-xs leading-3 text-gray-600 pt-2">{{items.estampado == null ? '- -' : items.estampado.dibujo || '- -'}}</p>
                 
 
               

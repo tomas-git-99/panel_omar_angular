@@ -22,6 +22,7 @@ export class MoficadorDeProductosBetaComponent implements OnInit {
   @Input() productoSeleccionado: any;
   @Input() arrayDeCatergoria: any;
   @Input() arrayDeLocales: any;
+  @Input() arrayGruposAll: any;
   
   @Output() cerrarVentana = new EventEmitter();
 
@@ -36,6 +37,8 @@ BotonCarga:boolean = false;
   constructor(private _builder: FormBuilder, public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
+
+    console.log(this.arrayGruposAll)
 
     this.formEditar = this._builder.group({
       sub_modelo:['', Validators.required],
@@ -190,5 +193,53 @@ BotonCarga:boolean = false;
 
   cambioCantidad(event: any) {
     this.cantidadSeleccionada = event.value
+  }
+
+
+
+  agregarGrupo(data:any):any{
+    if(data == ''){
+      return  Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Tiene que seleccionar una opcion',
+
+      })
+    }
+    this.servicioVentas.postAgregarGrupo(data, this.productoSeleccionado.id)
+    .subscribe( (x:any) => {
+      if(x.ok){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: '',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+  
+
+      if(x.ok == false){
+
+        if( x.cod == 1){
+          Swal.fire({
+             icon: 'error',
+             title: 'Oops...',
+             text: x.msg,
+           })
+         }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal!',
+  
+          })
+         }
+
+        
+      }
+    })
+
+
   }
 }

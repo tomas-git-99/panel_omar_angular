@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlBackendProduccion: 'http://localhost:9000/api/'
+  //urlBackendProduccion: 'http://localhost:9000/api/'
+  urlBackendProduccion: 'http://192.168.1.55:9000/api/'
   //urlBackendProduccion: 'http://192.168.1.49:9000/api/'
  // urlBackendProduccion: 'http://localhost:3000/'
 };

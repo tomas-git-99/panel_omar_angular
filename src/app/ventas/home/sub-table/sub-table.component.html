@@ -24,7 +24,7 @@
                                 <img class="w-full h-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects.png" />
                             </div> -->
                             
-                                <p class="font-medium text-center">34</p>
+                                <p class="font-medium text-center">{{item.productoVentas.id || '- -'}}</p>
                                <!--  <p class="text-xs leading-3 text-gray-600 pt-2">Herman Group</p> -->
                         
                        
@@ -52,15 +52,30 @@
                        <!--  <p class="text-xs leading-3 text-gray-600 mt-2">5 tasks pending</p> -->
                     </td>
                     <td class="">
-                        <p class="font-medium text-center">{{servicioVentas.funcOrdenarTalles(item.productoVentas.talles_ventas)}}</p>
-                       <!--  <p class="text-xs leading-3 text-gray-600 mt-2">$4,200 left</p> -->
+               
+                       <div class="flex justify-center">
+                        <select
+                          class="flex w-32 text-gray-700 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                        >
+                          <option value="">
+                            {{ arrayTalles(item.productoVentas.talles_ventas) }}
+                          </option>
+                          <option
+                            [value]="T.id"
+                            *ngFor="let T of item.productoVentas.talles_ventas"
+                            class="text-center"
+                          >
+                            {{ "Talle: " + T.talles + " | Cantidad: " + T.cantidad }}
+                          </option>
+                        </select>
+                      </div>
                     </td>
                     <td class="">
-                        <p class="font-medium text-center">{{item.local.nombre}}</p>
+                        <p class="font-medium text-center">{{item.local.nombre || '- -'}}</p>
                      <!--    <p class="text-xs leading-3 text-gray-600 mt-2">34 days</p> -->
                     </td>
                     <td class="">
-                        <p class="font-medium text-center">${{item.productoVentas.precio}}</p>
+                        <p class="font-medium text-center">${{item.productoVentas.precio || '- -'}}</p>
 
                      
                     </td>

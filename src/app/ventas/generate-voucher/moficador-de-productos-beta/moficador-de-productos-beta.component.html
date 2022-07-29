@@ -40,6 +40,9 @@
           </svg>
         </button>
       </div>
+
+      <h3 *ngIf="productoSeleccionado.productoDetalles == null ? false :true" class="text-center text-sm font-semibold text-green-600 py-3">{{'Esta en el grupo, Codigo: ' + productoSeleccionado.productoDetalles.producto.codigo || ''}}</h3>
+
       <form  [formGroup]="formEditar" (ngSubmit)="enviarModificacion(formEditar.value)" (keydown.enter)="$event.preventDefault()">
 
       <div class="flex flex-col gap-4">
@@ -144,6 +147,45 @@
               
             </div>
   
+          </div>
+
+          <div *ngIf="productoSeleccionado.productoDetalles == null ? true : false" >
+
+            <h3 class="text-center text-xl font-semibold text-gray-800 py-5">Agregar a grupo</h3>
+
+
+              <h3 *ngIf="productoSeleccionado.productoDetalles == null ? false :true" class="text-center text-sm font-semibold text-green-600 py-5">{{'Esta en el grupo, Codigo: ' + productoSeleccionado.productoDetalles.producto.codigo || ''}}</h3>
+  
+
+            <div class="flex flex-row justify-center items-center gap-5">
+              <select #valorGrupo id="animals" class="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" name="animals">
+                <option value="">
+                    Opciones
+                </option>
+                <option *ngFor="let p of arrayGruposAll" [value]="p.id">
+                    Cod: {{ p.codigo || '-' }} 
+                    |
+                    Modelo: {{ p.modelo || '-' }}
+                    |
+                    Dibujo: {{ p.estampado.dibujo || '-' }}
+                    |
+                    Tela: {{ p.tela || '-' }}
+                </option>
+             
+            </select>
+          
+            <div>
+          
+          <button (click)="agregarGrupo(valorGrupo.value)" type="button" class="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+            Cambiar
+          </button>
+            </div>
+
+
+
+  </div>
+
+
           </div>
       </div>
 

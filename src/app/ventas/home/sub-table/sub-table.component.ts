@@ -27,7 +27,16 @@ export class SubTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  arrayTalles(arrays:any[]) {
+    let arrayT:string[] = []
 
+    arrays.map( 
+      x => {
+        arrayT.push(x.talles)
+      }
+    )
+    return arrayT;
+  }
   viewSubTable(){
     this.isSubTable = !this.isSubTable;
     

@@ -365,4 +365,18 @@ export class VentasService {
     return this.http.get<any>(environment.urlBackendProduccion + 'orden/ticket/t/verificar?token='+token);  
 
   }
+
+  postCrearGrupo(data:any){
+    return this.http.post(environment.urlBackendProduccion + 'productos-ventas/agregar/grupo' , data);
+  }
+
+  getObtenerGrupo(){
+    return this.http.get(environment.urlBackendProduccion + 'productos-ventas/solo/grupos/all/s');
+  }
+
+
+  postAgregarGrupo(id_grupo:any, id_producto:any){
+    return this.http.post(environment.urlBackendProduccion + 'productos-ventas/agregar/grupo/'+id_grupo+'/'+id_producto, {});
+  }
 }
+

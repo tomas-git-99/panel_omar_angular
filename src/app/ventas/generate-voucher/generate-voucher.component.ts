@@ -64,10 +64,19 @@ export class GenerateVoucherComponent implements OnInit {
   permisoDeEliminarOeditar:boolean = false;
   
 
+
+  arrayDeGrupos = [];
+
+
   constructor(public servicioVentas:VentasService, public servicioProduccion:ProduccionService) { }
 
   ngOnInit(): void {
 
+
+    this.servicioVentas.getObtenerGrupo()
+    .subscribe( (x:any) => {
+      this.arrayDeGrupos = x.data;
+    })
 
     //console.log(this.verrificarCuantosLocalesTiene(JSON.parse(localStorage.getItem('dataUsuario') as any)))
     //this.productosYbuscador('',0,this.verrificarCuantosLocalesTiene(JSON.parse(localStorage.getItem('dataUsuario') as any)))

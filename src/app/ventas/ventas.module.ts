@@ -45,6 +45,7 @@ import { MoficadorDeProductosBetaComponent } from './generate-voucher/moficador-
 import { LocalesComponent } from './opciones/editar-view/locales/locales.component';
 import { TicketDetalleComponent } from './generate-voucher/ticket-detalle/ticket-detalle.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { AgregarGrupProductosComponent } from './opciones/agregar-grup-productos/agregar-grup-productos.component';
 
 
 @NgModule({
@@ -90,6 +91,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     MoficadorDeProductosBetaComponent,
     LocalesComponent,
     TicketDetalleComponent,
+    AgregarGrupProductosComponent,
     
     
   ],

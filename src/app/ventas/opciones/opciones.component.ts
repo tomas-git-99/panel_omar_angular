@@ -9,7 +9,8 @@ import { VentasService } from '../servicios/ventas.service';
 export class OpcionesComponent implements OnInit {
 
 
-  abrirVentana:boolean = false
+  abrirVentana:boolean = false;
+  abrirVentanaCrearGrupo:boolean = false;
 
   constructor(public servicioVentas:VentasService) { }
 
