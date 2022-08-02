@@ -36,7 +36,7 @@
                         </div> -->
                     </td>
                     <td class="">
-                        <p class="text-sm font-medium leading-none text-gray-800 text-center">{{item.productoVentas.sub_dibujo == null ? arraySubProductos.estampado.dibujo : item.productoVentas.sub_dibujo }}</p>
+                        <p class="text-sm font-medium leading-none text-gray-800 text-center">{{item.productoVentas.sub_dibujo == null ? (arraySubProductos.estampado == null ? '- -' : arraySubProductos.estampado.dibujo) : item.productoVentas.sub_dibujo == null ? '- -' : item.productoVentas.sub_dibujo}}</p>
                       <!--   <div class="w-24 h-3 bg-gray-100 rounded-full mt-2">
                             <div class="w-20 h-3 bg-green-progress rounded-full"></div>
                         </div> -->
