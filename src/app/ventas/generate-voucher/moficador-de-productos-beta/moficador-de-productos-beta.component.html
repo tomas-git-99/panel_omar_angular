@@ -163,13 +163,13 @@
                     Opciones
                 </option>
                 <option *ngFor="let p of arrayGruposAll" [value]="p.id">
-                    Cod: {{ p.codigo || '-' }} 
+                    Cod: {{ p.codigo  == null ? '-' :  p.codigo}} 
                     |
-                    Modelo: {{ p.modelo || '-' }}
+                    Modelo: {{ p.modelo  == null ? '-' : p.modelo  }}
                     |
-                    Dibujo: {{ p.estampado.dibujo || '-' }}
+                    Dibujo: {{ p.estampado == null ? '-' : p.estampado.dibujo}}
                     |
-                    Tela: {{ p.tela || '-' }}
+                    Tela: {{ p.tela  == null ? '-' :  p.tela }}
                 </option>
              
             </select>
