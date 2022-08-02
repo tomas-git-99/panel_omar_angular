@@ -274,7 +274,7 @@
                   producto.sub_dibujo == null
                     ? producto.productoDetalles == null
                       ? "- -"
-                      : producto.productoDetalles.producto.estampado.dibujo
+                      : producto.productoDetalles.producto.estampado == null ? '- -': producto.productoDetalles.producto.estampado.dibujo
                     : producto.sub_dibujo
                 }}</p>
             </td>
